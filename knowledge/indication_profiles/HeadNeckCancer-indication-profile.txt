@@ -1,0 +1,2057 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indication_profile>
+  
+  <metadata>
+    <indication_name>Head and Neck Squamous Cell Carcinoma (HNSCC)</indication_name>
+    <indication_code>C00-C14, C30-C32 (ICD-10)</indication_code>
+    <subtypes>
+      <subtype prevalence="~25-30%" region="US/EU">HPV-positive (predominantly oropharyngeal)</subtype>
+      <subtype prevalence="~70-75%" region="US/EU">HPV-negative (oral cavity, larynx, hypopharynx)</subtype>
+      <subtype clinical_distinction="critical">HPV+ tumors: younger patients, better prognosis, higher PD-L1 expression, better ICI response</subtype>
+      <subtype clinical_distinction="critical">HPV- tumors: older, tobacco/alcohol-associated, worse prognosis, lower PD-L1 expression</subtype>
+    </subtypes>
+    <geographic_scope>United States and European Union</geographic_scope>
+    <data_version>2025-10-03</data_version>
+    <data_sources>FDA/EMA approvals, ClinicalTrials.gov, PubMed, HNSCC market reports, KEYNOTE and CheckMate trial data</data_sources>
+    
+    <usage_for_claude>
+      This HNSCC indication profile enables MOA-based indication selection by providing:
+      (1) Disease biology including HPV+ vs HPV- distinction and immune landscape
+      (2) Comprehensive precedent of MOAs tested in HNSCC with detailed Phase III outcomes
+      (3) Analysis of successes (pembrolizumab peri-operative, KEYNOTE-048) and failures (CheckMate-651 dual ICI, IMspire150)
+      (4) Unmet needs framed as MOA requirements, especially post-ICI resistance
+      (5) Emerging pipeline including bispecifics (24% of pipeline), cytokines, ADCs, vaccines
+      CRITICAL CONTEXT: HNSCC has established PD-1 inhibitor standard of care but 40-60% patients progress.
+      Major 2025 milestone: First peri-operative immunotherapy approval (pembrolizumab KEYNOTE-689).
+      When provided with a drug MOA, assess fit by matching against precedent drugs with similar MOA tags.
+    </usage_for_claude>
+  </metadata>
+
+  <disease_biology>
+    
+    <pathophysiology>
+      <summary>
+        HNSCC arises from mucosal epithelium of oral cavity, oropharynx, larynx, and hypopharynx.
+        Two distinct etiologic and biological subtypes:
+        (1) HPV-positive (primarily HPV16): driven by viral oncoproteins E6/E7; younger patients; 
+            better prognosis; higher PD-L1 expression; enriched immune infiltration; better ICI response
+        (2) HPV-negative: tobacco/alcohol-associated; TP53 mutations common; immune-excluded phenotype; 
+            worse prognosis; lower PD-L1 expression (but can still respond to ICIs)
+        
+        HNSCC is considered moderately immunogenic with subset showing T cell infiltration.
+        PD-L1 expression (Combined Positive Score, CPS) is enriched but NOT perfectly predictive of ICI response.
+        Tumor microenvironment characterized by:
+        - Variable T cell infiltration (HPV+ > HPV-)
+        - Immunosuppressive myeloid cells (TAMs, MDSCs)
+        - Hypoxic regions limiting immune cell function
+        - EGFR overexpression in 80-90% (targetable but limited efficacy as monotherapy)
+      </summary>
+      
+      <key_pathways>
+        <pathway relevance="high">
+          <n>PD-1 / PD-L1 checkpoint axis</n>
+          <role_in_disease>PD-L1 expressed in 50-60% of HNSCC (CPS ≥1); HPV+ tumors have higher expression; mediates T cell exhaustion</role_in_disease>
+          <druggability>ESTABLISHED - Multiple PD-1 inhibitors approved; backbone of current therapy</druggability>
+          <clinical_validation>Pembrolizumab and nivolumab approved for R/M HNSCC; pembrolizumab approved for peri-operative use (2025); PD-1 monotherapy shows 13-18% ORR; combination with chemo improves outcomes</clinical_validation>
+        </pathway>
+        <pathway relevance="high">
+          <n>EGFR pathway</n>
+          <role_in_disease>Overexpressed in 80-90% of HNSCC; drives proliferation, survival, metastasis</role_in_disease>
+          <druggability>Established - Cetuximab approved; limited efficacy as monotherapy in R/M setting</druggability>
+          <clinical_validation>Cetuximab approved with chemotherapy or radiotherapy; EXTREME regimen standard before ICIs; now displaced by ICI combinations in first-line</clinical_validation>
+        </pathway>
+        <pathway relevance="medium">
+          <n>CTLA-4 checkpoint axis</n>
+          <role_in_disease>Expressed on T cells and Tregs; contributes to immunosuppression</role_in_disease>
+          <druggability>TESTED BUT FAILED in HNSCC - Nivolumab+ipilimumab failed CheckMate-651</druggability>
+          <clinical_validation>CheckMate-651 (nivolumab+ipilimumab vs EXTREME) FAILED primary endpoint (HR 0.95 for OS); better safety but no efficacy benefit; dual ICI NOT effective in HNSCC</clinical_validation>
+        </pathway>
+        <pathway relevance="emerging">
+          <n>TIGIT checkpoint axis</n>
+          <role_in_disease>Inhibitory receptor on T cells and NK cells; co-expressed with PD-1 in exhausted cells</role_in_disease>
+          <druggability>UNCERTAIN - Failed in NSCLC and other cancers; being tested in HNSCC (tiragolumab, domvanalimab Phase II)</druggability>
+          <clinical_validation>No positive Phase III data in any cancer; HNSCC trials ongoing but cautious after broader failures</clinical_validation>
+        </pathway>
+        <pathway relevance="emerging">
+          <n>LAG-3 checkpoint axis</n>
+          <role_in_disease>Co-inhibitory receptor; expressed on exhausted T cells</role_in_disease>
+          <druggability>Emerging - Tebotelimab (LAG-3/PD-1 bispecific) in Phase II</druggability>
+          <clinical_validation>No mature data in HNSCC yet; relatlimab+nivolumab approved in melanoma validates target</clinical_validation>
+        </pathway>
+        <pathway relevance="emerging">
+          <n>CD47 / SIRPα axis</n>
+          <role_in_disease>"Don't eat me" signal; prevents macrophage-mediated phagocytosis; enables immune evasion</role_in_disease>
+          <druggability>Emerging - Evorpacept (CD47 blocker) in Phase II with PD-1 inhibitors</druggability>
+          <clinical_validation>Early clinical data; potential to enhance macrophage-mediated tumor clearance</clinical_validation>
+        </pathway>
+      </key_pathways>
+
+      <hpv_status_biological_implications>
+        <critical_distinction>
+          HPV status is THE most important biological determinant in HNSCC, affecting prognosis, treatment response, and MOA selection.
+        </critical_distinction>
+        <hpv_positive_tumors>
+          <prevalence>25-30% of HNSCC (higher in oropharyngeal cancer: 60-70%)</prevalence>
+          <biology>
+            - Driven by HPV16 E6/E7 viral oncoproteins
+            - Inactivate p53 and Rb tumor suppressors
+            - Less genomic instability than HPV- tumors
+            - Higher PD-L1 expression (CPS ≥1 in 70-80%)
+            - Better immune infiltration (T cell-inflamed/"hot" tumors)
+            - Neoantigen load from viral proteins
+          </biology>
+          <prognosis>BETTER - 5-year OS 70-80% for early stage; better response to all therapies</prognosis>
+          <ici_response>SUPERIOR - Higher ORR to PD-1 inhibitors (20-25% vs 10-15% in HPV-); better outcomes in KEYNOTE-048</ici_response>
+          <therapeutic_implications>
+            - Ideal candidates for checkpoint inhibitors
+            - Could benefit from HPV-targeted vaccines (INO-3107, IO102-IO103)
+            - May allow de-escalation strategies in curative setting
+            - Better candidates for novel immunotherapies
+          </therapeutic_implications>
+        </hpv_positive_tumors>
+        <hpv_negative_tumors>
+          <prevalence>70-75% of HNSCC</prevalence>
+          <biology>
+            - Tobacco/alcohol-associated
+            - TP53 mutations very common (70-80%)
+            - High mutational burden but lower neoantigen quality
+            - Lower PD-L1 expression (CPS ≥1 in 40-50%)
+            - More immune-excluded phenotype ("cold" tumors)
+            - Higher EGFR expression/activation
+          </biology>
+          <prognosis>WORSE - 5-year OS 40-50% for locally advanced; poorer response to therapies</prognosis>
+          <ici_response>INFERIOR - Lower ORR to PD-1 inhibitors (10-15%); still can benefit but less predictably</ici_response>
+          <therapeutic_implications>
+            - Still benefit from ICIs but lower response rates
+            - May need combination approaches (ICI + chemo, ICI + EGFR, ICI + immune modulators)
+            - Could benefit from TME-modulating agents (STING agonists, CD47 blockers) to convert cold→hot
+            - Need for biomarker-driven selection more critical
+          </therapeutic_implications>
+        </hpv_negative_tumors>
+      </hpv_status_biological_implications>
+    </pathophysiology>
+
+    <immune_landscape>
+      <tumor_microenvironment>
+        <immune_infiltration>
+          Variable - "Mixed" or "Heterogeneous" immune phenotype:
+          - HPV+ tumors: More "T cell-inflamed" (hot) with significant CD8+ T cell infiltration
+          - HPV- tumors: More "immune-excluded" (cold) with limited T cell infiltration, dense stromal barrier
+          - Overall: HNSCC shows moderate immunogenicity; subset of patients have robust T cell responses
+          - Tertiary lymphoid structures (TLS) present in subset; associated with better ICI response
+        </immune_infiltration>
+        <dominant_immune_cells>
+          CD8+ cytotoxic T cells (higher in HPV+); 
+          Regulatory T cells (Tregs); 
+          Tumor-associated macrophages (TAMs, often M2-polarized immunosuppressive); 
+          Myeloid-derived suppressor cells (MDSCs); 
+          NK cells (functional but can be exhausted); 
+          Neutrophils (neutrophil-to-lymphocyte ratio, NLR, is prognostic marker)
+        </dominant_immune_cells>
+        <immune_suppression_mechanisms>
+          <mechanism>
+            <n>PD-1/PD-L1 checkpoint expression</n>
+            <prevalence>PD-L1 CPS ≥1 in 50-60%; CPS ≥20 in ~20-25%; higher in HPV+</prevalence>
+            <functional_impact>Inhibits T cell effector function; mediates exhaustion; reversible with checkpoint blockade</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>Treg infiltration</n>
+            <prevalence>Significant Treg presence, especially in HPV- tumors</prevalence>
+            <functional_impact>Secretes IL-10, TGF-β; suppresses effector T cells; creates tolerogenic environment</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>Immunosuppressive myeloid cells (TAMs, MDSCs)</n>
+            <prevalence>Abundant in HNSCC TME, especially HPV-</prevalence>
+            <functional_impact>Produce arginase, iNOS; deplete arginine; suppress T cell function; promote angiogenesis</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>Hypoxia and metabolic dysfunction</n>
+            <prevalence>Common in HNSCC due to rapid growth and abnormal vasculature</prevalence>
+            <functional_impact>Limits T cell function; promotes immunosuppressive phenotypes; drives PD-L1 expression via HIF-1α</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>TGF-β signaling</n>
+            <prevalence>Elevated in subset of HNSCC</prevalence>
+            <functional_impact>Promotes immune exclusion; drives fibrosis; suppresses T cell and NK cell function</functional_impact>
+          </mechanism>
+        </immune_suppression_mechanisms>
+      </tumor_microenvironment>
+      
+      <cytokine_environment>
+        <cytokine_profile>
+          Mixed pro-inflammatory and immunosuppressive:
+          - HPV+ tumors: More Th1-skewed (IFN-γ, IL-2) with better immune activation
+          - HPV- tumors: More immunosuppressive (IL-10, TGF-β) with chronic inflammation
+          - Chronic inflammation from tobacco/alcohol creates paradoxical immunosuppression
+        </cytokine_profile>
+        <key_cytokines>
+          <cytokine role="Antitumor">
+            <n>IFN-γ</n>
+            <expression_level>Higher in HPV+ tumors; marker of Th1 response</expression_level>
+            <function>Activates macrophages and T cells; upregulates MHC-I; enhances antigen presentation</function>
+            <therapeutic_relevance>IFN-γ signature associated with better ICI response; IFN-α historically used but now obsolete</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Antitumor">
+            <n>IL-2</n>
+            <expression_level>Variable; produced by activated T cells</expression_level>
+            <function>T cell proliferation and activation; NK cell activation</function>
+            <therapeutic_relevance>
+              Multikine (IL-2-containing cytokine mixture) showed 73% 5-year OS in PD-L1-low/N0 patients (Phase III subset);
+              FDA cleared confirmatory Phase IIIb trial; represents validated IL-2 pathway in HNSCC neoadjuvant setting
+            </therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor">
+            <n>IL-10</n>
+            <expression_level>Elevated in immunosuppressive TME</expression_level>
+            <function>Immunosuppressive; inhibits Th1 responses; promotes M2 macrophage polarization</function>
+            <therapeutic_relevance>High IL-10 associated with worse prognosis; blockade could enhance immunity</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor">
+            <n>TGF-β</n>
+            <expression_level>Elevated in subset of HNSCC, especially fibrotic/desmoplastic tumors</expression_level>
+            <function>Drives immune exclusion; promotes Treg function; inhibits T cell activation; creates fibrotic barrier</function>
+            <therapeutic_relevance>
+              TGF-β blockade rational to overcome resistance.
+              Ficerafusp (EGFR-TGF-β trap, BCA-101) in Phase II dose-expansion; attempts to block both EGFR and TGF-β simultaneously
+            </therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Antitumor">
+            <n>IL-15</n>
+            <expression_level>Variable</expression_level>
+            <function>NK cell and CD8+ T cell proliferation and survival; memory T cell maintenance</function>
+            <therapeutic_relevance>
+              N-803 (Anktiva, IL-15 super-agonist) FDA-approved in bladder cancer; 
+              now in Phase II HNSCC trial (QUILT-3.055) with PD-L1 targeted NK cells + cetuximab ("triple immunotherapy")
+            </therapeutic_relevance>
+          </cytokine>
+        </key_cytokines>
+      </cytokine_environment>
+
+      <immune_receptors>
+        <receptor>
+          <n>PD-1</n>
+          <expression_pattern>Expressed on tumor-infiltrating T cells; higher in HPV+ tumors; marks exhausted cells</expression_pattern>
+          <functional_status>Exhausted but reversible with checkpoint blockade</functional_status>
+          <targeting_potential>
+            VALIDATED - Pembrolizumab and nivolumab approved for R/M HNSCC (first and second-line).
+            Pembrolizumab approved for peri-operative use in resectable LA-HNSCC (2025, first approval in this setting).
+            Monotherapy shows 13-18% ORR; combination with chemo improves to 35-40% ORR.
+          </targeting_potential>
+        </receptor>
+        <receptor>
+          <n>PD-L1</n>
+          <expression_pattern>Expressed on tumor cells and immune cells; CPS ≥1 in 50-60%; CPS ≥20 in 20-25%; higher in HPV+</expression_pattern>
+          <functional_status>Mediates immune evasion when expressed</functional_status>
+          <targeting_potential>
+            VALIDATED but NOT PERFECTLY PREDICTIVE - PD-L1 CPS used for patient selection in KEYNOTE-048 (monotherapy approved for CPS ≥1).
+            However, responses seen in CPS <1 patients with ICI+chemo combination.
+            Atezolizumab (PD-L1 inhibitor) FAILED in adjuvant setting (IMspire150), leading to discontinuation in HNSCC.
+          </targeting_potential>
+        </receptor>
+        <receptor>
+          <n>CTLA-4</n>
+          <expression_pattern>Expressed on T cells, especially Tregs</expression_pattern>
+          <functional_status>Inhibitory; mediates immunosuppression</functional_status>
+          <targeting_potential>
+            NOT VALIDATED in HNSCC - Nivolumab+ipilimumab FAILED in CheckMate-651 Phase III (HR 0.95 vs EXTREME chemotherapy).
+            Despite better safety (28% Grade 3-4 vs 71%), no efficacy benefit demonstrated.
+            Dual CTLA-4 + PD-1 blockade does NOT work in HNSCC (unlike melanoma, RCC).
+            Bispecific approach (volrustomig, CTLA-4/PD-1) in Phase III attempting to resurrect concept with better dosing.
+          </targeting_potential>
+        </receptor>
+        <receptor>
+          <n>TIGIT</n>
+          <expression_pattern>Expressed on T cells and NK cells; co-expressed with PD-1</expression_pattern>
+          <functional_status>Inhibitory; competes with CD226 for ligand binding</functional_status>
+          <targeting_potential>
+            UNCERTAIN - Tiragolumab (Roche) and domvanalimab (Arcus/Gilead) in Phase II HNSCC trials.
+            MAJOR CONCERN: TIGIT blockade FAILED in NSCLC, SCCHN, and other solid tumors (tiragolumab discontinued in most indications).
+            Unclear if HNSCC biology different enough to succeed where others failed.
+          </targeting_potential>
+        </receptor>
+        <receptor>
+          <n>LAG-3</n>
+          <expression_pattern>Co-expressed with PD-1 on exhausted T cells</expression_pattern>
+          <functional_status>Inhibitory; contributes to T cell exhaustion</functional_status>
+          <targeting_potential>
+            Emerging - Tebotelimab (LAG-3/PD-1 bispecific) in Phase II.
+            Relatlimab+nivolumab approved in melanoma validates target; HNSCC data pending.
+          </targeting_potential>
+        </receptor>
+        <receptor>
+          <n>CD47</n>
+          <expression_pattern>Expressed on tumor cells; "don't eat me" signal</expression_pattern>
+          <functional_status>Prevents macrophage-mediated phagocytosis</functional_status>
+          <targeting_potential>
+            Emerging - Evorpacept (ALX Oncology) in Phase II with PD-1 inhibitors.
+            Rationale: Block CD47 to enable macrophage killing; combine with PD-1 to activate T cells.
+          </targeting_potential>
+        </receptor>
+      </immune_receptors>
+    </immune_landscape>
+
+    <tumor_antigens>
+      <antigen>
+        <n>HPV16 E6/E7 oncoproteins (HPV+ tumors only)</n>
+        <expression_frequency>Expressed in 100% of HPV+ HNSCC (25-30% of all HNSCC)</expression_frequency>
+        <expression_level>High; viral oncoproteins drive tumorigenesis</expression_level>
+        <expression_pattern>Intracellular proteins</expression_pattern>
+        <normal_tissue_expression>None - viral proteins</normal_tissue_expression>
+        <therapeutic_window>Excellent - tumor-specific viral antigens</therapeutic_window>
+        <prior_targeting_attempts>
+          - INO-3107 (DNA vaccine targeting HPV16/18 E6/E7): BLA expected Apr-Sep 2026; potential first-in-class for HPV+ cancers
+          - IO102-IO103 (Cylembio vaccine targeting IDO1 and PD-L1, exploiting HPV immunogenicity): 44.4% ORR with pembrolizumab in Phase II SCCHN cohort
+          - Multiple HPV-targeted vaccines in development
+          HPV+ tumors are ideal vaccine candidates due to tumor-specific viral antigens
+        </prior_targeting_attempts>
+      </antigen>
+      
+      <antigen>
+        <n>EGFR (Epidermal Growth Factor Receptor)</n>
+        <expression_frequency>80-90% of HNSCC</expression_frequency>
+        <expression_level>High to very high; overexpressed and/or amplified</expression_level>
+        <expression_pattern>Cell surface receptor; membranous expression</expression_pattern>
+        <normal_tissue_expression>Expressed in normal epithelium at lower levels; skin, GI tract</normal_tissue_expression>
+        <therapeutic_window>Moderate - differential expression levels tumor vs normal, but on-target toxicity (rash)</therapeutic_window>
+        <prior_targeting_attempts>
+          - Cetuximab (anti-EGFR antibody): Approved with chemo (EXTREME regimen) or radiotherapy; limited efficacy as monotherapy in R/M (10-13% ORR)
+          - Now largely displaced by ICI combinations in first-line R/M setting
+          - Still used in combination with radiotherapy for LA-HNSCC in patients ineligible for cisplatin
+          - Petosemtamab (EGFR x LGR5 bispecific): Phase III LiGeR-HN1 trial ongoing, combining EGFR targeting with stem cell marker
+          - Ficerafusp (EGFR-TGF-β trap): Phase II, dual mechanism blocking EGFR and TGF-β
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <n>LGR5 (Leucine-rich repeat-containing G-protein coupled receptor 5)</n>
+        <expression_frequency>Cancer stem cell marker; expressed in subset of HNSCC</expression_frequency>
+        <expression_level>Variable; enriched in cancer stem cells</expression_level>
+        <expression_pattern>Cell surface receptor</expression_pattern>
+        <normal_tissue_expression>Expressed in intestinal stem cells and other stem cell populations</normal_tissue_expression>
+        <therapeutic_window>Emerging - stem cell marker with tumor enrichment</therapeutic_window>
+        <prior_targeting_attempts>
+          - Petosemtamab (EGFR x LGR5 bispecific, Merus): Phase III LiGeR-HN1 trial with pembrolizumab, read-out 2026
+          - Rationale: Target both proliferating EGFR+ cells and cancer stem cells (LGR5+) simultaneously
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <n>EDB-FN (Extra Domain B-Fibronectin)</n>
+        <expression_frequency>Expressed in tumor microenvironment stroma/vasculature</expression_frequency>
+        <expression_level>High in tumor stroma; marker of activated fibroblasts and angiogenesis</expression_level>
+        <expression_pattern>Extracellular matrix protein</expression_pattern>
+        <normal_tissue_expression>Minimal - transiently expressed during wound healing, otherwise absent in adults</normal_tissue_expression>
+        <therapeutic_window>Excellent - tumor microenvironment-specific</therapeutic_window>
+        <prior_targeting_attempts>
+          - Micvo/PYX-201 (EDB-FN targeting ADC, Pyxis/Pfizer): 50% ORR (n=6) in heavily pretreated HNSCC in Phase I
+          - Preliminary Phase I/II data expected late 2025
+          - Novel approach: Targets tumor stroma rather than tumor cells directly
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <n>IDO1 (Indoleamine 2,3-dioxygenase 1)</n>
+        <expression_frequency>Expressed in subset of HNSCC; immunosuppressive enzyme</expression_frequency>
+        <expression_level>Variable; higher in immune-suppressive tumors</expression_level>
+        <expression_pattern>Intracellular enzyme; can be targeted via vaccine approach</expression_pattern>
+        <normal_tissue_expression>Expressed in immune cells and some normal tissues</normal_tissue_expression>
+        <therapeutic_window>Vaccine-targetable; induces immune response against IDO1-expressing cells</therapeutic_window>
+        <prior_targeting_attempts>
+          - IO102-IO103 (IDO1/PD-L1 vaccine): 44.4% ORR with pembrolizumab in Phase II SCCHN
+          - Rationale: Target immunosuppressive enzyme to enhance anti-tumor immunity
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <n>Neoantigens (tumor-specific mutated peptides)</n>
+        <expression_frequency>Variable; HPV- tumors have high mutational burden but not all immunogenic</expression_frequency>
+        <expression_level>Variable</expression_level>
+        <expression_pattern>Intracellular proteins presented on MHC</expression_pattern>
+        <normal_tissue_expression>None - tumor-specific</normal_tissue_expression>
+        <therapeutic_window>Excellent for personalized vaccines</therapeutic_window>
+        <prior_targeting_attempts>
+          - Personalized neoantigen vaccines in early development
+          - Challenge: Identifying truly immunogenic neoantigens from high mutational burden
+        </prior_targeting_attempts>
+      </antigen>
+    </tumor_antigens>
+
+    <biological_features_for_moa_matching>
+      <feature moa_relevance="Checkpoint inhibitors (PD-1/PD-L1)">
+        <n>PD-L1 expression in 50-60% of tumors (CPS ≥1); enriched in HPV+</n>
+        <description>PD-1/PD-L1 axis is active in subset; higher expression in HPV+ tumors; moderate predictive value</description>
+        <frequency>CPS ≥1 in 50-60%; CPS ≥20 in 20-25%; higher rates in HPV+</frequency>
+        <therapeutic_implication>
+          PD-1 inhibitors are VALIDATED and STANDARD OF CARE in HNSCC:
+          - Pembrolizumab: First-line R/M (monotherapy CPS ≥1, OR with chemo all patients); second-line; peri-operative (CPS ≥1, 2025 approval)
+          - Nivolumab: Second-line platinum-refractory
+          - Monotherapy ORR 13-18% (CPS ≥1), up to 20-25% in HPV+
+          - Combination with chemo: ORR 35-40%, superior OS vs chemo alone (KEYNOTE-048)
+          - Peri-operative use: EFS benefit in KEYNOTE-689 (median EFS 59.7 vs 29.6 months for CPS ≥1)
+          CRITICAL: PD-L1 CPS is useful but NOT perfectly predictive; responses in CPS <1 with combination therapy
+          HPV status more predictive than PD-L1 alone
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Cytokine therapy - IL-2, IFN-γ, multi-cytokine approaches">
+        <n>Historical responsiveness to cytokine therapy; presence of cytokine-responsive TILs</n>
+        <description>HNSCC has shown clinical benefit from cytokine-based approaches, particularly in neoadjuvant setting</description>
+        <frequency>Subset of patients have cytokine-responsive immune infiltrates</frequency>
+        <therapeutic_implication>
+          Cytokine therapy is VALIDATED in HNSCC neoadjuvant setting:
+          - Multikine (natural cytokine mixture with IL-2, IFN-γ, others): 
+            Phase III showed 73% 5-year OS vs 45% in PD-L1-low/N0 patients (neoadjuvant use)
+            FDA cleared confirmatory Phase IIIb trial (212 patients); approval filing planned 2025-2026
+          - IRX-2 (physiologic cytokine cocktail): Showed immune activation in Phase II INSPIRE trial; data 2025
+          - N-803 (IL-15 super-agonist, Anktiva): FDA-approved in bladder cancer; Phase II QUILT-3.055 in R/M HNSCC 
+            with "triple immunotherapy" (N-803 + PD-L1 NK cells + cetuximab)
+          
+          STRATEGIC INSIGHT: Neoadjuvant setting appears OPTIMAL for cytokines (intact immune system, lower tumor burden)
+          PD-L1-low population is KEY target for cytokines (Multikine success in this subset)
+          Combination with ICIs or cellular therapies rational
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="HPV-targeted vaccines and immunotherapies">
+        <n>HPV+ subset (25-30%) expresses tumor-specific viral antigens E6/E7</n>
+        <description>HPV+ tumors driven by viral oncoproteins; ideal vaccine targets; tumor-specific antigens</description>
+        <frequency>HPV16 in 90% of HPV+ HNSCC; HPV18 in subset</frequency>
+        <therapeutic_implication>
+          HPV-targeted vaccines are RATIONAL and IN LATE DEVELOPMENT:
+          - INO-3107 (DNA vaccine, HPV16/18 E6/E7): BLA expected Apr-Sep 2026; potential first-in-class for HPV+ cancers
+          - IO102-IO103 (IDO1/PD-L1 vaccine): 44.4% ORR with pembrolizumab in Phase II
+          - Multiple other HPV vaccines in pipeline
+          
+          STRATEGIC ADVANTAGE:
+          - Tumor-specific antigens (no off-target toxicity)
+          - 25-30% of HNSCC market (growing proportion as HPV+ incidence increases)
+          - Could enable de-escalation of toxic chemo/RT in curative setting
+          - Combination with PD-1 inhibitors shows synergy (vaccine primes, ICI maintains response)
+          - Adjuvant/neoadjuvant settings are optimal (before immune system compromised)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Bispecific antibodies, especially dual checkpoint and tumor antigen-directed">
+        <n>Multiple targetable antigens (EGFR 80-90%, LGR5, EDB-FN) and checkpoints (PD-1, LAG-3, CD47)</n>
+        <description>HNSCC expresses multiple surface targets amenable to bispecific antibody approaches</description>
+        <frequency>EGFR near-universal; other targets variable</frequency>
+        <therapeutic_implication>
+          Bispecifics are MAJOR PIPELINE FOCUS (24% of HNSCC pipeline):
+          - Petosemtamab (EGFR x LGR5, Merus): Phase III LiGeR-HN1 with pembrolizumab, read-out 2026
+          - Ivonescimab (PD-1/VEGF, Akeso): Phase III HARMONi-H&N with CD47 inhibitor, data mid-2026
+          - Volrustomig (CTLA-4/PD-1, AstraZeneca): Phase III, attempting to improve on failed CheckMate-651
+          - Tebotelimab (LAG-3/PD-1, MacroGenics): Phase II
+          
+          STRATEGIC RATIONALE:
+          - Overcome limitations of monotherapy (EGFR alone has low ORR)
+          - Deliver dual mechanisms with single molecule
+          - Tumor-targeted delivery of checkpoint blockade (reduce systemic toxicity)
+          - CHALLENGE: Must demonstrate superiority to approved pembrolizumab ± chemo (high bar)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="EGFR-targeting agents (antibodies, TKIs, ADCs)">
+        <n>EGFR overexpression/amplification in 80-90% of HNSCC</n>
+        <description>EGFR is near-universal target but monotherapy limited; best in combination</description>
+        <frequency>80-90% overexpression; ~10-15% amplification</frequency>
+        <therapeutic_implication>
+          EGFR is VALIDATED but LIMITED as monotherapy:
+          - Cetuximab approved with chemo (EXTREME) or RT; monotherapy ORR only 10-13%
+          - Now displaced by ICI combinations in first-line R/M
+          - Still used with RT in LA-HNSCC for cisplatin-ineligible patients
+          
+          NEXT-GEN EGFR APPROACHES:
+          - Bispecifics: Petosemtamab (EGFR x LGR5) targets proliferating cells AND stem cells
+          - Dual traps: Ficerafusp (EGFR-TGF-β trap) blocks growth and immunosuppression
+          
+          STRATEGIC: EGFR targeting alone insufficient; needs combination with immune activation or second target
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="TGF-β pathway inhibitors">
+        <n>TGF-β signaling drives immune exclusion and fibrosis in subset</n>
+        <description>TGF-β creates barrier to T cell infiltration; promotes immunosuppressive TME</description>
+        <frequency>Elevated in subset, especially desmoplastic tumors</frequency>
+        <therapeutic_implication>
+          TGF-β blockade is RATIONAL but EARLY:
+          - Ficerafusp (EGFR-TGF-β trap, BCA-101): Phase II dose-expansion ongoing
+          - Rationale: Block both EGFR-driven proliferation AND TGF-β-mediated immune exclusion
+          - Could convert "cold" immune-excluded tumors to "hot" T cell-inflamed
+          
+          OPPORTUNITY: Overcome ICI resistance in immune-excluded subset (particularly HPV-)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="STING agonists and innate immunity activators">
+        <n>Subset of HNSCC are "cold" immune-excluded tumors needing innate immune activation</n>
+        <description>STING activation can convert cold tumors to hot by inducing type I IFN and T cell infiltration</description>
+        <frequency>Particularly relevant for HPV- immune-excluded tumors</frequency>
+        <therapeutic_implication>
+          STING agonists show EARLY PROMISE:
+          - Ulevostinag (intratumoral STING agonist): 4/8 ORR with pembrolizumab vs 1/10 pembrolizumab alone (Phase I/II)
+          - Global Phase II/III design decision expected 2026
+          
+          STRATEGIC: Could address HPV- immune-excluded subset resistant to ICIs alone
+          Intratumoral delivery reduces systemic toxicity
+          Combination with PD-1 inhibitors rational (STING creates T cells, PD-1 blockade maintains them)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="ADCs targeting tumor microenvironment">
+        <n>EDB-FN expressed in tumor stroma; unique TME target</n>
+        <description>Tumor microenvironment expresses unique antigens like EDB-FN absent in normal adult tissues</description>
+        <frequency>EDB-FN high in tumor stroma/vasculature</frequency>
+        <therapeutic_implication>
+          TME-targeted ADCs are NOVEL APPROACH:
+          - Micvo/PYX-201 (EDB-FN ADC): 50% ORR in heavily pretreated HNSCC (Phase I, n=6)
+          - Targets activated fibroblasts and angiogenic vessels rather than tumor cells
+          - Preliminary Phase I/II data expected late 2025
+          
+          STRATEGIC ADVANTAGE: Bypasses tumor heterogeneity by targeting stroma; less resistance risk
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="CD47 blockade and macrophage-activating agents">
+        <n>CD47 "don't eat me" signal prevents macrophage phagocytosis</n>
+        <description>CD47 blockade could enable macrophage-mediated tumor clearance</description>
+        <frequency>CD47 expressed on tumor cells</frequency>
+        <therapeutic_implication>
+          CD47 blockade is EMERGING:
+          - Evorpacept (ALX Oncology): Phase II with PD-1 inhibitors
+          - Ivonescimab trial includes CD47 inhibitor (AK117) in Phase III HARMONi-H&N
+          
+          RATIONALE: Activate innate immunity (macrophages) in addition to adaptive (T cells via PD-1 blockade)
+          Could overcome T cell-independent resistance mechanisms
+        </therapeutic_implication>
+      </feature>
+    </biological_features_for_moa_matching>
+    
+  </disease_biology>
+
+  <moa_landscape>
+    
+    <moa_category name="Checkpoint Inhibitor Monotherapy (PD-1/PD-L1)">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          HNSCC shows moderate immunogenicity with subset expressing PD-L1 and having T cell infiltration.
+          PD-1/PD-L1 axis mediates T cell exhaustion, particularly in HPV+ tumors with higher immune infiltration.
+          Checkpoint blockade can reverse exhaustion and restore anti-tumor immunity in subset of patients.
+          However, response rates to monotherapy are modest (13-18% ORR overall, 20-25% in HPV+).
+          Patient selection using PD-L1 CPS and HPV status enriches for responders but is not perfectly predictive.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - PD-L1 expression (CPS ≥1) in 50-60% of HNSCC
+          - T cell infiltration present, especially in HPV+ subset
+          - Historical precedent: IFN-α and IL-2 showed activity in HNSCC
+          - HPV+ tumors have viral neoantigens and better immune recognition
+        </supporting_biology>
+        <theoretical_concerns>
+          - Modest response rates vs other tumor types (melanoma 40%, NSCLC 30-45%)
+          - PD-L1 CPS not perfectly predictive
+          - Many patients have immune-excluded phenotype (especially HPV-)
+          - Combination approaches show superior outcomes vs monotherapy
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Pembrolizumab (Keytruda) - First-line R/M Monotherapy</drug_name>
+          <specific_moa>
+            Anti-PD-1 monoclonal antibody (IgG4-kappa); binds PD-1 on T cells, blocking interaction with PD-L1 and PD-L2;
+            restores T cell proliferation, cytokine production (IFN-γ, TNF-α, IL-2), and cytotoxic function;
+            administered IV 200 mg q3w or 400 mg q6w
+          </specific_moa>
+          <moa_classification>PD-1_inhibitor | checkpoint_blockade | T_cell_activation | monotherapy | CPS_stratified | first_line_RM | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA and EMA for first-line R/M HNSCC (CPS ≥1), second-line (all)</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>KEYNOTE-048</n>
+                <design>
+                  Three-arm randomized Phase III: 
+                  (1) Pembrolizumab 200 mg q3w monotherapy
+                  (2) Pembrolizumab 200 mg q3w + platinum + 5-FU chemotherapy
+                  (3) EXTREME regimen (cetuximab + platinum + 5-FU)
+                  in first-line R/M HNSCC.
+                  Primary endpoints: OS and PFS in PD-L1 CPS ≥20, CPS ≥1, and total population.
+                  N=882 patients.
+                </design>
+                <efficacy>
+                  **MONOTHERAPY SUCCESS in PD-L1-selected populations:**
+                  - **CPS ≥20 (23% of patients):**
+                    - Median OS: 14.9 months vs. 10.7 months EXTREME (HR 0.61, P<0.0001)
+                    - ORR: 23.3% vs. 36.1% (EXTREME)
+                  - **CPS ≥1 (85% of patients):**
+                    - Median OS: 12.3 months vs. 10.3 months EXTREME (HR 0.78, P=0.0086)
+                    - ORR: 19.1% vs. 35.0% (EXTREME)
+                  - **Total population:**
+                    - Did NOT meet superiority endpoint vs EXTREME
+                  
+                  **HPV status analysis:**
+                  - HPV+ patients had better outcomes with pembrolizumab monotherapy
+                  - ORR in HPV+ ~22-25% vs HPV- ~12-15%
+                  
+                  **Long-term survival (3-year OS):**
+                  - CPS ≥20: 23% (pembrolizumab) vs 14% (EXTREME)
+                  - Demonstrates durability in responders
+                </efficacy>
+                <safety>
+                  - Grade 3-5 TRAEs: 17.1% (pembrolizumab) vs. 69.3% (EXTREME)
+                  - **MAJOR SAFETY ADVANTAGE over chemotherapy**
+                  - Most common AEs: Hypothyroidism (16%), fatigue (13%), rash (11%)
+                  - Grade 3-4 immune-related AEs: ~13%
+                  - Treatment-related deaths: 1.3% (pembrolizumab) vs. 3.9% (EXTREME)
+                </safety>
+                <patient_selection>
+                  Approved for CPS ≥1 based on OS benefit
+                  CPS ≥20 enriches for higher response rate and OS benefit
+                  HPV+ status associated with better outcomes (post-hoc)
+                </patient_selection>
+                <outcome>
+                  **SUCCESS - FDA/EMA approval for first-line R/M HNSCC (CPS ≥1):**
+                  - Replaced EXTREME as preferred option for PD-L1+ patients (especially CPS ≥20)
+                  - Superior safety profile key differentiator
+                  - Modest ORR (19%) but durable responses in subset
+                  - Long-term survival benefit (tail of survival curve)
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **PD-L1 CPS IS USEFUL BIOMARKER** - enriches for OS benefit (CPS ≥20 HR 0.61; CPS ≥1 HR 0.78)
+              - **SAFETY ADVANTAGE** - 17.1% Grade 3-5 vs 69.3% with chemo; major quality-of-life benefit
+              - **DURABLE RESPONSES** - 3-year OS 23% in CPS ≥20 (vs 14% chemo); tail of survival curve
+              - **HPV+ enrichment** - better outcomes in this subset
+              - **"Chemo-free" option** - valuable for elderly, poor PS, or chemo-intolerant patients
+            </success_factors>
+            <failure_reasons>
+              - **MODEST ORR** - 19% ORR (CPS ≥1) vs 35% with chemo; lower response rate
+              - **NOT SUPERIOR in total population** - benefit restricted to PD-L1+ subset
+              - **Lower ORR than combination** - pembrolizumab + chemo showed 36% ORR vs 19% mono
+            </failure_reasons>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **PD-1 monotherapy WORKS in HNSCC** but limited to biomarker-selected population
+              2. **CPS ≥1 is threshold** for approval but CPS ≥20 shows greater benefit
+              3. **Safety is major differentiator** - enables use in frailer patients
+              4. **HPV status matters** - better outcomes in HPV+ subset
+              5. **Combination superior for higher ORR** - monotherapy for selected patients only
+              6. **Post-hoc analysis** suggested chemo addition only modestly improved outcomes in CPS ≥1 (1.04-month PFS gain), raising questions about routine chemo use
+              7. **Market dominance** - Pembrolizumab captured >65% of PD-1 market share post-KEYNOTE-048
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>PD-1_inhibitor</tag>
+            <tag>checkpoint_blockade</tag>
+            <tag>monotherapy</tag>
+            <tag>CPS_stratified</tag>
+            <tag>first_line_RM</tag>
+            <tag>safety_advantage</tag>
+            <tag>modest_ORR</tag>
+            <tag>durable_responses</tag>
+            <tag>HPV_enrichment</tag>
+            <tag>approved_standard</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Nivolumab (Opdivo) - Second-line R/M</drug_name>
+          <specific_moa>
+            Anti-PD-1 monoclonal antibody (IgG4); binds PD-1 on T cells, blocking PD-L1/PD-L2 interaction;
+            restores T cell function; administered IV 240 mg q2w or 480 mg q4w
+          </specific_moa>
+          <moa_classification>PD-1_inhibitor | checkpoint_blockade | T_cell_activation | monotherapy | second_line | platinum_refractory | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA and EMA for platinum-refractory R/M HNSCC (second-line)</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>CheckMate-141</n>
+                <design>
+                  Randomized Phase III: Nivolumab 3 mg/kg IV q2w vs. investigator's choice chemotherapy 
+                  (methotrexate, docetaxel, or cetuximab) in platinum-refractory R/M HNSCC.
+                  Primary endpoint: OS.
+                  N=361 patients.
+                </design>
+                <efficacy>
+                  - Median OS: 7.5 months vs. 5.1 months (HR 0.70, P=0.01)
+                  - 1-year OS: 36% vs. 16.6%
+                  - ORR: 13.3% vs. 5.8%
+                  - Median DoR: Not reached vs. 4.0 months
+                  - **Durable responses** - some patients with ongoing responses >2 years
+                </efficacy>
+                <safety>
+                  - Grade 3-4 TRAEs: 13.1% (nivolumab) vs. 35.1% (chemo)
+                  - Significantly better tolerability
+                  - Treatment-related deaths: 2 patients (0.6%)
+                </safety>
+                <patient_selection>Platinum-refractory R/M HNSCC; no PD-L1 selection required</patient_selection>
+                <outcome>
+                  **SUCCESS - FDA/EMA approval:**
+                  - First ICI approved in HNSCC (2016)
+                  - Established checkpoint inhibition as effective in HNSCC
+                  - Lower ORR (13%) but superior OS and safety vs chemo
+                  - Demonstrated durable responses and long-term survival in subset
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **OS BENEFIT DESPITE LOW ORR** - 7.5 vs 5.1 months OS with only 13% ORR shows durability matters
+              - **SAFETY SUPERIOR** - 13.1% vs 35.1% Grade 3-4; enables longer treatment duration
+              - **DURABLE RESPONSES** - median DoR not reached; some patients with multi-year responses
+              - **NO BIOMARKER REQUIRED** - approved for all platinum-refractory patients (unselected)
+            </success_factors>
+            <key_insights>
+              - **Proof-of-concept** for PD-1 blockade in HNSCC (first approval)
+              - **Second-line niche** - now competes with pembrolizumab, but pre-dated first-line approvals
+              - **Lower ORR acceptable** if OS and durability demonstrated
+              - **Unselected population** - shows activity even without PD-L1 biomarker
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>PD-1_inhibitor</tag>
+            <tag>checkpoint_blockade</tag>
+            <tag>monotherapy</tag>
+            <tag>second_line</tag>
+            <tag>platinum_refractory</tag>
+            <tag>OS_benefit</tag>
+            <tag>low_ORR</tag>
+            <tag>durable_responses</tag>
+            <tag>unselected_population</tag>
+            <tag>approved_standard</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Atezolizumab (Tecentriq) - Adjuvant LA-HNSCC</drug_name>
+          <specific_moa>
+            Anti-PD-L1 monoclonal antibody (IgG1-kappa); binds PD-L1 on tumor and immune cells, blocking interaction with PD-1 and B7.1;
+            restores T cell activation; administered IV 1200 mg q3w
+          </specific_moa>
+          <moa_classification>PD-L1_inhibitor | checkpoint_blockade | T_cell_activation | monotherapy | adjuvant | locally_advanced | IV_administration | FAILED</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FAILED Phase III - Development discontinued in HNSCC</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>IMspire150</n>
+                <design>
+                  Randomized Phase III: Adjuvant atezolizumab 1200 mg q3w for 1 year vs. placebo 
+                  in high-risk LA-HNSCC post-surgery and radiotherapy.
+                  Primary endpoint: EFS (event-free survival).
+                  N=~700 patients.
+                </design>
+                <efficacy>
+                  **FAILED - Primary endpoint NOT met:**
+                  - EFS HR: 0.94 (not statistically significant)
+                  - No benefit demonstrated in adjuvant setting
+                </efficacy>
+                <safety>
+                  Data not fully disclosed due to negative trial
+                </safety>
+                <patient_selection>High-risk LA-HNSCC post-definitive therapy</patient_selection>
+                <outcome>
+                  **FAILURE - Development discontinued:**
+                  - Did not meet primary EFS endpoint
+                  - Roche discontinued atezolizumab development in HNSCC
+                  - Contrasts with pembrolizumab success in peri-operative setting (KEYNOTE-689)
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <failure_reasons>
+              - **TIMING MAY BE CRITICAL** - Adjuvant (post-therapy) may be too late; immune system already compromised
+              - **PD-L1 vs PD-1 difference?** - Unclear if PD-L1 blockade inferior to PD-1 in this setting
+              - **Patient selection** - May need biomarker enrichment (pembrolizumab peri-operative approved for CPS ≥1)
+            </failure_reasons>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **NOT all checkpoint inhibitors succeed in curative setting** - timing and biomarkers matter
+              2. **Peri-operative (neoadjuvant + adjuvant) superior to adjuvant alone** - pembrolizumab KEYNOTE-689 succeeded where IMspire150 failed
+              3. **PD-1 may be preferred over PD-L1** in HNSCC curative setting
+              4. **Biomarker selection critical** - KEYNOTE-689 used CPS ≥1; IMspire150 unselected
+              5. **Post-definitive therapy immune system may be too compromised** for single-agent ICI to work
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>PD-L1_inhibitor</tag>
+            <tag>checkpoint_blockade</tag>
+            <tag>monotherapy</tag>
+            <tag>adjuvant</tag>
+            <tag>locally_advanced</tag>
+            <tag>Phase_III_failure</tag>
+            <tag>development_discontinued</tag>
+            <tag>timing_critical</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (8/10) - PD-1/PD-L1 axis relevant in subset; HPV+ tumors particularly suitable</biological_fit>
+        <clinical_validation>STRONG (9/10) - Multiple approvals; pembrolizumab and nivolumab standards of care</clinical_validation>
+        <unmet_need_match>MODERATE (6/10) - Addresses first/second-line need but modest ORR; 40-60% still progress</unmet_need_match>
+        <overall_assessment>
+          **PD-1 inhibitor monotherapy is VALIDATED standard of care in HNSCC but has limitations.**
+          - Strong clinical validation: Pembrolizumab (first-line CPS ≥1, peri-operative CPS ≥1) and nivolumab (second-line) approved
+          - Best in biomarker-selected populations: CPS ≥20 shows greatest benefit; HPV+ enriches for response
+          - Modest ORR (13-19%) but durable responses in subset (3-year OS 23% in CPS ≥20)
+          - Major safety advantage over chemotherapy (17% vs 69% Grade 3-4 AEs)
+          - Limitations: Not effective in total unselected population; lower ORR than combinations; 40-60% progress
+          - Peri-operative setting: Pembrolizumab succeeded (KEYNOTE-689); atezolizumab failed (IMspire150) - timing and PD-1 vs PD-L1 may matter
+          - Strategic: Monotherapy has clear niche (CPS ≥20, elderly/frail, chemo-intolerant) but combinations show superior outcomes in broader population
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <moa_category name="ICI + Chemotherapy Combinations">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          Chemotherapy can enhance immunotherapy efficacy through multiple mechanisms:
+          (1) Immunogenic cell death releases tumor antigens and danger signals
+          (2) Depletion of immunosuppressive cells (Tregs, MDSCs)
+          (3) Upregulation of MHC-I and PD-L1 on tumor cells
+          (4) Direct tumor debulking reduces tumor burden before immune activation
+          In HNSCC, platinum-based chemo (cisplatin/carboplatin) + 5-FU is standard backbone.
+          Addition of PD-1 inhibitor to this regimen aims to harness chemo-induced immunogenicity while blocking checkpoint-mediated exhaustion.
+          Trade-off is increased toxicity (chemo AEs + immune-related AEs).
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Platinum-based chemo induces immunogenic cell death in HNSCC
+          - 5-FU depletes MDSCs and upregulates tumor antigens
+          - PD-L1 upregulation post-chemo creates rationale for checkpoint blockade
+          - Chemotherapy backbone (EXTREME regimen) was standard before ICIs
+        </supporting_biology>
+        <theoretical_concerns>
+          - Additive toxicity: Chemo side effects (nausea, cytopenias, mucositis) + irAEs
+          - Chemotherapy can be immunosuppressive (lymphopenia, bone marrow suppression)
+          - Cost: Dual therapy more expensive than monotherapy
+          - Quality of life: Chemo-related toxicity impacts patient experience
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Pembrolizumab + Platinum + 5-FU</drug_name>
+          <specific_moa>
+            Combination:
+            (1) Pembrolizumab: Anti-PD-1 antibody; checkpoint blockade
+            (2) Platinum (cisplatin or carboplatin): DNA crosslinking; induces apoptosis and immunogenic cell death
+            (3) 5-Fluorouracil (5-FU): Pyrimidine analog; inhibits thymidylate synthase; antimetabolite; depletes MDSCs
+            Synergy: Chemo-induced immunogenicity + checkpoint blockade prevents T cell exhaustion
+          </specific_moa>
+          <moa_classification>ICI_chemo_combination | PD-1_inhibitor | platinum_based | 5FU | immunogenic_cell_death | checkpoint_blockade | first_line_RM | high_toxicity</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA and EMA for first-line R/M HNSCC (all patients, regardless of PD-L1)</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>KEYNOTE-048</n>
+                <design>
+                  Three-arm randomized Phase III (see monotherapy section for full design):
+                  (2) Pembrolizumab 200 mg q3w + cisplatin/carboplatin + 5-FU x 6 cycles, then pembrolizumab maintenance
+                  (3) EXTREME regimen (cetuximab + platinum + 5-FU) control arm
+                  Primary endpoints: OS and PFS in total population and PD-L1 subgroups.
+                </design>
+                <efficacy>
+                  **SUCCESS - Superior OS in total population:**
+                  - **Total population (all PD-L1 levels):**
+                    - Median OS: 13.0 months vs. 10.7 months EXTREME (HR 0.77, P=0.0034)
+                    - ORR: 36.1% vs. 36.1% (EXTREME) - similar ORR
+                    - Median PFS: 4.9 months vs. 5.1 months (not significantly different)
+                  
+                  - **CPS ≥20:**
+                    - Median OS: 14.7 months vs. 11.0 months (HR 0.60)
+                  
+                  - **CPS ≥1:**
+                    - Median OS: 13.6 months vs. 10.4 months (HR 0.65)
+                  
+                  **OS benefit across all PD-L1 subgroups, including CPS <1**
+                </efficacy>
+                <safety>
+                  - Grade 3-5 TRAEs: 71.9% (pembrolizumab + chemo) vs. 69.3% (EXTREME)
+                  - **Similar toxicity to EXTREME** (no major additive toxicity from adding pembrolizumab to chemo)
+                  - Most common Grade 3-4: Anemia (19%), neutropenia (8%), nausea/vomiting (7%)
+                  - Immune-related AEs on top of chemo toxicity
+                  - Treatment-related deaths: 2.3% vs. 3.9%
+                </safety>
+                <patient_selection>
+                  Approved for ALL first-line R/M HNSCC patients (no PD-L1 requirement)
+                  Often preferred over monotherapy in fit patients wanting higher ORR
+                </patient_selection>
+                <outcome>
+                  **SUCCESS - FDA/EMA approval for first-line R/M (all patients):**
+                  - Superior OS in total population (HR 0.77) - works regardless of PD-L1
+                  - Similar ORR to EXTREME (36%) but superior OS suggests durability
+                  - Similar toxicity to EXTREME (no major safety disadvantage)
+                  - Preferred option for fit patients wanting maximum tumor control
+                  - Market: Combined with monotherapy, pembrolizumab holds >65% first-line market share
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **OS BENEFIT ACROSS ALL PD-L1 LEVELS** - works in total population, not just CPS ≥1
+              - **No PD-L1 biomarker required** for combination (unlike monotherapy)
+              - **Similar ORR to EXTREME** (36%) but superior OS (HR 0.77) - suggests durability from pembrolizumab
+              - **No additive toxicity** - 71.9% vs 69.3% Grade 3-5; pembrolizumab doesn't worsen chemo safety significantly
+              - **Combination synergy** - chemo-induced immunogenicity + checkpoint blockade
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **ICI + CHEMO SUPERIOR to chemo alone** in first-line HNSCC (HR 0.77 for OS)
+              2. **WORKS IN ALL PD-L1 SUBGROUPS** - no biomarker required (unlike monotherapy CPS ≥1 requirement)
+              3. **CHEMOTHERAPY "UNLOCKS" ICI benefit** in PD-L1-low patients who don't respond to monotherapy
+              4. **TOXICITY NOT PROHIBITIVE** - similar to chemo alone; manageable
+              5. **STRATEGIC CHOICE vs monotherapy:**
+                 - CPS ≥20: Monotherapy acceptable (lower toxicity, similar OS)
+                 - CPS 1-19: Combination likely better (modest monotherapy benefit)
+                 - CPS <1: Combination ONLY option (monotherapy not approved)
+              6. **POST-HOC ANALYSIS** questioned whether chemo truly necessary in CPS ≥1 (only 1.04-month PFS gain), but OS data supports combination
+              7. **MARKET IMPACT** - Combination + monotherapy combined = pembrolizumab dominance in first-line
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>ICI_chemo_combination</tag>
+            <tag>PD-1_inhibitor</tag>
+            <tag>platinum_based_chemo</tag>
+            <tag>5FU</tag>
+            <tag>first_line_RM</tag>
+            <tag>all_PD-L1_levels</tag>
+            <tag>OS_benefit</tag>
+            <tag>high_toxicity</tag>
+            <tag>approved_standard</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (9/10) - Chemo-induced immunogenicity synergizes well with checkpoint blockade</biological_fit>
+        <clinical_validation>STRONG (9/10) - KEYNOTE-048 showed OS benefit across all PD-L1 levels; approved standard</clinical_validation>
+        <unmet_need_match>MODERATE (7/10) - Addresses first-line need effectively but high toxicity limits appeal; still 40%+ progression</unmet_need_match>
+        <overall_assessment>
+          **ICI + chemotherapy combination is VALIDATED first-line standard in HNSCC (all patients).**
+          - Strong clinical validation: Pembrolizumab + platinum + 5-FU approved for all first-line R/M patients
+          - Works across ALL PD-L1 levels: HR 0.77 for OS in total population (no biomarker required)
+          - Superior to chemotherapy alone (EXTREME) with similar toxicity (~70% Grade 3-5 AEs)
+          - Higher ORR (36%) than monotherapy (19%) appeals to patients wanting tumor control
+          - Strategic trade-off: Toxicity vs efficacy - monotherapy better tolerated; combination broader efficacy
+          - Unresolved question: Is chemo necessary in CPS ≥1? Post-hoc analysis suggests modest added benefit, but OS data supports combination
+          - Future: Can we identify subset that truly needs chemo vs those who can avoid it with biomarker-driven selection?
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <moa_category name="Dual Checkpoint Inhibitor Combinations (PD-1 + CTLA-4)">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          Dual checkpoint blockade aims to overcome resistance by targeting two distinct mechanisms:
+          (1) PD-1 blockade reverses T cell exhaustion in tumor microenvironment
+          (2) CTLA-4 blockade enhances T cell priming in lymph nodes and depletes Tregs (via ADCC)
+          Rationale: HNSCC has Treg infiltration and multiple immunosuppression mechanisms; dual blockade could overcome these barriers.
+          Precedent from melanoma and RCC where dual ICI showed superior outcomes vs monotherapy.
+          However, HNSCC biology may differ - more immunosuppressive TME, different tumor antigen landscape.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Treg infiltration in HNSCC creates rationale for CTLA-4 blockade
+          - Dual checkpoint blockade successful in melanoma, RCC, MSI-high tumors
+          - CTLA-4 blockade could deplete Tregs and enhance T cell priming
+        </supporting_biology>
+        <theoretical_concerns>
+          - Higher immune-related toxicity with dual ICI
+          - HNSCC may be less responsive to CTLA-4 blockade than melanoma/RCC
+          - Difficult to improve on chemotherapy-based regimens (EXTREME, pembrolizumab + chemo)
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Nivolumab + Ipilimumab</drug_name>
+          <specific_moa>
+            Dual checkpoint blockade:
+            (1) Nivolumab: Anti-PD-1 antibody; reverses T cell exhaustion
+            (2) Ipilimumab: Anti-CTLA-4 antibody (IgG1); enhances T cell priming, depletes Tregs via ADCC
+            Synergy: PD-1 blockade in tumor + CTLA-4 blockade in lymph nodes and Treg depletion
+          </specific_moa>
+          <moa_classification>dual_checkpoint_blockade | PD-1_inhibitor | CTLA-4_inhibitor | Treg_depletion | T_cell_priming | first_line_RM | Phase_III_FAILURE</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FAILED Phase III - Did not meet primary endpoint</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>CheckMate-651</n>
+                <design>
+                  Randomized Phase III: Nivolumab 3 mg/kg q2w + Ipilimumab 1 mg/kg q6w vs. 
+                  EXTREME regimen (cetuximab + platinum + 5-FU) in first-line R/M HNSCC.
+                  Primary endpoints: OS and PFS.
+                  N=947 patients.
+                </design>
+                <efficacy>
+                  **FAILED - Primary endpoints NOT met:**
+                  - Median OS: 13.9 months vs. 13.5 months EXTREME (HR 0.95, 95% CI 0.83-1.10; **NOT significant**)
+                  - Median PFS: 5.7 months vs. 5.4 months (HR 0.87)
+                  - ORR: Not significantly different from EXTREME
+                  
+                  **No efficacy benefit despite dual checkpoint blockade**
+                </efficacy>
+                <safety>
+                  - Grade 3-4 TRAEs: 28% (nivolumab + ipilimumab) vs. 71% (EXTREME)
+                  - **MAJOR SAFETY ADVANTAGE** - much lower toxicity than chemotherapy
+                  - Immune-related AEs manageable
+                  - Better quality of life vs EXTREME
+                </safety>
+                <patient_selection>Unselected first-line R/M HNSCC; no PD-L1 requirement</patient_selection>
+                <outcome>
+                  **FAILURE - Did not gain approval:**
+                  - No efficacy benefit (HR 0.95) vs EXTREME despite better safety
+                  - Demonstrated that dual ICI does NOT work in HNSCC (unlike melanoma, RCC)
+                  - Safety advantage (28% vs 71% Grade 3-4) insufficient without efficacy
+                  - BMS did not pursue approval
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <failure_reasons>
+              - **DUAL ICI DOES NOT WORK IN HNSCC** - HR 0.95 shows no benefit over chemotherapy
+              - **HNSCC biology different from melanoma/RCC** - CTLA-4 blockade ineffective
+              - **Immunosuppressive TME may override Treg depletion** - other mechanisms (MDSCs, TAMs, TGF-β) still active
+              - **EXTREME comparator is effective** - platinum + 5-FU is active in HNSCC; hard to beat
+              - **No biomarker enrichment** - unselected population may have diluted potential benefit in subset
+            </failure_reasons>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **DO NOT assume success from melanoma/RCC translates to HNSCC** - tumor biology matters
+              2. **CTLA-4 blockade NOT effective in HNSCC** - Treg depletion alone insufficient
+              3. **Safety advantage IRRELEVANT without efficacy** - 28% vs 71% toxicity doesn't matter if no OS benefit
+              4. **Dual ICI is NOT the path forward in HNSCC** - need different combination strategies
+              5. **PD-1 + novel agents** likely better than PD-1 + CTLA-4 (e.g., PD-1 + TIGIT, PD-1 + LAG-3, PD-1 + CD47)
+              6. **Biomarker selection critical for future trials** - unselected population failed
+              7. **CheckMate-651 failure is MAJOR NEGATIVE for HNSCC dual ICI field** - redirected development to other combinations
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>dual_checkpoint_blockade</tag>
+            <tag>PD-1_inhibitor</tag>
+            <tag>CTLA-4_inhibitor</tag>
+            <tag>first_line_RM</tag>
+            <tag>Phase_III_failure</tag>
+            <tag>no_efficacy_benefit</tag>
+            <tag>safety_advantage_insufficient</tag>
+            <tag>HNSCC_biology_unfavorable</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Volrustomig (CTLA-4/PD-1 Bispecific)</drug_name>
+          <specific_moa>
+            Bispecific antibody with dual checkpoint blockade:
+            - One arm binds CTLA-4; other arm binds PD-1
+            - Single molecule delivers both checkpoint blockade mechanisms
+            - Potential for improved dosing/PK vs separate antibodies (nivolumab + ipilimumab)
+          </specific_moa>
+          <moa_classification>bispecific_antibody | dual_checkpoint_blockade | CTLA-4/PD-1 | next_generation | Phase_III_ongoing | attempting_resurrection</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase III ongoing - Attempting to succeed where CheckMate-651 failed</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>Ongoing</n>
+                <design>
+                  Volrustomig (CTLA-4/PD-1 bispecific) in HNSCC; design not fully disclosed.
+                  Rationale: Bispecific format may achieve better CTLA-4/PD-1 stoichiometry and tumor-targeted delivery vs separate antibodies.
+                </design>
+                <efficacy>Data pending</efficacy>
+                <safety>Data pending</safety>
+                <patient_selection>Likely biomarker-enriched given CheckMate-651 failure</patient_selection>
+                <outcome>
+                  **UNCERTAIN - Phase III ongoing:**
+                  - Attempting to resurrect dual checkpoint blockade concept with bispecific format
+                  - Must overcome CheckMate-651 failure (HR 0.95)
+                  - High bar: Needs to show superiority to pembrolizumab ± chemo (current standards)
+                  - Skepticism given CheckMate-651 failure suggests CTLA-4 blockade ineffective in HNSCC biology
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <key_insights>
+              - Represents "second attempt" at dual checkpoint blockade in HNSCC
+              - Bispecific format may not overcome fundamental biology issue (CTLA-4 ineffective in HNSCC)
+              - High-risk program given CheckMate-651 precedent
+              - Could succeed if biomarker-enriched or if bispecific achieves unique PD properties
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>bispecific_antibody</tag>
+            <tag>dual_checkpoint_blockade</tag>
+            <tag>CTLA-4/PD-1</tag>
+            <tag>next_generation</tag>
+            <tag>Phase_III</tag>
+            <tag>high_risk</tag>
+            <tag>resurrection_attempt</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>LOW (4/10) - CheckMate-651 failure suggests HNSCC biology not suitable for CTLA-4 blockade</biological_fit>
+        <clinical_validation>NEGATIVE (2/10) - Phase III failure; no approval; dual ICI does not work in HNSCC</clinical_validation>
+        <unmet_need_match>LOW (3/10) - Does not address unmet needs; failed to improve on chemotherapy</unmet_need_match>
+        <overall_assessment>
+          **Dual checkpoint inhibition (PD-1 + CTLA-4) is NOT EFFECTIVE in HNSCC - avoid this approach.**
+          - CheckMate-651 FAILED: HR 0.95 for OS (no benefit) despite 28% vs 71% toxicity advantage
+          - Clear negative signal: Dual ICI does NOT work in HNSCC (unlike melanoma, RCC where successful)
+          - Biology matters: HNSCC immunosuppression not overcome by CTLA-4 blockade/Treg depletion alone
+          - Volrustomig (bispecific) attempting resurrection but high risk given CheckMate-651 precedent
+          - Strategic: Avoid PD-1 + CTLA-4 combinations; focus on PD-1 + novel agents (TIGIT, LAG-3, CD47, cytokines, bispecifics, vaccines)
+          - Key learning: Cannot extrapolate from melanoma/RCC to HNSCC for dual ICI approach
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <!-- Continuing with Peri-operative PD-1 Blockade - Major 2025 Milestone -->
+
+    <moa_category name="Peri-operative Checkpoint Blockade (Neoadjuvant + Adjuvant)">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          Peri-operative immunotherapy (neoadjuvant before surgery + adjuvant after surgery) aims to cure locally advanced HNSCC.
+          Neoadjuvant advantages:
+          (1) Intact immune system (not compromised by surgery/radiation)
+          (2) Full tumor antigen repertoire available for immune priming
+          (3) Early treatment of micrometastases
+          (4) Pathologic response assessment possible
+          Adjuvant advantages:
+          (5) Eradicates minimal residual disease post-surgery
+          (6) Prevents recurrence by maintaining anti-tumor immunity
+          Combination of neo + adjuvant provides both immune priming and long-term maintenance.
+          This represents paradigm shift from palliative (R/M) to curative-intent immunotherapy.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Neoadjuvant timing captures intact immune system before surgical/radiation immunosuppression
+          - Primary tumor provides full antigen repertoire for T cell priming
+          - Adjuvant maintains immune response to prevent recurrence
+          - Pathologic complete response (pCR) correlates with long-term outcomes
+        </supporting_biology>
+        <theoretical_concerns>
+          - Surgical delay if disease progression on neoadjuvant therapy
+          - Immune-related AEs potentially complicating surgery
+          - Not all patients have operable disease after neoadjuvant treatment
+          - Long-term toxicity from prolonged immunotherapy exposure
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Pembrolizumab Peri-operative (Neoadjuvant + Adjuvant)</drug_name>
+          <specific_moa>
+            Peri-operative pembrolizumab:
+            - Neoadjuvant: Pembrolizumab 200 mg q3w x 2 cycles before surgery
+            - Surgery: Definitive resection
+            - Adjuvant: Pembrolizumab 200 mg q3w for up to 15 cycles (approx. 1 year) post-surgery
+            Total treatment duration: ~13-14 months (2 cycles neo + up to 15 cycles adjuvant)
+          </specific_moa>
+          <moa_classification>PD-1_inhibitor | checkpoint_blockade | peri-operative | neoadjuvant_plus_adjuvant | curative_intent | resectable_LA | CPS_stratified | FDA_approved_2025 | paradigm_shift</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA June 12, 2025 (FIRST approval in peri-operative HNSCC setting)</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>KEYNOTE-689</n>
+                <design>
+                  Randomized Phase III: 
+                  - Pembrolizumab 200 mg q3w x 2 cycles (neoadjuvant) → surgery → pembrolizumab 200 mg q3w x 15 cycles (adjuvant)
+                  - vs. Placebo (neoadjuvant) → surgery → placebo (adjuvant)
+                  in resectable stage III-IVA HNSCC.
+                  Primary endpoint: EFS (event-free survival) in CPS ≥10, CPS ≥1, and ITT populations.
+                  Key secondary: pCR (pathologic complete response), OS.
+                  N=~700 patients.
+                </design>
+                <efficacy>
+                  **MAJOR SUCCESS - Primary endpoints MET across all populations:**
+                  
+                  - **CPS ≥10 (subset):**
+                    - Median EFS: 59.7 months vs. 26.9 months (HR 0.66, P=0.00217)
+                    
+                  - **CPS ≥1 (85% of patients):**
+                    - Median EFS: 59.7 months vs. 29.6 months (HR 0.70, P=0.00140)
+                    - **2.5-year EFS improvement in CPS ≥1 population**
+                    
+                  - **ITT (all-comers, regardless of PD-L1):**
+                    - Median EFS: 51.8 months vs. 30.4 months (HR 0.73, P=0.00411)
+                    - **Even unselected population benefits**
+                    
+                  - **pCR rates:**
+                    - CPS ≥1: Higher pCR with pembrolizumab (exact % not disclosed)
+                    - pCR associated with superior EFS
+                    
+                  **Landmark achievement: >2-year median EFS improvement**
+                </efficacy>
+                <safety>
+                  - Well-tolerated; surgery completed in ~88% of patients
+                  - No prohibitive surgical delays or complications
+                  - Immune-related AEs manageable; did not interfere with surgery
+                  - Adjuvant phase toxicity consistent with known pembrolizumab profile
+                  - No new safety signals
+                </safety>
+                <patient_selection>
+                  **FDA approved for CPS ≥1:**
+                  - Resectable stage III-IVA HNSCC
+                  - CPS ≥1 required (85% of population)
+                  - Must be surgical candidate
+                </patient_selection>
+                <outcome>
+                  **LANDMARK SUCCESS - FDA approval June 12, 2025:**
+                  - **FIRST immunotherapy approved in peri-operative HNSCC setting**
+                  - Will reshape treatment algorithms for LA-HNSCC (NCCN/ASCO guidelines to incorporate 2026)
+                  - Market impact: Expands pembrolizumab into curative-intent setting (large patient population)
+                  - Paradigm shift: Moves immunotherapy earlier in disease course
+                  - Establishes peri-operative as new standard for resectable LA-HNSCC
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **PERI-OPERATIVE TIMING IS OPTIMAL** - Neoadjuvant primes immune system; adjuvant maintains response
+              - **MASSIVE EFS BENEFIT** - 59.7 vs 29.6 months in CPS ≥1 (>2 years improvement)
+              - **WORKS ACROSS PD-L1 SPECTRUM** - Even ITT (all PD-L1 levels) benefits (HR 0.73)
+              - **SURGERY FEASIBLE** - 88% completion rate; no prohibitive delays or complications
+              - **pCR AS BIOMARKER** - Pathologic response correlates with long-term outcomes
+              - **CPS ≥1 ENRICHMENT SUFFICIENT** - 85% of patients eligible; captures most benefit
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS - PARADIGM SHIFT:**
+              1. **PERI-OPERATIVE > ADJUVANT ALONE** - KEYNOTE-689 succeeded; IMspire150 (adjuvant atezolizumab) failed
+                 - Neoadjuvant component critical for immune priming
+              2. **FIRST APPROVAL IN CURATIVE-INTENT HNSCC** - Opens new market segment
+              3. **IMMUNOTHERAPY MOVING EARLIER** - From palliative (R/M) to curative (resectable LA)
+              4. **2+ YEAR EFS GAIN** - Among largest benefits in solid tumor peri-operative trials
+              5. **PD-1 > PD-L1** in curative setting - Pembrolizumab succeeded; atezolizumab failed
+              6. **BIOMARKER: CPS ≥1 sufficient** - Captures 85% of patients and major benefit
+              7. **TREATMENT ALGORITHMS WILL CHANGE** - Peri-operative pembrolizumab will become standard for resectable LA-HNSCC (CPS ≥1)
+              8. **COMMERCIAL IMPACT** - Massive: Pembrolizumab market share will increase significantly (curative setting = more patients)
+              9. **OTHER CANCERS** - Success in HNSCC validates peri-operative ICI strategy; expect similar trials in other HNSCCs and solid tumors
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>PD-1_inhibitor</tag>
+            <tag>peri-operative</tag>
+            <tag>neoadjuvant_adjuvant</tag>
+            <tag>curative_intent</tag>
+            <tag>resectable_LA</tag>
+            <tag>CPS_stratified</tag>
+            <tag>massive_EFS_benefit</tag>
+            <tag>paradigm_shift</tag>
+            <tag>FDA_approved_2025</tag>
+            <tag>first_in_class_setting</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>EXCELLENT (10/10) - Peri-operative timing optimally captures immune priming and long-term maintenance</biological_fit>
+        <clinical_validation>DEFINITIVE (10/10) - KEYNOTE-689 met primary endpoints with massive EFS benefit; FDA approved</clinical_validation>
+        <unmet_need_match>CRITICAL (10/10) - Addresses major unmet need in resectable LA-HNSCC (50-60% recurrence rate historically)</unmet_need_match>
+        <overall_assessment>
+          **Peri-operative pembrolizumab is LANDMARK ACHIEVEMENT and new standard for resectable LA-HNSCC.**
+          - **PARADIGM SHIFT**: First immunotherapy in curative-intent HNSCC; moves treatment earlier in disease course
+          - Massive clinical benefit: Median EFS 59.7 vs 29.6 months (CPS ≥1) - >2 year improvement
+          - Works across PD-L1 spectrum: Even ITT benefits (HR 0.73); CPS ≥1 captures 85% of patients
+          - Feasible: 88% surgery completion; no prohibitive toxicity or delays
+          - Timing critical: Peri-operative succeeded; adjuvant alone failed (IMspire150) - neoadjuvant priming essential
+          - Market impact: Expands pembrolizumab into large curative-intent population; will dominate LA-HNSCC market
+          - Treatment algorithms changing: NCCN/ASCO guidelines will incorporate peri-operative pembrolizumab (CPS ≥1) as standard 2026
+          - Strategic for new assets: Peri-operative setting now validated in HNSCC; opportunity for other MOAs (cytokines, vaccines) in this setting
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <!-- Continuing with other MOA categories... Cytokine Therapy -->
+
+    <moa_category name="Cytokine Therapy - Natural Cytokine Mixtures and IL-2/IL-15 Pathway">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          HNSCC has historical responsiveness to cytokine therapy (IFN-α, IL-2 used in 1980s-1990s).
+          Modern cytokine approaches leverage natural mixtures or engineered variants:
+          (1) Multikine: Leukocyte-derived natural cytokine mixture (IL-2, IFN-γ, TNF-α, others) - neoadjuvant use
+          (2) N-803: IL-15 super-agonist - expands NK cells and CD8+ T cells
+          (3) IRX-2: Physiologic cytokine cocktail - immune priming
+          Rationale: Activate innate and adaptive immunity; particularly valuable in:
+          - PD-L1-low tumors (not ideal for ICI monotherapy)
+          - Neoadjuvant setting (intact immune system)
+          - Combination with ICIs (cytokine primes, ICI maintains)
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Historical cytokine responsiveness validates pathway
+          - IL-2 activates CD8+ T cells and NK cells
+          - IL-15 has superior NK cell activation without Treg expansion (vs IL-2)
+          - IFN-γ upregulates MHC-I, enhances antigen presentation
+          - Neoadjuvant timing optimal (intact immune system, lower tumor burden)
+        </supporting_biology>
+        <theoretical_concerns>
+          - Systemic toxicity from cytokine effects (fever, hypotension, vascular leak with high-dose IL-2)
+          - Complex manufacturing for natural cytokine mixtures
+          - Treg activation with IL-2 (less concern with IL-15)
+          - Limited single-agent efficacy may require combination
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Multikine (Natural Cytokine Mixture)</drug_name>
+          <specific_moa>
+            Leukocyte-derived natural cytokine mixture containing:
+            - IL-2 (T cell and NK cell activation)
+            - IFN-γ (macrophage activation, MHC-I upregulation)
+            - TNF-α (tumor cell apoptosis, immune activation)
+            - IL-1β, IL-6, GM-CSF (additional immune stimulation)
+            Administered as neoadjuvant therapy via peritumoral injection before surgery and radiotherapy.
+            Mechanism: Activates local and systemic immune response; primes immune system against tumor antigens before definitive therapy.
+          </specific_moa>
+          <moa_classification>natural_cytokine_mixture | IL-2_pathway | IFN-gamma | multi_cytokine | neoadjuvant | peritumoral_injection | immune_priming | PD-L1_low_enrichment | FDA_cleared_Phase_IIIb</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FDA cleared confirmatory Phase IIIb trial (IT-MATTERS-RCT-2); approval filing planned 2025-2026</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III (initial) with confirmatory Phase IIIb ongoing</phase>
+                <n>Initial Phase III; Confirmatory trial: 212 patients (PD-L1-low/N0 subset)</n>
+                <design>
+                  Initial Phase III: Multikine neoadjuvant (peritumoral injection) followed by surgery and radiotherapy vs. 
+                  surgery and radiotherapy alone in resectable LA-HNSCC.
+                  
+                  **KEY FINDING: Biomarker-defined subset showed dramatic benefit**
+                  - PD-L1-low (<25% expression) AND N0 (node-negative) patients: 5-year OS 73% vs 45% (P<0.05)
+                  
+                  FDA cleared confirmatory Phase IIIb trial (IT-MATTERS-RCT-2) in this biomarker-defined population (212 patients).
+                </design>
+                <efficacy>
+                  **SUBSET SUCCESS - PD-L1-low/N0 patients:**
+                  - 5-year OS: 73% (Multikine) vs. 45% (control) 
+                  - **28% absolute improvement in 5-year OS**
+                  - Median OS: Data not fully mature but significant separation
+                  
+                  **Total population (initial trial):**
+                  - No significant benefit in unselected population
+                  - Benefit restricted to biomarker-defined subset
+                </efficacy>
+                <safety>
+                  - Generally well-tolerated
+                  - Local injection site reactions
+                  - Transient flu-like symptoms (fever, chills) from cytokine effects
+                  - No prohibitive systemic toxicity
+                  - Does not interfere with surgery or radiotherapy
+                </safety>
+                <patient_selection>
+                  **CRITICAL: PD-L1-low (<25%) AND N0 (node-negative) patients**
+                  This biomarker-defined subset represents patients who:
+                  - Are NOT ideal candidates for ICI monotherapy (PD-L1-low)
+                  - Have better prognosis (N0, but still at risk)
+                  - Respond dramatically to cytokine-based immune priming
+                </patient_selection>
+                <outcome>
+                  **PROMISING - FDA cleared confirmatory trial:**
+                  - 73% vs 45% 5-year OS in subset is MAJOR clinical benefit
+                  - FDA agreed on confirmatory Phase IIIb design (212 patients in PD-L1-low/N0 subset)
+                  - BLA filing planned 2025-2026 if confirmatory trial positive
+                  - EMA granted pediatric waiver Jan 2025 (simplifies MAA)
+                  - Could be FIRST cytokine therapy approved in HNSCC neoadjuvant setting
+                  - Validates biomarker-driven approach (PD-L1-low population)
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **BIOMARKER-DRIVEN SUCCESS** - PD-L1-low/N0 subset shows 73% vs 45% 5-year OS (dramatic benefit)
+              - **NEOADJUVANT TIMING OPTIMAL** - Intact immune system, full antigen repertoire
+              - **FILLS UNMET NEED** - PD-L1-low patients not ideal for ICI monotherapy; cytokines work in this population
+              - **NATURAL CYTOKINE MIXTURE** - Physiologic combination of IL-2, IFN-γ, TNF-α may be superior to single cytokine
+              - **LOCAL DELIVERY** - Peritumoral injection activates local immunity, reduces systemic toxicity
+              - **FDA ENGAGEMENT** - Clear regulatory pathway defined (confirmatory trial approved)
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **PD-L1-LOW IS KEY BIOMARKER** - Cytokines work where ICIs don't (complementary mechanism)
+              2. **NEOADJUVANT SETTING IDEAL FOR CYTOKINES** - Timing matters; intact immune system critical
+              3. **BIOMARKER ENRICHMENT ESSENTIAL** - Unselected population failed; PD-L1-low/N0 succeeded
+              4. **28% ABSOLUTE 5-YEAR OS GAIN** - Among largest benefits in neoadjuvant solid tumor trials
+              5. **NATURAL CYTOKINE MIXTURES may be superior to single cytokines** - IL-2 + IFN-γ + TNF-α synergy
+              6. **LOCAL DELIVERY REDUCES TOXICITY** - Peritumoral injection vs systemic administration
+              7. **REGULATORY PATH CLEAR** - FDA cleared confirmatory trial design; approval feasible 2025-2026
+              8. **STRATEGIC NICHE: PD-L1-low neoadjuvant** - Defined population with clear unmet need
+              9. **VALIDATES CYTOKINE PATHWAY IN HNSCC** - 30+ years after IL-2/IFN-α, cytokines resurge with better design
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>natural_cytokine_mixture</tag>
+            <tag>IL-2_pathway</tag>
+            <tag>IFN-gamma</tag>
+            <tag>multi_cytokine</tag>
+            <tag>neoadjuvant</tag>
+            <tag>PD-L1_low_biomarker</tag>
+            <tag>N0_subset</tag>
+            <tag>massive_5yr_OS_benefit</tag>
+            <tag>FDA_cleared_confirmatory</tag>
+            <tag>peritumoral_injection</tag>
+            <tag>immune_priming</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>N-803 (Anktiva, IL-15 Super-Agonist)</drug_name>
+          <specific_moa>
+            IL-15 super-agonist (IL-15 variant + IL-15 receptor alpha fusion);
+            Activates IL-15 receptor on NK cells and CD8+ T cells;
+            Superior to IL-2: Does NOT activate Tregs (IL-15R lacks CD25 component);
+            Expands and activates NK cells and memory CD8+ T cells;
+            Administered subcutaneously
+          </specific_moa>
+          <moa_classification>IL-15_super_agonist | cytokine | NK_cell_activation | CD8_T_cell_activation | Treg_sparing | FDA_approved_bladder | Phase_II_HNSCC | triple_immunotherapy</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FDA approved in bladder cancer (2024); Phase II in HNSCC (QUILT-3.055)</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase II</phase>
+                <n>QUILT-3.055</n>
+                <design>
+                  "Triple immunotherapy" in R/M HNSCC:
+                  - N-803 (IL-15 super-agonist) - activates NK and T cells
+                  - PD-L1 t-haNK cells (off-the-shelf NK cells targeting PD-L1) - tumor-directed cytotoxicity
+                  - Cetuximab (anti-EGFR antibody) - EGFR blockade and ADCC
+                  
+                  Rationale: Activate innate (NK) and adaptive (T cell) immunity while targeting EGFR.
+                </design>
+                <efficacy>
+                  Phase II data pending (trial ongoing)
+                  Leverages N-803 FDA approval in bladder cancer (demonstrated NK cell expansion and anti-tumor activity)
+                </efficacy>
+                <safety>
+                  Expected: IL-15-related AEs (injection site reactions, cytokine effects)
+                  N-803 safety profile from bladder cancer: Generally well-tolerated; Grade 3-4 ~15-20%
+                </safety>
+                <patient_selection>R/M HNSCC; likely enriched for EGFR+ (cetuximab component)</patient_selection>
+                <outcome>
+                  **INNOVATIVE - "Triple immunotherapy" approach:**
+                  - Combines cytokine (N-803), cellular therapy (PD-L1 t-haNK), and targeted antibody (cetuximab)
+                  - Leverages FDA approval in bladder cancer to expand into HNSCC
+                  - Phase II data will validate multi-modal immune activation strategy
+                  - Represents next-generation cytokine approach (IL-15 > IL-2 for Treg-sparing)
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **IL-15 > IL-2 for NK cell activation** - Superior NK expansion without Treg activation
+              - **FDA APPROVAL IN BLADDER CANCER** - De-risks HNSCC development
+              - **COMBINATION STRATEGY** - Cytokine + cellular therapy + targeted antibody = multi-modal
+              - **Treg-sparing design** - Avoids IL-2 liability (CD25 binding)
+            </success_factors>
+            <key_insights>
+              - IL-15 pathway is rational for HNSCC (NK cells present and functional)
+              - Triple combination approach innovative but complex
+              - Success in bladder cancer provides validation for IL-15 super-agonist platform
+              - HNSCC data will inform whether multi-modal immune activation superior to single agents
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>IL-15_super_agonist</tag>
+            <tag>NK_cell_activation</tag>
+            <tag>CD8_T_cell_activation</tag>
+            <tag>Treg_sparing</tag>
+            <tag>FDA_approved_other_indication</tag>
+            <tag>triple_immunotherapy</tag>
+            <tag>Phase_II_HNSCC</tag>
+            <tag>innovative_combination</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (8/10) - Historical cytokine responsiveness; neoadjuvant timing optimal; PD-L1-low subset rational</biological_fit>
+        <clinical_validation>EMERGING (7/10) - Multikine shows 73% vs 45% 5-year OS in subset (confirmatory trial ongoing); N-803 FDA-approved in bladder cancer</clinical_validation>
+        <unmet_need_match>HIGH (9/10) - Addresses PD-L1-low population (not ideal for ICIs); neoadjuvant setting with massive OS benefit</unmet_need_match>
+        <overall_assessment>
+          **Cytokine therapy is RESURGING in HNSCC with biomarker-driven and next-generation approaches.**
+          - Multikine: 73% vs 45% 5-year OS in PD-L1-low/N0 subset; FDA cleared confirmatory Phase IIIb; approval filing 2025-2026
+          - Key insight: PD-L1-low patients respond to cytokines (complementary to ICIs which work best in PD-L1-high)
+          - Neoadjuvant timing optimal: Intact immune system, full antigen repertoire, local delivery reduces toxicity
+          - N-803 (IL-15 super-agonist): FDA-approved in bladder cancer; Phase II "triple immunotherapy" in HNSCC ongoing
+          - IL-15 > IL-2: Treg-sparing (no CD25 binding), superior NK activation
+          - Strategic opportunity: Biomarker-defined populations (PD-L1-low) with cytokine therapy; neoadjuvant setting
+          - Validation: 30+ years after IL-2/IFN-α, cytokines return with better design (biomarkers, local delivery, IL-15 variants)
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <!-- Adding final MOA categories for completeness -->
+
+    <moa_category name="Bispecific Antibodies and Novel Combinations">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          Bispecific antibodies represent 24% of HNSCC pipeline - major investment area.
+          Multiple rationales:
+          (1) Dual checkpoint blockade (CTLA-4/PD-1) - attempting to improve on failed CheckMate-651
+          (2) Tumor antigen x immune cell engagers (EGFR x LGR5, EDB-FN ADC)
+          (3) Checkpoint x angiogenesis (PD-1/VEGF)
+          Goal: Deliver two mechanisms with single molecule; achieve synergy; improve dosing/PK.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Multiple targetable antigens (EGFR, LGR5, EDB-FN)
+          - Checkpoints (PD-1, LAG-3, TIGIT) co-expressed
+          - Bispecific format can achieve tumor-localized delivery
+        </supporting_biology>
+        <theoretical_concerns>
+          - Complex manufacturing
+          - Must demonstrate superiority to approved pembrolizumab ± chemo (high bar)
+          - Some targets (TIGIT) have failed in other cancers
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        <precedent_drug>
+          <drug_name>Petosemtamab (EGFR x LGR5 Bispecific)</drug_name>
+          <specific_moa>
+            Bispecific antibody:
+            - One arm binds EGFR (proliferating tumor cells)
+            - Other arm binds LGR5 (cancer stem cell marker)
+            Rationale: Target both bulk tumor (EGFR+) and cancer stem cells (LGR5+) to prevent recurrence
+          </specific_moa>
+          <moa_classification>bispecific_antibody | EGFR_targeting | LGR5_stem_cell_targeting | Phase_III | combination_with_pembrolizumab | dual_tumor_targeting</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase III LiGeR-HN1 trial ongoing; read-out expected 2026</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>LiGeR-HN1</n>
+                <design>
+                  Petosemtamab + pembrolizumab vs. pembrolizumab + chemotherapy in first-line R/M HNSCC.
+                  Primary endpoints: OS, PFS.
+                </design>
+                <efficacy>Data pending - trial ongoing; interim data expected 2026</efficacy>
+                <safety>Data pending</safety>
+                <patient_selection>First-line R/M HNSCC</patient_selection>
+                <outcome>
+                  **HIGH-STAKES Phase III:**
+                  - Must beat pembrolizumab + chemo (current standard, ORR 36%, mOS 13 months)
+                  - Targets both proliferating cells and stem cells (novel mechanism)
+                  - Merus' lead program in HNSCC
+                  - Read-out 2026 will be major catalyst
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <similarity_matching_tags>
+            <tag>bispecific_antibody</tag>
+            <tag>EGFR_LGR5</tag>
+            <tag>stem_cell_targeting</tag>
+            <tag>Phase_III</tag>
+            <tag>first_line_RM</tag>
+            <tag>combination_with_ICI</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Ivonescimab (PD-1/VEGF Bispecific) + CD47 Inhibitor</drug_name>
+          <specific_moa>
+            Combination:
+            - Ivonescimab: PD-1/VEGF bispecific (dual checkpoint + angiogenesis)
+            - AK117: CD47 inhibitor (blocks "don't eat me" signal; enables macrophage phagocytosis)
+            Triple mechanism: T cell activation + vascular normalization + macrophage activation
+          </specific_moa>
+          <moa_classification>bispecific_antibody | PD-1_VEGF | CD47_inhibitor | triple_mechanism | Phase_III | HARMONi_HN | innate_adaptive_immunity</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase III HARMONi-H&N trial; topline data expected mid-2026</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <n>HARMONi-H&N</n>
+                <design>
+                  Ivonescimab (PD-1/VEGF bispecific) + AK117 (CD47 inhibitor) in HNSCC.
+                  Design details not fully disclosed.
+                </design>
+                <efficacy>Data pending</efficacy>
+                <safety>Data pending</safety>
+                <patient_selection>HNSCC (line of therapy not specified)</patient_selection>
+                <outcome>
+                  **INNOVATIVE TRIPLE MECHANISM:**
+                  - PD-1 blockade (T cell activation)
+                  - VEGF blockade (vascular normalization, MDSC reduction)
+                  - CD47 blockade (macrophage activation)
+                  - Activates both adaptive (T cells) and innate (macrophages) immunity
+                  - Data mid-2026
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <similarity_matching_tags>
+            <tag>bispecific_antibody</tag>
+            <tag>PD-1_VEGF</tag>
+            <tag>CD47_inhibitor</tag>
+            <tag>triple_mechanism</tag>
+            <tag>Phase_III</tag>
+            <tag>innate_adaptive_immunity</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (8/10) - Multiple targetable antigens and checkpoints; bispecific format rational</biological_fit>
+        <clinical_validation>PENDING (5/10) - Multiple Phase III trials ongoing; no approvals yet; data 2026</clinical_validation>
+        <unmet_need_match>MODERATE (6/10) - Must demonstrate superiority to approved standards; high bar</unmet_need_match>
+        <overall_assessment>
+          **Bispecifics are MAJOR PIPELINE FOCUS (24% of programs) but clinical validation pending.**
+          - Petosemtamab (EGFR x LGR5): Phase III with pembrolizumab; targets proliferating cells + stem cells
+          - Ivonescimab (PD-1/VEGF) + CD47 inhibitor: Triple mechanism (T cells + vascular + macrophages)
+          - Volrustomig (CTLA-4/PD-1): Attempting to resurrect dual checkpoint blockade post-CheckMate-651 failure
+          - Challenge: Must beat pembrolizumab ± chemo (high bar); multiple Phase III read-outs 2026
+          - Strategic: Bispecifics can simplify dosing, achieve tumor-targeted delivery, deliver dual mechanisms
+          - Risk: Complex programs with uncertain outcomes; high investment; Phase III failures possible
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+  </moa_landscape>
+
+  <unmet_needs>
+    
+    <unmet_need priority="CRITICAL">
+      <n>Post-ICI Resistance and Later-Line Therapy</n>
+      <description>
+        40-60% of R/M HNSCC patients progress on first-line pembrolizumab ± chemotherapy.
+        After progression on ICI-based therapy, limited effective options remain.
+        Current second/third-line options: Single-agent chemotherapy (docetaxel, methotrexate) with ORR ~10%, mOS 6-8 months.
+        No validated biomarkers to predict ICI resistance or guide subsequent therapy selection.
+      </description>
+      <patient_population>40-60% of R/M HNSCC patients who progress on first-line ICI-based therapy</patient_population>
+      <current_gaps>
+        - No effective immunotherapy after ICI progression
+        - Mechanisms of ICI resistance poorly understood
+        - Single-agent chemotherapy only modestly effective
+        - No biomarker-driven approaches for post-ICI setting
+      </current_gaps>
+      <moa_requirements>
+        - ICI-independent mechanisms of action
+        - Target resistance pathways (TGF-β, MDSC/TAM, metabolic dysfunction)
+        - Novel immune activation (STING agonists, cytokines, CD47 blockade)
+        - Tumor antigen-directed therapies (ADCs, bispecific T-cell engagers)
+        - Overcome "cold" immune-excluded phenotype
+      </moa_requirements>
+      <suitable_moa_classes>
+        <moa_class fit="high">STING agonists (e.g., ulevostinag) - convert cold to hot tumors; work independently of PD-1 axis</moa_class>
+        <moa_class fit="high">ADCs targeting TME (e.g., PYX-201 EDB-FN ADC) - bypass tumor heterogeneity by targeting stroma</moa_class>
+        <moa_class fit="high">TGF-β inhibitors + ICI - overcome TGF-β-mediated immune exclusion</moa_class>
+        <moa_class fit="medium">CD47 blockade - activate macrophage-mediated killing (innate immunity)</moa_class>
+        <moa_class fit="medium">EGFR-directed bispecifics (petosemtamab) - dual targeting of proliferating cells and stem cells</moa_class>
+      </suitable_moa_classes>
+      <market_opportunity>Large and growing as more patients treated with first-line ICIs; less competitive than first-line; clear unmet need</market_opportunity>
+    </unmet_need>
+
+    <unmet_need priority="HIGH">
+      <n>HPV-Negative Immune-Excluded Tumors</n>
+      <description>
+        HPV- HNSCC (70-75% of cases) has worse prognosis and lower ICI response rates.
+        These tumors are more "immune-excluded" or "cold" with limited T cell infiltration.
+        Lower PD-L1 expression (CPS ≥1 in 40-50% vs 70-80% in HPV+).
+        ORR to pembrolizumab monotherapy ~10-15% (vs 20-25% in HPV+).
+        Need strategies to convert cold tumors to hot and activate immune response.
+      </description>
+      <patient_population>70-75% of HNSCC patients (HPV-); majority with immune-excluded phenotype</patient_population>
+      <current_gaps>
+        - Lower response to ICIs (ORR 10-15%)
+        - Immune-excluded TME with poor T cell infiltration
+        - High MDSC/TAM burden creating immunosuppression
+        - No specific therapies for HPV- subtype
+      </current_gaps>
+      <moa_requirements>
+        - Convert cold to hot tumors (increase T cell infiltration)
+        - Activate innate immunity (STING, CD47, TLR agonists)
+        - Overcome stromal barriers (TGF-β blockade, FAP targeting)
+        - Independent of T cell infiltration (ADCs, oncolytic viruses)
+      </moa_requirements>
+      <suitable_moa_classes>
+        <moa_class fit="high">STING agonists - induce type I IFN, chemokines; recruit T cells; ulevostinag showed 4/8 ORR vs 1/10 pembrolizumab alone</moa_class>
+        <moa_class fit="high">TGF-β inhibitors - overcome immune exclusion; ficerafusp (EGFR-TGF-β trap) in Phase II</moa_class>
+        <moa_class fit="medium">CD47 blockade - activate macrophages in T cell-poor TME</moa_class>
+        <moa_class fit="medium">Oncolytic viruses - induce immunogenic cell death, convert cold to hot</moa_class>
+      </suitable_moa_classes>
+      <market_opportunity>70-75% of HNSCC market; defined biological subtype; biomarker-selectable (HPV status)</market_opportunity>
+    </unmet_need>
+
+    <unmet_need priority="HIGH">
+      <n>PD-L1-Low Population in R/M Setting</n>
+      <description>
+        PD-L1 CPS <1 patients (15% of R/M HNSCC) do not benefit from pembrolizumab monotherapy.
+        These patients currently require pembrolizumab + chemotherapy (only approved option for CPS <1).
+        Would benefit from less toxic alternatives that work independently of PD-L1 expression.
+        Multikine data suggests cytokines work well in PD-L1-low population (neoadjuvant setting).
+      </description>
+      <patient_population>~15% of R/M HNSCC (CPS <1); ~40-50% of HPV- tumors</patient_population>
+      <current_gaps>
+        - No ICI monotherapy option (pembrolizumab not approved for CPS <1)
+        - Must receive chemotherapy combination (high toxicity)
+        - Need ICI-independent approaches
+      </current_gaps>
+      <moa_requirements>
+        - Work independently of PD-L1 expression
+        - Activate immunity through non-checkpoint mechanisms
+        - Lower toxicity than chemotherapy combination
+      </moa_requirements>
+      <suitable_moa_classes>
+        <moa_class fit="high">Cytokines - Multikine shows 73% 5-year OS in PD-L1-low neoadjuvant; validates pathway</moa_class>
+        <moa_class fit="high">STING agonists - activate immunity independently of PD-L1</moa_class>
+        <moa_class fit="medium">ADCs - direct tumor killing independent of immune status</moa_class>
+        <moa_class fit="medium">CD47 blockade - macrophage activation works in PD-L1-low</moa_class>
+      </suitable_moa_classes>
+      <market_opportunity>Defined biomarker population; unmet need for non-chemo options; Multikine precedent validates</market_opportunity>
+    </unmet_need>
+
+    <unmet_need priority="MEDIUM">
+      <n>Curative-Intent Setting Beyond Pembrolizumab</n>
+      <description>
+        Pembrolizumab peri-operative approved (CPS ≥1, 85% of patients).
+        Opportunities remain:
+        (1) CPS <1 population (15%) - not approved for peri-operative pembrolizumab
+        (2) Combination approaches to improve on pembrolizumab monotherapy
+        (3) De-escalation strategies in HPV+ to reduce RT/chemo toxicity
+        (4) Adjuvant-only setting for surgical patients (pembrolizumab is peri-operative, not pure adjuvant)
+      </description>
+      <patient_population>Resectable LA-HNSCC; ~15% CPS <1; HPV+ candidates for de-escalation</patient_population>
+      <current_gaps>
+        - CPS <1 patients not eligible for peri-operative pembrolizumab
+        - No combination approaches validated in curative setting
+        - De-escalation trials ongoing but no approved strategies
+      </current_gaps>
+      <moa_requirements>
+        - Work in CPS <1 population
+        - Synergize with pembrolizumab in combination
+        - Enable de-escalation of toxic therapies (RT, cisplatin)
+      </moa_requirements>
+      <suitable_moa_classes>
+        <moa_class fit="high">Cytokines (Multikine) - PD-L1-low biomarker; neoadjuvant timing validated</moa_class>
+        <moa_class fit="high">HPV vaccines - de-escalation in HPV+ population; tumor-specific antigens</moa_class>
+        <moa_class fit="medium">STING agonists + pembrolizumab - convert CPS <1 tumors to responsive</moa_class>
+      </suitable_moa_classes>
+      <market_opportunity>Curative-intent market large; pembrolizumab dominance but opportunities in CPS <1, HPV+ de-escalation, combinations</market_opportunity>
+    </unmet_need>
+
+    <unmet_need priority="MEDIUM">
+      <n>Predictive Biomarkers Beyond PD-L1 CPS</n>
+      <description>
+        PD-L1 CPS is useful but imperfect:
+        - CPS ≥1 enriches but doesn't guarantee response (many non-responders)
+        - CPS <1 can respond to combination therapy
+        - HPV status more predictive than PD-L1 alone
+        - Need better biomarkers to predict: (1) ICI response, (2) Resistance mechanisms, (3) Optimal combination partner
+      </description>
+      <patient_population>All HNSCC patients</patient_population>
+      <current_gaps>
+        - PD-L1 CPS imperfect predictor
+        - No validated resistance biomarkers
+        - Cannot predict optimal therapy for individual patient
+        - Blood-based biomarkers lacking (all tissue-based currently)
+      </current_gaps>
+      <moa_requirements>
+        - Develop companion diagnostics for new therapies
+        - Identify biomarkers of specific resistance mechanisms
+        - Enable precision medicine approach
+      </moa_requirements>
+      <suitable_moa_classes>
+        <moa_class fit="high">Immune gene signatures (IFN-γ, T cell infiltration scores)</moa_class>
+        <moa_class fit="high">Blood-based markers (NLR, circulating tumor DNA, DDR markers)</moa_class>
+        <moa_class fit="medium">TME profiling (MDSC/TAM abundance, TGF-β signaling)</moa_class>
+      </suitable_moa_classes>
+      <market_opportunity>Companion diagnostic market; improves patient selection for expensive therapies; payer appeal</market_opportunity>
+    </unmet_need>
+
+  </unmet_needs>
+
+  <biomarkers>
+    
+    <predictive_biomarkers>
+      <biomarker>
+        <n>PD-L1 Combined Positive Score (CPS)</n>
+        <status>VALIDATED - Used for patient selection</status>
+        <evidence>
+          - KEYNOTE-048: CPS ≥1 required for pembrolizumab monotherapy approval (mOS 12.3 vs 10.3 months, HR 0.78)
+          - CPS ≥20: Greater benefit (mOS 14.9 vs 10.7 months, HR 0.61)
+          - KEYNOTE-689: CPS ≥1 required for peri-operative approval (EFS 59.7 vs 29.6 months, HR 0.70)
+        </evidence>
+        <clinical_utility>
+          - Approved companion diagnostic for pembrolizumab
+          - CPS ≥1: Monotherapy or combination approved
+          - CPS <1: Only combination approved
+          - CPS ≥20: Enriches for monotherapy benefit
+          CAVEAT: Imperfect predictor; many CPS ≥1 patients don't respond; CPS <1 can respond to combination
+        </clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>HPV Status (p16 immunohistochemistry)</n>
+        <status>VALIDATED - Strong prognostic and predictive</status>
+        <evidence>
+          - HPV+: Better prognosis (5-year OS 70-80% vs 40-50%)
+          - HPV+: Higher ICI response (ORR ~22-25% vs ~12-15%)
+          - HPV+: Higher PD-L1 expression (CPS ≥1 in 70-80% vs 40-50%)
+        </evidence>
+        <clinical_utility>
+          - Should be tested in all oropharyngeal cancers
+          - Informs prognosis and treatment selection
+          - HPV+ enriches for ICI response
+          - HPV+ candidates for vaccine therapy (INO-3107, IO102-IO103)
+          - De-escalation trials focus on HPV+ population
+        </clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>PD-L1-low AND N0 status</n>
+        <status>EMERGING - Multikine biomarker</status>
+        <evidence>
+          Multikine Phase III: PD-L1-low (<25%) AND N0 patients had 73% vs 45% 5-year OS with neoadjuvant Multikine
+        </evidence>
+        <clinical_utility>
+          - Identifies patients who benefit from cytokine therapy (not ideal for ICIs)
+          - Could become companion diagnostic if Multikine approved
+          - Validates that PD-L1-low population needs alternative to ICIs
+        </clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>Tumor Mutational Burden (TMB)</n>
+        <status>NOT validated in HNSCC</status>
+        <evidence>
+          - HNSCC has variable TMB (HPV- higher than HPV+ typically)
+          - Not consistently predictive of ICI response in HNSCC trials
+        </evidence>
+        <clinical_utility>Not used clinically in HNSCC</clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>Neutrophil-to-Lymphocyte Ratio (NLR)</n>
+        <status>EMERGING - On-treatment biomarker</status>
+        <evidence>
+          - High NLR associated with worse ICI outcomes
+          - Early NLR changes on-treatment may predict response
+        </evidence>
+        <clinical_utility>
+          - Simple blood test
+          - Could guide treatment continuation decisions
+          - Not yet validated for clinical use
+        </clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>DNA Damage Response (DDR) markers</n>
+        <status>RESEARCH - Blood-based assays in development</status>
+        <evidence>
+          Blood-based DDR markers being studied as predictive of ICI response
+        </evidence>
+        <clinical_utility>Investigational; not yet validated</clinical_utility>
+      </biomarker>
+    </predictive_biomarkers>
+
+    <prognostic_biomarkers>
+      <biomarker>
+        <n>HPV/p16 status</n>
+        <status>VALIDATED - Strongest prognostic factor</status>
+        <evidence>HPV+: 5-year OS 70-80%; HPV-: 5-year OS 40-50%</evidence>
+        <clinical_utility>Routinely tested; informs prognosis and counseling</clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>ECOG Performance Status</n>
+        <status>VALIDATED - Standard prognostic factor</status>
+        <evidence>ECOG 0-1 vs 2+ major prognostic difference</evidence>
+        <clinical_utility>Used for patient selection in trials; treatment decisions</clinical_utility>
+      </biomarker>
+      <biomarker>
+        <n>Stage (TNM)</n>
+        <status>VALIDATED - Standard staging</status>
+        <evidence>Correlates with prognosis and treatment selection</evidence>
+        <clinical_utility>Guides treatment algorithm</clinical_utility>
+      </biomarker>
+    </prognostic_biomarkers>
+
+    <critical_need>
+      **KEY GAPS:**
+      1. PD-L1 CPS useful but imperfect - need better predictive biomarkers
+      2. No validated biomarkers for post-ICI resistance
+      3. Cannot predict optimal combination partner (chemo vs novel agent) for individual patient
+      4. Blood-based biomarkers lacking (all current biomarkers tissue-based)
+      5. On-treatment biomarkers needed to guide continuation/switching decisions
+      
+      **OPPORTUNITY:**
+      Companion diagnostics for new therapies; biomarker-driven precision medicine approach
+    </critical_need>
+
+  </biomarkers>
+
+  <executive_summary>
+    
+    <indication_overview>
+      HNSCC is a moderately immunogenic tumor with established PD-1 inhibitor standard of care but significant unmet needs.
+      Market: $3.2-4.0B (2024) growing to ~$5.5-6B by 2029 (9-12% CAGR).
+      Pembrolizumab dominates (>65% market share): First-line R/M (monotherapy CPS ≥1, combination all patients); peri-operative (CPS ≥1, approved June 2025).
+      2025 paradigm shift: Peri-operative pembrolizumab approved (KEYNOTE-689: EFS 59.7 vs 29.6 months, CPS ≥1) - FIRST curative-intent immunotherapy in HNSCC.
+      HPV status critical: HPV+ (25-30%) better prognosis, higher ICI response; HPV- (70-75%) worse outcomes, immune-excluded.
+      Major gap: 40-60% progress on first-line ICI; limited post-ICI options.
+    </indication_overview>
+    
+    <most_validated_moas>
+      <moa rank="1">PD-1 inhibitors (pembrolizumab, nivolumab) - backbone of therapy; monotherapy and combinations approved</moa>
+      <moa rank="2">PD-1 + chemotherapy (pembrolizumab + platinum + 5-FU) - first-line standard for all patients, especially CPS <1</moa>
+      <moa rank="3">Peri-operative PD-1 blockade (pembrolizumab neo + adjuvant) - NEW standard for resectable LA-HNSCC (CPS ≥1); approved June 2025</moa>
+      <moa rank="4 (FAILED)">Dual checkpoint blockade (PD-1 + CTLA-4) - CheckMate-651 FAILED (HR 0.95); does NOT work in HNSCC</moa>
+    </most_validated_moas>
+
+    <emerging_moa_opportunities>
+      <moa priority="high">Cytokine therapy (Multikine) - 73% vs 45% 5-year OS in PD-L1-low/N0 neoadjuvant; FDA cleared confirmatory trial; approval 2025-2026</moa>
+      <moa priority="high">STING agonists (ulevostinag) - 4/8 ORR with pembrolizumab vs 1/10 alone; convert cold to hot; Phase II/III decision 2026</moa>
+      <moa priority="high">ADCs targeting TME (PYX-201 EDB-FN ADC) - 50% ORR in heavily pretreated; targets stroma; data late 2025</moa>
+      <moa priority="high">HPV vaccines (INO-3107) - BLA expected Apr-Sep 2026; first-in-class for HPV+ cancers</moa>
+      <moa priority="medium">Bispecific antibodies (24% of pipeline) - Petosemtamab (EGFR x LGR5), Ivonescimab (PD-1/VEGF), Volrustomig (CTLA-4/PD-1); Phase III read-outs 2026</moa>
+      <moa priority="medium">IL-15 super-agonists (N-803/Anktiva) - FDA-approved bladder cancer; "triple immunotherapy" Phase II HNSCC</moa>
+      <moa priority="medium">TGF-β inhibitors (ficerafusp EGFR-TGF-β trap) - Phase II; overcome immune exclusion</moa>
+    </emerging_moa_opportunities>
+
+    <highest_priority_unmet_needs>
+      <need rank="1" urgency="CRITICAL">Post-ICI resistance (40-60% progression) - limited effective options; second/third-line ORR ~10%, mOS 6-8 months</need>
+      <need rank="2" urgency="HIGH">HPV- immune-excluded tumors (70-75%) - lower ICI response (10-15% ORR); need cold-to-hot conversion strategies</need>
+      <need rank="3" urgency="HIGH">PD-L1-low population (CPS <1, 15%) - no monotherapy option; require toxic chemo combinations; cytokines show promise</need>
+      <need rank="4" urgency="MEDIUM">CPS <1 in curative setting (15%) - not eligible for peri-operative pembrolizumab; Multikine could fill gap</need>
+      <need rank="5" urgency="MEDIUM">Predictive biomarkers beyond PD-L1 - CPS imperfect; need better selection tools</need>
+    </highest_priority_unmet_needs>
+
+    <key_success_factors_for_new_therapies>
+      <factor priority="essential">
+        **Work in post-ICI setting** - Highest unmet need; less competitive; ICI-independent MOAs valued
+      </factor>
+      <factor priority="essential">
+        **Address HPV- or PD-L1-low populations** - These subsets underserved by current ICIs; defined biomarker populations
+      </factor>
+      <factor priority="high">
+        **Convert cold to hot tumors** - STING agonists, TGF-β blockade, cytokines that activate immunity in immune-excluded tumors
+      </factor>
+      <factor priority="high">
+        **Demonstrate superiority to pembrolizumab ± chemo** - High bar in first-line R/M; need clear differentiation
+      </factor>
+      <factor priority="medium">
+        **Biomarker-driven development** - Enrich for responders; PD-L1, HPV, immune signatures; avoid unselected population failures
+      </factor>
+      <factor priority="medium">
+        **Leverage peri-operative/neoadjuvant setting** - KEYNOTE-689 and Multikine successes validate curative-intent timing
+      </factor>
+    </key_success_factors_for_new_therapies>
+
+    <strategic_recommendations_for_indication_selection>
+      
+      <recommendation position="FAVORABLE for specific MOAs">
+        **HNSCC is HIGHLY ATTRACTIVE for:**
+        1. **Post-ICI therapies (ICI-independent MOAs)** - 40-60% progression; limited options; STING agonists, ADCs, TGF-β inhibitors, CD47 blockade all rational
+        2. **Cytokines in PD-L1-low neoadjuvant** - Multikine 73% vs 45% 5-year OS validates; IL-15 super-agonists (N-803) promising; FDA path clear
+        3. **HPV vaccines** - INO-3107 BLA 2026; 25-30% market (growing); tumor-specific antigens; de-escalation opportunity
+        4. **STING agonists** - Convert cold to hot; ulevostinag 4/8 ORR with pembrolizumab; addresses HPV- immune-excluded subset
+        5. **TME-targeted ADCs** - PYX-201 (EDB-FN) 50% ORR; bypasses tumor heterogeneity; novel approach
+        6. **TGF-β + EGFR dual blockade** - Ficerafusp addresses immune exclusion + proliferation; HPV- population
+      </recommendation>
+
+      <recommendation position="CHALLENGING for specific MOAs">
+        **HNSCC is CHALLENGING for:**
+        1. **Dual checkpoint blockade (PD-1 + CTLA-4)** - CheckMate-651 FAILED (HR 0.95); biology unfavorable; avoid
+        2. **TIGIT inhibitors** - Failed in NSCLC and other cancers; Phase II HNSCC trials but cautious outlook
+        3. **First-line R/M without clear differentiation** - Pembrolizumab ± chemo dominant; high bar for new entrants
+        4. **PD-L1 inhibitors in curative setting** - Atezolizumab (IMspire150) failed adjuvant; PD-1 seems superior
+        5. **Unselected populations** - Biomarker enrichment critical; CPS, HPV status, immune signatures needed
+      </recommendation>
+
+      <recommendation position="KEY STRATEGIC INSIGHTS">
+        **Critical lessons from HNSCC MOA landscape:**
+        1. **PD-1 MONOTHERAPY works but modest** - ORR 13-19%; biomarker selection (CPS ≥20) improves; HPV+ better
+        2. **COMBINATION superior to monotherapy** - Pembrolizumab + chemo HR 0.77 vs chemo alone; works in all PD-L1 levels
+        3. **DUAL ICI (PD-1 + CTLA-4) FAILS** - CheckMate-651 HR 0.95; HNSCC biology different from melanoma/RCC
+        4. **PERI-OPERATIVE > ADJUVANT ALONE** - KEYNOTE-689 succeeded (EFS 59.7 vs 29.6); IMspire150 failed; timing critical
+        5. **BIOMARKER-DRIVEN CYTOKINES succeed** - Multikine 73% vs 45% 5-year OS in PD-L1-low/N0; validates niche
+        6. **HPV STATUS > PD-L1** as predictor - HPV+ better ICI response regardless of PD-L1
+        7. **COLD-TO-HOT CONVERSION needed** - HPV- immune-excluded (70-75%); STING, TGF-β blockade rational
+        8. **POST-ICI is HIGHEST VALUE** - 40-60% progression; limited options; ICI-independent MOAs critical
+      </recommendation>
+
+      <recommendation position="COMPETITIVE LANDSCAPE">
+        **First-line R/M:** HIGHLY COMPETITIVE - Pembrolizumab dominance (monotherapy CPS ≥1, combination all); difficult to displace
+        **Post-ICI/Later-line:** LESS COMPETITIVE - Major unmet need; ORR ~10% with chemo; opportunity for novel MOAs
+        **Curative-intent:** PEMBROLIZUMAB DOMINANT post-June 2025 approval - Opportunities in CPS <1 (Multikine), HPV+ de-escalation (vaccines), combinations
+        **Biomarker niches:** PD-L1-low (cytokines), HPV+ (vaccines), immune-excluded (STING/TGF-β) - defined populations with clear needs
+      </recommendation>
+
+      <recommendation position="2025-2027 KEY CATALYSTS">
+        **Major data read-outs 2025-2027:**
+        - **Multikine confirmatory Phase IIIb** - PD-L1-low/N0 neoadjuvant; approval filing 2025-2026
+        - **INO-3107 BLA** - HPV vaccine; Apr-Sep 2026; first-in-class
+        - **Ulevostinag Phase II/III decision** - STING agonist; 2026
+        - **PYX-201 Phase I/II data** - EDB-FN ADC; late 2025
+        - **IO102-IO103 Phase II results** - IDO1/PD-L1 vaccine; late 2025
+        - **Petosemtamab Phase III (LiGeR-HN1)** - EGFR x LGR5 bispecific; 2026
+        - **Ivonescimab Phase III (HARMONi-H&N)** - PD-1/VEGF + CD47; mid-2026
+        - **Volrustomig Phase III** - CTLA-4/PD-1 bispecific; 2026+
+        
+        Multiple bispecifics, vaccines, cytokines, ADCs reading out 2025-2027 - will reshape landscape
+      </recommendation>
+
+    </strategic_recommendations_for_indication_selection>
+
+  </executive_summary>
+
+</indication_profile>

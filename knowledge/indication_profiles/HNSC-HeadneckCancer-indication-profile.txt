@@ -1,0 +1,1372 @@
+{
+  "metadata": {
+    "indication_name": "Head and Neck Squamous Cell Carcinoma (HPV-Negative)",
+    "indication_code": "C00-C14 (ICD-10)",
+    "subtypes": [
+      "Oral cavity",
+      "Oropharynx (HPV-negative)",
+      "Hypopharynx",
+      "Larynx"
+    ],
+    "data_version": "2025-10-06",
+    "data_sources": "HNSC_K.docx biological analysis, KEYNOTE-689/048, CheckMate-141, EAGLE, JAVELIN trials, petosemtamab clinical studies"
+  },
+  "disease_biology": {
+    "pathophysiology": {
+      "description": "HPV-negative HNSCC is primarily driven by tobacco and alcohol exposure, resulting in high mutational burden with distinct molecular vulnerabilities",
+      "key_drivers": [
+        "Tobacco carcinogenesis - SBS4 signature with C>A transversions (22% of mutations)",
+        "TP53 mutations (83.2% in smokers) - dual role in mutagenesis and immune evasion",
+        "CDKN2A alterations (frequent co-occurrence with TP53)",
+        "EGFR overexpression (~90% of cases) without activating mutations"
+      ],
+      "mutational_burden": {
+        "average_tmb": "15.2 somatic exonic mutations per tumor",
+        "tobacco_users": "11.5 mutations/patient",
+        "non_smokers": "5.6 mutations/patient",
+        "tp53_cdkn2a_mutant": "15.83-17.9 mutations per tumor",
+        "neoantigen_potential": "High - SBS4 signature shows 1.26-1.34 fold enrichment in stop-gain mutations creating protein-truncating events"
+      }
+    },
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "classification": "Cold/Immunosuppressive",
+        "til_density": "Lower overall T cell infiltration versus HPV-positive HNSCC",
+        "immune_phenotype": "2-3 fold higher MDSC infiltration, increased M2-polarized macrophages secreting IL-10, TGF-β, and ARG1",
+        "spatial_organization": "Greater physical separation between immune effector cells and tumor cells, stromal barrier formation by immunosuppressive cells",
+        "checkpoint_expression": "Lower baseline PD-1/PD-L1 expression versus HPV-positive disease"
+      },
+      "cytokine_environment": {
+        "immunosuppressive": [
+          "IL-10 (from M2 macrophages)",
+          "TGF-β (stromal/M2 macrophages)",
+          "ARG1 (MDSC/M2 macrophages)"
+        ],
+        "ifn_gamma_pathway_status": "Frequently impaired through epigenetic mechanisms rather than genetic mutations"
+      },
+      "immune_receptors": [
+        {
+          "receptor": "PD-1/PD-L1",
+          "expression_frequency": "Variable, lower than HPV-positive HNSCC",
+          "clinical_significance": "Biomarker for checkpoint inhibitor response, but limited predictive value (29% of FDA trials)"
+        },
+        {
+          "receptor": "CTLA-4",
+          "expression_frequency": "Present on regulatory T cells",
+          "clinical_significance": "Combination with PD-1 inhibition showed no benefit in CheckMate-651"
+        }
+      ]
+    },
+    "tumor_antigens": [
+      {
+        "antigen": "EGFR",
+        "expression_frequency": "~90% overexpression",
+        "mechanism": "Receptor tyrosine kinase overexpression without activating mutations",
+        "immunogenicity": "Target for antibody-based therapies (cetuximab, petosemtamab)",
+        "clinical_relevance": "Standard of care target, but responses limited by resistance mechanisms"
+      },
+      {
+        "antigen": "LGR5",
+        "expression_frequency": "Expressed on cancer stem cell subsets",
+        "mechanism": "Wnt pathway receptor upregulated in HNSCC",
+        "immunogenicity": "Novel target for bispecific antibodies",
+        "clinical_relevance": "Emerging target showing promise with petosemtamab (EGFR x LGR5)"
+      },
+      {
+        "antigen": "HLA Class I",
+        "expression_frequency": "53% show loss, 15-25% total loss in primary lesions",
+        "mechanism": "75% of defects are non-structural (epigenetic/transcriptional) and potentially reversible",
+        "immunogenicity": "Critical for T cell recognition",
+        "clinical_relevance": "Reversible through IFN-gamma, STING agonists, epigenetic modulators"
+      },
+      {
+        "antigen": "Neoantigens (tobacco-induced)",
+        "expression_frequency": "High in SBS4-positive tumors",
+        "mechanism": "Tobacco signature mutations enriched in early clonal events, creating protein-truncating neoantigens",
+        "immunogenicity": "High immunogenic potential but requires functional antigen presentation",
+        "clinical_relevance": "Target for vaccination strategies combined with APM restoration"
+      }
+    ],
+    "biological_features_for_moa_matching": [
+      {
+        "feature": "High mutational burden (tobacco signature)",
+        "moa_compatibility": [
+          "Checkpoint inhibitors (neoantigen recognition)",
+          "Cancer vaccines (neoantigen-specific)",
+          "IFN-gamma inducers (enhance antigen presentation)"
+        ],
+        "evidence": "High TMB patients (≥10 mutations/Mb) achieve mOS 25 vs 10 months with immunotherapy"
+      },
+      {
+        "feature": "Reversible HLA/APM defects (75%)",
+        "moa_compatibility": [
+          "STING agonists (MK-1454 24% ORR with pembrolizumab)",
+          "Epigenetic modulators (DNMT/HDAC inhibitors, EZH2 inhibitors)",
+          "CDK4/6 inhibitors (4-fold increase in IFN-gamma production)",
+          "IFN-gamma pathway activators"
+        ],
+        "evidence": "Epigenetic mechanisms (DNA methylation, histone deacetylation, EZH2 polycomb silencing) are druggable targets"
+      },
+      {
+        "feature": "Cold tumor microenvironment",
+        "moa_compatibility": [
+          "MDSC depletion (CXCR2 antagonists, PDE5 inhibitors, STAT3 inhibitors)",
+          "TAM repolarization (CSF1R inhibitors, CD40 agonists)",
+          "Bispecific T cell engagers",
+          "Oncolytic viruses (for immune influx)"
+        ],
+        "evidence": "2-3 fold higher MDSC infiltration requires combination immunomodulation"
+      },
+      {
+        "feature": "EGFR overexpression without mutations",
+        "moa_compatibility": [
+          "EGFR-targeted antibodies (cetuximab, petosemtamab)",
+          "Bispecific antibodies (EGFR x LGR5, EGFR x cMET)",
+          "EGFR-directed ADCs",
+          "EGFR-targeted photoimmunotherapy"
+        ],
+        "evidence": "90% EGFR overexpression but limited TKI activity (unlike NSCLC), antibodies more appropriate"
+      },
+      {
+        "feature": "p53 dysfunction (83.2% in smokers)",
+        "moa_compatibility": [
+          "cGAS-STING pathway restoration",
+          "IFN pathway restoration (bypass p53-mediated block)",
+          "Combination approaches targeting both mutagenesis and immune signaling"
+        ],
+        "evidence": "Mutant p53 blocks STING-TBK1-IRF3 and disrupts STAT1 signaling"
+      },
+      {
+        "feature": "Epigenetic IFN-gamma pathway suppression",
+        "moa_compatibility": [
+          "HDAC inhibitors (enhance chromatin remodeling)",
+          "DNA methyltransferase inhibitors",
+          "CDK4/6 inhibitors (enhance IFN-gamma response)",
+          "Dual DNMT/HDAC inhibitors (superior to single agents)"
+        ],
+        "evidence": "Epigenetic resistance mechanisms dominate over genetic alterations in IFN-gamma pathway"
+      }
+    ]
+  },
+  "moa_landscape": {
+    "checkpoint_inhibitors": {
+      "name": "PD-1/PD-L1 Inhibitors",
+      "biological_rationale": {
+        "mechanism": "Block PD-1/PD-L1 interaction to restore T cell function and enable tumor recognition",
+        "target_expression": "PD-L1 CPS ≥1 in subset of patients, variable expression",
+        "pathway_integrity": "Dependent on functional IFN-gamma signaling and antigen presentation machinery"
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "Nivolumab",
+          "specific_moa": "Fully human IgG4 monoclonal antibody blocking PD-1 receptor on T cells",
+          "clinical_evidence": {
+            "trial": "CheckMate-141",
+            "phase": "Phase 3",
+            "setting": "Second-line R/M HNSCC post-platinum",
+            "patient_population": "240 patients platinum-refractory",
+            "orr": "13.3% vs 5.8% (standard care)",
+            "pfs": "2.0 months",
+            "os": "7.5 months vs 5.1 months",
+            "os_benefit": "HR 0.69 (P=0.01), 2.4 month gain",
+            "biomarker_data": "PD-L1 ≥1%: HR 0.55; PD-L1 <1%: HR 0.89"
+          },
+          "lessons_learned": {
+            "successes": [
+              "First checkpoint inhibitor approval in HNSCC",
+              "Durable responses in subset of patients",
+              "Improved over standard chemotherapy"
+            ],
+            "limitations": [
+              "Modest ORR (13.3%)",
+              "Short PFS (2 months)",
+              "PD-L1 limited as predictive biomarker",
+              "Similar benefit in HPV+ and HPV- but lower absolute ORR in HPV-negative (8.3% vs 12.0%)"
+            ],
+            "resistance_mechanisms": [
+              "HLA/APM defects preventing antigen presentation",
+              "Cold TME with high MDSC/M2 macrophages",
+              "Low TIL infiltration"
+            ]
+          },
+          "similarity_matching_tags": [
+            "pd1_inhibitor",
+            "checkpoint_blockade",
+            "t_cell_activation",
+            "immune_restoration",
+            "platinum_refractory"
+          ]
+        },
+        {
+          "drug_name": "Pembrolizumab",
+          "specific_moa": "Humanized IgG4 monoclonal antibody against PD-1",
+          "clinical_evidence": {
+            "keynote_040": {
+              "phase": "Phase 3",
+              "setting": "Second-line R/M HNSCC",
+              "orr": "14.6%",
+              "os": "8.4 vs 6.9 months",
+              "os_benefit": "HR 0.80 (nominal P=0.0161), 1.5 month gain",
+              "biomarker": "PD-L1 CPS ≥50: HR 0.54; CPS ≥1: HR 0.75"
+            },
+            "keynote_048": {
+              "phase": "Phase 3",
+              "setting": "First-line R/M HNSCC",
+              "pembrolizumab_mono": "PD-L1 CPS ≥20: OS 14.9 vs 10.7 months",
+              "pembrolizumab_chemo": "OS 13.0 vs 10.7 months (HR 0.77), all patients; OS 13.6 vs 10.4 months (HR 0.71), PD-L1 CPS ≥1",
+              "pfs_chemo_combo": "HR 0.73",
+              "approval": "FDA approved 2019 first-line both monotherapy (CPS ≥1) and combination"
+            },
+            "keynote_689": {
+              "phase": "Phase 3",
+              "setting": "Neoadjuvant + adjuvant in locally advanced HNSCC",
+              "population": "714 patients stage 3-4 with PD-L1 expression",
+              "intervention": "2 cycles neoadjuvant + 15 cycles adjuvant pembrolizumab + standard care vs standard care alone",
+              "primary_endpoint": "Event-free survival significantly improved",
+              "fda_approval": "June 2025 for perioperative use",
+              "significance": "First checkpoint inhibitor approval in curative-intent setting"
+            }
+          },
+          "lessons_learned": {
+            "successes": [
+              "Established first-line standard with chemotherapy combination",
+              "Monotherapy option for PD-L1 high patients",
+              "Perioperative setting shows promise (KEYNOTE-689)",
+              "Better predictive value with CPS vs tumor cell PD-L1"
+            ],
+            "limitations": [
+              "Monotherapy ORR still modest (14.6-22%)",
+              "Combination needed for PD-L1 low patients",
+              "HPV-negative patients have lower response rates",
+              "Need for better patient selection beyond PD-L1"
+            ],
+            "combination_opportunities": [
+              "Chemotherapy proven effective",
+              "Bispecific antibodies (petosemtamab) showing 67% ORR",
+              "STING agonists for APM restoration",
+              "Epigenetic modulators"
+            ]
+          },
+          "similarity_matching_tags": [
+            "pd1_inhibitor",
+            "checkpoint_blockade",
+            "first_line_approved",
+            "biomarker_driven",
+            "perioperative_setting"
+          ]
+        },
+        {
+          "drug_name": "Durvalumab",
+          "specific_moa": "Human IgG1 monoclonal antibody targeting PD-L1",
+          "clinical_evidence": {
+            "eagle_study": {
+              "phase": "Phase 3",
+              "setting": "Second-line R/M HNSCC",
+              "arms": "Durvalumab vs durvalumab + tremelimumab vs SOC",
+              "os_durvalumab": "HR 0.88 (P=0.20) - not significant",
+              "os_combination": "HR 1.04 (P=0.76) - not significant",
+              "outcome": "Failed to meet primary endpoint"
+            },
+            "javelin_hn_100": {
+              "phase": "Phase 3",
+              "setting": "Locally advanced HNSCC with chemoradiotherapy",
+              "intervention": "Avelumab + cisplatin/RT vs cisplatin/RT",
+              "outcome": "No improvement in PFS or OS",
+              "significance": "Negative trial for concurrent chemoimmuno-RT"
+            }
+          },
+          "lessons_learned": {
+            "failures": [
+              "EAGLE trial failed despite encouraging phase 2 data",
+              "Tremelimumab combination added no benefit",
+              "Control arm performed better than expected (confounding)"
+            ],
+            "key_insights": [
+              "PD-L1 inhibition may be less effective than PD-1 (systemic vs local)",
+              "CTLA-4 combination not beneficial in HNSCC",
+              "Patient selection critical - performance status imbalance affected EAGLE"
+            ]
+          },
+          "similarity_matching_tags": [
+            "pdl1_inhibitor",
+            "checkpoint_blockade",
+            "failed_phase3",
+            "combination_ctla4"
+          ]
+        },
+        {
+          "drug_name": "Avelumab",
+          "specific_moa": "Human IgG1 lambda monoclonal antibody targeting PD-L1",
+          "clinical_evidence": {
+            "javelin_hn_100": {
+              "phase": "Phase 3",
+              "setting": "Locally advanced HNSCC, concurrent with chemoRT",
+              "outcome": "Failed to improve PFS or OS",
+              "significance": "Radiation + checkpoint inhibitor combination did not enhance efficacy"
+            }
+          },
+          "lessons_learned": {
+            "failures": [
+              "Concurrent chemoRT + checkpoint inhibitor not beneficial",
+              "May require sequential rather than concurrent approach"
+            ],
+            "timing_considerations": [
+              "Neoadjuvant setting more promising (KEYNOTE-689)",
+              "Adjuvant after chemoRT under investigation",
+              "Concurrent may increase toxicity without benefit"
+            ]
+          },
+          "similarity_matching_tags": [
+            "pdl1_inhibitor",
+            "chemoradiation_combination",
+            "failed_phase3"
+          ]
+        }
+      ],
+      "moa_compatibility_score": {
+        "overall_score": "7/10",
+        "rationale": "Established efficacy as monotherapy and in combination, but modest response rates due to cold TME and reversible immune evasion mechanisms",
+        "optimal_context": [
+          "First-line combination with chemotherapy",
+          "PD-L1 high patients as monotherapy",
+          "Perioperative setting in resectable disease",
+          "Combination with APM-restoring agents (STING, epigenetic modulators) for HPV-negative cold tumors"
+        ],
+        "limitations": [
+          "Monotherapy ORR 13-22% in unselected population",
+          "Lower efficacy in HPV-negative vs HPV-positive",
+          "Requires functional antigen presentation (often defective)",
+          "Need combination strategies for cold tumors"
+        ]
+      }
+    },
+    "egfr_targeted_antibodies": {
+      "name": "EGFR-Targeted Antibodies and Bispecifics",
+      "biological_rationale": {
+        "mechanism": "Target EGFR overexpression (~90% HNSCC) through receptor blockade, ADCC, and/or dual targeting",
+        "target_expression": "High EGFR expression in most HNSCC without activating mutations (unlike NSCLC)",
+        "advantage": "Antibodies more appropriate than TKIs given lack of activating mutations"
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "Cetuximab",
+          "specific_moa": "Chimeric IgG1 monoclonal antibody blocking EGF ligand binding, ADCC activity",
+          "clinical_evidence": {
+            "first_line_combination": {
+              "setting": "R/M HNSCC first-line with platinum/5-FU (EXTREME regimen)",
+              "orr": "36% vs 20% (chemotherapy alone)",
+              "os": "10.1 vs 7.4 months",
+              "pfs": "5.6 vs 3.3 months",
+              "approval": "Standard first-line option before checkpoint inhibitors"
+            },
+            "radiation_combination": {
+              "setting": "Locally advanced HNSCC with radiation",
+              "os": "49 vs 29 months (radiation alone)",
+              "significance": "Alternative to cisplatin-RT for platinum-ineligible patients"
+            },
+            "limitations": "Inferior efficacy in HPV-positive disease, resistance mechanisms through compensatory pathways"
+          },
+          "lessons_learned": {
+            "successes": [
+              "First targeted therapy in HNSCC",
+              "Established EGFR as valid target",
+              "Synergy with radiation and chemotherapy"
+            ],
+            "limitations": [
+              "Modest monotherapy activity",
+              "Resistance through HER3, MET amplification",
+              "Inferior in HPV-positive disease",
+              "Significant toxicity (rash, infusion reactions)"
+            ],
+            "resistance_mechanisms": [
+              "Activation of HER2/HER3 compensatory signaling",
+              "MET amplification",
+              "Nuclear translocation of EGFR (non-canonical signaling)"
+            ]
+          },
+          "similarity_matching_tags": [
+            "egfr_antibody",
+            "adcc_activity",
+            "radiation_synergy",
+            "chemotherapy_combination",
+            "standard_of_care"
+          ]
+        },
+        {
+          "drug_name": "Petosemtamab (MCLA-158)",
+          "specific_moa": "Human common light chain IgG1 bispecific antibody targeting EGFR and LGR5 with enhanced ADCC. Inhibits EGF ligand binding, promotes EGFR internalization via LGR5, and engages immune effector cells",
+          "clinical_evidence": {
+            "monotherapy_2l_plus": {
+              "phase": "Phase 1/2",
+              "setting": "Second-line+ R/M HNSCC post-platinum and checkpoint inhibitor",
+              "n": "43-47 evaluable patients",
+              "orr": "37.2-40.4%",
+              "dor": "6.0-7.2 months",
+              "pfs": "5.1 months",
+              "os": "11.5-12.5 months",
+              "significance": "37% ORR in heavily pretreated population",
+              "fda_status": "Breakthrough Therapy Designation May 2024, Fast Track Designation Aug 2023"
+            },
+            "combination_1l": {
+              "phase": "Phase 2",
+              "setting": "First-line R/M HNSCC with pembrolizumab",
+              "n": "24-45 evaluable patients",
+              "orr": "67%",
+              "cr": "1 patient",
+              "pr": "12 patients + 3 unconfirmed PR",
+              "by_hpv_status": "HPV+ (p16+): 75% ORR; HPV- (p16-): 65% ORR",
+              "by_pdl1": "CPS 1-19: 60%; CPS ≥20: 71%",
+              "os_6_month": "93%",
+              "safety": "Well tolerated, IRR 38% (mostly first infusion, all resolved)",
+              "significance": "Superior to pembrolizumab monotherapy historical 22% ORR, regardless of HPV or PD-L1 status",
+              "phase3_planned": "LiGeR-HN1 trial ongoing (NCT06525220)"
+            },
+            "dose_comparison": {
+              "arms": "1100 mg vs 1500 mg Q2W",
+              "recommended_dose": "1500 mg Q2W",
+              "safety": "Well tolerated at both doses, no new signals"
+            }
+          },
+          "lessons_learned": {
+            "successes": [
+              "First-in-class EGFR x LGR5 bispecific",
+              "67% ORR in first-line with pembrolizumab - potential best-in-class",
+              "37-40% ORR as monotherapy in heavily pretreated patients",
+              "Activity regardless of HPV or PD-L1 status",
+              "Dual MOA: EGFR signaling inhibition + LGR5-mediated EGFR degradation + enhanced ADCC",
+              "Targets cancer stem cells (LGR5+ population)",
+              "Manageable safety profile"
+            ],
+            "advantages_over_cetuximab": [
+              "Dual targeting reduces resistance",
+              "Enhanced ADCC through low-fucose engineering",
+              "Targets stem cell population",
+              "Higher ORR in combination (67% vs historical)"
+            ],
+            "combination_rationale": [
+              "EGFR targeting drives tumor cell killing",
+              "Pembrolizumab enhances T cell immunity",
+              "ADCC bridges innate and adaptive immunity",
+              "LGR5 targeting eliminates cancer stem cells"
+            ]
+          },
+          "similarity_matching_tags": [
+            "bispecific_antibody",
+            "egfr_lgr5_dual_target",
+            "enhanced_adcc",
+            "cancer_stem_cells",
+            "checkpoint_combination",
+            "breakthrough_designation",
+            "first_in_class"
+          ]
+        },
+        {
+          "drug_name": "Cetuximab + Afatinib",
+          "specific_moa": "Dual EGFR inhibition: cetuximab (extracellular) + afatinib (pan-HER irreversible TKI)",
+          "clinical_evidence": {
+            "phase_2_trial": {
+              "setting": "R/M HNSCC refractory to platinum/checkpoint inhibitor",
+              "rationale": "Overcome resistance by inhibiting EGFR/HER dimers and nuclear EGFR translocation",
+              "status": "Recently reported at ASCO 2025",
+              "historical_context": "Previous trial with cetuximab + erlotinib showed 62.5% ORR"
+            }
+          },
+          "lessons_learned": {
+            "strategy": "Dual blockade addresses resistance mechanisms",
+            "challenges": "Increased toxicity with TKI combinations",
+            "insight": "Bispecific approach (petosemtamab) may be more promising than TKI combinations"
+          },
+          "similarity_matching_tags": [
+            "dual_egfr_inhibition",
+            "antibody_tki_combination",
+            "resistance_mechanism"
+          ]
+        },
+        {
+          "drug_name": "Cetuximab Sarotalocan (RM-1929)",
+          "specific_moa": "Cetuximab conjugated with IRDye 700DX near-infrared photosensitizing dye for photoimmunotherapy",
+          "clinical_evidence": {
+            "phase_2a_japan": {
+              "n": "30 patients locoregional HNSCC",
+              "eligibility": "Not satisfactorily treated with surgery/radiation/platinum",
+              "orr": "28%",
+              "cr": "14%",
+              "median_pfs": "5.7 months",
+              "median_os": "9.1 months",
+              "adverse_events": "Grade ≥3: skin reaction (18%), paronychial cracking (12%)",
+              "approval": "Approved in Japan, Phase 3 global trial ongoing"
+            }
+          },
+          "lessons_learned": {
+            "innovation": "Combines targeted delivery with light-activated mechanism",
+            "advantage": "Precise tumor destruction without damaging surrounding tissue",
+            "limitation": "Requires accessible tumors for light delivery",
+            "niche": "May be valuable for locoregional recurrences"
+          },
+          "similarity_matching_tags": [
+            "photoimmunotherapy",
+            "egfr_targeted_pdt",
+            "locoregional_treatment",
+            "japan_approved"
+          ]
+        }
+      ],
+      "moa_compatibility_score": {
+        "overall_score": "8/10",
+        "rationale": "EGFR overexpression in 90% HNSCC makes this excellent target. Bispecific approaches (petosemtamab) showing superior results to monoclonal antibodies",
+        "optimal_context": [
+          "Petosemtamab + pembrolizumab first-line (67% ORR)",
+          "Petosemtamab monotherapy second-line+ (37-40% ORR)",
+          "Cetuximab combinations with chemotherapy/radiation",
+          "Dual EGFR targeting to overcome resistance"
+        ],
+        "advantages": [
+          "High target expression (90%)",
+          "Multiple MOAs: receptor blockade, ADCC, internalization",
+          "Bispecifics address resistance mechanisms",
+          "Activity across HPV and PD-L1 subgroups"
+        ],
+        "future_directions": [
+          "EGFR-directed ADCs in development",
+          "EGFR x cMET bispecific ADCs (AZD9592) showing preclinical activity",
+          "Triple combinations with checkpoint inhibitors"
+        ]
+      }
+    },
+    "antibody_drug_conjugates": {
+      "name": "Antibody-Drug Conjugates (ADCs)",
+      "biological_rationale": {
+        "mechanism": "Deliver cytotoxic payload specifically to EGFR-expressing tumor cells, enhancing therapeutic index",
+        "advantage": "Overcome resistance to antibody monotherapy, target heterogeneous tumors",
+        "challenge": "Payload toxicity, antigen heterogeneity, adaptive resistance"
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "EGFR-targeted ADCs",
+          "specific_moa": "Various constructs: cetuximab or panitumumab conjugated to MMAE, topoisomerase inhibitors, or PBD dimers",
+          "clinical_evidence": {
+            "preclinical": {
+              "cetuximab_mmae": "Active in EGFR+ HNSCC models",
+              "40h3_tesirine": "PBD dimer conjugate achieved complete remissions in TNBC xenografts (also express EGFR)",
+              "azd9592": "EGFR-cMET bispecific ADC with topoisomerase I inhibitor showed promising activity in HNSCC PDX models"
+            },
+            "clinical_status": "Early phase trials, no approvals yet in HNSCC",
+            "challenge": "On-target off-tumor toxicity due to EGFR expression in normal tissues (skin, GI)"
+          },
+          "lessons_learned": {
+            "promise": "Preclinical activity in HNSCC models",
+            "challenges": [
+              "Toxicity management (skin, mucosal reactions)",
+              "Need for tumor-specific targeting strategies",
+              "Antigen heterogeneity in HNSCC"
+            ],
+            "strategies": [
+              "Bispecific ADCs (EGFR x cMET) for enhanced specificity",
+              "Affinity-attenuated constructs (spare normal keratinocytes)",
+              "Cleavable linkers for bystander effect"
+            ]
+          },
+          "similarity_matching_tags": [
+            "adc",
+            "egfr_targeted",
+            "cytotoxic_payload",
+            "preclinical_stage"
+          ]
+        },
+        {
+          "drug_name": "HER2/HER3-targeted ADCs",
+          "specific_moa": "Target HER family members upregulated in cetuximab-resistant HNSCC",
+          "clinical_evidence": {
+            "rationale": "HER2 and HER3 overexpressed in cetuximab-resistant HNSCC",
+            "precedent": "Trastuzumab deruxtecan (T-DXd) approved in HER2+ breast/lung cancer",
+            "hnscc_status": "Under investigation, no specific trials reported yet"
+          },
+          "lessons_learned": {
+            "opportunity": "Address cetuximab resistance mechanism",
+            "challenge": "Lower HER2 expression frequency in HNSCC vs breast cancer",
+            "strategy": "May be relevant for cetuximab-resistant subpopulation"
+          },
+          "similarity_matching_tags": [
+            "adc",
+            "her2_her3_targeted",
+            "resistance_mechanism",
+            "investigational"
+          ]
+        }
+      ],
+      "moa_compatibility_score": {
+        "overall_score": "6/10 (Early stage)",
+        "rationale": "Promising preclinical data but early clinical development in HNSCC. Toxicity management critical",
+        "optimal_context": [
+          "Post-EGFR antibody resistance",
+          "High EGFR expression tumors",
+          "Combination with immune modulators to address cold TME"
+        ],
+        "development_priority": [
+          "Phase 1/2 trials of EGFR-ADCs with manageable toxicity profiles",
+          "Bispecific ADCs (EGFR x cMET) for enhanced specificity",
+          "Combination with APM-restoring agents"
+        ]
+      }
+    },
+    "immune_microenvironment_modulators": {
+      "name": "Immune Microenvironment Modulators",
+      "biological_rationale": {
+        "mechanism": "Convert cold immunosuppressive TME to hot inflamed TME, enhance IFN-gamma signaling, restore antigen presentation",
+        "target": "MDSCs, M2 macrophages, epigenetic silencing, IFN-gamma pathway dysfunction",
+        "combination_rationale": "Address key resistance mechanisms to checkpoint inhibitors in HPV-negative HNSCC"
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "MK-1454 (STING agonist)",
+          "specific_moa": "Synthetic cyclic dinucleotide activating STING pathway, inducing type I IFN production and antigen presentation machinery upregulation",
+          "clinical_evidence": {
+            "phase_1_combination": {
+              "setting": "Advanced solid tumors + pembrolizumab",
+              "hnscc_cohort": "24% ORR with pembrolizumab vs 0% monotherapy",
+              "significance": "Demonstrates APM restoration concept in HNSCC"
+            }
+          },
+          "lessons_learned": {
+            "proof_of_concept": "Restoring IFN signaling enhances checkpoint inhibitor efficacy",
+            "mechanism": "Overcomes HLA/APM defects present in 53% HNSCC",
+            "limitation": "Intratumoral injection limits applicability",
+            "future": "Systemic STING agonists in development"
+          },
+          "similarity_matching_tags": [
+            "sting_agonist",
+            "ifn_inducer",
+            "apm_restoration",
+            "checkpoint_combination"
+          ]
+        },
+        {
+          "drug_name": "Nivolumab + IFN-gamma",
+          "specific_moa": "Direct IFN-gamma administration to restore pathway function combined with PD-1 blockade",
+          "clinical_evidence": {
+            "phase_1_trial": {
+              "setting": "HNSCC patients",
+              "dose": "RP2D 50 mcg/m² IFN-gamma",
+              "safety": "Manageable toxicity, notable lack of immune-related adverse events",
+              "efficacy": "Promising early signals warranting phase 2 evaluation"
+            }
+          },
+          "lessons_learned": {
+            "feasibility": "Direct IFN-gamma administration tolerable",
+            "mechanism": "Most potent inducer of APM component expression",
+            "biomarker": "6-gene IFN-gamma signature shows 95% NPV",
+            "potential": "Phase 2 development needed"
+          },
+          "similarity_matching_tags": [
+            "ifn_gamma_therapy",
+            "direct_cytokine",
+            "apm_induction",
+            "checkpoint_combination"
+          ]
+        },
+        {
+          "drug_name": "CDK4/6 Inhibitors",
+          "specific_moa": "Enhance IFN-gamma pathway through multiple mechanisms: NFAT dephosphorylation (T cell activation), MHC-I upregulation, Treg suppression, endogenous retroviral element activation",
+          "clinical_evidence": {
+            "preclinical_hnscc": {
+              "finding": "4-fold increase in IFN-gamma production by CD8+ T cells",
+              "mechanisms": "Reduced T cell exhaustion markers, improved tumor infiltration",
+              "combination": "Enhanced anti-PD-1 efficacy in models"
+            },
+            "clinical_status": "Trials in other tumors; HNSCC-specific trials needed"
+          },
+          "lessons_learned": {
+            "innovation": "Addresses cell cycle dysregulation AND immune function",
+            "rationale": "p53/CDKN2A mutations in 83%/frequent - pathway disrupted",
+            "synergy": "Enhances checkpoint inhibitor activity",
+            "development": "Strong preclinical rationale for HNSCC trials"
+          },
+          "similarity_matching_tags": [
+            "cdk4_6_inhibitor",
+            "ifn_gamma_enhancer",
+            "t_cell_activation",
+            "dual_mechanism",
+            "preclinical_stage"
+          ]
+        },
+        {
+          "drug_name": "Epigenetic Modulators (HDAC/DNMT inhibitors)",
+          "specific_moa": "Reverse epigenetic silencing of HLA/APM genes and IFN-gamma pathway components. HDAC inhibitors enhance chromatin remodeling; DNMT inhibitors reverse DNA methylation",
+          "clinical_evidence": {
+            "preclinical": {
+              "dual_dnmt_hdac": "Superior efficacy vs single agents for MHC-I expression",
+              "ezh2_inhibitor": "GSK126 enhanced MHC-I expression and anti-PD-1 efficacy",
+              "mechanism": "75% of HLA/APM defects are epigenetic and reversible"
+            },
+            "clinical_status": "Various epigenetic agents in trials, combinations with checkpoint inhibitors being explored"
+          },
+          "lessons_learned": {
+            "target": "75% reversible APM defects - major opportunity",
+            "combination": "Dual inhibition superior to single agents",
+            "mechanisms": "DNA methylation, histone deacetylation, EZH2 polycomb silencing",
+            "priority": "High priority for combination trials in HNSCC"
+          },
+          "similarity_matching_tags": [
+            "epigenetic_modulator",
+            "hdac_inhibitor",
+            "dnmt_inhibitor",
+            "ezh2_inhibitor",
+            "apm_restoration",
+            "mhc_upregulation"
+          ]
+        },
+        {
+          "drug_name": "MDSC/TAM Targeting Agents",
+          "specific_moa": "Various approaches: CXCR2 antagonists (MDSC depletion), PDE5 inhibitors, STAT3 inhibitors (MDSC function), CSF1R inhibitors (TAM depletion), CD40 agonists (TAM repolarization)",
+          "clinical_evidence": {
+            "rationale": "2-3 fold higher MDSC infiltration in HPV-negative HNSCC, increased M2 macrophages",
+            "clinical_status": "Multiple agents in early trials, combinations being explored",
+            "challenge": "Redundancy in immunosuppressive pathways"
+          },
+          "lessons_learned": {
+            "target": "Cold TME characteristic of HPV-negative disease",
+            "requirement": "Likely need combination with checkpoint inhibitors",
+            "mechanisms": "Multiple pathways (CXCR2, CSF1R, STAT3) need targeting",
+            "development": "Rational combination trials needed"
+          },
+          "similarity_matching_tags": [
+            "mdsc_depletion",
+            "tam_modulation",
+            "tme_remodeling",
+            "immunosuppression_reversal"
+          ]
+        }
+      ],
+      "moa_compatibility_score": {
+        "overall_score": "9/10 (High biological rationale)",
+        "rationale": "Addresses core resistance mechanisms in HPV-negative HNSCC: cold TME, reversible APM defects, IFN-gamma pathway suppression. 75% reversible APM defects represent major opportunity",
+        "optimal_context": [
+          "Combination with checkpoint inhibitors (overcome resistance)",
+          "Sequential: APM restoration → checkpoint blockade",
+          "Triple combination: epigenetic + STING + checkpoint inhibitor",
+          "CDK4/6 inhibitor + checkpoint inhibitor for p53/CDKN2A mutant tumors"
+        ],
+        "development_priority": [
+          "Phase 2 trials: STING agonist + pembrolizumab",
+          "Epigenetic modulator combinations (HDAC + DNMT or EZH2 inhibitor + checkpoint inhibitor)",
+          "CDK4/6 inhibitor + checkpoint inhibitor",
+          "MDSC/TAM targeting + checkpoint inhibitor"
+        ],
+        "biomarker_requirements": [
+          "IFN-gamma pathway gene expression signature",
+          "HLA/APM status (reversible vs structural loss)",
+          "TME composition (MDSC/TAM infiltration)",
+          "p53/CDKN2A mutation status"
+        ]
+      }
+    },
+    "cancer_vaccines": {
+      "name": "Therapeutic Cancer Vaccines",
+      "biological_rationale": {
+        "mechanism": "Generate de novo T cell responses against tumor neoantigens, particularly tobacco-induced mutations",
+        "advantage": "High TMB (15.2 mutations) and tobacco signature provide neoantigen substrate",
+        "requirement": "Functional antigen presentation machinery (often defective - needs restoration)"
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "Neoantigen-based vaccines",
+          "specific_moa": "Personalized vaccines targeting patient-specific tobacco-induced neoantigens, particularly SBS4 signature mutations enriched in stop-gain events",
+          "clinical_evidence": {
+            "rationale": {
+              "tmb": "15.2-17.9 mutations per tumor in TP53/CDKN2A mutant cases",
+              "tobacco_signature": "1.26-1.34 fold enrichment in stop-gain mutations",
+              "neoantigen_load": "High in tobacco-associated tumors",
+              "clonality": "Tobacco mutations enriched in early clonal events"
+            },
+            "clinical_status": "Neoantigen vaccines being explored in other solid tumors; HNSCC-specific trials limited",
+            "challenge": "Requires functional HLA/APM (defective in 53%)"
+          },
+          "lessons_learned": {
+            "opportunity": "High neoantigen burden from tobacco carcinogenesis",
+            "requirement": "Must combine with APM restoration (epigenetic modulators, STING agonists)",
+            "biomarker": "Tobacco signature analysis to identify high-neoantigen tumors",
+            "strategy": "Triple combination: vaccine + APM restoration + checkpoint inhibitor"
+          },
+          "similarity_matching_tags": [
+            "neoantigen_vaccine",
+            "personalized_immunotherapy",
+            "tobacco_signature",
+            "high_tmb",
+            "apm_dependent"
+          ]
+        },
+        {
+          "drug_name": "HPV-targeted vaccines",
+          "specific_moa": "Not applicable to HPV-negative HNSCC - included for completeness",
+          "clinical_evidence": {
+            "note": "HPV-negative HNSCC lacks consistent viral antigens"
+          },
+          "lessons_learned": {
+            "limitation": "No shared tumor antigens in HPV-negative disease",
+            "alternative": "Focus on personalized neoantigen approaches"
+          },
+          "similarity_matching_tags": [
+            "not_applicable_hpv_negative"
+          ]
+        }
+      ],
+      "moa_compatibility_score": {
+        "overall_score": "7/10 (conditional on APM restoration)",
+        "rationale": "High neoantigen burden from tobacco provides excellent substrate, but requires overcoming APM defects",
+        "optimal_context": [
+          "Tobacco-positive patients (high neoantigen load)",
+          "Sequential: APM restoration → vaccination → checkpoint inhibitor maintenance",
+          "Triple combination for optimal efficacy"
+        ],
+        "requirements": [
+          "Tobacco signature analysis for patient selection",
+          "APM functional status assessment",
+          "Combination with epigenetic modulators or STING agonists",
+          "Checkpoint inhibitor to prevent T cell exhaustion"
+        ],
+        "development_priority": [
+          "Phase 1/2 neoantigen vaccine + epigenetic modulator + pembrolizumab",
+          "Biomarker-driven trial design (tobacco signature, APM status)",
+          "Personalized vaccine manufacturing infrastructure"
+        ]
+      }
+    }
+  },
+  "current_treatment_landscape": {
+    "first_line_rm": {
+      "standard": "Pembrolizumab + platinum/5-FU (all patients) or pembrolizumab monotherapy (PD-L1 CPS ≥1)",
+      "alternative": "Cetuximab + platinum/5-FU (EXTREME regimen)",
+      "emerging": "Petosemtamab + pembrolizumab (67% ORR in phase 2)"
+    },
+    "second_line_rm": {
+      "standard": "Nivolumab or pembrolizumab monotherapy",
+      "emerging": "Petosemtamab monotherapy (37-40% ORR, breakthrough designation)"
+    },
+    "locally_advanced": {
+      "standard": "Cisplatin + radiation therapy",
+      "alternative": "Cetuximab + radiation (platinum-ineligible)",
+      "emerging": "Perioperative pembrolizumab (KEYNOTE-689, FDA approved June 2025)"
+    },
+    "challenges": {
+      "hpv_negative": [
+        "Lower response rates to checkpoint inhibitors (8.3% vs 12% HPV+)",
+        "Cold immunosuppressive TME",
+        "Reversible APM defects not being addressed",
+        "Limited efficacy of cetuximab in HPV+ disease suggests different biology"
+      ]
+    }
+  },
+  "development_pipeline": {
+    "phase_3_trials": [
+      {
+        "drug": "Petosemtamab + pembrolizumab",
+        "trial": "LiGeR-HN1 (NCT06525220)",
+        "setting": "First-line PD-L1+ R/M HNSCC",
+        "status": "Ongoing",
+        "anticipated_completion": "2026-2027"
+      }
+    ],
+    "phase_2_trials": [
+      {
+        "drug": "Petosemtamab monotherapy",
+        "setting": "Second-line+ R/M HNSCC",
+        "status": "Ongoing expansion cohorts"
+      },
+      {
+        "drug": "MK-1454 + pembrolizumab",
+        "setting": "Advanced solid tumors including HNSCC",
+        "status": "Expanding HNSCC cohort"
+      },
+      {
+        "drug": "Various epigenetic modulators + checkpoint inhibitors",
+        "setting": "Multiple solid tumors",
+        "status": "Early phase"
+      }
+    ],
+    "preclinical_promising": [
+      {
+        "class": "EGFR-cMET bispecific ADCs",
+        "example": "AZD9592",
+        "rationale": "Activity in HNSCC PDX models"
+      },
+      {
+        "class": "CDK4/6 inhibitors + checkpoint inhibitors",
+        "rationale": "4-fold increase in IFN-gamma production, addresses p53/CDKN2A alterations"
+      },
+      {
+        "class": "Triple combinations",
+        "example": "Epigenetic modulator + STING agonist + checkpoint inhibitor",
+        "rationale": "Address multiple resistance mechanisms simultaneously"
+      }
+    ]
+  },
+  "unmet_needs": [
+    {
+      "need": "Improve checkpoint inhibitor response rates in HPV-negative HNSCC",
+      "priority": "Critical",
+      "current_gap": "8.3-13% ORR monotherapy vs 67% with bispecific combination",
+      "moa_requirements": [
+        "APM restoration agents (STING agonists, epigenetic modulators)",
+        "TME modulation (MDSC/TAM targeting)",
+        "Enhanced immune activation (bispecific antibodies, CDK4/6 inhibitors)"
+      ],
+      "suitable_moa_classes": [
+        "STING agonists + checkpoint inhibitors",
+        "Epigenetic modulators + checkpoint inhibitors",
+        "Bispecific antibodies (EGFR x LGR5) + checkpoint inhibitors",
+        "CDK4/6 inhibitors + checkpoint inhibitors"
+      ],
+      "biomarkers": [
+        "IFN-gamma pathway gene expression",
+        "HLA/APM functional status",
+        "TME composition (MDSC/TAM infiltration)",
+        "Tobacco signature presence"
+      ]
+    },
+    {
+      "need": "Overcome EGFR antibody resistance",
+      "priority": "High",
+      "current_gap": "Cetuximab resistance through HER2/3, MET amplification, nuclear EGFR translocation",
+      "moa_requirements": [
+        "Dual targeting strategies",
+        "Irreversible inhibition",
+        "Cytotoxic payload delivery",
+        "Stem cell targeting"
+      ],
+      "suitable_moa_classes": [
+        "Bispecific antibodies (EGFR x LGR5, EGFR x MET)",
+        "EGFR-directed ADCs",
+        "Bispecific ADCs (EGFR x MET)"
+      ]
+    },
+    {
+      "need": "Convert cold to hot tumor microenvironment",
+      "priority": "Critical",
+      "current_gap": "2-3 fold higher MDSC infiltration, M2 macrophage dominance, poor T cell infiltration",
+      "moa_requirements": [
+        "MDSC depletion or functional inhibition",
+        "TAM repolarization from M2 to M1",
+        "T cell infiltration enhancement",
+        "IFN-gamma pathway restoration"
+      ],
+      "suitable_moa_classes": [
+        "CXCR2 antagonists + checkpoint inhibitors",
+        "CSF1R inhibitors + checkpoint inhibitors",
+        "STAT3 inhibitors + checkpoint inhibitors",
+        "CD40 agonists + checkpoint inhibitors",
+        "Oncolytic viruses + checkpoint inhibitors"
+      ]
+    },
+    {
+      "need": "Restore antigen presentation in 53% of tumors with HLA/APM loss",
+      "priority": "Critical",
+      "current_gap": "75% of defects are reversible but not being therapeutically addressed",
+      "moa_requirements": [
+        "IFN-gamma pathway activation",
+        "Epigenetic remodeling",
+        "STING pathway activation",
+        "Direct APM component upregulation"
+      ],
+      "suitable_moa_classes": [
+        "STING agonists",
+        "HDAC inhibitors",
+        "DNMT inhibitors",
+        "EZH2 inhibitors",
+        "CDK4/6 inhibitors",
+        "Direct IFN-gamma therapy"
+      ],
+      "biomarkers": [
+        "HLA class I expression by IHC",
+        "APM component expression (TAP1, LMP2, LMP7, β2-microglobulin)",
+        "Methylation status of HLA/APM genes"
+      ]
+    },
+    {
+      "need": "Leverage high neoantigen burden from tobacco carcinogenesis",
+      "priority": "High",
+      "current_gap": "High TMB (15.2 mutations) and tobacco signature not being exploited therapeutically",
+      "moa_requirements": [
+        "Neoantigen identification",
+        "Personalized vaccine manufacturing",
+        "APM restoration for vaccine efficacy",
+        "T cell activation and maintenance"
+      ],
+      "suitable_moa_classes": [
+        "Personalized neoantigen vaccines",
+        "Off-the-shelf vaccines targeting common tobacco neoantigens",
+        "Combination: vaccine + epigenetic modulator + checkpoint inhibitor"
+      ],
+      "biomarkers": [
+        "Tobacco signature (SBS4) analysis",
+        "TMB quantification",
+        "Neoantigen prediction algorithms",
+        "HLA typing"
+      ]
+    },
+    {
+      "need": "Address p53 pathway dysfunction beyond mutagenesis",
+      "priority": "Medium",
+      "current_gap": "83% TP53 mutations block IFN-gamma signaling and STING pathway - dual liability",
+      "moa_requirements": [
+        "Bypass p53-mediated immune signaling blockade",
+        "Restore STING-TBK1-IRF3 pathway",
+        "Restore STAT1 signaling"
+      ],
+      "suitable_moa_classes": [
+        "p53 pathway reactivators",
+        "Downstream IFN pathway activators",
+        "Combination therapies bypassing p53 requirement"
+      ]
+    },
+    {
+      "need": "Improve outcomes in perioperative setting",
+      "priority": "High",
+      "current_gap": "KEYNOTE-689 shows benefit, but optimal timing, duration, and combinations unknown",
+      "moa_requirements": [
+        "Neoadjuvant immune priming",
+        "Adjuvant maintenance",
+        "APM restoration pre-surgery"
+      ],
+      "suitable_moa_classes": [
+        "Neoadjuvant checkpoint inhibitors",
+        "Neoadjuvant bispecific antibodies",
+        "Perioperative epigenetic modulators + checkpoint inhibitors"
+      ]
+    }
+  ],
+  "biomarkers": {
+    "predictive_biomarkers": [
+      {
+        "biomarker": "PD-L1 CPS",
+        "assay": "22C3 pharmDx",
+        "clinical_utility": "Predicts pembrolizumab monotherapy benefit (CPS ≥1 for approval, CPS ≥20 preferred)",
+        "limitations": "Limited predictive accuracy (29% of FDA trials), better when combined with other markers",
+        "cutoffs": "CPS ≥1 for monotherapy approval, CPS ≥20 for higher benefit"
+      },
+      {
+        "biomarker": "Tumor Mutational Burden (TMB)",
+        "methodology": "NGS-based, mutations per megabase",
+        "clinical_utility": "High TMB (≥10 mut/Mb) predicts immunotherapy benefit: mOS 25 vs 10 months",
+        "enhancement": "TP-PR index (TMB + PIK3CA/TP53/ROS1) improves prediction: AUC 0.77 vs 0.56 TMB alone",
+        "cutoffs": "≥10 mutations/Mb"
+      },
+      {
+        "biomarker": "Tobacco signature (SBS4)",
+        "methodology": "Whole genome sequencing, mutational signature analysis",
+        "clinical_utility": "Identifies high neoantigen burden tumors (1.26-1.34 fold stop-gain enrichment), guides vaccine strategies",
+        "anatomic_variation": "66.7% laryngeal vs 17.3% oral cavity"
+      },
+      {
+        "biomarker": "IFN-gamma gene expression signature",
+        "methodology": "RNA-seq or NanoString, 6-gene signature",
+        "clinical_utility": "95% negative predictive value for immunotherapy non-response, identifies IFN pathway dysfunction",
+        "application": "Select patients for APM restoration strategies"
+      },
+      {
+        "biomarker": "HLA/APM expression status",
+        "methodology": "IHC for HLA class I, TAP1, LMP2, LMP7, β2-microglobulin",
+        "clinical_utility": "Identifies 53% patients with APM defects, 75% reversible - guides epigenetic modulator use",
+        "combinations": "Combine with IFN-gamma signature for comprehensive pathway assessment"
+      },
+      {
+        "biomarker": "p53/CDKN2A mutation status",
+        "methodology": "NGS panel testing",
+        "clinical_utility": "Co-mutation predicts TMB 15.83-17.9/tumor, identifies CDK4/6 inhibitor candidates, dual impact on mutagenesis and immunity",
+        "prevalence": "TP53: 83.2% smokers; CDKN2A: frequent co-occurrence"
+      },
+      {
+        "biomarker": "HPV/p16 status",
+        "methodology": "p16 IHC, HPV DNA/RNA testing",
+        "clinical_utility": "Critical stratification factor - HPV-negative have lower checkpoint inhibitor responses (8.3% vs 12%), different TME biology",
+        "implications": "HPV-negative patients require more aggressive combination strategies"
+      },
+      {
+        "biomarker": "T cell-inflamed gene expression profile",
+        "methodology": "RNA-seq, multi-gene panel",
+        "clinical_utility": "Superior predictive accuracy vs PD-L1 IHC (AUC 0.75 vs 0.65), identifies hot vs cold tumors",
+        "application": "Guide TME modulation strategies"
+      },
+      {
+        "biomarker": "EGFR expression level",
+        "methodology": "IHC, flow cytometry",
+        "clinical_utility": "Guides EGFR-targeted therapy selection, predicts petosemtamab response",
+        "expression": "~90% HNSCC show overexpression"
+      }
+    ],
+    "emerging_biomarkers": [
+      {
+        "biomarker": "Epigenetic modification patterns",
+        "methodology": "Methylation arrays, ChIP-seq",
+        "clinical_utility": "Identify reversible APM silencing, guide epigenetic modulator selection",
+        "development_stage": "Research"
+      },
+      {
+        "biomarker": "Spatial TME profiling",
+        "methodology": "Multiplex IHC, spatial transcriptomics",
+        "clinical_utility": "Quantify MDSC/TAM infiltration, immune exclusion patterns, guide TME modulation",
+        "development_stage": "Research transitioning to clinical"
+      },
+      {
+        "biomarker": "Circulating tumor DNA (ctDNA)",
+        "methodology": "Liquid biopsy, targeted NGS",
+        "clinical_utility": "Non-invasive monitoring, early resistance detection",
+        "development_stage": "Clinical validation"
+      }
+    ],
+    "composite_biomarker_strategies": [
+      {
+        "strategy": "TP-PR index",
+        "components": "TMB + PIK3CA + TP53 + ROS1 mutations",
+        "performance": "AUC 0.77 vs 0.56 TMB alone",
+        "outcome": "High TP-PR: mOS 25 vs 8 months standard care"
+      },
+      {
+        "strategy": "IFN-gamma pathway assessment",
+        "components": "IFN-gamma signature + HLA/APM expression + p53 status",
+        "utility": "Comprehensive pathway function evaluation",
+        "application": "Select patients for APM restoration + checkpoint inhibitor combinations"
+      },
+      {
+        "strategy": "Immune contexture profiling",
+        "components": "PD-L1 CPS + TMB + T cell-inflamed signature + TME composition",
+        "utility": "Holistic immune landscape assessment",
+        "application": "Personalized combination strategy selection"
+      }
+    ]
+  },
+  "combination_rationale": [
+    {
+      "combination": "Petosemtamab + Pembrolizumab",
+      "mechanism": "Dual EGFR/LGR5 targeting + checkpoint inhibition + enhanced ADCC bridges innate and adaptive immunity",
+      "evidence": "Phase 2: 67% ORR vs ~22% pembrolizumab historical, regardless of HPV/PD-L1 status",
+      "status": "Phase 3 LiGeR-HN1 ongoing",
+      "priority": "Highest - potential new first-line standard"
+    },
+    {
+      "combination": "STING agonist + Checkpoint inhibitor",
+      "mechanism": "Restore APM → enhance neoantigen presentation → checkpoint blockade enables T cell function",
+      "evidence": "MK-1454 24% ORR with pembrolizumab vs 0% monotherapy",
+      "status": "Phase 2 ongoing",
+      "priority": "High - addresses core resistance mechanism"
+    },
+    {
+      "combination": "Epigenetic modulator + Checkpoint inhibitor",
+      "mechanism": "Reverse HLA/APM epigenetic silencing → restore antigen presentation → checkpoint inhibition",
+      "evidence": "75% of APM defects reversible, dual DNMT/HDAC superior to single agents",
+      "status": "Preclinical/early clinical",
+      "priority": "High - 53% patients have APM defects"
+    },
+    {
+      "combination": "CDK4/6 inhibitor + Checkpoint inhibitor",
+      "mechanism": "Enhance IFN-gamma production (4-fold) + MHC-I upregulation + Treg suppression + checkpoint blockade",
+      "evidence": "Preclinical: improved T cell infiltration, reduced exhaustion; targets p53/CDKN2A pathway",
+      "status": "Preclinical in HNSCC",
+      "priority": "High - addresses TP53/CDKN2A alterations (83%)"
+    },
+    {
+      "combination": "Neoantigen vaccine + APM restoration + Checkpoint inhibitor",
+      "mechanism": "Generate T cells (vaccine) → enable recognition (APM restoration) → prevent exhaustion (checkpoint inhibitor)",
+      "evidence": "High TMB and tobacco signature provide neoantigen substrate; sequential approach logical",
+      "status": "Conceptual/early development",
+      "priority": "Medium-High - personalized approach for tobacco+ patients"
+    },
+    {
+      "combination": "MDSC/TAM targeting + Checkpoint inhibitor",
+      "mechanism": "Deplete/reprogram immunosuppressive cells → allow T cell infiltration → checkpoint blockade enables function",
+      "evidence": "2-3 fold MDSC enrichment in HPV-negative; multiple agents available (CXCR2, CSF1R, STAT3 inhibitors)",
+      "status": "Multiple agents in early trials",
+      "priority": "High - addresses cold TME"
+    },
+    {
+      "combination": "Dual/Triple EGFR strategies",
+      "mechanism": "Overcome resistance through multiple targeting mechanisms",
+      "examples": [
+        "Bispecific ADC (EGFR x MET) for resistance pathways",
+        "Cetuximab + afatinib for dual extracellular/intracellular inhibition"
+      ],
+      "status": "Preclinical (ADC), early clinical (cetuximab+afatinib)",
+      "priority": "Medium - post-cetuximab resistance"
+    },
+    {
+      "combination": "Pembrolizumab + Chemotherapy",
+      "mechanism": "Chemotherapy-induced immunogenic cell death + checkpoint inhibition",
+      "evidence": "KEYNOTE-048: OS 13.0 vs 10.7 months, HR 0.77",
+      "status": "FDA approved first-line",
+      "priority": "Current standard of care"
+    }
+  ],
+  "strategic_insights": {
+    "moa_success_patterns": {
+      "succeeding": [
+        {
+          "moa": "Checkpoint inhibitors + chemotherapy",
+          "evidence": "KEYNOTE-048 established first-line standard",
+          "success_factors": "Chemotherapy enhances immunogenicity, broad applicability"
+        },
+        {
+          "moa": "Bispecific antibodies (EGFR x LGR5)",
+          "evidence": "Petosemtamab 67% ORR first-line, 37-40% second-line+",
+          "success_factors": "Dual targeting, enhanced ADCC, stem cell targeting, works across HPV/PD-L1 subgroups"
+        },
+        {
+          "moa": "Perioperative checkpoint inhibitors",
+          "evidence": "KEYNOTE-689 FDA approved June 2025",
+          "success_factors": "Early immune priming, reduces recurrence"
+        },
+        {
+          "moa": "APM restoration approaches",
+          "evidence": "STING agonist 24% ORR combination vs 0% mono",
+          "success_factors": "Addresses core resistance mechanism (75% reversible defects)"
+        }
+      ],
+      "failing": [
+        {
+          "moa": "CTLA-4 + PD-1 dual checkpoint blockade",
+          "evidence": "CheckMate-651: no benefit for nivolumab + ipilimumab vs EXTREME",
+          "failure_factors": "Increased toxicity without efficacy benefit, likely need TME modulation first"
+        },
+        {
+          "moa": "PD-L1 inhibitors as monotherapy",
+          "evidence": "EAGLE trial: durvalumab failed to improve OS",
+          "failure_factors": "PD-L1 blockade may be less effective than PD-1 in HNSCC, patient selection issues"
+        },
+        {
+          "moa": "Concurrent chemoRT + checkpoint inhibitor",
+          "evidence": "JAVELIN HN 100, PembroRad: no PFS/OS benefit",
+          "failure_factors": "Concurrent timing may be suboptimal, increased toxicity"
+        }
+      ]
+    },
+    "key_learnings": {
+      "hpv_negative_specific": [
+        "Lower checkpoint inhibitor responses (8.3% vs 12% HPV+) require different strategies",
+        "Cold TME with 2-3 fold MDSC enrichment needs combination immunomodulation",
+        "75% reversible APM defects represent major therapeutic opportunity",
+        "High TMB from tobacco provides neoantigen substrate but requires APM restoration"
+      ],
+      "combination_principles": [
+        "Sequential may be superior to concurrent (APM restoration → checkpoint blockade)",
+        "Dual checkpoint blockade insufficient without addressing cold TME",
+        "Bispecific approaches superior to monoclonal antibodies",
+        "Triple combinations rational for cold tumors: TME modulation + APM restoration + checkpoint inhibitor"
+      ],
+      "biomarker_requirements": [
+        "PD-L1 alone insufficient - composite biomarkers needed",
+        "IFN-gamma pathway assessment critical for patient selection",
+        "Tobacco signature identifies high neoantigen burden",
+        "HLA/APM status guides APM restoration strategies"
+      ],
+      "timing_matters": [
+        "Perioperative setting shows promise (KEYNOTE-689)",
+        "Neoadjuvant may prime immune system better than adjuvant alone",
+        "Concurrent chemoRT + checkpoint inhibitor problematic"
+      ]
+    },
+    "recommendations_by_line": {
+      "first_line_rm": {
+        "current": "Pembrolizumab + platinum/5-FU or pembrolizumab mono (CPS ≥1)",
+        "emerging": "Petosemtamab + pembrolizumab (67% ORR) - potential new standard pending phase 3",
+        "development": "Epigenetic modulator + pembrolizumab + chemotherapy for cold tumors"
+      },
+      "second_line_plus_rm": {
+        "current": "Pembrolizumab or nivolumab monotherapy",
+        "emerging": "Petosemtamab monotherapy (breakthrough designation, 37-40% ORR)",
+        "development": "STING agonist + checkpoint inhibitor, epigenetic + checkpoint inhibitor"
+      },
+      "locally_advanced_resectable": {
+        "current": "Perioperative pembrolizumab + surgery + adjuvant therapy (KEYNOTE-689)",
+        "development": "Neoadjuvant bispecific + surgery, APM restoration in neoadjuvant setting"
+      },
+      "locally_advanced_unresectable": {
+        "current": "Cisplatin + RT or cetuximab + RT",
+        "development": "Adjuvant checkpoint inhibitor (post-chemoRT), STING agonist combinations"
+      }
+    },
+    "development_priorities": {
+      "clinical_trials_needed": [
+        {
+          "trial": "Epigenetic modulator (HDAC + DNMT or EZH2 inhibitor) + pembrolizumab",
+          "population": "HPV-negative, HLA/APM low, IFN-gamma signature low",
+          "rationale": "75% reversible APM defects, addresses core resistance",
+          "phase": "Phase 2"
+        },
+        {
+          "trial": "CDK4/6 inhibitor + pembrolizumab",
+          "population": "TP53/CDKN2A mutant HPV-negative HNSCC",
+          "rationale": "83% TP53 mutation rate, 4-fold IFN-gamma increase preclinically",
+          "phase": "Phase 1/2"
+        },
+        {
+          "trial": "Neoantigen vaccine + epigenetic modulator + pembrolizumab",
+          "population": "Tobacco signature+, high TMB, HPV-negative",
+          "rationale": "High neoantigen burden, sequential APM restoration",
+          "phase": "Phase 1/2"
+        },
+        {
+          "trial": "CXCR2 antagonist + pembrolizumab",
+          "population": "HPV-negative with high MDSC infiltration",
+          "rationale": "2-3 fold MDSC enrichment in HPV-negative",
+          "phase": "Phase 2"
+        },
+        {
+          "trial": "Petosemtamab + pembrolizumab + epigenetic modulator",
+          "population": "HPV-negative, cold TME, APM low",
+          "rationale": "Triple combination: EGFR targeting + checkpoint + APM restoration",
+          "phase": "Phase 1/2"
+        },
+        {
+          "trial": "Optimal sequencing studies",
+          "design": "Sequential vs concurrent APM restoration and checkpoint inhibition",
+          "rationale": "Define optimal timing for combination approaches",
+          "phase": "Phase 2 randomized"
+        }
+      ],
+      "biomarker_development": [
+        "Validate IFN-gamma pathway composite biomarker prospectively",
+        "Develop spatial TME profiling for MDSC/TAM quantification",
+        "Standardize tobacco signature analysis",
+        "Create reversible vs irreversible APM defect classification",
+        "Integrate multi-omic biomarker panels (genomic + transcriptomic + proteomic + spatial)"
+      ],
+      "mechanistic_studies": [
+        "Characterize mechanisms of petosemtamab activity across HPV/PD-L1 subgroups",
+        "Define optimal epigenetic modulator combinations and schedules",
+        "Elucidate p53-mediated immune evasion bypass strategies",
+        "Map resistance mechanisms to bispecific antibodies"
+      ]
+    },
+    "patient_stratification_strategy": {
+      "tier_1_hot_tumors": {
+        "definition": "PD-L1 high, TMB high, T cell-inflamed, functional APM",
+        "treatment": "Pembrolizumab monotherapy or + chemotherapy",
+        "expected_benefit": "Good checkpoint inhibitor responses"
+      },
+      "tier_2_intermediate": {
+        "definition": "PD-L1 positive, moderate TMB, mixed TME, reversible APM defects",
+        "treatment": "Petosemtamab + pembrolizumab or epigenetic modulator + checkpoint inhibitor",
+        "expected_benefit": "Moderate-good responses with combination"
+      },
+      "tier_3_cold_tumors": {
+        "definition": "PD-L1 low/negative, cold TME, high MDSC, APM defects",
+        "treatment": "Triple combination: TME modulator + APM restoration + checkpoint inhibitor, or petosemtamab + pembrolizumab",
+        "expected_benefit": "Require aggressive combination strategies"
+      },
+      "tier_4_tobacco_high_neoantigen": {
+        "definition": "Tobacco signature+, high TMB, APM defects",
+        "treatment": "Neoantigen vaccine + APM restoration + checkpoint inhibitor",
+        "expected_benefit": "Personalized vaccine approach with APM restoration"
+      },
+      "biomarker_panel": [
+        "PD-L1 CPS (22C3)",
+        "TMB (NGS)",
+        "Tobacco signature (WGS or targeted panel)",
+        "IFN-gamma pathway gene expression",
+        "HLA/APM expression (IHC)",
+        "T cell-inflamed gene expression profile",
+        "p53/CDKN2A mutation status",
+        "HPV/p16 status",
+        "TME composition (multiplex IHC or spatial transcriptomics)"
+      ]
+    }
+  }
+}

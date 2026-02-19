@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indication_profile>
+  
+  <metadata>
+    <indication_name>Renal Cell Carcinoma (RCC)</indication_name>
+    <indication_code>C64 (ICD-10)</indication_code>
+    <subtypes>
+      <subtype prevalence="75%">Clear Cell RCC (ccRCC)</subtype>
+      <subtype prevalence="15%">Papillary RCC</subtype>
+      <subtype prevalence="5%">Chromophobe RCC</subtype>
+      <subtype prevalence="5%">Other rare subtypes</subtype>
+    </subtypes>
+    <geographic_scope>United States and European Union</geographic_scope>
+    <data_version>2025-10-02</data_version>
+    <data_sources>ClinicalTrials.gov, EU Clinical Trials Register, PubMed, patent databases, FDA/EMA approvals</data_sources>
+    
+    <usage_for_claude>
+      This RCC indication profile enables MOA-based indication selection by providing:
+      (1) Disease biology and immunological features for matching drug MOAs
+      (2) Comprehensive precedent of MOAs tested in RCC with detailed outcomes
+      (3) Unmet needs framed as MOA requirements
+      (4) Scoring framework for ranking RCC against other indications
+      When provided with a drug MOA, assess fit by matching against precedent drugs with similar MOA tags.
+    </usage_for_claude>
+  </metadata>
+
+  <disease_biology>
+    
+    <pathophysiology>
+      <summary>
+        RCC, particularly ccRCC, is characterized by VHL gene inactivation leading to constitutive 
+        HIF pathway activation, creating a hypoxic tumor microenvironment. This drives angiogenesis 
+        (VEGF overexpression) and metabolic reprogramming. RCC is historically considered an 
+        immune-responsive tumor, with subsets showing T cell infiltration.
+      </summary>
+      <key_pathways>
+        <pathway relevance="high">
+          <n>HIF-2α / Hypoxia pathway</n>
+          <role_in_disease>VHL inactivation → HIF stabilization → drives VEGF, CAIX expression, metabolic changes</role_in_disease>
+          <druggability>Established - Belzutifan (HIF-2α inhibitor) approved</druggability>
+          <clinical_validation>Belzutifan showed 70% ORR in VHL-associated RCC; Phase III ongoing in combination with pembrolizumab</clinical_validation>
+        </pathway>
+        <pathway relevance="high">
+          <n>VEGF / Angiogenesis pathway</n>
+          <role_in_disease>Overexpressed due to HIF activation; drives tumor vascularization</role_in_disease>
+          <druggability>Established - Multiple VEGF TKIs approved (sunitinib, cabozantinib, etc.)</druggability>
+          <clinical_validation>Sunitinib, cabozantinib, axitinib, lenvatinib all approved; combination with ICIs standard of care</clinical_validation>
+        </pathway>
+        <pathway relevance="high">
+          <n>PD-1 / PD-L1 checkpoint axis</n>
+          <role_in_disease>Expressed in ~25-30% of ccRCC; mediates T cell exhaustion</role_in_disease>
+          <druggability>Established - Multiple checkpoint inhibitors approved</druggability>
+          <clinical_validation>Nivolumab, pembrolizumab, avelumab approved; ICI combinations are first-line standard</clinical_validation>
+        </pathway>
+      </key_pathways>
+    </pathophysiology>
+
+    <immune_landscape>
+      <tumor_microenvironment>
+        <immune_infiltration>Mixed/Variable - Some tumors are T cell inflamed ("hot"), others are immune excluded ("cold"). Responders to ICIs tend to have higher T cell infiltration. NK cells are present and functional.</immune_infiltration>
+        <dominant_immune_cells>CD8+ cytotoxic T cells, NK cells, Regulatory T cells (Tregs), Tumor-associated macrophages (TAMs), Myeloid-derived suppressor cells (MDSCs)</dominant_immune_cells>
+        <immune_suppression_mechanisms>
+          <mechanism>
+            <n>PD-L1 expression</n>
+            <prevalence>25-30% of ccRCC tumors (but not required for ICI response)</prevalence>
+            <functional_impact>Inhibits T cell effector function through PD-1 binding; contributes to exhaustion</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>Treg infiltration</n>
+            <prevalence>Variable, but can be significant in subset of tumors</prevalence>
+            <functional_impact>Secretes immunosuppressive cytokines (IL-10, TGF-β); inhibits effector T cell function</functional_impact>
+          </mechanism>
+          <mechanism>
+            <n>TGF-β signaling</n>
+            <prevalence>High in many ccRCC tumors</prevalence>
+            <functional_impact>Promotes immunosuppression, Treg function, and T cell exclusion from tumor</functional_impact>
+          </mechanism>
+        </immune_suppression_mechanisms>
+      </tumor_microenvironment>
+      
+      <cytokine_environment>
+        <cytokine_profile>Variable - Can support Th1 antitumor response in some cases, but often skewed toward immunosuppression by TGF-β and IL-10</cytokine_profile>
+        <key_cytokines>
+          <cytokine role="Antitumor">
+            <n>IL-2</n>
+            <expression_level>Variable - can be produced by infiltrating T cells</expression_level>
+            <function>T cell proliferation, activation, and survival; NK cell activation</function>
+            <therapeutic_relevance>VALIDATED TARGET - Aldesleukin (high-dose IL-2) approved since 1992; can induce durable complete responses in 5-10% of patients</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Antitumor">
+            <n>IFN-γ</n>
+            <expression_level>Variable - marker of Th1 response</expression_level>
+            <function>Antitumor immunity; macrophage activation</function>
+            <therapeutic_relevance>IFN-α historically used but now obsolete; validates immune responsiveness of RCC</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor">
+            <n>TGF-β</n>
+            <expression_level>High in many ccRCC tumors</expression_level>
+            <function>Promotes immunosuppression, Treg differentiation, inhibits T cell activation</function>
+            <therapeutic_relevance>Potential target for blockade; combination with immunotherapy explored</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor">
+            <n>IL-10</n>
+            <expression_level>Can be elevated</expression_level>
+            <function>Immunosuppressive; inhibits T cell function</function>
+            <therapeutic_relevance>Paradoxically, pegylated IL-10 (pegilodecakin) showed 40% ORR with anti-PD-1 in Phase I (activates CD8 T cells at high doses)</therapeutic_relevance>
+          </cytokine>
+        </key_cytokines>
+      </cytokine_environment>
+
+      <immune_receptors>
+        <receptor>
+          <n>PD-1</n>
+          <expression_pattern>Expressed on tumor-infiltrating T cells, often marks exhausted T cells</expression_pattern>
+          <functional_status>Can be exhausted/anergic, but reversible with checkpoint blockade</functional_status>
+          <targeting_potential>VALIDATED - Multiple anti-PD-1 antibodies approved; backbone of current therapy</targeting_potential>
+        </receptor>
+        <receptor>
+          <n>CTLA-4</n>
+          <expression_pattern>Expressed on T cells, particularly Tregs</expression_pattern>
+          <functional_status>Mediates immune suppression</functional_status>
+          <targeting_potential>VALIDATED - Ipilimumab approved in combination with nivolumab for first-line RCC</targeting_potential>
+        </receptor>
+        <receptor>
+          <n>4-1BB (CD137)</n>
+          <expression_pattern>Costimulatory receptor on activated T cells and NK cells</expression_pattern>
+          <functional_status>Can enhance T cell activation and persistence</functional_status>
+          <targeting_potential>Emerging - PD-L1 x 4-1BB bispecifics in preclinical; aim for tumor-localized costimulation</targeting_potential>
+        </receptor>
+        <receptor>
+          <n>IL-2 receptor (IL-2R)</n>
+          <expression_pattern>High affinity (αβγ) on Tregs; intermediate affinity (βγ) on effector T cells and NK cells</expression_pattern>
+          <functional_status>Functional; can be activated by IL-2</functional_status>
+          <targeting_potential>VALIDATED - High-dose IL-2 (aldesleukin) approved; next-gen IL-2 variants in development</targeting_potential>
+        </receptor>
+      </immune_receptors>
+    </immune_landscape>
+
+    <tumor_antigens>
+      <antigen>
+        <n>CAIX (Carbonic Anhydrase IX)</n>
+        <expression_frequency>85-95% of clear cell RCC tumors</expression_frequency>
+        <expression_level>High, particularly under hypoxic conditions (HIF-driven)</expression_level>
+        <expression_pattern>Homogeneous in most ccRCC; membranous expression</expression_pattern>
+        <normal_tissue_expression>Very limited - GI tract (low level), bile ducts (low level); not in kidney</normal_tissue_expression>
+        <therapeutic_window>Excellent - near-universal tumor expression with minimal normal tissue expression</therapeutic_window>
+        <prior_targeting_attempts>
+          - CAIX x CD3 bispecific T-cell engagers: Early clinical trials showing ~20% ORR with manageable CRS
+          - CAIX-targeted CAR-T: Explored in preclinical/early clinical
+          - CAIX ADCs: Preclinical development
+        </prior_targeting_attempts>
+      </antigen>
+      
+      <antigen>
+        <n>CD70</n>
+        <expression_frequency>~50% of ccRCC tumors</expression_frequency>
+        <expression_level>Medium to High when expressed</expression_level>
+        <expression_pattern>Heterogeneous - expressed on subset of tumor cells; associated with poor prognosis</expression_pattern>
+        <normal_tissue_expression>Transiently on activated T and B cells; otherwise limited</normal_tissue_expression>
+        <therapeutic_window>Good - enriched in tumors, limited normal tissue expression</therapeutic_window>
+        <prior_targeting_attempts>
+          - CTX130 (allogeneic CD70 CAR-T): Phase I showed 81.3% disease control rate; first documented durable CR (>36 months) in solid tumor with allo-CAR-T; excellent safety (no DLTs, no neurotoxicity, no GVHD)
+          - CD70 x CD3 bispecific: Preclinical studies showing potent tumor eradication
+          - Validates CD70 as highly viable target in RCC
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <n>ENPP3 (Ectonucleotide Pyrophosphatase/Phosphodiesterase 3)</n>
+        <expression_frequency>High expression in ccRCC (exact % not fully characterized)</expression_frequency>
+        <expression_level>High in ccRCC</expression_level>
+        <expression_pattern>Cell surface protein; appears relatively homogeneous</expression_pattern>
+        <normal_tissue_expression>Limited characterization; appears tumor-enriched</normal_tissue_expression>
+        <therapeutic_window>Emerging data suggests good therapeutic window</therapeutic_window>
+        <prior_targeting_attempts>
+          - XmAb819 (ENPP3 x CD3 bispecific): First-in-human Phase I trial ongoing (NCT05433142) in relapsed/refractory ccRCC
+          - Represents novel, emerging target beyond CAIX and CD70
+        </prior_targeting_attempts>
+      </antigen>
+    </tumor_antigens>
+
+    <biological_features_for_moa_matching>
+      <feature moa_relevance="IL-2 pathway agonists, cytokine therapy">
+        <n>Presence of tumor-infiltrating lymphocytes responsive to IL-2</n>
+        <description>RCC tumors (especially responders to immunotherapy) have TILs expressing IL-2Rβγ that can be activated</description>
+        <frequency>Variable - subset of patients have "hot" tumors with significant TIL infiltration</frequency>
+        <therapeutic_implication>
+          Suggests RCC is suitable for IL-2 pathway agonists. Historical validation: aldesleukin approved.
+          Key: Need to avoid activating Tregs (CD25+ cells) while activating effector cells (IL-2Rβγ).
+          Next-gen IL-2 variants with CD25-sparing design are optimal.
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="T-cell engagers, bispecific antibodies">
+        <n>Well-defined tumor-associated antigens (CAIX, CD70, ENPP3)</n>
+        <description>ccRCC expresses targetable cell surface antigens with good therapeutic windows</description>
+        <frequency>CAIX: 85-95%; CD70: ~50%; ENPP3: High but not fully quantified</frequency>
+        <therapeutic_implication>
+          Makes RCC highly suitable for bispecific T-cell engagers targeting these antigens.
+          CAIX is near-universal in ccRCC - excellent target.
+          Early clinical data validates feasibility (CAIX TCE ~20% ORR; CD70 CAR-T 81% DCR).
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Checkpoint inhibitors, combination strategies">
+        <n>Checkpoint pathway activation (PD-1/PD-L1)</n>
+        <description>Subset of RCC expresses PD-L1; checkpoint axis contributes to immune evasion</description>
+        <frequency>PD-L1+ in 25-30%, but responses seen in PD-L1 negative as well</frequency>
+        <therapeutic_implication>
+          Validates checkpoint inhibitors (multiple approved).
+          Opportunity for ICI combinations with other MOAs (cytokines, bispecifics, TKIs).
+          Post-ICI resistance is major unmet need - MOAs that work independently of PD-1/PD-L1 axis are valuable.
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="HIF-2α inhibitors">
+        <n>HIF-2α overexpression due to VHL inactivation</n>
+        <description>Hallmark of ccRCC; drives multiple downstream oncogenic pathways</description>
+        <frequency>~90% of ccRCC (VHL pathway disrupted)</frequency>
+        <therapeutic_implication>
+          Validated target: Belzutifan (HIF-2α inhibitor) showed 70% ORR in VHL-RCC.
+          Phase III ongoing with pembrolizumab combination.
+          HIF pathway is master regulator in ccRCC.
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="NK cell activators (IL-2, IL-15, IL-18)">
+        <n>Functional NK cells present in RCC TME</n>
+        <description>NK cells infiltrate RCC and can mediate antitumor activity when properly activated</description>
+        <frequency>NK cells present in RCC; functionality variable</frequency>
+        <therapeutic_implication>
+          Supports NK-activating cytokines (IL-2, IL-15, IL-18).
+          Aldesleukin activates both T cells and NK cells.
+          Decoy-resistant IL-18 showed activity in RCC preclinical models via NK activation.
+        </therapeutic_implication>
+      </feature>
+    </biological_features_for_moa_matching>
+    
+  </disease_biology>
+
+  <moa_landscape>
+    
+    <moa_category name="Cytokine Therapy - IL-2 Pathway">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          RCC has demonstrated clinical responsiveness to IL-2 pathway activation for over 30 years.
+          Aldesleukin (high-dose IL-2) was approved in 1992 and remains the only cytokine with formal RCC indication.
+          Despite severe toxicity, it can induce durable complete responses in carefully selected patients,
+          proving that IL-2 pathway stimulation can overcome immune evasion in RCC.
+          The tumor microenvironment contains infiltrating T cells and NK cells that express IL-2 receptors
+          and can be activated. The challenge is selectively activating effector cells (CD8+ T, NK) without
+          activating immunosuppressive Tregs that also express IL-2R.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Historical clinical validation: Aldesleukin approved, can induce durable CRs
+          - T cell infiltration present (can be activated by IL-2)
+          - IL-2Rβγ expression on effector T cells and NK cells
+          - NK cells present and functional
+          - Prior ICI responses in subset validate immune responsiveness
+          - HIF-driven hypoxic TME may enhance IL-2 responsiveness
+        </supporting_biology>
+        <theoretical_concerns>
+          - High Treg infiltration in subset of tumors (CD25+ cells are liabilities for non-selective IL-2)
+          - Immunosuppressive cytokines (TGF-β, IL-10) present may counteract IL-2 effects
+          - Vascular leak syndrome risk with systemic high-dose IL-2
+          - Patient selection critical (not all RCC patients respond)
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Aldesleukin (Proleukin)</drug_name>
+          <specific_moa>
+            Recombinant human IL-2; binds high-affinity IL-2R (αβγ, CD25+) on Tregs with Kd ~10 pM;
+            binds intermediate-affinity IL-2R (βγ, CD122/CD132) on effector T cells and NK cells with Kd ~1 nM;
+            administered at supraphysiologic doses (600,000-720,000 IU/kg) to overcome rapid clearance;
+            promotes T cell and NK cell proliferation, activation, and cytotoxic function
+          </specific_moa>
+          <moa_classification>IL-2_pathway | IL-2R_agonist | non_selective | CD25_binding | high_affinity_Treg_activation | intermediate_affinity_effector_activation | systemic_cytokine | high_dose | T_cell_activation | NK_cell_activation | Treg_expansion_liability</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Approved - FDA 1992, EMA 1990s</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Pivotal trials and 30+ years real-world use</phase>
+                <design>High-dose IL-2 monotherapy in metastatic RCC; typically 600,000-720,000 IU/kg IV every 8h for up to 14 doses per cycle</design>
+                <efficacy>
+                  ORR: 15-20%
+                  CR: 5-10% (durable - many lasting >5 years or permanent)
+                  Median PFS: ~4 months in unselected population
+                  Long-term survivors: Small subset achieve decade+ survival
+                </efficacy>
+                <safety>
+                  Grade 3+ AEs: 70-80% of patients
+                  Key toxicities: Vascular leak syndrome/capillary leak, hypotension, cardiac toxicity (arrhythmias, myocardial ischemia), 
+                  renal dysfunction, neurological effects (confusion, disorientation), fever/chills
+                  Requires ICU-level monitoring and management
+                  Treatment-related mortality: 1-2%
+                </safety>
+                <patient_selection>Highly selected, physically fit patients (good performance status, normal cardiac/pulmonary function); typically <5% of eligible mRCC patients receive it</patient_selection>
+                <outcome>SUCCESS - Approved and remains on market. However, use has declined dramatically with advent of better-tolerated ICIs and TKIs</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - IL-2 PATHWAY ACTIVATION CAN INDUCE DURABLE COMPLETE RESPONSES IN RCC (definitive proof of concept)
+              - Immune system can be stimulated to eradicate RCC in subset of patients
+              - Durability of responses (years to decades) demonstrates curative potential
+              - Validates that RCC is an immune-responsive tumor
+              - T cells and NK cells in RCC can be activated to kill tumor cells
+            </success_factors>
+            <failure_reasons>
+              - NON-SELECTIVE BINDING: CD25 (α-chain) binding activates Tregs, which are immunosuppressive
+              - Treg expansion counteracts anti-tumor effector function
+              - SYSTEMIC HIGH-DOSE EXPOSURE: Supraphysiologic doses required due to short half-life and need to saturate receptors
+              - Vascular leak syndrome from systemic IL-2 effects on endothelium
+              - Severe toxicity limits use to <5% of eligible patients
+              - No predictive biomarkers to identify responders prospectively
+            </failure_reasons>
+            <key_insights>
+              CRITICAL LESSONS FOR NEXT-GEN IL-2 DESIGN:
+              1. IL-2 pathway is VALIDATED in RCC - maintain effector cell activation
+              2. MUST SPARE TREGS - need CD25-sparing design (abolish CD25 binding, not just reduce it)
+              3. Need to maintain IL-2Rβγ activation for effector T cells and NK cells
+              4. Consider tumor-targeted delivery to reduce systemic exposure and toxicity
+              5. Extended half-life desirable to reduce dosing frequency and peaks
+              6. Combination with checkpoint inhibitors is rational (overcome PD-1-mediated exhaustion)
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>IL-2_pathway</tag>
+            <tag>IL-2R_agonist</tag>
+            <tag>T_cell_activation</tag>
+            <tag>NK_cell_activation</tag>
+            <tag>CD25_binding</tag>
+            <tag>Treg_activation</tag>
+            <tag>systemic_cytokine</tag>
+            <tag>high_dose</tag>
+            <tag>non_targeted</tag>
+            <tag>short_half_life</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Bempegaldesleukin (NKTR-214)</drug_name>
+          <specific_moa>
+            Pegylated IL-2 prodrug; 6 releasable PEG chains attached to IL-2;
+            PEGylation was designed to bias signaling toward IL-2Rβγ (effector cells) over CD25 (Tregs) by sterically hindering CD25 binding;
+            extended half-life (~50x vs native IL-2) allows less frequent dosing;
+            upon administration, PEG chains gradually cleave, releasing active IL-2 in vivo
+          </specific_moa>
+          <moa_classification>IL-2_pathway | IL-2R_agonist | CD25_biased_not_abolished | partial_Treg_sparing | pegylated | extended_half_life | systemic_cytokine | prodrug | T_cell_activation | NK_cell_activation | betagamma_preferential</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FAILED Phase III - Program discontinued</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <design>
+                  PIVOT-09 trial: Bempegaldesleukin (0.006 mg/kg q3w) + nivolumab (360 mg q3w) vs 
+                  investigator's choice of either sunitinib or cabozantinib in first-line advanced/metastatic RCC.
+                  Primary endpoints: PFS and OS.
+                </design>
+                <efficacy>
+                  FAILED TO MEET PRIMARY ENDPOINTS
+                  Did not demonstrate superiority over TKI monotherapy (sunitinib or cabozantinib)
+                  PFS and OS: No significant improvement
+                  (Detailed efficacy data not fully disclosed; trial stopped for futility)
+                </efficacy>
+                <safety>
+                  Grade 3+ AEs: 36-50% (estimates from earlier phase data)
+                  Improved vs aldesleukin (no ICU requirement, less vascular leak)
+                  But still significant immune-related AEs: Fatigue, pruritus, rash, flu-like symptoms, arthralgias
+                  Manageable on outpatient basis
+                </safety>
+                <patient_selection>Unselected first-line mRCC population (no biomarker enrichment)</patient_selection>
+                <outcome>FAILURE - Trial stopped for futility; program discontinued; major setback for pegylated IL-2 class</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - DID achieve improved safety vs aldesleukin (no ICU needed)
+              - DID show some activity in earlier phase trials
+              - Validated that better-tolerated IL-2 is feasible
+            </success_factors>
+            <failure_reasons>
+              - PARTIAL CD25-BIASING WAS INSUFFICIENT: PEGylation only reduced (not abolished) CD25 binding
+              - Drug still bound CD25, just with lower affinity - still activated Tregs
+              - Prodrug release kinetics may have been suboptimal (all PEGs don't cleave predictably)
+              - Combination with nivolumab may not have been optimal (backbone comparison was TKI monotherapy, tough comparator)
+              - Possible that degree of Treg-sparing was not enough to overcome immunosuppression
+            </failure_reasons>
+            <key_insights>
+              CRITICAL STRATEGIC LESSONS:
+              1. PARTIAL CD25-SPARING IS NOT ENOUGH - need complete CD25 ablation (mutation to abolish binding)
+              2. "Biasing" via PEGylation is different from "abolishing" CD25 binding via protein engineering
+              3. Prodrug approach adds complexity and may not achieve intended pharmacology
+              4. Combination partner matters - TKI monotherapy is tough comparator in first-line
+              5. May need biomarker-selected population (unselected first-line is high bar)
+              6. STRATEGIC: Validates need for next-gen IL-2 with COMPLETE CD25 knockout (e.g., "not-alpha" IL-2 variants)
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>IL-2_pathway</tag>
+            <tag>IL-2R_agonist</tag>
+            <tag>T_cell_activation</tag>
+            <tag>NK_cell_activation</tag>
+            <tag>CD25_biased</tag>
+            <tag>partial_Treg_sparing</tag>
+            <tag>pegylated</tag>
+            <tag>extended_half_life</tag>
+            <tag>systemic_cytokine</tag>
+            <tag>prodrug</tag>
+            <tag>betagamma_preferential</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>THOR-707</drug_name>
+          <specific_moa>
+            "Not-alpha" IL-2 variant with engineered mutations in the IL-2 protein that abolish binding to CD25 (α-chain);
+            Retains full activity at IL-2Rβγ (intermediate affinity receptor);
+            Also pegylated for extended half-life;
+            Selectively activates CD8+ effector T cells and NK cells (βγ+ cells) while sparing Tregs (CD25high cells)
+          </specific_moa>
+          <moa_classification>IL-2_pathway | IL-2R_beta_gamma_selective | CD25_binding_abolished | complete_Treg_sparing | not_alpha_IL2 | protein_engineered | pegylated | extended_half_life | T_cell_effector_selective | NK_cell_activation | next_generation</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase I - Early clinical development in solid tumors</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase I</phase>
+                <design>Dose-escalation in advanced solid tumors (includes RCC); evaluating safety, PK, PD, and preliminary efficacy</design>
+                <efficacy>Data immature - early phase; preliminary signals being evaluated</efficacy>
+                <safety>Designed to have improved safety vs aldesleukin by avoiding Treg activation and vascular leak; early data monitoring ongoing</safety>
+                <patient_selection>Advanced solid tumor patients; RCC included</patient_selection>
+                <outcome>Ongoing - represents next-generation IL-2 approach with complete CD25 ablation</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - Represents learning from aldesleukin and bempegaldesleukin failures
+              - Complete CD25 ablation (not just reduction) is the design principle
+              - Combines protein engineering (CD25 knockout) with PEGylation (extended half-life)
+            </success_factors>
+            <key_insights>
+              - This is the next-generation IL-2 design: CD25-null + IL-2Rβγ-active + long half-life
+              - If successful in RCC, validates that complete Treg-sparing is critical
+              - Competitor to watch in RCC indication selection
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>IL-2_pathway</tag>
+            <tag>IL-2R_beta_gamma_selective</tag>
+            <tag>CD25_abolished</tag>
+            <tag>Treg_sparing</tag>
+            <tag>not_alpha_IL2</tag>
+            <tag>protein_engineered</tag>
+            <tag>pegylated</tag>
+            <tag>T_cell_effector_activation</tag>
+            <tag>NK_cell_activation</tag>
+            <tag>next_generation_cytokine</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <next_generation_approaches>
+        <approach>
+          <n>Anti-PD-1-IL-2v Immunocytokines</n>
+          <moa_modification>
+            Fusion protein: Anti-PD-1 antibody fused to IL-2 variant (CD25-sparing);
+            Delivers IL-2 directly to PD-1+ tumor-infiltrating T cells;
+            Tumor-targeted cytokine delivery (not systemic)
+          </moa_modification>
+          <rationale>
+            Combines checkpoint blockade with localized IL-2 stimulation.
+            Reduces systemic IL-2 exposure and toxicity.
+            Activates exhausted PD-1+ TILs at the tumor site.
+            CD25-sparing IL-2 variant prevents Treg activation.
+          </rationale>
+          <development_stage>Preclinical - strong proof-of-concept data</development_stage>
+          <representative_assets>Multiple academic/biotech groups; preclinical models showed complete RCC tumor regression</representative_assets>
+        </approach>
+
+        <approach>
+          <n>Decoy-Resistant IL-18 (DR-18)</n>
+          <moa_modification>
+            Engineered IL-18 with mutations that prevent binding to IL-18BP (natural decoy receptor);
+            Retains full IL-18 receptor agonist activity;
+            Bypasses natural inhibitory mechanism
+          </moa_modification>
+          <rationale>
+            IL-18 promotes NK cell activity and Th1 responses.
+            Natural IL-18 is inhibited by IL-18BP in vivo.
+            DR-18 overcomes this limitation for therapeutic benefit.
+          </rationale>
+          <development_stage>Preclinical - showed restored antitumor immunity in RCC xenografts</development_stage>
+          <representative_assets>Academic research; proof-of-concept in RCC models</representative_assets>
+        </approach>
+      </next_generation_approaches>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (10/10) - IL-2 pathway is definitively validated in RCC biology</biological_fit>
+        <clinical_validation>STRONG (9/10) - Aldesleukin approved with durable CRs; bempegaldesleukin failure informs next-gen design</clinical_validation>
+        <unmet_need_match>HIGH (9/10) - Next-gen IL-2 could address aldesleukin's toxicity while maintaining efficacy; post-ICI resistance is unmet need</unmet_need_match>
+        <overall_assessment>
+          RCC is OPTIMAL indication for next-generation IL-2 therapies.
+          - Strongest clinical precedent: Aldesleukin approved for 30+ years, proves IL-2 works
+          - Clear design requirements: Must spare Tregs (CD25-null), maintain effector activation (IL-2Rβγ)
+          - Learning from failure: Bempegaldesleukin's failure validates need for COMPLETE CD25 ablation (not just bias)
+          - Strategic positioning: "Safer aldesleukin" or "IL-2 without toxicity" is clear value proposition
+          - Combination opportunity: Next-gen IL-2 + checkpoint inhibitor is rational and has biological support
+          - Competitive landscape: No approved next-gen IL-2 yet = first-in-class opportunity
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <moa_category name="Bispecific T-Cell Engagers">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          RCC (especially ccRCC) expresses well-defined tumor-associated antigens with excellent therapeutic windows.
+          CAIX is near-universally expressed (85-95%) in ccRCC with minimal normal tissue expression.
+          CD70 is expressed in ~50% with limited normal tissue distribution.
+          ENPP3 is emerging as another highly expressed target.
+          T cells are present in RCC TME (even if exhausted/anergic from checkpoint signaling).
+          Bispecific T-cell engagers can create forced immune synapse (CD3 x TAA), triggering potent killing
+          independent of MHC presentation and independent of PD-1/PD-L1 axis.
+          This makes TCEs attractive for ICI-refractory disease and for tumors lacking checkpoint dependencies.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - Excellent tumor antigens available (CAIX, CD70, ENPP3)
+          - T cell infiltration present (can be engaged even if exhausted)
+          - MHC-independent killing bypasses antigen presentation defects
+          - Works regardless of PD-L1 status
+          - Early clinical data validates feasibility and activity
+        </supporting_biology>
+        <theoretical_concerns>
+          - Cytokine release syndrome (CRS) risk with systemic T-cell activation
+          - Antigen heterogeneity in subset (e.g., CD70 only ~50%)
+          - Need for dose optimization (step-up dosing to mitigate CRS)
+          - On-target/off-tumor toxicity if normal tissue expresses target
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>CAIX x CD3 bispecific antibodies (various)</drug_name>
+          <specific_moa>
+            Bispecific T-cell engager format;
+            One arm binds CAIX (carbonic anhydrase IX) on tumor cells;
+            Other arm binds CD3ε on T cells;
+            Creates forced immune synapse leading to T-cell activation and tumor cell lysis;
+            MHC-independent, works regardless of antigen presentation machinery
+          </specific_moa>
+          <moa_classification>bispecific_antibody | T_cell_engager | CAIX_targeting | CD3_binding | forced_synapse | MHC_independent | tumor_antigen_directed | cytotoxic_T_cell_activation</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Early Phase I - Dose escalation ongoing</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase I dose-escalation</phase>
+                <design>Step-up dosing in relapsed/refractory ccRCC patients</design>
+                <efficacy>
+                  Early signals: ORR ~20% in dose-escalation cohorts
+                  Responses seen in heavily pretreated patients
+                  Data still maturing
+                </efficacy>
+                <safety>
+                  Primary concern: Cytokine Release Syndrome (CRS)
+                  CRS manageable with step-up dosing protocol and tocilizumab (IL-6R blockade)
+                  Grade 1-2 CRS most common
+                  No severe neurotoxicity reported
+                  On-target/off-tumor toxicity minimal (CAIX has good therapeutic window)
+                </safety>
+                <patient_selection>Relapsed/refractory ccRCC (post-ICI, post-TKI)</patient_selection>
+                <outcome>Ongoing - promising early efficacy with manageable safety; supports further development</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - CAIX is excellent target: near-universal expression in ccRCC, low normal tissue expression
+              - T-cell engagers CAN work in solid tumors (not just heme malignancies)
+              - Activity seen in ICI-refractory disease (validates MHC-independent mechanism)
+              - CRS is manageable with mitigation strategies
+            </success_factors>
+            <key_insights>
+              - Proof-of-concept for bispecific TCEs in RCC
+              - CAIX is validated target (expression and therapeutic window confirmed)
+              - Step-up dosing essential for CRS management
+              - Post-ICI setting is viable (doesn't require checkpoint-sensitive disease)
+              - Sets precedent for other RCC-targeted TCEs (CD70, ENPP3)
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>bispecific_antibody</tag>
+            <tag>T_cell_engager</tag>
+            <tag>CAIX_target</tag>
+            <tag>CD3_binding</tag>
+            <tag>MHC_independent</tag>
+            <tag>solid_tumor</tag>
+            <tag>RCC_specific_antigen</tag>
+            <tag>forced_synapse</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>XmAb819 (ENPP3 x CD3)</drug_name>
+          <specific_moa>
+            Bispecific T-cell engager;
+            Targets ENPP3 (ectonucleotide pyrophosphatase 3), highly expressed in ccRCC;
+            CD3 binding arm engages T cells;
+            First-in-class ENPP3-targeted bispecific
+          </specific_moa>
+          <moa_classification>bispecific_antibody | T_cell_engager | ENPP3_targeting | CD3_binding | novel_target | ccRCC_specific | MHC_independent</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase I - First-in-human ongoing</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase I</phase>
+                <design>NCT05433142; dose-escalation in relapsed/refractory clear cell RCC</design>
+                <efficacy>Data immature - trial ongoing</efficacy>
+                <safety>Safety data being collected; expected CRS as class effect</safety>
+                <patient_selection>Relapsed/refractory ccRCC</patient_selection>
+                <outcome>Ongoing - represents novel ENPP3 target validation</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <key_insights>
+              - ENPP3 is emerging as third major targetable antigen in ccRCC (after CAIX, CD70)
+              - Expands targetable patient population beyond CAIX (backup target)
+              - Validates continued interest in TCE platform for RCC
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>bispecific_antibody</tag>
+            <tag>T_cell_engager</tag>
+            <tag>ENPP3_target</tag>
+            <tag>CD3_binding</tag>
+            <tag>MHC_independent</tag>
+            <tag>novel_target</tag>
+            <tag>ccRCC</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <!-- CD70 CAR-T is related cellular therapy showing CD70 validation -->
+        <precedent_drug>
+          <drug_name>CTX130 (CD70-targeting allogeneic CAR-T)</drug_name>
+          <specific_moa>
+            Allogeneic CAR-T cells engineered to target CD70;
+            Not a bispecific antibody, but validates CD70 as highly viable RCC target;
+            CAR construct provides costimulation for sustained T-cell activity
+          </specific_moa>
+          <moa_classification>cell_therapy | CAR_T | CD70_targeting | allogeneic | T_cell_based | tumor_antigen_directed</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase I - Breakthrough results</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase I</phase>
+                <design>Allogeneic CD70 CAR-T in relapsed/refractory RCC</design>
+                <efficacy>
+                  Disease Control Rate: 81.3%
+                  FIRST DOCUMENTED DURABLE COMPLETE RESPONSE in solid tumor with allogeneic CAR-T (>36 months duration)
+                  Responses in heavily pretreated, ICI-refractory patients
+                </efficacy>
+                <safety>
+                  EXCELLENT SAFETY PROFILE
+                  CRS: 50% of patients, but ALL were Grade 1-2 (manageable)
+                  NO dose-limiting toxicities
+                  NO neurotoxicity
+                  NO graft-versus-host disease (GVHD) - critical for allogeneic approach
+                </safety>
+                <patient_selection>Relapsed/refractory RCC with CD70 expression</patient_selection>
+                <outcome>Major success - provides strong proof-of-concept for CD70 targeting in RCC</outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - CD70 IS A HIGHLY VALIDATED TARGET IN RCC
+              - Can achieve durable responses even in heavily pretreated patients
+              - Safety profile excellent (even for cellular therapy, which typically has higher CRS risk than bispecifics)
+              - Demonstrates that CD70+ RCC can be eradicated by T-cell based therapies
+            </success_factors>
+            <key_insights>
+              - CRITICAL: Provides clinical validation for CD70 x CD3 bispecifics
+              - If CAR-T works, bispecific TCE targeting same antigen should work (simpler manufacturing, off-the-shelf)
+              - CD70 expression (~50% RCC) is sufficient for meaningful clinical benefit
+              - CRS manageable even with potent T-cell activation
+              - Sets high bar for efficacy (81% DCR, durable CRs possible)
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>CD70_target</tag>
+            <tag>T_cell_based_therapy</tag>
+            <tag>tumor_antigen_directed</tag>
+            <tag>RCC_validated</tag>
+            <tag>proof_of_concept</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <next_generation_approaches>
+        <approach>
+          <n>CD70 x CD3 bispecifics</n>
+          <moa_modification>Bispecific antibody targeting CD70 (validated by CTX130) and CD3</moa_modification>
+          <rationale>Capitalize on clinical validation from CD70 CAR-T; simpler off-the-shelf product vs cell therapy</rationale>
+          <development_stage>Preclinical - showing potent tumor eradication in models</development_stage>
+          <representative_assets>Multiple groups developing; preclinical data strong</representative_assets>
+        </approach>
+
+        <approach>
+          <n>PD-L1 x 4-1BB conditional agonist bispecifics</n>
+          <moa_modification>Dual mechanism: PD-L1 blockade + conditional 4-1BB costimulation (only activates in PD-L1+ TME)</moa_modification>
+          <rationale>Tumor-localized costimulation to avoid systemic 4-1BB agonist hepatotoxicity; enhances T-cell function and persistence</rationale>
+          <development_stage>Preclinical</development_stage>
+          <representative_assets>Platform being explored by multiple companies</representative_assets>
+        </approach>
+      </next_generation_approaches>
+
+      <moa_compatibility_score>
+        <biological_fit>EXCELLENT (10/10) - RCC has ideal tumor antigens (CAIX, CD70, ENPP3) with good therapeutic windows</biological_fit>
+        <clinical_validation>STRONG (8/10) - Early clinical data for CAIX TCE (~20% ORR); CTX130 CAR-T validates CD70 (81% DCR)</clinical_validation>
+        <unmet_need_match>HIGH (9/10) - Post-ICI resistance is major need; TCEs work independently of checkpoint axis</unmet_need_match>
+        <overall_assessment>
+          RCC is HIGHLY ATTRACTIVE for bispecific T-cell engagers.
+          - Exceptional tumor antigens: CAIX (85-95%), CD70 (~50%), ENPP3 (high) - all with good therapeutic windows
+          - Clinical validation emerging: CAIX TCEs showing activity; CD70 validated by CAR-T success
+          - MHC-independent mechanism addresses ICI-refractory disease (major unmet need)
+          - NO APPROVED BISPECIFICS IN RCC = first-in-class opportunity
+          - CRS manageable with standard mitigation (step-up dosing, tocilizumab)
+          - Strategic advantage: Multiple targets available (if one fails, pivot to another)
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <!-- Additional MOA categories would follow same structure:
+         - Checkpoint inhibitors (PD-1, CTLA-4)
+         - TKIs (VEGFR, MET, AXL)
+         - HIF-2α inhibitors
+         - etc.
+    -->
+
+  </moa_landscape>
+
+  <!-- Continue with other sections: current_treatment_landscape, development_pipeline, unmet_needs, etc. -->
+  <!-- For brevity, showing key sections completed above -->
+
+  <executive_summary>
+    
+    <indication_overview>
+      RCC is a historically immune-responsive solid tumor with multiple validated therapeutic targets.
+      Current standard of care is ICI-based combinations (ICI+ICI or ICI+TKI).
+      Major unmet need: post-ICI resistance (40-60% of patients).
+      Strong precedent for both cytokine therapy (aldesleukin approved 30+ years) and emerging data for bispecific antibodies (CAIX, CD70 targets).
+    </indication_overview>
+    
+    <most_validated_moas>
+      <moa>IL-2 pathway agonists (aldesleukin approved; next-gen in development)</moa>
+      <moa>PD-1/PD-L1 checkpoint inhibitors (multiple approved; backbone of therapy)</moa>
+      <moa>VEGFR TKIs (multiple approved; often combined with ICIs)</moa>
+    </most_validated_moas>
+
+    <emerging_moa_opportunities>
+      <moa>Bispecific T-cell engagers (CAIX, CD70, ENPP3 targets; early clinical activity)</moa>
+      <moa>Next-gen IL-2 variants (CD25-sparing designs; THOR-707 in trials)</moa>
+      <moa>HIF-2α inhibitors (belzutifan approved in VHL-RCC; expanding to broader ccRCC)</moa>
+    </emerging_moa_opportunities>
+
+    <highest_priority_unmet_needs>
+      <need>Post-ICI resistance - limited effective therapies after progression on ICI combinations</need>
+      <need>Non-clear cell histologies - most therapies focused on ccRCC; papillary/chromophobe lack dedicated treatments</need>
+      <need>Predictive biomarkers - no validated biomarkers to guide therapy selection prospectively</need>
+    </highest_priority_unmet_needs>
+
+    <key_success_factors>
+      <factor>For cytokines: Must improve on aldesleukin's toxicity (CD25-sparing essential) while maintaining efficacy</factor>
+      <factor>For bispecifics: Target selection critical (CAIX near-universal, CD70 subset); CRS management with step-up dosing</factor>
+      <factor>For all: Post-ICI setting is high-value opportunity (less competitive, clear unmet need, ICI-independent MOAs valued)</factor>
+    </key_success_factors>
+
+  </executive_summary>
+
+</indication_profile>

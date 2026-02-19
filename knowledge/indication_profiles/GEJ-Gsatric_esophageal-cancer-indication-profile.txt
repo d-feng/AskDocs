@@ -1,0 +1,1287 @@
+{
+  "metadata": {
+    "indication_name": "Gastroesophageal Junction (GEJ) Cancer and Gastric Cancer",
+    "indication_code": "C16 (Gastric), C15 (Esophageal), C16.0 (GEJ - ICD-10)",
+    "subtypes": [
+      {
+        "subtype": "GEJ Adenocarcinoma (Siewert I-III)",
+        "prevalence": "Rising incidence since 1990s, especially in Western populations",
+        "molecular_features": "Often HER2+ (20-30%), CLDN18.2+ (40-60%), PD-L1+ subset, MSI-H (rare <5%)",
+        "prognosis": "Poor - 5-year survival <20% for advanced disease; median OS 12-15 months with chemotherapy alone"
+      },
+      {
+        "subtype": "Gastric Cancer - Intestinal Type",
+        "prevalence": "More common in Asia; well-differentiated",
+        "molecular_features": "CLDN18.2+ (40-60%), HER2+ (15-20%), EBV-associated subset (PD-L1 high)",
+        "prognosis": "Better than diffuse type; median OS 15-18 months with chemotherapy"
+      },
+      {
+        "subtype": "Gastric Cancer - Diffuse Type",
+        "prevalence": "More aggressive; signet ring cells",
+        "molecular_features": "CDH1 mutations, lower HER2 positivity, CLDN18.2+ variable",
+        "prognosis": "Worse prognosis; median OS 8-12 months; peritoneal spread common"
+      },
+      {
+        "subtype": "MSI-H / dMMR GEJ/Gastric",
+        "prevalence": "<5% of gastric/GEJ cancers",
+        "molecular_features": "High tumor mutational burden, neoantigen-rich, PD-L1 high",
+        "prognosis": "Excellent response to checkpoint inhibitors; subset with best outcomes"
+      },
+      {
+        "subtype": "HER2-Positive GEJ/Gastric",
+        "prevalence": "15-30% (higher in GEJ than distal gastric)",
+        "molecular_features": "HER2 overexpression/amplification, targetable with trastuzumab, T-DXd",
+        "prognosis": "Improved with HER2-targeted therapy; median OS 16-18 months with trastuzumab + chemo"
+      },
+      {
+        "subtype": "CLDN18.2-Positive",
+        "prevalence": "40-60% of GEJ/gastric cancers",
+        "molecular_features": "Claudin 18.2 expression (IHC 2+ in ≥20% cells); tumor-restricted tight junction protein",
+        "prognosis": "Emerging target - zolbetuximab approved 2024; ADCs in development show ORR 30-43%"
+      }
+    ],
+    "geographic_scope": "United States, European Union, and Asia (Asia represents 55%+ of global burden)",
+    "data_version": "2025-10-04",
+    "data_sources": "GEJCa.docx comprehensive report, ClinicalTrials.gov, PubMed, FDA/EMA/NMPA regulatory filings, patent databases (2020-2025), market research reports",
+    "usage_for_claude": "This GEJ/gastric cancer profile enables MOA-based indication selection by providing: (1) Disease biology emphasizing immunologically 'warm' tumor potential with biomarker-selected populations (MSI-H, PD-L1+, EBV-associated), (2) Comprehensive precedent of approved immunotherapies (pembrolizumab, nivolumab, T-DXd) with VALIDATED clinical benefit, (3) Emerging targets (CLDN18.2, TROP2) with strong Phase I/II data showing 30-43% ORR in ADC trials, (4) Unmet needs framed as MOA requirements with emphasis on biomarker-selected approaches, combination-ready platforms, and novel ADC targets. CRITICAL: GEJ/gastric is VALIDATED immunotherapy indication with MULTIPLE approvals; checkpoint inhibitors WORK in biomarker-selected populations (PD-L1+, MSI-H); ADCs targeting CLDN18.2 are BREAKTHROUGH modality with multi-billion dollar investments."
+  },
+
+  "disease_biology": {
+    "pathophysiology": {
+      "summary": "Gastroesophageal junction (GEJ) cancers are adenocarcinomas arising within 5 cm of the anatomical junction between esophagus and stomach. They share biological features with both esophageal adenocarcinoma (EAC) and gastric cancer (GC), and are often grouped together in clinical trials. The treatment paradigm has been revolutionized by immuno-oncology - checkpoint inhibitors targeting PD-1/PD-L1 are now standard-of-care in first-line settings for biomarker-selected populations. Unlike GBM (immunologically 'cold'), GEJ/gastric cancers represent a spectrum: (1) MSI-H tumors are 'hot' with high TMB and excellent checkpoint responses, (2) EBV-associated tumors are PD-L1 high and responsive, (3) PD-L1+ tumors (CPS ≥1 or ≥5) show benefit from checkpoint inhibitors, (4) Biomarker-negative tumors remain challenging. HER2-targeted therapies (trastuzumab, T-DXd ADC) are established for HER2+ disease. Emerging targets include CLDN18.2 (40-60% prevalence) and TROP2, with ADCs showing breakthrough efficacy (ORR 30-43%) in Phase I/II trials.",
+      "key_pathways": [
+        {
+          "name": "PD-1/PD-L1 Checkpoint Axis",
+          "relevance": "HIGH - VALIDATED as therapeutic target with MULTIPLE approvals",
+          "role_in_disease": "PD-L1 expressed in subset of GEJ/gastric cancers (CPS ≥1 in 40-60%, CPS ≥5 in 30-40%); higher in MSI-H (~100%) and EBV-associated tumors. PD-1/PD-L1 blockade unleashes anti-tumor T-cell responses. Unlike GBM where checkpoint monotherapy FAILED, GEJ/gastric shows VALIDATED benefit in biomarker-selected populations.",
+          "druggability": "VALIDATED - Pembrolizumab and nivolumab approved; checkpoint inhibitors are STANDARD-OF-CARE in 1L for PD-L1+ and MSI-H disease",
+          "clinical_validation": "POSITIVE - Pembrolizumab (KEYNOTE-590, -062, -811) and nivolumab (CheckMate-649) showed OS benefit. Pembrolizumab: HR 0.73 for OS in PD-L1 CPS ≥10. Nivolumab: 14.4 vs 11.1 months mOS in PD-L1 CPS ≥5. This is OPPOSITE of GBM where checkpoint monotherapy failed comprehensively."
+        },
+        {
+          "name": "HER2 Pathway",
+          "relevance": "HIGH in 15-30% (enriched in GEJ vs distal gastric)",
+          "role_in_disease": "HER2 overexpression/amplification drives proliferation and survival. HER2+ GEJ/gastric has distinct biology and treatment paradigm. Targetable with antibodies (trastuzumab) and ADCs (trastuzumab deruxtecan/T-DXd).",
+          "druggability": "VALIDATED - Trastuzumab approved 2010 (1L with chemo), T-DXd approved 2021 (≥2L); HER2-targeted therapy is STANDARD-OF-CARE",
+          "clinical_validation": "POSITIVE - Trastuzumab + chemo: mOS 13.8 vs 11.1 months (ToGA trial). T-DXd: ORR 51%, mOS 12.5 months in DESTINY-Gastric01 (heavily pretreated). T-DXd is BENCHMARK ADC in GEJ/gastric, showing superior efficacy to chemotherapy."
+        },
+        {
+          "name": "CLDN18.2 (Claudin 18.2)",
+          "relevance": "EMERGING HIGH - 40-60% of GEJ/gastric express CLDN18.2",
+          "role_in_disease": "CLDN18.2 is tight junction protein normally restricted to gastric mucosa; maintained/overexpressed in GEJ/gastric cancers; tumor-restricted (minimal normal tissue expression outside stomach). Ideal ADC target - cell surface, tumor-restricted, internalization-capable.",
+          "druggability": "VALIDATED - Zolbetuximab (anti-CLDN18.2 mAb) approved EMA 2024; Multiple CLDN18.2 ADCs in development showing ORR 30-43% in Phase I/II",
+          "clinical_validation": "POSITIVE - Zolbetuximab + chemo: mOS 14.4 vs 12.2 months (SPOTLIGHT); ADCs (CMG-901, ATG-022) show breakthrough efficacy: CMG-901 ORR 32.6%, ATG-022 ORR 42.9% in CLDN18.2-high patients. This is MAJOR emerging target with multi-billion dollar investments (AstraZeneca/Keymed partnership)."
+        },
+        {
+          "name": "TROP2 (Trophoblast Cell-Surface Antigen 2)",
+          "relevance": "EMERGING - Broadly expressed in epithelial cancers including GEJ/gastric",
+          "role_in_disease": "TROP2 is transmembrane glycoprotein involved in cell proliferation and survival; overexpressed in many cancers; internalization-capable making it ideal ADC target.",
+          "druggability": "VALIDATED in other cancers (sacituzumab govitecan approved for breast/bladder); TROP2 ADCs entering Phase III in GEJ/gastric",
+          "clinical_validation": "EMERGING - Sacituzumab tirumotecan (TROP2 ADC by Merck/Kelun-Biotech) showed promising Phase I/II results; Phase III programs initiated. TROP2 is PROVEN ADC target in other cancers, now being validated in GEJ/gastric."
+        },
+        {
+          "name": "Tumor Microenvironment (TME) and Immune Infiltration",
+          "relevance": "VARIABLE - GEJ/gastric represents spectrum from 'cold' to 'hot'",
+          "role_in_disease": "TME influences immunotherapy response: (1) MSI-H tumors are 'hot' with high T-cell infiltration, (2) EBV-associated tumors have inflamed TME with PD-L1 expression, (3) Biomarker-negative tumors may be 'cold' with minimal infiltration. Unlike GBM (universally cold), GEJ/gastric has SUBSETS with favorable immune landscape.",
+          "druggability": "TME modulation is strategy for biomarker-negative disease - TIGIT, LAG-3 inhibitors tested but FAILED to show benefit; TGF-β blockade in development",
+          "clinical_validation": "MIXED - Checkpoint inhibitors work in inflamed tumors (MSI-H, PD-L1+); TIGIT inhibitors (tiragolumab, domvanalimab) FAILED in Phase III. LAG-3/PD-1 bispecific (tebotelimab) in Phase III. TME modulation beyond PD-1 is UNPROVEN in GEJ/gastric."
+        },
+        {
+          "name": "MSI-H / dMMR Status",
+          "relevance": "LOW prevalence (<5%) but HIGHEST response to immunotherapy",
+          "role_in_disease": "Microsatellite instability-high (MSI-H) or deficient mismatch repair (dMMR) leads to high tumor mutational burden (TMB), abundant neoantigens, and 'hot' immune infiltrate. This subset has EXCEPTIONAL checkpoint inhibitor responses.",
+          "druggability": "VALIDATED - Pembrolizumab approved tissue-agnostic for MSI-H/dMMR solid tumors; ORR 40-50%, durable responses",
+          "clinical_validation": "POSITIVE - MSI-H is PREDICTIVE biomarker for checkpoint benefit. Pembrolizumab in MSI-H gastric: ORR 43-50%. This is GOLD STANDARD for immunotherapy-responsive subset."
+        }
+      ]
+    },
+
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "immune_infiltration": "VARIABLE SPECTRUM - Unlike GBM (uniformly cold), GEJ/gastric ranges from 'hot' to 'cold': (1) MSI-H tumors (~5%): HIGH T-cell infiltration, neoantigen-rich, excellent checkpoint responses, (2) EBV-associated (~10%): MODERATE-HIGH infiltration, PD-L1 overexpression, responsive to PD-1 blockade, (3) PD-L1+ CPS ≥5 (~30-40%): MODERATE infiltration, checkpoint benefit, (4) Biomarker-negative majority: LOWER infiltration, 'cooler' TME, less responsive to checkpoint monotherapy. This heterogeneity means biomarker selection is CRITICAL.",
+        "dominant_immune_cells": "T cells (CD8+ cytotoxic, CD4+ helper), Tumor-associated macrophages (TAMs), Regulatory T cells (Tregs), Myeloid-derived suppressor cells (MDSCs) - composition varies by subtype. MSI-H and EBV-associated have higher CD8+ T-cell density. Biomarker-negative tumors have higher Treg/MDSC ratios (immunosuppressive).",
+        "immune_suppression_mechanisms": [
+          {
+            "name": "PD-L1 Expression (Adaptive Immune Resistance)",
+            "prevalence": "CPS ≥1 in 40-60%, CPS ≥5 in 30-40%, CPS ≥10 in 20-25%",
+            "functional_impact": "PD-L1 on tumor cells and immune cells binds PD-1 on T cells, inhibiting anti-tumor response. Adaptive immune resistance - tumor upregulates PD-L1 in response to IFN-γ from infiltrating T cells.",
+            "therapeutic_relevance": "PRIMARY TARGET - PD-1/PD-L1 blockade is VALIDATED; pembrolizumab and nivolumab approved. Biomarker-driven approach essential - benefit enriched in PD-L1 CPS ≥5 or ≥10."
+          },
+          {
+            "name": "Tumor-Associated Macrophages (M2 Polarization)",
+            "prevalence": "Present in most GEJ/gastric tumors; proportion varies",
+            "functional_impact": "M2 macrophages are immunosuppressive - secrete IL-10, TGF-β, promote angiogenesis, inhibit T-cell activation",
+            "therapeutic_relevance": "TARGET for combination strategies - CSF-1R inhibitors to deplete/repolarize TAMs; combinations with checkpoints in development but UNPROVEN"
+          },
+          {
+            "name": "Regulatory T Cells (Tregs)",
+            "prevalence": "Elevated in GEJ/gastric TME, especially in biomarker-negative tumors",
+            "functional_impact": "Tregs suppress effector T-cell function, secrete IL-10 and TGF-β, express CTLA-4",
+            "therapeutic_relevance": "CTLA-4 blockade (ipilimumab) tested but NOT approved in GEJ/gastric - toxicity vs benefit unfavorable. Treg depletion strategies (CD25-targeted) in preclinical."
+          },
+          {
+            "name": "TIGIT Pathway",
+            "prevalence": "TIGIT expressed on T cells and NK cells in GEJ/gastric",
+            "functional_impact": "TIGIT is co-inhibitory receptor; competes with CD226 for ligands (CD155, CD112); inhibits T-cell and NK cell activation",
+            "therapeutic_relevance": "FAILED TARGET - Tiragolumab (anti-TIGIT) + atezolizumab FAILED Phase III in esophageal cancer; domvanalimab (anti-TIGIT) also failed. TIGIT blockade does NOT add benefit to PD-1/PD-L1 inhibition in GEJ/gastric/esophageal cancers."
+          },
+          {
+            "name": "LAG-3 Pathway",
+            "prevalence": "LAG-3 upregulated on exhausted T cells in GEJ/gastric",
+            "functional_impact": "LAG-3 (Lymphocyte Activation Gene-3) is co-inhibitory receptor on T cells; binds MHC-II, inhibits T-cell activation and proliferation",
+            "therapeutic_relevance": "UNPROVEN - LAG-3/PD-1 bispecific antibody (tebotelimab by MacroGenics) in Phase III for gastric cancer; awaiting readout. LAG-3 blockade is HYPOTHESIS but no validated benefit yet."
+          }
+        ]
+      },
+
+      "cytokine_environment": {
+        "cytokine_profile": "Variable by subtype - MSI-H and EBV-associated tumors have pro-inflammatory cytokine profiles (IFN-γ, IL-2, TNF-α) consistent with 'hot' TME. Biomarker-negative tumors have more immunosuppressive profiles (TGF-β, IL-10, VEGF).",
+        "key_cytokines": [
+          {
+            "name": "IFN-γ (Interferon-gamma)",
+            "role": "Antitumor (in MSI-H, EBV+ tumors)",
+            "expression_level": "High in inflamed/hot tumors; low in cold tumors",
+            "function": "Type II interferon; activates macrophages, enhances MHC expression, recruits T cells, induces PD-L1 (adaptive resistance)",
+            "therapeutic_relevance": "IFN-γ signature is PREDICTIVE of checkpoint benefit; correlates with PD-L1 expression and T-cell infiltration"
+          },
+          {
+            "name": "TGF-β (Transforming Growth Factor-beta)",
+            "role": "Protumor (immunosuppressive)",
+            "expression_level": "Elevated in many GEJ/gastric tumors, especially diffuse-type",
+            "function": "Master immunosuppressor; inhibits T-cell activation, promotes Tregs, drives fibrosis, excludes T cells from tumor",
+            "therapeutic_relevance": "TARGET for combination strategies - bifunctional PD-L1 x TGF-β trap molecules in development; rationale to overcome TGF-β-mediated resistance to checkpoint inhibitors"
+          },
+          {
+            "name": "VEGF (Vascular Endothelial Growth Factor)",
+            "role": "Protumor (angiogenic, indirect immunosuppression)",
+            "expression_level": "High in most GEJ/gastric tumors",
+            "function": "Drives angiogenesis; also immunosuppressive (inhibits DC maturation, promotes Tregs, impairs T-cell infiltration)",
+            "therapeutic_relevance": "Ramucirumab (anti-VEGFR2) approved as 2L therapy; bevacizumab tested in combinations. VEGF blockade + checkpoint inhibitor rational (ivonescimab PD-1/VEGF bispecific in trials)."
+          }
+        ]
+      },
+
+      "immune_receptors": {
+        "validated_targets": [
+          {
+            "name": "PD-1 (Programmed Death-1)",
+            "expression_pattern": "Expressed on activated T cells, upregulated on exhausted T cells in TME",
+            "functional_status": "Inhibitory receptor - binding to PD-L1/L2 delivers inhibitory signal to T cells",
+            "targeting_potential": "VALIDATED - GOLD STANDARD; pembrolizumab and nivolumab approved",
+            "clinical_data": "Pembrolizumab (KEYNOTE-590, -062, -811): mOS 13.5 vs 9.4 months in PD-L1 CPS ≥10 (KEYNOTE-590); HR 0.73. Nivolumab (CheckMate-649): mOS 14.4 vs 11.1 months in PD-L1 CPS ≥5; HR 0.71. DEFINITIVE BENEFIT in biomarker-selected populations.",
+            "lessons": "CRITICAL LESSON - PD-1 blockade WORKS in GEJ/gastric BUT biomarker selection is ESSENTIAL. Unselected populations show modest benefit; CPS ≥5 or ≥10 enriches for responders. This is OPPOSITE of GBM where even biomarker-selected populations failed. GEJ/gastric is VALIDATED immunotherapy indication."
+          },
+          {
+            "name": "PD-L1 (Programmed Death-Ligand 1)",
+            "expression_pattern": "Expressed on tumor cells and immune cells; CPS (Combined Positive Score) measures tumor cells + immune cells",
+            "functional_status": "Ligand for PD-1; delivers inhibitory signal to T cells",
+            "targeting_potential": "VALIDATED - Same clinical benefit as PD-1 blockade",
+            "clinical_data": "Avelumab (anti-PD-L1) tested but NOT approved in GEJ/gastric; pembrolizumab and nivolumab (anti-PD-1) are preferred",
+            "lessons": "PD-1 blockade preferred over PD-L1 blockade in GEJ/gastric based on clinical data and approvals"
+          }
+        ],
+        "failed_targets": [
+          {
+            "name": "TIGIT",
+            "expression_pattern": "Expressed on T cells and NK cells in GEJ/esophageal tumors",
+            "functional_status": "Co-inhibitory receptor; competes with CD226 for ligands CD155/CD112",
+            "targeting_potential": "FAILED - Phase III trials negative",
+            "clinical_data": "Tiragolumab (anti-TIGIT, Roche) + atezolizumab (anti-PD-L1) in esophageal cancer: Phase III SKYSCRAPER-07 FAILED to meet OS endpoint. Domvanalimab (anti-TIGIT, Arcus/Gilead) also failed in Phase III esophageal cancer.",
+            "lessons": "DEFINITIVE FAILURE - TIGIT blockade does NOT improve outcomes when added to PD-1/PD-L1 inhibitors in GEJ/esophageal cancers. Similar to failures in NSCLC (tiragolumab) and melanoma. TIGIT is NOT a viable co-target in upper GI cancers. STRATEGIC: AVOID TIGIT combinations in GEJ/gastric; next-gen checkpoint approaches (LAG-3, TIM-3) also uncertain."
+          }
+        ],
+        "emerging_targets": [
+          {
+            "name": "LAG-3 (Lymphocyte Activation Gene-3)",
+            "expression_pattern": "Upregulated on exhausted T cells in TME; co-expressed with PD-1",
+            "functional_status": "Co-inhibitory receptor; binds MHC-II, inhibits T-cell function",
+            "targeting_potential": "UNPROVEN - Phase III ongoing",
+            "clinical_data": "Tebotelimab (LAG-3/PD-1 bispecific, MacroGenics) in Phase III for gastric cancer; no readout yet. LAG-3 validated in melanoma (relatlimab + nivolumab approved) but GEJ/gastric data pending.",
+            "lessons": "LAG-3 is HYPOTHESIS in GEJ/gastric - awaiting Phase III data. Given TIGIT failures, caution warranted for next-gen checkpoints in upper GI cancers."
+          }
+        ]
+      }
+    },
+
+    "tumor_antigens": {
+      "highly_expressed_targets": [
+        {
+          "name": "CLDN18.2 (Claudin 18.2)",
+          "expression_frequency": "40-60% of GEJ/gastric cancers (IHC 2+ in ≥20% cells)",
+          "expression_level": "Moderate to High when present; tumor-restricted",
+          "expression_pattern": "Membranous expression; relatively homogeneous within expressing tumors",
+          "normal_tissue_expression": "Restricted to gastric epithelium (short-lived, differentiated cells); MINIMAL off-tumor expression making it ideal target",
+          "therapeutic_window": "EXCELLENT - tumor-restricted, cell surface, internalization-capable",
+          "prior_targeting_attempts": [
+            "Zolbetuximab (CLDN18.2 mAb): APPROVED EMA 2024; mOS 14.4 vs 12.2 months (SPOTLIGHT trial)",
+            "CMG-901 (CLDN18.2 ADC, AstraZeneca/Keymed): Phase I - ORR 32.6%, mPFS 4.76 months in CLDN18.2+ cohort",
+            "ATG-022 (CLDN18.2 ADC, Antengene): Phase I/II CLINCH - ORR 42.9% in CLDN18.2-high, DCR 95.2%",
+            "Multiple other CLDN18.2 ADCs in development (Bolt, Harbour BioMed, Henlius)"
+          ],
+          "strategic_importance": "BREAKTHROUGH TARGET - Zolbetuximab validation + ADC efficacy (ORR 30-43%) establish CLDN18.2 as LEADING emerging target. Multi-billion dollar investments (AstraZeneca/Keymed partnership). CLDN18.2 ADCs are poised to capture significant market share. This is NEXT major target after HER2 in GEJ/gastric."
+        },
+        {
+          "name": "HER2 (ERBB2)",
+          "expression_frequency": "15-30% of GEJ/gastric (higher in GEJ vs distal gastric)",
+          "expression_level": "Overexpression/amplification; IHC 3+ or IHC 2+/FISH+",
+          "expression_pattern": "Membranous expression; can be heterogeneous",
+          "normal_tissue_expression": "Low-level in many tissues (heart, lungs, GI); therapeutic window established with trastuzumab",
+          "therapeutic_window": "VALIDATED - extensive clinical experience with trastuzumab and T-DXd",
+          "prior_targeting_attempts": [
+            "Trastuzumab (Herceptin, mAb): APPROVED 2010; mOS 13.8 vs 11.1 months (ToGA trial) - STANDARD-OF-CARE 1L",
+            "Trastuzumab deruxtecan (T-DXd/Enhertu, ADC): APPROVED 2021; ORR 51%, mOS 12.5 months (DESTINY-Gastric01) - STANDARD-OF-CARE ≥2L",
+            "Zanidatamab (bispecific HER2, BeiGene/Zymeworks): Phase III ongoing; targets two HER2 epitopes simultaneously",
+            "Other HER2 ADCs tested (T-DM1, trastuzumab duocarmazine) with varying success"
+          ],
+          "strategic_importance": "VALIDATED ESTABLISHED TARGET - HER2 is GOLD STANDARD in GEJ/gastric with two approved drugs. T-DXd is BENCHMARK ADC showing superior efficacy to chemotherapy. Market penetration high in HER2+ segment (~10% of total immunotherapy market). New HER2 bispecifics (zanidatamab) seek to improve on antibody approach."
+        },
+        {
+          "name": "TROP2 (Trophoblast Cell-Surface Antigen 2)",
+          "expression_frequency": "Broadly expressed in GEJ/gastric (60-80% estimated)",
+          "expression_level": "Variable; overexpression in cancers vs normal",
+          "expression_pattern": "Membranous; heterogeneous within tumors",
+          "normal_tissue_expression": "Low-level in normal epithelial tissues; overexpressed in cancers",
+          "therapeutic_window": "GOOD - validated ADC target in other cancers (breast, bladder)",
+          "prior_targeting_attempts": [
+            "Sacituzumab govitecan (TROP2 ADC, Gilead): APPROVED for breast and bladder cancer; NOT tested extensively in GEJ/gastric",
+            "Sacituzumab tirumotecan (TROP2 ADC, Merck/Kelun-Biotech): Phase I/II promising in GEJ/gastric; Phase III programs initiated",
+            "Other TROP2 ADCs in development (Biosion nanobodies)"
+          ],
+          "strategic_importance": "EMERGING HIGH - TROP2 is VALIDATED ADC target in other cancers, now being extended to GEJ/gastric. Broad expression (60-80%) means larger addressable population than HER2 (15-30%) or CLDN18.2 (40-60%). Phase III programs signal confidence. Could be THIRD major ADC target in GEJ/gastric after HER2 and CLDN18.2."
+        },
+        {
+          "name": "PD-L1 (as biomarker, not antigen)",
+          "expression_frequency": "CPS ≥1 in 40-60%, CPS ≥5 in 30-40%, CPS ≥10 in 20-25%",
+          "expression_level": "Variable; CPS score measures tumor cells + immune cells",
+          "expression_pattern": "Membranous on tumor and immune cells; heterogeneous",
+          "normal_tissue_expression": "Low baseline; induced in inflammation",
+          "therapeutic_window": "N/A - PD-L1 is BIOMARKER for checkpoint response, not direct target",
+          "prior_targeting_attempts": [
+            "PD-L1 used for patient selection (CPS ≥5 or ≥10) in pembrolizumab and nivolumab trials",
+            "Higher PD-L1 correlates with better checkpoint inhibitor response"
+          ],
+          "strategic_importance": "CRITICAL BIOMARKER - PD-L1 CPS is VALIDATED companion diagnostic for checkpoint inhibitor use. Essential for patient selection. NOT a direct therapeutic target but drives treatment decisions."
+        }
+      ],
+      "neoantigen_landscape": {
+        "description": "GEJ/gastric cancers have VARIABLE tumor mutational burden (TMB): (1) MSI-H tumors (~5%) have HIGH TMB (>10 mutations/Mb) with abundant neoantigens - excellent checkpoint responses, (2) EBV-associated tumors (~10%) have MODERATE-HIGH TMB with viral antigens, (3) Majority of GEJ/gastric have LOW-MODERATE TMB (<10 mutations/Mb) with fewer neoantigens. This heterogeneity means MSI-H is PREDICTIVE biomarker for immunotherapy but represents small subset. Unlike GBM (uniformly low TMB), GEJ/gastric has SUBSETS with high neoantigen burden.",
+        "expression_frequency": "MSI-H <5%, EBV-associated ~10%, TMB-high ~15-20%",
+        "therapeutic_approaches": [
+          "Checkpoint inhibitors HIGHLY effective in MSI-H (ORR 40-50%, durable responses)",
+          "Personalized neoantigen vaccines in early development but limited by low TMB in majority of patients",
+          "Focus is on biomarker selection (MSI-H, TMB-high) rather than broad neoantigen vaccination"
+        ],
+        "strategic_importance": "MODERATE - MSI-H is GOLD STANDARD immunotherapy-responsive subset but represents <5% of GEJ/gastric. Neoantigen-focused strategies (vaccines) limited by low TMB in majority. Biomarker-driven checkpoint use is validated approach."
+      }
+    },
+
+    "biological_features_for_moa_matching": [
+      {
+        "feature_name": "Biomarker Heterogeneity (PD-L1, MSI-H, HER2, CLDN18.2)",
+        "moa_relevance": ["Biomarker-selected checkpoint inhibitors", "Companion diagnostics", "Targeted antibodies/ADCs"],
+        "description": "GEJ/gastric exhibits marked biomarker heterogeneity: PD-L1 CPS varies (40-60% CPS ≥1), MSI-H rare (<5%), HER2+ in 15-30%, CLDN18.2+ in 40-60%. Multiple distinct subsets with different biology and treatment responses. Unlike GBM (limited biomarkers), GEJ/gastric has MULTIPLE VALIDATED biomarkers enabling precision medicine.",
+        "frequency": "Universal challenge but OPPORTUNITY for targeted approaches",
+        "therapeutic_implication": "CRITICAL SUCCESS FACTOR: Biomarker-driven patient selection is ESSENTIAL for immunotherapy success. Unselected checkpoint use shows modest benefit; PD-L1 CPS ≥5 or ≥10 enriches for responders. HER2 testing standard for HER2-targeted therapy. CLDN18.2 testing emerging for zolbetuximab and ADCs. MOAs must align with biomarker prevalence - targets in 40-60% range (PD-L1, CLDN18.2) have larger addressable populations than rare subsets (MSI-H <5%). Companion diagnostics REQUIRED for regulatory approval and reimbursement."
+      },
+      {
+        "feature_name": "Immunologically 'Warm' Tumor Potential in Biomarker+ Subsets",
+        "moa_relevance": ["Checkpoint inhibitors", "Cancer vaccines", "Combination immunotherapies"],
+        "description": "Unlike GBM (uniformly 'cold'), GEJ/gastric has SUBSETS with 'warm'/'hot' immune infiltrates: MSI-H tumors (high T-cell infiltration, neoantigen-rich), EBV-associated (PD-L1 high, inflamed), PD-L1+ CPS ≥5 (moderate infiltration). These subsets are RESPONSIVE to checkpoint inhibitors. Biomarker-negative majority is 'cooler' and less responsive.",
+        "frequency": "MSI-H <5%, EBV+ ~10%, PD-L1 CPS ≥5 ~30-40%",
+        "therapeutic_implication": "CRITICAL OPPORTUNITY: Checkpoint inhibitors WORK in GEJ/gastric biomarker+ subsets - this is VALIDATED (pembrolizumab, nivolumab approved). Contrast with GBM where even patient selection failed to enable checkpoint monotherapy. GEJ/gastric is FAVORABLE indication for immunotherapy due to subset responsiveness. Combination strategies (checkpoint + ADC, checkpoint + chemo) extend benefit to broader populations. Cold tumor subsets require combination approaches."
+      },
+      {
+        "feature_name": "Claudin 18.2 as Tumor-Restricted Surface Antigen",
+        "moa_relevance": ["ADCs", "Monoclonal antibodies", "CAR-T cells", "Bispecific antibodies"],
+        "description": "CLDN18.2 is tight junction protein with IDEAL ADC target properties: (1) Cell surface expression, (2) Tumor-restricted (only in gastric epithelium, short-lived cells), (3) Internalization-capable for ADC payload delivery, (4) Prevalent (40-60% of GEJ/gastric). Normal tissue expression minimal outside stomach - excellent therapeutic window.",
+        "frequency": "40-60% of GEJ/gastric (IHC 2+ in ≥20% cells)",
+        "therapeutic_implication": "BREAKTHROUGH TARGET: CLDN18.2 is EMERGING as next major target after HER2. Zolbetuximab (mAb) approved 2024; CLDN18.2 ADCs showing ORR 30-43% in Phase I/II (CMG-901, ATG-022) - among HIGHEST responses in solid tumors. Multi-billion dollar investments (AstraZeneca/Keymed $6.9B partnership). ADC MOAs are HIGHLY COMPATIBLE with CLDN18.2 biology. Patent landscape shows intense competition (6+ independent patent families 2020-2025). This is MAJOR strategic opportunity - CLDN18.2 ADCs poised to capture significant market share (projected $500M-1B+ by 2030)."
+      },
+      {
+        "feature_name": "HER2 Overexpression/Amplification as Established Target",
+        "moa_relevance": ["ADCs (validated)", "Monoclonal antibodies", "Bispecific antibodies", "Small molecule TKIs"],
+        "description": "HER2+ GEJ/gastric (15-30%) is VALIDATED target with established treatment paradigm: trastuzumab (1L) and T-DXd ADC (≥2L) approved. HER2 overexpression/amplification is actionable driver. T-DXd is BENCHMARK ADC showing ORR 51% and mOS 12.5 months - superior to chemotherapy.",
+        "frequency": "15-30% (enriched in GEJ vs distal gastric)",
+        "therapeutic_implication": "GOLD STANDARD TARGET: HER2 is MOST VALIDATED target in GEJ/gastric. T-DXd (ADC) demonstrates BEST-IN-CLASS efficacy. Market penetration high (~10% of total GEJ/gastric immunotherapy market). New HER2 approaches (bispecifics like zanidatamab) seek to improve on antibody monotherapy. HER2 ADC success validates ADC platform in GEJ/gastric - paves way for CLDN18.2 and TROP2 ADCs. MOAs targeting HER2 must differentiate from established therapies (trastuzumab, T-DXd) or target HER2-negative/low populations."
+      },
+      {
+        "feature_name": "Checkpoint Resistance in Biomarker-Negative Majority",
+        "moa_relevance": ["Combination immunotherapies", "TME modulators", "Next-gen checkpoints", "ADCs"],
+        "description": "While biomarker+ subsets respond to checkpoints, biomarker-negative majority (PD-L1 CPS <5, MSS) shows limited benefit from checkpoint monotherapy. These tumors have 'cooler' TME with lower T-cell infiltration, immunosuppressive features. Represent unmet need.",
+        "frequency": "~40-60% of GEJ/gastric (PD-L1 CPS <5 or biomarker-negative)",
+        "therapeutic_implication": "MAJOR UNMET NEED: Biomarker-negative GEJ/gastric is resistant to checkpoint monotherapy. Strategies: (1) Combination approaches (checkpoint + chemo, checkpoint + ADC) may extend benefit, (2) TME modulators (TGF-β blockade, VEGF blockade) to 'warm up' cold tumors - ivonescimab (PD-1/VEGF bispecific) in trials, (3) Next-gen checkpoints (LAG-3, TIM-3) but TIGIT FAILED so caution warranted, (4) Non-immunotherapy approaches (ADCs, targeted agents) for IO-resistant disease. MOAs for biomarker-negative population need different mechanisms than checkpoint blockade alone."
+      },
+      {
+        "feature_name": "Asian vs Western Epidemiological Differences",
+        "moa_relevance": ["Global development strategy", "Biomarker prevalence", "Regulatory pathways"],
+        "description": "GEJ/gastric exhibits geographic disparities: Asia has HIGHEST disease burden (55%+ of global market, incidence 30-50/100,000 in East Asia vs 6/100,000 in US). Histologic differences (ESCC more common in Asia, EAC/adenocarcinoma in West). Biomarker prevalence may vary. Asia has domestic PD-1 inhibitors (camrelizumab, toripalimab, tislelizumab) approved by NMPA.",
+        "frequency": "Asia represents 55%+ of global GEJ/gastric cancer burden",
+        "therapeutic_implication": "STRATEGIC: Asia is LARGEST market by patient volume; North America leads in revenue (premium pricing). Global development programs must include Asian populations. NMPA approvals (China) critical for market access. Domestic Chinese PD-1 inhibitors (lower cost) are competitive threat in Asia. Biomarker-driven approaches (CLDN18.2, HER2) have universal relevance. Regulatory approvals in US, EU, and Asia (Japan PMDA, China NMPA) are distinct pathways - simultaneous global development optimal."
+      }
+    ]
+  },
+
+  "moa_landscape": {
+    "moa_categories": [
+      {
+        "name": "Checkpoint Inhibitors - PD-1/PD-L1 Monotherapy",
+        "biological_rationale": {
+          "indication_specific_rationale": "PD-1/PD-L1 checkpoint inhibitors are VALIDATED in GEJ/gastric with MULTIPLE approvals. Rationale: (1) PD-L1 expressed in subset (CPS ≥1 in 40-60%), (2) MSI-H tumors (~5%) are highly responsive, (3) EBV-associated tumors (~10%) have inflamed TME, (4) Biomarker-selected populations (PD-L1 CPS ≥5 or ≥10) show OS benefit. This is OPPOSITE of GBM where checkpoint monotherapy comprehensively FAILED. GEJ/gastric has 'warm'/'hot' tumor subsets that respond to checkpoint blockade.",
+          "supporting_biology": [
+            "PD-L1 CPS ≥1 in 40-60%, CPS ≥5 in 30-40%, CPS ≥10 in 20-25%",
+            "MSI-H tumors (<5%) have high TMB, neoantigen-rich, excellent checkpoint responses",
+            "EBV-associated tumors (~10%) have PD-L1 overexpression and inflamed TME",
+            "T-cell infiltration present in biomarker+ tumors (contrast with GBM's minimal infiltration)"
+          ],
+          "theoretical_concerns": [
+            "Biomarker-negative majority (PD-L1 CPS <5, MSS) has limited benefit from checkpoint monotherapy",
+            "Unselected populations show modest OS benefit - biomarker selection ESSENTIAL",
+            "Checkpoint resistance mechanisms (TGF-β, VEGF, Tregs) in cold tumors",
+            "Duration of response variable - some patients have durable benefit, others progress"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Pembrolizumab (Keytruda)",
+              "specific_moa": "Humanized IgG4 monoclonal antibody targeting PD-1 receptor on T cells; blocks interaction with PD-L1 and PD-L2; restores T-cell-mediated anti-tumor immunity by removing inhibitory signals. Mechanism validated across multiple cancers. In GEJ/gastric, efficacy enriched in PD-L1 CPS ≥5 or ≥10 and MSI-H populations.",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "biomarker_selected", "APPROVED_1L"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2021, EMA 2021, NMPA 2020; STANDARD-OF-CARE in biomarker+ populations",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "KEYNOTE-590",
+                    "phase": "Phase III",
+                    "design": "Pembrolizumab + chemo (cisplatin + 5-FU) vs placebo + chemo in 1L advanced esophageal cancer (includes GEJ)",
+                    "efficacy": {
+                      "OS_overall": "12.4 vs 9.8 months; HR 0.73 (p<0.0001) - POSITIVE",
+                      "OS_PD-L1_CPS_≥10": "13.5 vs 9.4 months; HR 0.62 - HIGHLY SIGNIFICANT",
+                      "PFS": "6.3 vs 5.8 months; HR 0.65",
+                      "ORR": "45% vs 29%",
+                      "Note": "Benefit across all PD-L1 levels but enriched in CPS ≥10"
+                    },
+                    "safety": "Manageable; Grade ≥3 AEs 72% vs 68% (chemo alone); immune-related AEs typical (pneumonitis 5%, colitis 2%)",
+                    "patient_selection": "1L esophageal/GEJ adenocarcinoma or squamous cell; all PD-L1 levels enrolled; retrospective analysis by CPS",
+                    "outcome": "SUCCESS - Pembrolizumab + chemo became NEW STANDARD-OF-CARE in 1L esophageal/GEJ cancer"
+                  },
+                  {
+                    "trial_name": "KEYNOTE-062",
+                    "phase": "Phase III",
+                    "design": "Pembrolizumab alone vs pembrolizumab + chemo vs chemo alone in 1L advanced gastric/GEJ cancer (PD-L1 CPS ≥1)",
+                    "efficacy": {
+                      "OS_pembro_monotherapy": "10.6 vs 11.1 months (chemo); non-inferior but NOT superior",
+                      "OS_PD-L1_CPS_≥10_monotherapy": "17.4 vs 10.8 months; HR 0.69 - POSITIVE in high PD-L1",
+                      "OS_pembro+chemo": "12.5 vs 11.1 months; HR 0.85 (not significant)",
+                      "Note": "Pembrolizumab monotherapy NON-INFERIOR to chemo in CPS ≥1; superior in CPS ≥10 subset"
+                    },
+                    "safety": "Pembrolizumab monotherapy better tolerated than chemo (fewer Grade 3-4 AEs)",
+                    "patient_selection": "PD-L1 CPS ≥1 gastric/GEJ cancer (biomarker-selected)",
+                    "outcome": "PARTIAL SUCCESS - Monotherapy validated in CPS ≥10 subset but combination (pembro + chemo) did not significantly improve over chemo. Led to approval in CPS ≥10 population."
+                  },
+                  {
+                    "trial_name": "KEYNOTE-811",
+                    "phase": "Phase III",
+                    "design": "Pembrolizumab + trastuzumab + chemo vs placebo + trastuzumab + chemo in 1L HER2+ advanced gastric/GEJ cancer",
+                    "efficacy": {
+                      "ORR": "74% vs 52% - HIGHLY SIGNIFICANT",
+                      "PFS": "10.0 vs 8.1 months; HR 0.72",
+                      "OS": "20.0 vs 16.8 months; HR 0.84 (p=0.0227) - POSITIVE",
+                      "Note": "Adding pembrolizumab to HER2-targeted therapy improved outcomes"
+                    },
+                    "safety": "Manageable; typical checkpoint + trastuzumab toxicities",
+                    "patient_selection": "HER2+ gastric/GEJ cancer (IHC 3+ or IHC 2+/FISH+); PD-L1 status not required for enrollment",
+                    "outcome": "SUCCESS - Pembrolizumab + trastuzumab + chemo became NEW STANDARD in 1L HER2+ gastric/GEJ"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Biomarker selection CRITICAL - benefit enriched in PD-L1 CPS ≥10 (HR 0.62 for OS in KEYNOTE-590)",
+                  "Combination with chemotherapy shows benefit across PD-L1 levels (KEYNOTE-590)",
+                  "HER2+ population benefits from triple therapy (pembrolizumab + trastuzumab + chemo) - KEYNOTE-811",
+                  "MSI-H subset has exceptional responses (ORR 40-50%, durable)",
+                  "Manageable safety profile enables broad use"
+                ],
+                "key_insights": "Pembrolizumab is GOLD STANDARD PD-1 inhibitor in GEJ/gastric with MULTIPLE indications: (1) 1L esophageal/GEJ + chemo (KEYNOTE-590), (2) 1L gastric/GEJ monotherapy in CPS ≥10 or combination in CPS ≥1 (KEYNOTE-062), (3) 1L HER2+ gastric/GEJ + trastuzumab + chemo (KEYNOTE-811). Market leader with ~45% share of GEJ/gastric immunotherapy market. STRATEGIC: Biomarker-driven approach is KEY - unselected populations show modest benefit; CPS ≥10 has robust benefit (mOS 17.4 vs 10.8 months monotherapy). Combination with chemo extends benefit to broader population (CPS ≥1). Checkpoint + HER2-targeted therapy synergy validated (KEYNOTE-811). This is OPPOSITE of GBM where checkpoint monotherapy failed regardless of biomarkers."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "biomarker_selected_CPS", "approved_1L", "combination_chemo", "combination_HER2", "market_leader"]
+            },
+            {
+              "drug_name": "Nivolumab (Opdivo)",
+              "specific_moa": "Fully human IgG4 monoclonal antibody targeting PD-1; blocks PD-L1/PD-L2 binding; mechanism identical to pembrolizumab. In GEJ/gastric, approved based on CheckMate-649 showing OS benefit in PD-L1 CPS ≥5 population.",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "biomarker_selected", "approved_1L"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2021, EMA 2021, PMDA 2022, NMPA 2021; STANDARD-OF-CARE",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "CheckMate-649",
+                    "phase": "Phase III",
+                    "design": "Nivolumab + chemo (XELOX or FOLFOX) vs chemo alone in 1L advanced gastric/GEJ/esophageal adenocarcinoma",
+                    "efficacy": {
+                      "OS_PD-L1_CPS_≥5": "14.4 vs 11.1 months; HR 0.71 (p<0.0001) - HIGHLY SIGNIFICANT",
+                      "PFS_CPS_≥5": "7.7 vs 6.0 months; HR 0.68",
+                      "ORR_CPS_≥5": "58% vs 46%",
+                      "OS_CPS_≥1": "13.8 vs 11.6 months; HR 0.77",
+                      "OS_all_randomized": "13.8 vs 11.6 months; HR 0.80",
+                      "Note": "Benefit across all PD-L1 levels but primary endpoint was CPS ≥5"
+                    },
+                    "safety": "Acceptable; Grade 3-4 AEs 59% vs 44% (higher with nivo + chemo vs chemo alone but manageable)",
+                    "patient_selection": "1L advanced gastric/GEJ/esophageal adenocarcinoma; HER2-negative; all PD-L1 levels",
+                    "outcome": "SUCCESS - Nivolumab + chemo became STANDARD-OF-CARE in 1L gastric/GEJ/esophageal adenocarcinoma (CPS ≥5); expanded to CPS ≥1 based on additional data"
+                  },
+                  {
+                    "trial_name": "CheckMate-577 (Adjuvant Setting)",
+                    "phase": "Phase III",
+                    "design": "Adjuvant nivolumab vs placebo in resected esophageal/GEJ cancer post-neoadjuvant chemoradiation (patients with residual disease)",
+                    "efficacy": {
+                      "DFS": "22.4 vs 11.0 months; HR 0.69 (p<0.001) - HIGHLY SIGNIFICANT",
+                      "3-year_DFS": "46% vs 37%",
+                      "OS": "Immature at primary analysis; trend favoring nivolumab",
+                      "Note": "First immunotherapy to show benefit in ADJUVANT setting for esophageal/GEJ"
+                    },
+                    "safety": "Well-tolerated; Grade 3-4 treatment-related AEs 13% vs 6% (placebo); manageable",
+                    "patient_selection": "Resected esophageal/GEJ cancer with residual pathologic disease post-neoadjuvant CRT; PD-L1 status not required",
+                    "outcome": "SUCCESS - Nivolumab FIRST and ONLY approved adjuvant immunotherapy for esophageal/GEJ cancer; addresses high recurrence risk post-CRT"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "CheckMate-649: OS benefit in PD-L1 CPS ≥5 (HR 0.71) established nivolumab as 1L standard",
+                  "Combination with chemotherapy (XELOX or FOLFOX) effective across biomarker populations",
+                  "CheckMate-577: ADJUVANT setting success - 11-month DFS improvement; first IO in curative setting",
+                  "HER2-negative population in CheckMate-649 (distinct from KEYNOTE-811 HER2+ focus)",
+                  "Nivolumab ~25% market share in GEJ/gastric immunotherapy"
+                ],
+                "key_insights": "Nivolumab is MAJOR competitor to pembrolizumab in GEJ/gastric/esophageal with two distinct approved indications: (1) 1L advanced disease + chemo (CheckMate-649), (2) ADJUVANT post-CRT in resected disease (CheckMate-577 - UNIQUE indication, no competition). CheckMate-649 validated PD-1 + chemo combination in PD-L1 CPS ≥5 population with 14.4 vs 11.1 months mOS. CheckMate-577 is BREAKTHROUGH in adjuvant setting - addresses high recurrence risk (70-80% recur within 2 years). STRATEGIC: Nivolumab and pembrolizumab have similar efficacy in 1L advanced disease; differentiation is in adjuvant setting (nivolumab ONLY approved agent) and specific regimen combinations. Both validate PD-1 blockade in biomarker+ GEJ/gastric/esophageal cancers."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "biomarker_selected_CPS", "approved_1L_adjuvant", "combination_chemo", "adjuvant_unique"]
+            },
+            {
+              "drug_name": "Domestic PD-1 Inhibitors (China) - Camrelizumab, Toripalimab, Tislelizumab",
+              "specific_moa": "PD-1 monoclonal antibodies similar to pembrolizumab/nivolumab but developed domestically in China; block PD-1/PD-L1 interaction; restore T-cell function. Approved by NMPA (China) 2021-2024 for gastric/GEJ cancer in various lines (1L, peri-operative, later-line) often in combination with chemotherapy.",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "domestic_China", "NMPA_approved"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED in China (NMPA); not approved in US/EU; significant market share in Asia",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Multiple China-based Phase III trials",
+                    "phase": "Phase III",
+                    "design": "Various designs - domestic PD-1 + chemo vs chemo in 1L gastric/GEJ; peri-operative settings",
+                    "efficacy": {
+                      "OS": "Similar efficacy to pembrolizumab/nivolumab in Chinese populations",
+                      "Note": "Data published in Chinese journals; some presented at international conferences"
+                    },
+                    "safety": "Generally similar to international PD-1 inhibitors; manageable toxicity",
+                    "patient_selection": "Chinese patients with gastric/GEJ cancer",
+                    "outcome": "APPROVED by NMPA for various indications; integrated into Chinese treatment guidelines"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Lower cost than imported PD-1 inhibitors (pembrolizumab, nivolumab) - competitive advantage in China",
+                  "NMPA approvals based on China-specific trials in local populations",
+                  "National reimbursement policies favor domestic products",
+                  "Peri-operative use (toripalimab) represents innovation beyond 1L/adjuvant"
+                ],
+                "key_insights": "Domestic Chinese PD-1 inhibitors hold SIGNIFICANT market share (~20%) in Asia, particularly China. They are COMPETITIVE THREAT to international products (Keytruda, Opdivo) due to lower pricing and local regulatory support. Efficacy appears similar to pembrolizumab/nivolumab based on available data. STRATEGIC: Asia represents 55%+ of global GEJ/gastric market by volume; domestic PD-1 inhibitors dominate Chinese market. International pharma faces pricing pressure. Novel differentiation (better efficacy, combination partners, novel targets like CLDN18.2 ADCs) needed to compete. Domestic products unlikely to gain US/EU approval but control Asia market."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "domestic_biosimilar", "Asia_market", "cost_competitive"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "9/10 - PD-1/PD-L1 blockade is HIGHLY compatible with GEJ/gastric biology in biomarker+ populations (PD-L1 CPS ≥5, MSI-H)",
+          "clinical_validation": "10/10 - GOLD STANDARD with MULTIPLE approvals (pembrolizumab, nivolumab); STANDARD-OF-CARE in 1L and adjuvant settings",
+          "unmet_need_match": "7/10 - Addresses biomarker+ populations (~40-50%) but biomarker-negative majority remains underserved",
+          "overall_assessment": "PD-1/PD-L1 checkpoint inhibitors are VALIDATED and ESTABLISHED in GEJ/gastric/esophageal cancers. This is OPPOSITE of GBM where checkpoint monotherapy comprehensively FAILED. Key differences: (1) GEJ/gastric has biomarker+ subsets (PD-L1+, MSI-H) with 'warm'/'hot' TME and T-cell infiltration, (2) Biomarker selection ENRICHES for responders (PD-L1 CPS ≥5 or ≥10, MSI-H), (3) Combination with chemotherapy extends benefit. STRATEGIC: Checkpoint inhibitor space is SATURATED - pembrolizumab (~45% market share), nivolumab (~25%), domestic PD-1s (~20%). New checkpoint monotherapies face INTENSE competition. Differentiation requires: (1) Novel combinations (checkpoint + ADC, checkpoint + novel TME modulator), (2) Biomarker-negative population strategies, (3) Next-gen checkpoints (LAG-3, TIM-3) but TIGIT FAILED so caution. Opportunity remains in under-penetrated adjuvant/peri-operative settings and Asia markets."
+        }
+      },
+
+      {
+        "name": "Antibody-Drug Conjugates (ADCs) - HER2-Targeted",
+        "biological_rationale": {
+          "indication_specific_rationale": "HER2-targeted ADCs combine antibody specificity with cytotoxic payload delivery. In GEJ/gastric, HER2 is overexpressed/amplified in 15-30% (enriched in GEJ vs distal gastric). Trastuzumab deruxtecan (T-DXd) is BREAKTHROUGH ADC showing superior efficacy to chemotherapy in HER2+ advanced disease. Mechanism: T-DXd binds HER2, internalizes, releases topoisomerase I inhibitor payload causing DNA damage and cell death. Bystander effect (payload diffuses to nearby HER2-low/negative cells) enhances efficacy.",
+          "supporting_biology": [
+            "HER2 overexpression/amplification in 15-30% of GEJ/gastric (IHC 3+ or IHC 2+/FISH+)",
+            "HER2+ tumors have distinct biology and treatment paradigm",
+            "Cell surface target with internalization capability - ideal for ADC",
+            "T-DXd has high drug-antibody ratio (DAR ~8) and membrane-permeable payload (bystander effect)"
+          ],
+          "theoretical_concerns": [
+            "HER2 expression can be heterogeneous within tumors - may limit efficacy",
+            "Toxicity - interstitial lung disease (ILD) is notable concern with T-DXd (~10% incidence)",
+            "Resistance mechanisms - HER2 downregulation, efflux pumps, DNA repair upregulation",
+            "Limited to HER2+ population (15-30%) - excludes majority"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Trastuzumab deruxtecan (T-DXd, Enhertu)",
+              "specific_moa": "Antibody-drug conjugate (ADC) where trastuzumab (anti-HER2 antibody) is conjugated to deruxtecan (topoisomerase I inhibitor payload) via cleavable tetrapeptide-based linker. Mechanism: (1) Binds HER2 on tumor cells, (2) Internalizes via receptor-mediated endocytosis, (3) Linker cleaved in lysosome, (4) Deruxtecan released, inhibits topoisomerase I â†' DNA damage â†' apoptosis. High DAR (~8 drugs per antibody) and membrane-permeable payload create BYSTANDER EFFECT - kills neighboring HER2-low/negative cells.",
+              "moa_classification": ["ADC", "HER2_targeted", "topoisomerase_inhibitor_payload", "bystander_effect", "approved_2L_3L"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2021, EMA 2021, PMDA 2020, NMPA 2021; STANDARD-OF-CARE ≥2L in HER2+ gastric/GEJ",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "DESTINY-Gastric01",
+                    "phase": "Phase II (registration-enabling)",
+                    "design": "T-DXd (6.4 mg/kg Q3W) vs chemotherapy (physician's choice: irinotecan or paclitaxel) in ≥2L HER2+ advanced gastric/GEJ cancer",
+                    "efficacy": {
+                      "ORR": "51% vs 14% (T-DXd vs chemo) - DRAMATIC improvement",
+                      "mPFS": "5.6 vs 3.5 months; HR 0.47",
+                      "mOS": "12.5 vs 8.4 months; HR 0.59 (p=0.0097) - SIGNIFICANT OS benefit",
+                      "DoR": "11.3 vs 3.9 months",
+                      "Note": "T-DXd superior to chemotherapy across all efficacy endpoints"
+                    },
+                    "safety": "ILD/pneumonitis 10% (Grade 3-4: 2.4%); neutropenia 51%; nausea 78%; fatigue 57%. ILD is NOTABLE CONCERN requiring monitoring and management.",
+                    "patient_selection": "HER2+ (IHC 3+ or IHC 2+/FISH+) gastric/GEJ cancer; ≥2 prior lines including trastuzumab",
+                    "outcome": "SUCCESS - T-DXd approved based on DRAMATIC superiority over chemotherapy; ORR 51% is exceptional in 3L+ gastric cancer"
+                  },
+                  {
+                    "trial_name": "DESTINY-Gastric02",
+                    "phase": "Phase II (confirmatory, Western population)",
+                    "design": "T-DXd in Western patients with HER2+ advanced gastric/GEJ cancer after trastuzumab",
+                    "efficacy": {
+                      "ORR": "42%",
+                      "mPFS": "5.5 months",
+                      "mOS": "12.1 months",
+                      "Note": "Confirmed DESTINY-Gastric01 findings in Western population (DG01 was primarily Asian)"
+                    },
+                    "safety": "Similar to DG01; ILD ~10%",
+                    "outcome": "CONFIRMATORY - Validated T-DXd efficacy across geographies"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "BENCHMARK ADC - ORR 51% in heavily pretreated disease is EXCEPTIONAL",
+                  "Superior to chemotherapy across all endpoints (ORR, PFS, OS)",
+                  "Bystander effect enhances efficacy - kills HER2-low/negative cells around HER2+ cells",
+                  "High DAR (~8) delivers potent payload",
+                  "Topoisomerase I inhibitor payload is effective cytotoxic mechanism",
+                  "T-DXd now STANDARD-OF-CARE in ≥2L HER2+ gastric/GEJ"
+                ],
+                "key_insights": "T-DXd is GOLD STANDARD ADC in GEJ/gastric and PROOF-OF-CONCEPT for ADC platform in this indication. ORR 51% and mOS 12.5 vs 8.4 months (vs chemo) establish superiority. T-DXd captures ~10% of total GEJ/gastric immunotherapy market (within HER2+ segment). ILD is MANAGEABLE toxicity with monitoring. STRATEGIC: T-DXd success validates ADC approach in GEJ/gastric and paves way for next-generation ADCs targeting OTHER antigens (CLDN18.2, TROP2). Bystander effect is KEY innovation - allows efficacy even in HER2-heterogeneous tumors. Topoisomerase I inhibitor payload is VALIDATED; next-gen ADCs use similar payloads. T-DXd is moving to earlier lines (1L trials ongoing) - will expand market. This is TEMPLATE for ADC success in GEJ/gastric."
+              },
+              "similarity_matching_tags": ["ADC", "HER2_targeted", "topoisomerase_inhibitor", "bystander_effect", "approved_breakthrough", "ORR_51%", "benchmark_ADC"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "10/10 - HER2-targeted ADCs are PERFECTLY matched to HER2+ GEJ/gastric biology; T-DXd is proof-of-concept",
+          "clinical_validation": "10/10 - T-DXd is APPROVED and BENCHMARK with exceptional efficacy (ORR 51%, OS benefit)",
+          "unmet_need_match": "8/10 - Addresses HER2+ population (15-30%) with superior outcomes vs chemo; expanding to 1L will increase impact",
+          "overall_assessment": "HER2-targeted ADCs (T-DXd) are VALIDATED and BEST-IN-CLASS therapy for HER2+ GEJ/gastric cancer. T-DXd demonstrates EXCEPTIONAL efficacy (ORR 51%, mOS 12.5 months) superior to chemotherapy in ≥2L setting. Market penetration HIGH in HER2+ segment (~10% of total immunotherapy market). ILD is manageable toxicity. STRATEGIC: T-DXd sets HIGH BAR for ADC efficacy in GEJ/gastric. New HER2 ADCs must differentiate (lower toxicity, higher efficacy, earlier lines). Opportunity is in: (1) Moving to 1L setting (trials ongoing), (2) HER2-low population (T-DXd shows activity even in IHC 1-2+), (3) Novel HER2-targeted modalities (bispecifics like zanidatamab). T-DXd success VALIDATES ADC platform overall - enables development of ADCs targeting OTHER GEJ/gastric antigens (CLDN18.2, TROP2). Topoisomerase I inhibitor payload is PROVEN; CLDN18.2 ADCs use similar payloads (CMG-901, ATG-022)."
+        }
+      },
+
+      {
+        "name": "Antibody-Drug Conjugates (ADCs) - CLDN18.2-Targeted",
+        "biological_rationale": {
+          "indication_specific_rationale": "CLDN18.2-targeted ADCs are BREAKTHROUGH modality in GEJ/gastric. CLDN18.2 is tight junction protein with IDEAL target properties: (1) Tumor-restricted (only in gastric epithelium, short-lived cells), (2) Cell surface expression, (3) Prevalent (40-60% of GEJ/gastric), (4) Internalization-capable. CMG-901 and ATG-022 ADCs show ORR 30-43% in Phase I/II - among HIGHEST responses in solid tumor ADCs. Mechanism similar to T-DXd: antibody binds CLDN18.2, internalizes, releases topoisomerase I inhibitor payload.",
+          "supporting_biology": [
+            "CLDN18.2 expressed in 40-60% of GEJ/gastric (IHC 2+ in ≥20% cells)",
+            "Tumor-restricted expression - minimal normal tissue outside stomach",
+            "Cell surface tight junction protein - accessible and internalization-capable",
+            "Zolbetuximab (CLDN18.2 mAb) approved 2024 validates target",
+            "Larger addressable population (40-60%) than HER2 (15-30%)"
+          ],
+          "theoretical_concerns": [
+            "CLDN18.2 expression heterogeneous in some tumors - may limit efficacy",
+            "On-target GI toxicity possible (nausea, vomiting from gastric epithelium expression)",
+            "Limited long-term durability data - Phase I/II follow-up short",
+            "Competition - multiple CLDN18.2 ADCs in development (6+ programs)"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "CMG-901 (AstraZeneca / Keymed Biosciences)",
+              "specific_moa": "Antibody-drug conjugate where anti-CLDN18.2 antibody is conjugated to topoisomerase I inhibitor payload via cleavable linker. Mechanism: (1) Binds CLDN18.2 on tumor cells, (2) Internalizes, (3) Payload released, (4) Topoisomerase I inhibition â†' DNA damage â†' apoptosis. Similar mechanism to T-DXd but targeting different antigen (CLDN18.2 vs HER2).",
+              "moa_classification": ["ADC", "CLDN18.2_targeted", "topoisomerase_inhibitor_payload", "Phase_I", "breakthrough_efficacy"],
+              "clinical_evidence": {
+                "development_stage": "Phase I - ADVANCING; AstraZeneca/Keymed partnership (up to $6.9B deal value)",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "NCT04805307 (Phase I dose-escalation/expansion)",
+                    "phase": "Phase I",
+                    "design": "Dose-escalation and expansion in advanced solid tumors; gastric/GEJ cohort (n=113 patients, 107 with CLDN18.2 ≥2+)",
+                    "efficacy": {
+                      "ORR_CLDN18.2+": "32.6% (confirmed ORR in CLDN18.2 ≥2+ cohort)",
+                      "mPFS": "4.76 months",
+                      "Note": "ORR 32.6% in heavily pretreated (≥2L) GEJ/gastric is EXCEPTIONAL for Phase I"
+                    },
+                    "safety": "Manageable; anemia 62.8%, vomiting 57.5%, nausea common. Consistent with gastric-targeted ADC (on-target GI effects). No unexpected toxicities.",
+                    "patient_selection": "Advanced GEJ/gastric cancer with CLDN18.2 expression (≥2+); heavily pretreated (median 2-3 prior lines)",
+                    "outcome": "HIGHLY PROMISING - ORR 32.6% in Phase I justifies advancement; AstraZeneca/Keymed partnership signals high confidence"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "ORR 32.6% in Phase I heavily pretreated gastric/GEJ is BREAKTHROUGH - comparable to T-DXd ORR in breast cancer early trials",
+                  "CLDN18.2 is VALIDATED target - tumor-restricted, prevalent (40-60%)",
+                  "Topoisomerase I inhibitor payload is PROVEN (same class as T-DXd deruxtecan)",
+                  "Manageable toxicity profile - anemia and GI effects are expected and manageable",
+                  "Multi-billion dollar partnership (AstraZeneca/Keymed $6.9B) signals commercial confidence"
+                ],
+                "key_insights": "CMG-901 is LEADING CLDN18.2 ADC with BREAKTHROUGH Phase I data. ORR 32.6% in heavily pretreated GEJ/gastric establishes CLDN18.2 as MAJOR emerging ADC target. This is COMPARABLE to early T-DXd data that led to approval. STRATEGIC: CLDN18.2 ADCs are poised to be NEXT major ADC class in GEJ/gastric after T-DXd (HER2). Larger addressable population (40-60% vs 15-30% HER2+) means BIGGER market opportunity. AstraZeneca/Keymed partnership ($6.9B) is among largest ADC deals - validates commercial potential. CMG-901 likely to reach Phase III by 2026-2027. Patent landscape shows intense competition (6+ CLDN18.2 ADC programs) - first to market wins. Topoisomerase I payload is STANDARD for ADCs in GEJ/gastric (CMG-901, ATG-022, T-DXd all use topo I inhibitors)."
+              },
+              "similarity_matching_tags": ["ADC", "CLDN18.2_targeted", "topoisomerase_inhibitor", "Phase_I_breakthrough", "ORR_32%", "billion_dollar_deal", "next_gen_ADC"]
+            },
+            {
+              "drug_name": "ATG-022 (Antengene Corporation)",
+              "specific_moa": "CLDN18.2-targeted ADC with topoisomerase I inhibitor payload; similar mechanism to CMG-901. Antibody binds CLDN18.2, internalizes, releases cytotoxic payload causing DNA damage.",
+              "moa_classification": ["ADC", "CLDN18.2_targeted", "topoisomerase_inhibitor_payload", "Phase_I_II", "breakthrough_efficacy"],
+              "clinical_evidence": {
+                "development_stage": "Phase I/II ONGOING (CLINCH study)",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "NCT05718895 (CLINCH study)",
+                    "phase": "Phase I/II",
+                    "design": "ATG-022 in advanced gastric cancer (n=37 patients)",
+                    "efficacy": {
+                      "ORR_CLDN18.2_high": "42.9% in CLDN18.2-high patients (IHC 2+ in ≥20% cells)",
+                      "ORR_CLDN18.2_low": "30% even in CLDN18.2-low patients (suggests some bystander effect or low-expression efficacy)",
+                      "DCR": "95.2% (disease control rate - ORR + stable disease)",
+                      "Note": "ORR 42.9% is HIGHEST reported for CLDN18.2 ADC in Phase I/II"
+                    },
+                    "safety": "Manageable; typical ADC toxicities; GI effects consistent with gastric target",
+                    "patient_selection": "Advanced gastric cancer; CLDN18.2 expression assessed; heavily pretreated",
+                    "outcome": "EXCEPTIONAL - ORR 42.9% in CLDN18.2-high is HIGHEST in class; DCR 95.2% suggests broad activity"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "ORR 42.9% is HIGHEST reported CLDN18.2 ADC efficacy - BEST-IN-CLASS early data",
+                  "Activity even in CLDN18.2-low patients (30% ORR) suggests payload potency or bystander effect",
+                  "DCR 95.2% indicates near-universal disease control - exceptional in gastric cancer",
+                  "Validates CLDN18.2 as HIGH-VALUE ADC target"
+                ],
+                "key_insights": "ATG-022 has BEST-IN-CLASS early efficacy data among CLDN18.2 ADCs - ORR 42.9% exceeds CMG-901 (32.6%) and approaches T-DXd (51%). If Phase II/III confirms Phase I promise, ATG-022 could be LEADING CLDN18.2 ADC. Activity in CLDN18.2-low patients (30% ORR) is intriguing - suggests broader applicability than biomarker-restricted. STRATEGIC: CLDN18.2 ADC space is COMPETITIVE - ATG-022 vs CMG-901 vs others (Bolt, Harbour BioMed, Henlius). Antengene is smaller company vs AstraZeneca - partnership or acquisition likely. ORR 42.9% data will attract M&A interest. CLDN18.2 ADCs collectively positioned to capture significant market share (projected $500M-1B+ by 2030)."
+              },
+              "similarity_matching_tags": ["ADC", "CLDN18.2_targeted", "topoisomerase_inhibitor", "Phase_I_II", "ORR_43%_best_in_class", "high_DCR", "next_gen_ADC"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "10/10 - CLDN18.2 ADCs are IDEALLY matched to GEJ/gastric biology; tumor-restricted target with prevalent expression (40-60%)",
+          "clinical_validation": "9/10 - Phase I/II data exceptional (ORR 30-43%); zolbetuximab (CLDN18.2 mAb) approved validates target; Phase III data pending",
+          "unmet_need_match": "9/10 - Addresses large population (40-60%) including biomarker-negative for checkpoint inhibitors; provides option beyond HER2 ADCs",
+          "overall_assessment": "CLDN18.2-targeted ADCs are BREAKTHROUGH modality positioned to be NEXT major ADC class in GEJ/gastric after T-DXd. CMG-901 (ORR 32.6%) and ATG-022 (ORR 42.9%) show EXCEPTIONAL Phase I/II efficacy comparable to early T-DXd data. CLDN18.2 is IDEAL target: (1) Tumor-restricted (excellent safety window), (2) Prevalent (40-60% - larger than HER2 15-30%), (3) Cell surface and internalization-capable. Zolbetuximab approval (2024) validates target. Multi-billion dollar investments (AstraZeneca/Keymed $6.9B partnership) signal commercial confidence. STRATEGIC: CLDN18.2 ADCs are HIGHEST PRIORITY emerging modality in GEJ/gastric. Projected to capture $500M-1B+ market share by 2030. Competitive landscape intense (6+ programs) - first to Phase III/approval wins. Topoisomerase I payload is STANDARD. Combination strategies (CLDN18.2 ADC + checkpoint inhibitor) are rational next step. Patent landscape (2020-2025) shows innovation in antibody scaffolds, linkers, novel payloads (TLR7/8 agonists). This is MAJOR investment opportunity - partnership/acquisition targets include Antengene (ATG-022), Bolt, Harbour BioMed."
+        }
+      },
+
+      {
+        "name": "Antibody-Drug Conjugates (ADCs) - TROP2-Targeted",
+        "biological_rationale": {
+          "indication_specific_rationale": "TROP2 (Trophoblast Cell-Surface Antigen 2) is transmembrane glycoprotein broadly expressed in epithelial cancers including GEJ/gastric (60-80% estimated). TROP2 is VALIDATED ADC target with sacituzumab govitecan approved in breast and bladder cancer. Mechanism: Anti-TROP2 antibody conjugated to topoisomerase I inhibitor payload; binds TROP2, internalizes, releases cytotoxic payload. Sacituzumab tirumotecan (Merck/Kelun-Biotech) is TROP2 ADC in Phase III for GEJ/gastric after promising Phase I/II results.",
+          "supporting_biology": [
+            "TROP2 broadly expressed in GEJ/gastric (60-80% estimated)",
+            "TROP2 overexpression correlates with aggressive disease",
+            "Cell surface target with internalization capability - ideal for ADC",
+            "Validated in breast cancer (sacituzumab govitecan ORR 31-35%) and bladder cancer"
+          ],
+          "theoretical_concerns": [
+            "Toxicity - diarrhea and neutropenia are dose-limiting with sacituzumab govitecan",
+            "TROP2 expression in normal tissues (lung, skin, colon) may cause on-target/off-tumor effects",
+            "Competition from CLDN18.2 ADCs which may have better therapeutic window (more tumor-restricted)",
+            "Limited GEJ/gastric-specific data - extrapolating from breast/bladder cancer"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Sacituzumab tirumotecan (Merck / Kelun-Biotech)",
+              "specific_moa": "TROP2-targeted ADC with topoisomerase I inhibitor payload (similar to T-DXd and CLDN18.2 ADCs). Antibody binds TROP2, internalizes via receptor-mediated endocytosis, releases payload causing DNA damage and apoptosis.",
+              "moa_classification": ["ADC", "TROP2_targeted", "topoisomerase_inhibitor_payload", "Phase_III", "extrapolated_from_breast_bladder"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING in GEJ/gastric after promising Phase I/II data",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I/II in solid tumors (GEJ/gastric cohort)",
+                    "phase": "Phase I/II",
+                    "design": "Sacituzumab tirumotecan in advanced solid tumors including GEJ/gastric cohort",
+                    "efficacy": {
+                      "ORR": "Promising Phase I/II results reported (exact ORR in GEJ/gastric not fully disclosed but sufficient to advance to Phase III)",
+                      "Note": "Phase III programs initiated signals confidence in Phase I/II data"
+                    },
+                    "safety": "Consistent with topoisomerase I inhibitor ADC class - neutropenia, GI effects (nausea, diarrhea), fatigue",
+                    "patient_selection": "Advanced GEJ/gastric cancer; TROP2 expression assessment (broad expression 60-80%)",
+                    "outcome": "ADVANCING - Phase III programs initiated based on encouraging Phase I/II data"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "TROP2 is VALIDATED ADC target - sacituzumab govitecan approved in breast/bladder with ORR 31-35%",
+                  "Broad TROP2 expression (60-80%) in GEJ/gastric means large addressable population - LARGEST among ADC targets",
+                  "Topoisomerase I payload consistent with successful ADCs (T-DXd, CMG-901, ATG-022)",
+                  "Phase III initiation signals Merck/Kelun-Biotech confidence in GEJ/gastric efficacy"
+                ],
+                "key_insights": "Sacituzumab tirumotecan represents EXTENSION of validated TROP2 ADC platform (sacituzumab govitecan) to GEJ/gastric. TROP2 has BROADEST expression (60-80%) among ADC targets in GEJ/gastric - larger than CLDN18.2 (40-60%) or HER2 (15-30%). Phase III initiation is significant validation. STRATEGIC: TROP2 ADCs are THIRD major ADC target class in GEJ/gastric after HER2 (T-DXd) and CLDN18.2 (CMG-901, ATG-022). Broad expression is ADVANTAGE (larger patient pool) but may be DISADVANTAGE vs CLDN18.2 (less tumor-restricted, more normal tissue expression â†' higher toxicity risk). Key question: Can TROP2 ADCs match CLDN18.2 ADC efficacy (ORR 30-43%) with acceptable safety? Phase III readout critical. Competition: TROP2 ADCs vs CLDN18.2 ADCs for biomarker-unselected or checkpoint-resistant patients."
+              },
+              "similarity_matching_tags": ["ADC", "TROP2_targeted", "topoisomerase_inhibitor", "Phase_III", "broad_expression", "validated_target_other_cancers"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "8/10 - TROP2 ADCs well-matched to GEJ/gastric with broad expression (60-80%); validated target in other cancers",
+          "clinical_validation": "7/10 - TROP2 validated in breast/bladder (sacituzumab govitecan approved); GEJ/gastric Phase III ongoing, efficacy data pending",
+          "unmet_need_match": "8/10 - Broad TROP2 expression (60-80%) addresses largest population among ADC targets; option for checkpoint-resistant disease",
+          "overall_assessment": "TROP2-targeted ADCs are EMERGING class in GEJ/gastric with VALIDATED platform from breast/bladder cancer. Sacituzumab tirumotecan (Merck/Kelun-Biotech) in Phase III signals confidence. TROP2 has BROADEST expression (60-80%) among ADC targets - larger addressable population than CLDN18.2 (40-60%) or HER2 (15-30%). STRATEGIC: TROP2 ADCs are THIRD pillar of ADC strategy in GEJ/gastric. Key advantages: (1) Broad expression (most patients eligible), (2) Validated ADC target (sacituzumab govitecan ORR 31-35% in breast), (3) Topoisomerase I payload proven in GEJ/gastric (T-DXd, CLDN18.2 ADCs). Key risks: (1) Less tumor-restricted than CLDN18.2 (TROP2 in lung, skin, colon â†' potential off-tumor toxicity), (2) Phase III GEJ/gastric data pending - efficacy uncertain, (3) Competition from CLDN18.2 ADCs which may have better therapeutic window. RECOMMENDATION: Monitor Phase III readout closely - if sacituzumab tirumotecan shows ORR ≥30% with manageable safety, TROP2 ADCs are validated third ADC class. Combination strategies (TROP2 ADC + checkpoint inhibitor) rational."
+        }
+      }
+    ]
+  },
+
+  "unmet_needs": [
+    {
+      "need_category": "Biomarker-Negative Population (PD-L1 CPS <5, MSS, HER2-Negative)",
+      "description": "While biomarker+ subsets respond to checkpoint inhibitors (PD-L1 CPS ≥5, MSI-H) and HER2-targeted therapies, biomarker-negative majority (~40-60%) has LIMITED options. These patients have 'cooler' TME, lower T-cell infiltration, poor checkpoint responses. Represents largest unmet need in GEJ/gastric.",
+      "patient_population": "~40-60% of GEJ/gastric patients (PD-L1 CPS <5, MSS, HER2-negative, CLDN18.2-negative)",
+      "current_gaps": "Checkpoint monotherapy shows minimal benefit in PD-L1 CPS <1-5; chemotherapy remains backbone; limited targeted options",
+      "moa_requirements": [
+        "ADCs targeting prevalent antigens (CLDN18.2 40-60%, TROP2 60-80%) - provide option independent of checkpoint biomarkers",
+        "TME-modulating combinations (checkpoint + TGF-β blockade, checkpoint + VEGF blockade) - convert cold to warm",
+        "Bispecific antibodies (PD-1/VEGF, LAG-3/PD-1) - dual mechanism may overcome single-agent resistance",
+        "Novel payloads/mechanisms - non-immunotherapy approaches for IO-resistant disease"
+      ],
+      "priority": "CRITICAL - Represents largest patient subset; current SOC (chemotherapy) has limited efficacy (mOS 8-11 months)",
+      "commercial_opportunity": "HIGH - Biomarker-negative is 40-60% of market; effective therapies capture $1-2B+ opportunity. ADCs (CLDN18.2, TROP2) positioned to address this gap.",
+      "strategic_notes": "CLDN18.2 ADCs showing ORR 30-43% in biomarker-unselected populations - provides option for checkpoint-resistant patients. TROP2 ADCs (broad expression 60-80%) may have even wider applicability. TME modulation (ivonescimab PD-1/VEGF bispecific) in trials for biomarker-negative population. This is WHERE competition will intensify - moving beyond checkpoint-only approaches to multi-modal strategies."
+    },
+    {
+      "need_category": "Overcoming TIGIT Combination Failure - Next-Gen Checkpoint Strategies",
+      "description": "TIGIT inhibitors (tiragolumab, domvanalimab) FAILED in Phase III esophageal/GEJ cancer despite preclinical rationale. This mirrors TIGIT failures in NSCLC and melanoma. Raises question: Are next-gen checkpoints (LAG-3, TIM-3) viable in GEJ/gastric or is PD-1 blockade sufficient?",
+      "patient_population": "Checkpoint-resistant patients; biomarker+ patients with suboptimal PD-1 responses",
+      "current_gaps": "TIGIT blockade does NOT improve outcomes when added to PD-1/PD-L1 inhibitors; LAG-3/PD-1 bispecific (tebotelimab) in Phase III but unproven",
+      "moa_requirements": [
+        "Evidence-based next-gen checkpoint selection - must have STRONG preclinical/Phase II data before Phase III investment",
+        "Biomarker-driven approaches - identify subset most likely to benefit (e.g., LAG-3+ tumors, TIM-3+ exhausted T cells)",
+        "Avoid 'me-too' checkpoint combinations without differentiation - TIGIT failure shows adding checkpoint to PD-1 is NOT automatic success",
+        "Consider NON-checkpoint TME modulators (TGF-β, VEGF, CD73, adenosine pathway) as alternatives to additional checkpoint blockade"
+      ],
+      "priority": "MODERATE - Next-gen checkpoints are UNPROVEN in GEJ/gastric; TIGIT failures raise concerns about LAG-3, TIM-3 viability",
+      "commercial_opportunity": "MODERATE-LOW - High risk given TIGIT failures; if LAG-3 or novel checkpoint succeeds, significant opportunity but probability uncertain",
+      "strategic_notes": "TIGIT failures (tiragolumab, domvanalimab Phase III negative) are CAUTIONARY TALE - preclinical rationale does NOT guarantee clinical success. LAG-3/PD-1 bispecific (tebotelimab) awaiting Phase III readout - will determine if LAG-3 viable. TIM-3 in early development. STRATEGIC: Exercise CAUTION with next-gen checkpoints in GEJ/gastric. TIGIT failed despite strong preclinical data. Biomarker selection ESSENTIAL - unselected populations high risk. Alternative approaches (TME modulators, ADCs, bispecifics with non-checkpoint mechanisms) may be lower-risk paths for checkpoint-resistant disease."
+    },
+    {
+      "need_category": "Earlier Line of Therapy - Moving Immunotherapy/ADCs to 1L and Peri-Operative Settings",
+      "description": "Currently, checkpoint inhibitors approved in 1L but ADCs (T-DXd) limited to ≥2L. Nivolumab approved in adjuvant but peri-operative immunotherapy (pre- and post-surgery) underexplored. Moving effective therapies to earlier lines and curative settings addresses unmet need and expands market.",
+      "patient_population": "Newly diagnosed GEJ/gastric patients eligible for curative intent (surgery + chemo/radiation); 1L advanced disease patients",
+      "current_gaps": "ADCs currently ≥2L only; peri-operative immunotherapy limited (nivolumab adjuvant approved but peri-operative under-studied); optimal sequencing unclear",
+      "moa_requirements": [
+        "ADCs (T-DXd, CLDN18.2 ADCs) trials in 1L setting - if efficacy maintained, label expansion",
+        "Peri-operative immunotherapy regimens (neoadjuvant + adjuvant checkpoint inhibitors) - improve pathological complete response (pCR) rates",
+        "Combination strategies in 1L (checkpoint + ADC, checkpoint + chemo + ADC) - maximize efficacy",
+        "Adjuvant therapies post-surgery (checkpoint inhibitors, targeted agents) - reduce recurrence risk"
+      ],
+      "priority": "HIGH - Earlier line use expands market and improves outcomes; 1L and curative settings are highest-value",
+      "commercial_opportunity": "VERY HIGH - 1L market is 2-3x larger than ≥2L; peri-operative setting addresses curative intent (premium pricing justified)",
+      "strategic_notes": "T-DXd has 1L trials ongoing in HER2+ GEJ/gastric - if positive, major label expansion. CLDN18.2 ADCs (CMG-901, ATG-022) will likely pursue 1L after ≥2L approval. Nivolumab adjuvant approval (CheckMate-577) validates curative-intent immunotherapy. Peri-operative strategies (neoadjuvant + adjuvant) showing promise in other GI cancers. STRATEGIC: Moving to 1L is NATURAL progression for successful ADCs - T-DXd model (approved ≥2L breast, now 1L trials). Earlier-line use increases per-patient revenue and expands addressable market. Combination regimens (checkpoint + ADC) rational in 1L biomarker-selected populations."
+    },
+    {
+      "need_category": "Predictive Biomarkers Beyond PD-L1 and MSI-H",
+      "description": "PD-L1 CPS and MSI-H are VALIDATED biomarkers but imperfect predictors. Many PD-L1+ patients don't respond; some PD-L1-negative patients do. Novel biomarkers needed to better select patients for immunotherapy, predict ADC response (CLDN18.2, TROP2), and identify optimal combinations.",
+      "patient_population": "All GEJ/gastric patients - better biomarkers improve patient selection across therapies",
+      "current_gaps": "PD-L1 CPS cutoffs arbitrary (≥1, ≥5, ≥10); no validated predictive biomarkers for ADC response beyond target expression (HER2, CLDN18.2); TME biomarkers (TILs, IFN-γ signature) underutilized",
+      "moa_requirements": [
+        "Immune gene signatures (IFN-γ, T-cell inflamed) - may predict checkpoint benefit better than PD-L1 alone",
+        "TME biomarkers (CD8+ TIL density, M1/M2 macrophage ratio) - identify 'hot' vs 'cold' tumors for immunotherapy selection",
+        "ADC predictive biomarkers - target expression level (IHC intensity), internalization capacity, DNA repair deficiency for ADC payload sensitivity",
+        "Multi-omic profiling (genomics, transcriptomics, proteomics) - composite biomarkers for precision medicine",
+        "Circulating biomarkers (ctDNA, tumor markers) - non-invasive monitoring and early response prediction"
+      ],
+      "priority": "HIGH - Better biomarkers improve trial success rates, regulatory approval paths, and clinical outcomes",
+      "commercial_opportunity": "MODERATE-HIGH - Companion diagnostics are valuable (recurring revenue); better patient selection reduces trial costs and improves commercialization",
+      "strategic_notes": "PD-L1 CPS is imperfect - some CPS <5 patients respond, some CPS ≥10 don't. IFN-γ gene signature shows promise as better predictor. CLDN18.2 IHC cutoff (2+ in ≥20% cells) based on zolbetuximab trials but optimal threshold for ADCs unknown. TME biomarkers (CD8+ TILs, M1/M2 ratio) could identify patients for TME-modulating therapies. STRATEGIC: Invest in biomarker discovery - composite biomarkers (PD-L1 + TMB + IFN-γ signature) may outperform single markers. Partner with diagnostic companies for companion diagnostic development. Circulating biomarkers (ctDNA) enable non-invasive monitoring - important for adjuvant/peri-operative settings."
+    },
+    {
+      "need_category": "Resistance Mechanisms and Sequential Therapy Optimization",
+      "description": "Primary and acquired resistance to checkpoint inhibitors and ADCs is common. Understanding resistance mechanisms and optimizing sequential therapies (post-checkpoint progression, post-ADC progression) addresses unmet need and extends patient benefit.",
+      "patient_population": "Patients progressing on 1L checkpoint inhibitor therapy; patients progressing on HER2 or CLDN18.2 ADCs",
+      "current_gaps": "Limited understanding of checkpoint resistance mechanisms in GEJ/gastric; post-ADC therapy options unclear (sequencing T-DXd → CLDN18.2 ADC or vice versa?); combination strategies to prevent/overcome resistance underexplored",
+      "moa_requirements": [
+        "Resistance biomarkers - identify mechanism (TME immunosuppression, antigen loss, efflux pumps, DNA repair upregulation) to guide next therapy",
+        "Non-cross-resistant therapies - ADCs for checkpoint-refractory; chemotherapy or targeted agents for ADC-refractory",
+        "Combination strategies to prevent resistance - checkpoint + ADC, checkpoint + TME modulator given upfront",
+        "Novel mechanisms post-resistance - bispecific antibodies, CAR-T cells, oncolytic viruses for heavily pretreated disease"
+      ],
+      "priority": "MODERATE-HIGH - Resistance is inevitable; sequential therapy optimization extends survival and captures additional revenue",
+      "commercial_opportunity": "MODERATE - Later-line therapies have smaller markets but cumulative revenue across lines significant; resistance insights inform 1L combinations",
+      "strategic_notes": "Checkpoint resistance mechanisms: TME immunosuppression (TGF-β, Tregs), T-cell exclusion, antigen presentation defects. ADC resistance: target downregulation (HER2 loss), efflux pumps (MDR1), DNA repair upregulation. Sequential ADC use (T-DXd → CLDN18.2 ADC) rational if non-overlapping targets. Combination strategies (checkpoint + ADC) may prevent resistance - trials ongoing. STRATEGIC: Resistance understanding informs combination development. Therapies with non-overlapping mechanisms (ADC + checkpoint, ADC + chemotherapy) preserve options post-progression."
+    }
+  ],
+
+  "current_treatment_landscape": {
+    "standard_of_care": {
+      "1L_advanced_biomarker_positive": {
+        "regimen": "Pembrolizumab or nivolumab + chemotherapy (FOLFOX, XELOX, cisplatin/5-FU) for PD-L1 CPS ≥5 OR pembrolizumab monotherapy for CPS ≥10. HER2+ patients: pembrolizumab + trastuzumab + chemotherapy (KEYNOTE-811). MSI-H patients: pembrolizumab monotherapy.",
+        "efficacy": "mOS 13.5-14.4 months (checkpoint + chemo in PD-L1 CPS ≥5-10); mOS 17.4 months (pembrolizumab monotherapy in CPS ≥10); mOS 20.0 months (pembrolizumab + trastuzumab + chemo in HER2+)",
+        "notes": "Checkpoint inhibitors are STANDARD-OF-CARE in biomarker+ populations; biomarker testing (PD-L1 CPS, MSI-H, HER2) ESSENTIAL for treatment selection"
+      },
+      "1L_advanced_biomarker_negative": {
+        "regimen": "Chemotherapy alone (FOLFOX, XELOX, cisplatin/5-FU) OR ramucirumab + chemotherapy (anti-VEGFR2)",
+        "efficacy": "mOS 9-11 months (chemotherapy alone); modest benefit from checkpoint in unselected populations",
+        "notes": "UNMET NEED - biomarker-negative patients have limited options; ADCs (CLDN18.2, TROP2) in development for this population"
+      },
+      "2L_3L_advanced": {
+        "regimen": "HER2+ patients: Trastuzumab deruxtecan (T-DXd) - STANDARD-OF-CARE. HER2-negative: Ramucirumab + paclitaxel, or chemotherapy (irinotecan, docetaxel). Checkpoint inhibitor if not used in 1L.",
+        "efficacy": "T-DXd: ORR 51%, mOS 12.5 months in HER2+ (DESTINY-Gastric01). Ramucirumab + paclitaxel: mOS 9.6 months.",
+        "notes": "T-DXd is BREAKTHROUGH in HER2+ ≥2L; CLDN18.2 ADCs (CMG-901, ATG-022) showing ORR 30-43% in trials - positioned for ≥2L approval"
+      },
+      "adjuvant_post_surgery": {
+        "regimen": "Nivolumab (adjuvant) for resected esophageal/GEJ cancer post-neoadjuvant chemoradiation with residual disease (CheckMate-577). Chemotherapy (S-1, XELOX) in Asia.",
+        "efficacy": "Nivolumab: 22.4 vs 11.0 months DFS; 3-year DFS 46% vs 37%",
+        "notes": "Nivolumab is FIRST and ONLY approved adjuvant immunotherapy for esophageal/GEJ; addresses high recurrence risk"
+      }
+    },
+    "market_size_and_growth": {
+      "global_market": {
+        "2024_estimate": "$5.37 billion (total gastric cancer therapies); $14.31 billion (esophageal cancer therapies 2025 estimate)",
+        "2030_forecast_gastric": "$11.19 billion (12.5% CAGR)",
+        "2030_forecast_immunotherapy": "$2.50 billion (17.0% CAGR) - immunotherapy sub-segment",
+        "2035_forecast_esophageal": "$29.49 billion (7.5% CAGR)",
+        "growth_drivers": [
+          "Immunotherapy adoption - checkpoint inhibitors now standard in biomarker+ populations",
+          "ADC approvals and label expansions (T-DXd, CLDN18.2 ADCs, TROP2 ADCs)",
+          "Earlier line use (1L, peri-operative) - expands addressable market",
+          "Asia market growth - 55%+ of global volume; screening programs in Japan, reimbursement expansion in China",
+          "Premium pricing for novel therapies (ADCs, bispecifics)"
+        ]
+      },
+      "regional_breakdown": {
+        "United_States": {
+          "2024_immunotherapy": "~$0.7 billion",
+          "2030_forecast": "$2.0 billion (driven by ADC-IO combinations and earlier-line use)",
+          "notes": "Highest revenue per patient; premium pricing; strong biomarker testing infrastructure"
+        },
+        "European_Union": {
+          "2024_immunotherapy": "~$0.5 billion",
+          "2030_forecast": "$1.4 billion (fueled by harmonized testing and peri-operative regimens)",
+          "notes": "EMA approvals (zolbetuximab CLDN18.2 mAb 2024); real-world evidence emphasis"
+        },
+        "Asia": {
+          "2024_immunotherapy": "~$1.1 billion",
+          "2030_forecast": "$3.5 billion (propelled by national reimbursement policies and domestic PD-1 inhibitors)",
+          "notes": "LARGEST market by volume (55%+ global burden); domestic PD-1 inhibitors (lower cost) dominate; NMPA approvals critical; screening programs in Japan/Korea"
+        }
+      },
+      "market_share_by_drug_class": {
+        "checkpoint_inhibitors": "~70% of immunotherapy market (pembrolizumab 45%, nivolumab 25%, domestic PD-1s 20% in Asia)",
+        "ADCs": "~10% (T-DXd within HER2+ segment; CLDN18.2 ADCs emerging)",
+        "targeted_antibodies": "~5% (trastuzumab, ramucirumab)",
+        "other": "~15% (chemotherapy still dominant in biomarker-negative population)"
+      }
+    }
+  },
+
+  "development_pipeline": {
+    "by_phase_and_moa": {
+      "approved": [
+        {
+          "drug": "Pembrolizumab (Keytruda)",
+          "moa": "PD-1 inhibitor",
+          "sponsor": "Merck",
+          "indications": "1L esophageal/GEJ + chemo; 1L gastric/GEJ (CPS ≥10 mono, CPS ≥1 + chemo); 1L HER2+ gastric/GEJ + trastuzumab + chemo; MSI-H solid tumors",
+          "market_position": "MARKET LEADER - ~45% share"
+        },
+        {
+          "drug": "Nivolumab (Opdivo)",
+          "moa": "PD-1 inhibitor",
+          "sponsor": "Bristol Myers Squibb",
+          "indications": "1L gastric/GEJ/esophageal + chemo (CPS ≥5); Adjuvant esophageal/GEJ post-CRT",
+          "market_position": "MAJOR COMPETITOR - ~25% share; UNIQUE adjuvant indication"
+        },
+        {
+          "drug": "Trastuzumab deruxtecan (Enhertu, T-DXd)",
+          "moa": "HER2 ADC (topoisomerase I inhibitor payload)",
+          "sponsor": "AstraZeneca / Daiichi Sankyo",
+          "indications": "≥2L/3L HER2+ advanced gastric/GEJ",
+          "market_position": "BENCHMARK ADC - ORR 51%, fastest-growing; ~10% of immunotherapy market within HER2+ segment"
+        },
+        {
+          "drug": "Zolbetuximab",
+          "moa": "CLDN18.2 monoclonal antibody",
+          "sponsor": "Astellas",
+          "indications": "1L CLDN18.2+ HER2-negative advanced gastric/GEJ + chemo (EMA approved 2024)",
+          "market_position": "FIRST CLDN18.2-targeted therapy; validates target for ADCs"
+        },
+        {
+          "drug": "Domestic PD-1 inhibitors (camrelizumab, toripalimab, tislelizumab)",
+          "moa": "PD-1 inhibitors",
+          "sponsor": "Hengrui, Junshi, BeiGene",
+          "indications": "Various lines in gastric/GEJ (NMPA approved, China)",
+          "market_position": "~20% share in Asia; cost-competitive"
+        }
+      ],
+      "phase_iii": [
+        {
+          "drug": "CMG-901",
+          "moa": "CLDN18.2 ADC (topoisomerase I inhibitor payload)",
+          "sponsor": "AstraZeneca / Keymed",
+          "status": "Advancing toward Phase III after Phase I ORR 32.6%",
+          "notes": "LEADING CLDN18.2 ADC; $6.9B partnership; ORR 32.6% in Phase I"
+        },
+        {
+          "drug": "ATG-022",
+          "moa": "CLDN18.2 ADC",
+          "sponsor": "Antengene",
+          "status": "Phase I/II CLINCH study ongoing",
+          "notes": "ORR 42.9% in CLDN18.2-high - BEST-IN-CLASS early data; DCR 95.2%"
+        },
+        {
+          "drug": "Sacituzumab tirumotecan",
+          "moa": "TROP2 ADC (topoisomerase I inhibitor payload)",
+          "sponsor": "Merck / Kelun-Biotech",
+          "status": "Phase III initiated after promising Phase I/II",
+          "notes": "TROP2 validated in breast/bladder; broad expression in GEJ/gastric (60-80%)"
+        },
+        {
+          "drug": "Zanidatamab",
+          "moa": "Bispecific HER2 antibody (targets two HER2 epitopes)",
+          "sponsor": "BeiGene / Jazz / Zymeworks",
+          "status": "Phase III for gastric and esophageal cancer",
+          "notes": "Dual HER2 targeting may overcome trastuzumab resistance"
+        },
+        {
+          "drug": "Tebotelimab",
+          "moa": "LAG-3/PD-1 bispecific antibody",
+          "sponsor": "MacroGenics",
+          "status": "Phase III for gastric cancer",
+          "notes": "UNPROVEN - awaiting readout; LAG-3 validated in melanoma but GEJ/gastric uncertain given TIGIT failures"
+        },
+        {
+          "drug": "Tiragolumab + atezolizumab",
+          "moa": "TIGIT + PD-L1 inhibitor combination",
+          "sponsor": "Roche",
+          "status": "Phase III FAILED in esophageal cancer (SKYSCRAPER-07)",
+          "notes": "DEFINITIVE FAILURE - TIGIT does NOT add benefit to checkpoint in esophageal/GEJ"
+        },
+        {
+          "drug": "Domvanalimab + zimberelimab",
+          "moa": "TIGIT + PD-1 inhibitor combination",
+          "sponsor": "Arcus / Gilead",
+          "status": "Phase III FAILED in esophageal cancer",
+          "notes": "SECOND TIGIT FAILURE - validates tiragolumab negative result"
+        }
+      ],
+      "phase_ii": [
+        {
+          "drug": "Ivonescimab",
+          "moa": "PD-1/VEGF bispecific antibody",
+          "sponsor": "Akeso / Summit",
+          "status": "Phase II in gastric cancer",
+          "notes": "Dual mechanism - checkpoint + anti-angiogenic; success in NSCLC; rational for biomarker-negative GEJ/gastric"
+        },
+        {
+          "drug": "Multiple CLDN18.2 ADCs (Bolt, Harbour BioMed, Henlius)",
+          "moa": "CLDN18.2 ADCs with various payloads",
+          "sponsor": "Various",
+          "status": "Phase I/II",
+          "notes": "Intense competition - 6+ CLDN18.2 ADC programs; novel payloads (TLR7/8 agonists, dual-action)"
+        },
+        {
+          "drug": "TG-6002 (oncolytic virus)",
+          "moa": "Engineered oncolytic virus",
+          "sponsor": "Transgene",
+          "status": "Phase II for gastric cancer",
+          "notes": "Oncolytic viruses less explored in GEJ/gastric vs other cancers"
+        }
+      ],
+      "phase_i_preclinical": [
+        {
+          "drug": "TROP2 nanobody ADCs",
+          "moa": "Camelid-derived single-domain antibodies (nanobodies) targeting TROP2",
+          "sponsor": "Biosion",
+          "status": "Preclinical / early Phase I",
+          "notes": "Nanobodies have better tissue penetration than full antibodies; adaptable to ADC, BiTE, CAR formats"
+        },
+        {
+          "drug": "Bifunctional PD-L1 x TGF-β trap molecules",
+          "moa": "Bispecific - blocks PD-L1 and sequesters TGF-β",
+          "sponsor": "Various (Roche, EMD Serono)",
+          "status": "Phase I",
+          "notes": "Rational for TGF-β-high tumors; addresses TME immunosuppression"
+        },
+        {
+          "drug": "UniCAR-T-CEA",
+          "moa": "CAR-T targeting CEA antigen",
+          "sponsor": "AvenCell",
+          "status": "Preclinical",
+          "notes": "CAR-T less explored in solid GI tumors vs hematologic malignancies; CEA broadly expressed"
+        },
+        {
+          "drug": "Circular RNA (circRNA) vaccines",
+          "moa": "Self-amplifying circRNA encoding tumor antigens (CLDN18.2, EBV antigens)",
+          "sponsor": "Orna Therapeutics",
+          "status": "Preclinical",
+          "notes": "Novel vaccine platform; off-the-shelf potential; encodes CLDN18.2 or neoantigens"
+        }
+      ]
+    },
+    "competitive_intensity": {
+      "high_activity_areas": [
+        "CLDN18.2 ADCs - 6+ programs (CMG-901, ATG-022, Bolt, Harbour BioMed, Henlius, others); intense competition post-zolbetuximab validation",
+        "PD-1 inhibitors - SATURATED (pembrolizumab, nivolumab, domestic PD-1s); new entrants face high barriers",
+        "HER2-targeted therapies - established (T-DXd, trastuzumab); zanidatamab (bispecific) seeks differentiation"
+      ],
+      "emerging_opportunities": [
+        "TROP2 ADCs - sacituzumab tirumotecan leading; broad expression (60-80%) means large opportunity",
+        "PD-1/VEGF bispecifics (ivonescimab) - addresses biomarker-negative population; dual mechanism rational",
+        "1L and peri-operative settings - under-penetrated; T-DXd and CLDN18.2 ADCs moving earlier",
+        "Novel ADC payloads - TLR7/8 agonists (immune-activating), dual-action payloads; differentiation from topoisomerase I inhibitors"
+      ],
+      "failed_approaches_avoid": [
+        "TIGIT + PD-1/PD-L1 combinations - tiragolumab and domvanalimab FAILED Phase III; AVOID TIGIT in GEJ/esophageal",
+        "Unselected checkpoint monotherapy in biomarker-negative - shows minimal benefit; biomarker selection ESSENTIAL",
+        "CTLA-4 inhibitors (ipilimumab) - tested but NOT approved; toxicity vs benefit unfavorable in GEJ/gastric"
+      ]
+    }
+  },
+
+  "strategic_insights": {
+    "moa_success_patterns": {
+      "most_promising": [
+        {
+          "moa_class": "PD-1 Checkpoint Inhibitors (Biomarker-Selected)",
+          "evidence": "Pembrolizumab: mOS 13.5 vs 9.4 months in PD-L1 CPS ≥10 (KEYNOTE-590); Nivolumab: mOS 14.4 vs 11.1 months in CPS ≥5 (CheckMate-649); MSI-H: ORR 40-50%",
+          "key_success_factors": "Biomarker selection CRITICAL - benefit enriched in PD-L1 CPS ≥5-10 and MSI-H. Combination with chemotherapy extends benefit to broader population. HER2+ patients benefit from triple therapy (checkpoint + HER2 + chemo).",
+          "strategic_takeaway": "Checkpoint inhibitors are VALIDATED and STANDARD-OF-CARE in biomarker+ GEJ/gastric (OPPOSITE of GBM failure). Market saturated - pembrolizumab (~45%), nivolumab (~25%), domestic PD-1s (~20%). Differentiation requires novel combinations (checkpoint + ADC) or under-penetrated settings (peri-operative, Asia markets). Biomarker testing infrastructure ESSENTIAL."
+        },
+        {
+          "moa_class": "HER2-Targeted ADCs",
+          "evidence": "T-DXd: ORR 51%, mOS 12.5 vs 8.4 months (vs chemo) in ≥2L HER2+ gastric/GEJ",
+          "key_success_factors": "BENCHMARK ADC - dramatic efficacy superiority over chemotherapy. Bystander effect (membrane-permeable payload) enhances efficacy. High DAR (~8) delivers potent cytotoxic payload. ILD manageable with monitoring.",
+          "strategic_takeaway": "T-DXd is GOLD STANDARD ADC in GEJ/gastric and PROOF-OF-CONCEPT for ADC platform. Validates topoisomerase I inhibitor payload, high DAR, bystander effect design. Captures ~10% of immunotherapy market within HER2+ segment. Moving to 1L (trials ongoing) will expand market. T-DXd success paves way for CLDN18.2 and TROP2 ADCs."
+        },
+        {
+          "moa_class": "CLDN18.2-Targeted Therapies (mAb and ADCs)",
+          "evidence": "Zolbetuximab (mAb): mOS 14.4 vs 12.2 months (SPOTLIGHT, approved EMA 2024); CMG-901 (ADC): ORR 32.6% Phase I; ATG-022 (ADC): ORR 42.9% Phase I/II",
+          "key_success_factors": "CLDN18.2 is IDEAL target - tumor-restricted (gastric epithelium only), prevalent (40-60%), cell surface, internalization-capable. Zolbetuximab validates target; ADCs show BREAKTHROUGH efficacy (ORR 30-43%) comparable to T-DXd early data. Multi-billion dollar investments (AstraZeneca/Keymed $6.9B).",
+          "strategic_takeaway": "CLDN18.2 is NEXT MAJOR TARGET after HER2. ADCs (CMG-901, ATG-022) showing exceptional Phase I/II efficacy position CLDN18.2 as LEADING emerging ADC class. Larger addressable population (40-60%) than HER2 (15-30%). Competitive landscape intense (6+ programs) - first to Phase III/approval wins. Projected $500M-1B+ market by 2030. This is HIGHEST PRIORITY emerging target."
+        }
+      ],
+      "comprehensive_failures": [
+        {
+          "moa_class": "TIGIT + PD-1/PD-L1 Combinations",
+          "evidence": "Tiragolumab + atezolizumab: Phase III SKYSCRAPER-07 FAILED in esophageal cancer (no OS benefit). Domvanalimab + zimberelimab: Phase III FAILED in esophageal cancer.",
+          "failure_reasons": "TIGIT blockade does NOT add benefit to PD-1/PD-L1 inhibition in GEJ/esophageal cancers. Mechanism unclear - possibly TIGIT not critical pathway in upper GI tumors, or T-cell exhaustion too severe for dual checkpoint rescue.",
+          "strategic_takeaway": "DEFINITIVE FAILURE - TWO independent TIGIT programs failed Phase III. This mirrors TIGIT failures in NSCLC (tiragolumab) and other cancers. STRATEGIC: AVOID TIGIT combinations in GEJ/gastric/esophageal. Raises concerns about other next-gen checkpoints (LAG-3, TIM-3) - may not work in upper GI cancers despite success elsewhere. LAG-3/PD-1 bispecific (tebotelimab) awaiting Phase III readout - will determine if LAG-3 viable."
+        }
+      ],
+      "emerging_high_potential": [
+        {
+          "moa_class": "TROP2-Targeted ADCs",
+          "evidence": "Sacituzumab tirumotecan: Phase III initiated after promising Phase I/II in GEJ/gastric. TROP2 validated in breast (sacituzumab govitecan ORR 31-35%, approved) and bladder.",
+          "potential": "Broad TROP2 expression (60-80% in GEJ/gastric) - LARGEST addressable population among ADC targets. Topoisomerase I payload proven in GEJ/gastric (T-DXd, CLDN18.2 ADCs). Phase III initiation signals confidence.",
+          "risks": "Less tumor-restricted than CLDN18.2 (TROP2 in lung, skin, colon â†' off-tumor toxicity risk). GEJ/gastric efficacy data pending - extrapolating from breast/bladder uncertain. Competition from CLDN18.2 ADCs which may have better therapeutic window.",
+          "strategic_takeaway": "TROP2 ADCs are THIRD pillar of ADC strategy after HER2 (T-DXd) and CLDN18.2. Broadest expression (60-80%) means largest patient pool. Phase III readout CRITICAL - if ORR ≥30% with manageable safety, TROP2 validated. May compete with or complement CLDN18.2 ADCs (sequential use if non-overlapping target expression)."
+        },
+        {
+          "moa_class": "PD-1/VEGF Bispecific Antibodies",
+          "evidence": "Ivonescimab (PD-1/VEGF bispecific, Akeso/Summit): Phase II in gastric cancer. Success in NSCLC (superior to pembrolizumab monotherapy).",
+          "potential": "Dual mechanism addresses biomarker-negative population - VEGF blockade may 'warm up' cold TME (improve T-cell infiltration), PD-1 blockade activates T cells. Rational for TGF-β/VEGF-high tumors resistant to checkpoint alone.",
+          "risks": "VEGF blockade toxicity (hypertension, bleeding, proteinuria) added to checkpoint toxicity. Benefit in biomarker-negative GEJ/gastric unproven - Phase II readout awaited. May not overcome inherent checkpoint resistance in cold tumors.",
+          "strategic_takeaway": "PD-1/VEGF bispecifics are RATIONAL approach for biomarker-negative population where checkpoint monotherapy fails. Ivonescimab success in NSCLC supports concept. GEJ/gastric Phase II readout will determine viability. Alternative to failed TIGIT combinations. If positive, addresses major unmet need (40-60% biomarker-negative patients)."
+        }
+      ]
+    },
+
+    "key_learnings": {
+      "checkpoint_validation_biomarker_critical": "PD-1/PD-L1 checkpoint inhibitors WORK in GEJ/gastric BUT biomarker selection is ESSENTIAL. Pembrolizumab and nivolumab showed OS benefit in PD-L1 CPS ≥5-10 and MSI-H populations. Unselected populations show modest benefit. This is OPPOSITE of GBM where checkpoint monotherapy failed even with biomarker selection. KEY DIFFERENCE: GEJ/gastric has biomarker+ subsets with 'warm'/'hot' TME (T-cell infiltration, neoantigen burden in MSI-H) vs GBM's uniformly cold TME. STRATEGIC: Biomarker-driven development is MANDATORY - unselected trials have lower probability of success. PD-L1 CPS testing, MSI-H testing, HER2 testing are STANDARD-OF-CARE diagnostics.",
+
+      "adc_platform_validated_cldn18_breakthrough": "ADCs are VALIDATED platform in GEJ/gastric with T-DXd (HER2 ADC) showing exceptional efficacy (ORR 51%, mOS 12.5 months). CLDN18.2 ADCs (CMG-901 ORR 32.6%, ATG-022 ORR 42.9%) demonstrate BREAKTHROUGH early efficacy comparable to T-DXd Phase I data. ADC success factors: (1) Tumor-restricted targets (HER2, CLDN18.2), (2) Topoisomerase I inhibitor payloads, (3) High DAR, (4) Bystander effect. STRATEGIC: ADC platform is MAJOR opportunity - three target classes (HER2, CLDN18.2, TROP2) with distinct patient populations. CLDN18.2 is NEXT major target with 40-60% prevalence (larger than HER2 15-30%). Multi-billion dollar investments validate commercial potential. First to market in CLDN18.2 ADC space captures significant share.",
+
+      "tigit_failure_cautions_nextgen_checkpoints": "TIGIT + PD-1/PD-L1 combinations comprehensively FAILED in Phase III esophageal cancer (tiragolumab, domvanalimab both negative). This mirrors TIGIT failures across cancer types. ROOT CAUSE uncertain but suggests TIGIT not critical pathway in upper GI cancers or dual checkpoint insufficient to rescue exhausted T cells. STRATEGIC: AVOID TIGIT in GEJ/gastric/esophageal. Exercise CAUTION with next-gen checkpoints (LAG-3, TIM-3) - preclinical rationale does NOT guarantee clinical success. LAG-3/PD-1 bispecific (tebotelimab) Phase III readout CRITICAL to determine if LAG-3 viable. Alternative approaches (TME modulators, ADCs, PD-1/VEGF bispecifics) may be lower-risk for checkpoint-resistant disease.",
+
+      "earlier_line_expansion_market_opportunity": "Moving therapies to earlier lines (1L) and curative settings (peri-operative, adjuvant) expands addressable market and improves outcomes. Nivolumab adjuvant approval (CheckMate-577) validates curative-intent immunotherapy. T-DXd and CLDN18.2 ADCs advancing to 1L trials. STRATEGIC: 1L market is 2-3x larger than ≥2L. Peri-operative setting addresses curative intent (higher per-patient value, premium pricing justified). Label expansions from ≥2L to 1L are natural progression for successful therapies (T-DXd breast cancer model). Combination regimens (checkpoint + ADC, checkpoint + chemo + ADC) rational in 1L biomarker-selected populations.",
+
+      "asia_market_dynamics": "Asia represents 55%+ of global GEJ/gastric burden (incidence 30-50/100,000 in East Asia vs 6/100,000 in US). Domestic Chinese PD-1 inhibitors (camrelizumab, toripalimab, tislelizumab) capture ~20% market share due to lower cost and NMPA support. North America leads in revenue (premium pricing) but Asia dominates volume. STRATEGIC: Global development programs MUST include Asian populations. NMPA approvals (China), PMDA approvals (Japan) are distinct pathways. Domestic PD-1 inhibitors are competitive threat - differentiation requires novel mechanisms (ADCs, bispecifics) or superior efficacy. Screening programs in Japan/Korea increase early-stage diagnoses. National reimbursement policies in China drive adoption.",
+
+      "biomarker_negative_unmet_need": "Biomarker-negative population (PD-L1 CPS <5, MSS, HER2-negative, CLDN18.2-negative) represents 40-60% of GEJ/gastric patients with LIMITED options. Checkpoint monotherapy shows minimal benefit. Chemotherapy remains backbone but efficacy poor (mOS 9-11 months). STRATEGIC: This is LARGEST unmet need and commercial opportunity. CLDN18.2 ADCs (40-60% prevalence) and TROP2 ADCs (60-80%) positioned to address gap. PD-1/VEGF bispecifics (ivonescimab) rational for biomarker-negative cold tumors. TME modulators (TGF-β blockade, CD73 inhibitors) may sensitize to checkpoint therapy. Non-immunotherapy approaches (ADCs, targeted agents) needed for IO-refractory disease."
+    },
+
+    "recommendations_for_rd_strategy": [
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Invest in CLDN18.2 ADC Platform - Partnership or In-House Development",
+        "rationale": "CLDN18.2 ADCs are BREAKTHROUGH modality with exceptional Phase I/II efficacy (CMG-901 ORR 32.6%, ATG-022 ORR 42.9%). CLDN18.2 is IDEAL target (tumor-restricted, prevalent 40-60%, cell surface). Zolbetuximab approval validates target. Multi-billion dollar investments (AstraZeneca/Keymed $6.9B) signal confidence.",
+        "action_items": [
+          "Partner with or acquire CLDN18.2 ADC developers (Antengene for ATG-022, Bolt, Harbour BioMed) before Phase III completion",
+          "In-house development: License anti-CLDN18.2 antibodies, conjugate to topoisomerase I payload (SN-38, DXd analog)",
+          "Advance to Phase III rapidly - first to market wins in competitive landscape (6+ programs)",
+          "Combination strategies: CLDN18.2 ADC + checkpoint inhibitor for biomarker+ populations",
+          "1L development after ≥2L approval - expands market 2-3x"
+        ]
+      },
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Leverage T-DXd Success for Next-Gen ADC Development",
+        "rationale": "T-DXd is BENCHMARK ADC (ORR 51%, mOS 12.5 months) validating ADC platform in GEJ/gastric. Topoisomerase I payload, high DAR, bystander effect are proven design principles. Opportunity to extend ADC platform to new targets (TROP2, CEA) or improve on T-DXd (lower ILD risk).",
+        "action_items": [
+          "License or develop topoisomerase I inhibitor payloads (SN-38, DXd analogs, exatecan derivatives)",
+          "Apply T-DXd design principles (high DAR ~8, cleavable linker, membrane-permeable payload) to CLDN18.2 and TROP2 ADCs",
+          "Novel payloads for differentiation: TLR7/8 agonists (immune-activating), dual-action payloads, DNA-alkylating agents",
+          "Address ILD toxicity: Optimize linker-payload to reduce pulmonary accumulation",
+          "Sequential ADC strategies: T-DXd (HER2) → CLDN18.2 ADC for HER2+ patients progressing; CLDN18.2 or TROP2 ADC for HER2-negative"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Pursue Biomarker-Driven Checkpoint Combinations - NOT Unselected Next-Gen Checkpoints",
+        "rationale": "Checkpoint inhibitors are VALIDATED in biomarker+ populations but TIGIT combinations FAILED. LAG-3, TIM-3 unproven in GEJ/gastric. Biomarker-driven combinations (checkpoint + ADC, checkpoint + TME modulator) more rational than unselected next-gen checkpoint addition.",
+        "action_items": [
+          "AVOID TIGIT combinations - comprehensively failed in Phase III",
+          "Monitor tebotelimab (LAG-3/PD-1 bispecific) Phase III readout - determine if LAG-3 viable before investment",
+          "Biomarker-driven combinations: Checkpoint + CLDN18.2 ADC in PD-L1+ CLDN18.2+ patients (dual biomarker selection)",
+          "TME-modulating combinations: PD-1/VEGF bispecifics (ivonescimab), PD-L1 x TGF-β trap molecules for biomarker-negative cold tumors",
+          "Companion diagnostics: Multi-biomarker panels (PD-L1, CLDN18.2, HER2, MSI-H, TME signatures) for precision treatment selection"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Expand to Earlier Lines and Curative Settings",
+        "rationale": "1L and peri-operative markets are 2-3x larger than ≥2L. Nivolumab adjuvant approval (CheckMate-577) validates curative-intent immunotherapy. T-DXd and CLDN18.2 ADCs advancing to 1L. Earlier-line use improves outcomes and per-patient revenue.",
+        "action_items": [
+          "1L trials: Checkpoint + ADC combinations (pembrolizumab + CLDN18.2 ADC in dual biomarker+ patients)",
+          "Peri-operative trials: Neoadjuvant + adjuvant checkpoint inhibitor or ADC for resectable GEJ/gastric (improve pCR rates)",
+          "Adjuvant trials: CLDN18.2 ADCs post-surgery to prevent recurrence in CLDN18.2+ patients",
+          "Window-of-opportunity trials: Pre-surgical dosing to assess pathological response and biomarker changes",
+          "Regulatory strategy: Accelerated approval based on pCR (pathological complete response) or EFS (event-free survival); OS confirmatory"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Address Asia Market with Differentiated Offering",
+        "rationale": "Asia is 55%+ of global volume but domestic PD-1 inhibitors dominate due to lower cost. Novel mechanisms (ADCs, bispecifics) needed to compete. NMPA approvals and national reimbursement policies critical for market access.",
+        "action_items": [
+          "CLDN18.2 and TROP2 ADCs are differentiation - NOT available as domestic biosimilars",
+          "Partner with Chinese developers for NMPA path (AstraZeneca/Keymed model)",
+          "Pricing strategy: Premium pricing in US/EU; value-based pricing in China for reimbursement access",
+          "Clinical trials in Asian populations: Include Chinese, Japanese, Korean sites for global registration",
+          "Leverage screening programs: Japan/Korea have gastric cancer screening - early-stage patients for peri-operative trials"
+        ]
+      },
+      {
+        "priority": "MODERATE-HIGH",
+        "recommendation": "Invest in Biomarker Discovery and Companion Diagnostics",
+        "rationale": "PD-L1 CPS is imperfect predictor. Better biomarkers (IFN-γ signature, TME profiling, multi-omic) improve patient selection, trial success rates, and regulatory approval. Companion diagnostics are recurring revenue stream.",
+        "action_items": [
+          "IFN-γ gene signature development - better predictor of checkpoint benefit than PD-L1 alone",
+          "TME biomarkers: CD8+ TIL density, M1/M2 macrophage ratio, T-cell inflamed signatures for immunotherapy selection",
+          "ADC predictive biomarkers: Target expression level (IHC intensity), internalization assays, DNA repair deficiency for payload sensitivity",
+          "Multi-omic profiling: Genomics (TMB, MSI), transcriptomics (gene signatures), proteomics (target expression) for composite biomarkers",
+          "Circulating biomarkers: ctDNA, tumor markers for non-invasive monitoring and early response prediction",
+          "Partner with diagnostic companies (Roche Diagnostics, Foundation Medicine) for companion diagnostic co-development"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Explore TROP2 ADCs - Monitor Phase III and Prepare for Market Entry",
+        "rationale": "TROP2 ADCs have broad expression (60-80%) - largest addressable population. Sacituzumab tirumotecan Phase III ongoing. TROP2 validated in breast/bladder. May complement or compete with CLDN18.2 ADCs.",
+        "action_items": [
+          "Monitor sacituzumab tirumotecan Phase III readout closely - if positive (ORR ≥30%, OS benefit), TROP2 is validated third ADC target",
+          "Prepare TROP2 ADC development: License or develop anti-TROP2 antibodies, conjugate to topoisomerase I payload",
+          "Differentiation from CLDN18.2 ADCs: Target TROP2-high/CLDN18.2-low subset, or sequential use (CLDN18.2 → TROP2 post-progression)",
+          "Nanobody approaches: Biosion TROP2 nanobodies have better penetration - potential advantage over full antibodies",
+          "Combination strategies: TROP2 ADC + checkpoint inhibitor for biomarker+ populations"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Consider M&A Targets in ADC and Biomarker Space",
+        "rationale": "ADC space is consolidating - Pfizer acquired Seagen ($43B), AbbVie acquired ImmunoGen ($10.1B). CLDN18.2 and TROP2 ADC developers are acquisition targets. Biomarker/diagnostic companies enable precision medicine.",
+        "action_items": [
+          "ADC acquisition targets: Antengene (ATG-022 CLDN18.2 ADC ORR 42.9% - best-in-class), Bolt Biotherapeutics, Harbour BioMed (CLDN18.2 programs)",
+          "Biomarker/diagnostic acquisitions: Companies with TME profiling, IFN-γ signatures, multi-omic platforms for companion diagnostics",
+          "Due diligence focus: Clinical data (ORR, durability), patent landscape (freedom to operate), manufacturing capabilities (ADC conjugation), regulatory strategy",
+          "Valuation benchmarks: ADC deals $4.9B-43B range; early-stage acquisitions $500M-2B; biomarker companies $200M-1B"
+        ]
+      }
+    ]
+  },
+
+  "executive_summary": {
+    "indication_overview": "Gastroesophageal junction (GEJ) and gastric cancers are adenocarcinomas with distinct molecular subtypes and VALIDATED immunotherapy responses in biomarker+ populations. Unlike GBM (uniformly cold, checkpoint monotherapy failed), GEJ/gastric exhibits favorable biology: (1) Biomarker+ subsets (PD-L1 CPS ≥5 ~30-40%, MSI-H <5%, HER2+ 15-30%, CLDN18.2+ 40-60%) are responsive to targeted therapies, (2) Checkpoint inhibitors (pembrolizumab, nivolumab) are STANDARD-OF-CARE in 1L and adjuvant settings with OS benefit (mOS 13.5-14.4 months vs 9-11 months), (3) ADCs are BREAKTHROUGH modality - T-DXd (HER2 ADC) ORR 51%, CLDN18.2 ADCs ORR 30-43% in Phase I/II. Global market $5.37B gastric + $14.31B esophageal (2024-2025) projected to grow at 10-17% CAGR. Asia represents 55%+ of volume; North America leads revenue. Immunotherapy sub-segment $0.95B (2024) → $2.50B (2030).",
+
+    "most_validated_moas": [
+      "PD-1/PD-L1 checkpoint inhibitors (biomarker-selected): Pembrolizumab and nivolumab APPROVED with OS benefit; ~70% of immunotherapy market but SATURATED",
+      "HER2-targeted ADCs: T-DXd BENCHMARK (ORR 51%, mOS 12.5 months in ≥2L); ~10% market share within HER2+ segment; GOLD STANDARD ADC",
+      "CLDN18.2-targeted therapies: Zolbetuximab (mAb) approved 2024; CMG-901 and ATG-022 ADCs show BREAKTHROUGH efficacy (ORR 30-43%) - NEXT MAJOR TARGET"
+    ],
+
+    "emerging_moa_opportunities": [
+      "CLDN18.2 ADCs (CMG-901, ATG-022): HIGHEST PRIORITY - ORR 30-43% in Phase I/II comparable to T-DXd; 40-60% prevalence; $6.9B AstraZeneca/Keymed partnership",
+      "TROP2 ADCs (sacituzumab tirumotecan): Phase III ongoing; broad expression (60-80%) - largest addressable population among ADC targets",
+      "PD-1/VEGF bispecifics (ivonescimab): Phase II; addresses biomarker-negative population with dual mechanism",
+      "1L and peri-operative settings: Label expansions for T-DXd and CLDN18.2 ADCs; market 2-3x larger than ≥2L"
+    ],
+
+    "failed_moas_avoid": [
+      "TIGIT + PD-1/PD-L1 combinations: Tiragolumab and domvanalimab FAILED Phase III in esophageal cancer - DEFINITIVE FAILURE; AVOID TIGIT",
+      "Unselected checkpoint monotherapy in biomarker-negative: Minimal benefit in PD-L1 CPS <5, MSS populations",
+      "Me-too PD-1 inhibitors without differentiation: Market SATURATED (pembrolizumab 45%, nivolumab 25%, domestic PD-1s 20%)"
+    ],
+
+    "highest_priority_unmet_needs": [
+      {
+        "need": "Biomarker-Negative Population (40-60% of patients)",
+        "moa_solutions": "CLDN18.2 ADCs (40-60% prevalence), TROP2 ADCs (60-80%), PD-1/VEGF bispecifics (ivonescimab), TME modulators + checkpoint"
+      },
+      {
+        "need": "CLDN18.2 ADC Development",
+        "moa_solutions": "CMG-901 (AstraZeneca/Keymed), ATG-022 (Antengene), others - ORR 30-43%; topoisomerase I payloads; Phase III advancing"
+      },
+      {
+        "need": "Earlier Line Expansion (1L, Peri-Operative)",
+        "moa_solutions": "T-DXd and CLDN18.2 ADCs moving to 1L; peri-operative checkpoint inhibitor or ADC trials; adjuvant ADCs for recurrence prevention"
+      },
+      {
+        "need": "Asia Market Differentiation",
+        "moa_solutions": "ADCs (CLDN18.2, TROP2) - not biosimilar-able; NMPA approvals; value-based pricing; partnerships with Chinese developers"
+      }
+    ],
+
+    "key_success_factors_by_moa": {
+      "Checkpoint_inhibitors": "VALIDATED in biomarker+ populations (PD-L1 CPS ≥5, MSI-H) with OS benefit. Biomarker selection MANDATORY - unselected populations show minimal benefit. Market SATURATED - differentiation requires novel combinations (checkpoint + ADC) or under-penetrated settings (peri-operative, Asia). TIGIT combinations FAILED - caution with next-gen checkpoints.",
+
+      "HER2_ADCs": "T-DXd is BENCHMARK with exceptional efficacy (ORR 51%, mOS 12.5 months vs chemo). Validates ADC platform in GEJ/gastric. Topoisomerase I payload, high DAR (~8), bystander effect are proven design principles. Moving to 1L expands market. ILD is manageable toxicity.",
+
+      "CLDN18.2_ADCs": "BREAKTHROUGH emerging modality - CMG-901 ORR 32.6%, ATG-022 ORR 42.9% in Phase I/II. IDEAL target: tumor-restricted (gastric epithelium), prevalent (40-60%), cell surface. Zolbetuximab approval validates target. Multi-billion dollar investments ($6.9B AstraZeneca/Keymed). HIGHEST PRIORITY - first to Phase III/approval captures significant share. Projected $500M-1B+ market by 2030.",
+
+      "TROP2_ADCs": "Broad expression (60-80%) - largest addressable population. Validated in breast/bladder (sacituzumab govitecan). Phase III ongoing in GEJ/gastric. Less tumor-restricted than CLDN18.2 (potential off-tumor toxicity). Key question: Can match CLDN18.2 ADC efficacy (ORR 30-43%) with acceptable safety?",
+
+      "PD-1_VEGF_bispecifics": "Rational for biomarker-negative cold tumors - VEGF blockade may 'warm' TME, PD-1 blockade activates T cells. Ivonescimab success in NSCLC supports concept. GEJ/gastric Phase II readout critical. Alternative to failed TIGIT combinations."
+    },
+
+    "strategic_positioning": {
+      "avoid": [
+        "TIGIT + PD-1/PD-L1 combinations (tiragolumab, domvanalimab Phase III failures - DEFINITIVE)",
+        "Me-too PD-1 inhibitors without differentiation (market SATURATED)",
+        "Unselected checkpoint approaches in biomarker-negative populations (minimal benefit)",
+        "Next-gen checkpoints (LAG-3, TIM-3) without strong Phase II data (TIGIT failures raise concerns)"
+      ],
+      "pursue_aggressively": [
+        "CLDN18.2 ADC partnerships or in-house development (CMG-901, ATG-022 targets - HIGHEST PRIORITY)",
+        "1L and peri-operative label expansions for T-DXd and CLDN18.2 ADCs (market 2-3x larger)",
+        "TROP2 ADC development if Phase III positive (broad expression 60-80%)",
+        "PD-1/VEGF bispecifics for biomarker-negative population (ivonescimab model)",
+        "Asia market with differentiated ADCs (not biosimilar-able)"
+      ],
+      "monitor_closely": [
+        "CMG-901 and ATG-022 Phase II/III progression (CLDN18.2 ADC space race)",
+        "Sacituzumab tirumotecan Phase III readout (TROP2 ADC validation in GEJ/gastric)",
+        "Tebotelimab Phase III (LAG-3/PD-1 bispecific - determines if LAG-3 viable post-TIGIT failures)",
+        "Ivonescimab Phase II (PD-1/VEGF bispecific for biomarker-negative)",
+        "T-DXd 1L trials (HER2+ label expansion opportunity)"
+      ]
+    },
+
+    "overall_gej_gastric_attractiveness": "GEJ/gastric is VALIDATED, COMMERCIALLY ATTRACTIVE immunotherapy indication with MULTIPLE approved therapies and MAJOR emerging opportunities. This is OPPOSITE of GBM (no approved IOs, high failure rate). KEY ADVANTAGES: (1) Biomarker+ subsets (PD-L1+, MSI-H, HER2+, CLDN18.2+) have PROVEN responses to targeted therapies, (2) Large market ($5.37B gastric + $14.31B esophageal) with robust growth (10-17% CAGR), (3) ADC platform VALIDATED - T-DXd success paves way for CLDN18.2 and TROP2 ADCs, (4) Asia represents 55%+ of volume - global opportunity. STRATEGIC OPPORTUNITIES: (1) CLDN18.2 ADCs are BREAKTHROUGH - ORR 30-43% positions as NEXT MAJOR ADC class after T-DXd; multi-billion dollar investments validate potential, (2) Biomarker-negative population (40-60%) is MAJOR unmet need - CLDN18.2/TROP2 ADCs, PD-1/VEGF bispecifics address gap, (3) Earlier-line expansion (1L, peri-operative) grows market 2-3x, (4) Checkpoint market SATURATED but combination opportunities (checkpoint + ADC) remain. RISKS: (1) Competitive intensity in CLDN18.2 ADC space (6+ programs) - first to market wins, (2) TIGIT failures raise concerns about next-gen checkpoints in upper GI cancers, (3) Asia market has domestic PD-1 competition - differentiation requires novel mechanisms. RECOMMENDATION: GEJ/gastric is HIGH-PRIORITY indication for ADC development (CLDN18.2, TROP2) and checkpoint combinations. AVOID checkpoint monotherapy (saturated) and TIGIT combinations (failed). PURSUE: (1) CLDN18.2 ADC partnerships (Antengene ATG-022, others) before Phase III completion, (2) In-house ADC platform leveraging T-DXd design principles, (3) 1L and peri-operative trials for label expansion, (4) Biomarker-driven combinations (checkpoint + ADC in dual biomarker+ populations). GEJ/gastric offers BALANCED RISK-REWARD - validated biology, proven MOAs, major emerging targets (CLDN18.2), large commercial opportunity."
+  }
+}

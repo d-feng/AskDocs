@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<indication_profile>
+  
+  <metadata>
+    <indication_name>Hepatocellular Carcinoma (HCC)</indication_name>
+    <indication_code>C22.0 (ICD-10)</indication_code>
+    <subtypes>
+      <subtype prevalence="80-85%">Classic HCC</subtype>
+      <subtype prevalence="10-15%">Fibrolamellar HCC</subtype>
+      <subtype prevalence="5%">Combined HCC-cholangiocarcinoma</subtype>
+    </subtypes>
+    <geographic_scope>United States and European Union</geographic_scope>
+    <data_version>2025-10-03</data_version>
+    <data_sources>ClinicalTrials.gov, EU Clinical Trials Register, PubMed, FDA/EMA approvals, liver cancer market reports</data_sources>
+    
+    <usage_for_claude>
+      This HCC indication profile enables MOA-based indication selection by providing:
+      (1) Disease biology including immune landscape and underlying liver disease context
+      (2) Comprehensive precedent of MOAs tested in HCC with detailed Phase III outcomes
+      (3) Analysis of successes (atezolizumab+bevacizumab, STRIDE, nivolumab+ipilimumab) and failures (LEAP-002)
+      (4) Unmet needs framed as MOA requirements
+      (5) Scoring framework for ranking HCC against other indications
+      When provided with a drug MOA, assess fit by matching against precedent drugs with similar MOA tags.
+      CRITICAL CONTEXT: HCC typically occurs in patients with underlying liver disease (cirrhosis, hepatitis B/C), 
+      which creates unique immunological and safety considerations.
+    </usage_for_claude>
+  </metadata>
+
+  <disease_biology>
+    
+    <pathophysiology>
+      <summary>
+        HCC is the most common primary liver cancer, typically arising in the context of chronic liver disease, 
+        cirrhosis, and viral hepatitis (HBV/HCV). The tumor microenvironment is uniquely immunosuppressive due to:
+        (1) Underlying liver inflammation and fibrosis creating tolerogenic conditions
+        (2) High regulatory T cell infiltration
+        (3) Myeloid-derived suppressor cells (MDSCs) and tumor-associated macrophages (TAMs)
+        (4) Hypoxia and aberrant angiogenesis driven by chronic inflammation
+        HCC is considered an "immune-excluded" or "cold" tumor in many cases, though subsets show T cell infiltration.
+        The liver itself is an immunologically privileged organ with inherent tolerance mechanisms.
+      </summary>
+      <key_pathways>
+        <pathway relevance="high">
+          <name>PD-1 / PD-L1 checkpoint axis</name>
+          <role_in_disease>Expressed in subset of HCC; contributes to T cell exhaustion in context of chronic antigen exposure from underlying liver disease</role_in_disease>
+          <druggability>Established - Multiple checkpoint inhibitors approved in combination regimens</druggability>
+          <clinical_validation>Atezolizumab+bevacizumab (FDA/EMA approved), durvalumab+tremelimumab (STRIDE), nivolumab+ipilimumab all show efficacy; monotherapy less effective than in other cancers</clinical_validation>
+        </pathway>
+        <pathway relevance="high">
+          <name>VEGF / Angiogenesis pathway</name>
+          <role_in_disease>HCC is highly vascular; chronic liver disease and hypoxia drive VEGF overexpression; tumor angiogenesis is hallmark</role_in_disease>
+          <druggability>Established - Multiple VEGF TKIs and anti-VEGF antibodies approved</druggability>
+          <clinical_validation>Sorafenib (historical standard), lenvatinib, cabozantinib, regorafenib approved as monotherapies; bevacizumab approved in combination with atezolizumab; ICI+VEGF combination is current first-line standard</clinical_validation>
+        </pathway>
+        <pathway relevance="high">
+          <name>CTLA-4 checkpoint axis</name>
+          <role_in_disease>Expressed on T cells and particularly on Tregs; contributes to immunosuppression in TME</role_in_disease>
+          <druggability>Validated - Dual checkpoint blockade shows superior outcomes</druggability>
+          <clinical_validation>Tremelimumab (single priming dose in STRIDE regimen) and ipilimumab (nivolumab+ipilimumab) approved; dual checkpoint blockade superior to PD-1/L1 monotherapy</clinical_validation>
+        </pathway>
+        <pathway relevance="medium">
+          <name>c-MET pathway</name>
+          <role_in_disease>c-MET amplification/overexpression in subset of HCC; drives proliferation and metastasis</role_in_disease>
+          <druggability>Emerging - Cabozantinib (multi-kinase including c-MET) approved</druggability>
+          <clinical_validation>Cabozantinib monotherapy approved for second-line; shows activity in c-MET-driven HCC</clinical_validation>
+        </pathway>
+        <pathway relevance="emerging">
+          <name>Wnt/β-catenin pathway</name>
+          <role_in_disease>Mutated in ~30% of HCC; associated with immune-excluded phenotype and ICI resistance</role_in_disease>
+          <druggability>Challenging - No approved drugs; associated with poor ICI response</druggability>
+          <clinical_validation>Wnt/β-catenin activation correlates with lack of T cell infiltration and primary resistance to ICIs; represents unmet need</clinical_validation>
+        </pathway>
+      </key_pathways>
+      
+      <underlying_liver_disease_context>
+        <critical_consideration>
+          UNIQUE TO HCC: Most patients have underlying cirrhosis (80-90%), chronic hepatitis B or C, or NASH/NAFLD.
+          This creates:
+          - Baseline liver dysfunction (Child-Pugh class affects treatment tolerance)
+          - Chronic inflammation leading to immune exhaustion
+          - Higher bleeding risk (important for VEGF inhibitors causing thrombocytopenia)
+          - Varices risk with anti-VEGF therapy
+          - Unique toxicity profile (hepatotoxicity from immunotherapy in already compromised liver)
+        </critical_consideration>
+        <etiology_distribution>
+          <cause prevalence="~30%" region="US/EU">Hepatitis C (declining with DAA treatments)</cause>
+          <cause prevalence="~15%" region="US/EU">Hepatitis B</cause>
+          <cause prevalence="~40%" region="US/EU">NASH/NAFLD (rapidly increasing)</cause>
+          <cause prevalence="~15%" region="US/EU">Alcohol-related liver disease</cause>
+        </etiology_distribution>
+        <impact_on_immunotherapy>
+          Viral hepatitis can enhance immune activation (better ICI response in some studies) while NASH-associated HCC 
+          may have more immunosuppressive TME. Cirrhosis severity (Child-Pugh B) is associated with worse outcomes and 
+          higher toxicity; most trials enroll predominantly Child-Pugh A patients.
+        </impact_on_immunotherapy>
+      </underlying_liver_disease_context>
+    </pathophysiology>
+
+    <immune_landscape>
+      <tumor_microenvironment>
+        <immune_infiltration>Generally "Cold" or "Immune-Excluded" - Most HCC tumors have limited T cell infiltration. The liver's tolerogenic environment, chronic inflammation, and dense stroma contribute to immune exclusion. Responders to ICIs tend to have higher baseline T cell infiltration, but this is less predictive than in other cancers. Exhausted T cells are present due to chronic antigen exposure from underlying viral hepatitis.</immune_infiltration>
+        <dominant_immune_cells>Regulatory T cells (Tregs) - highly enriched; Myeloid-derived suppressor cells (MDSCs); Tumor-associated macrophages (TAMs, often M2-polarized); Exhausted CD8+ T cells; Natural Killer (NK) cells; Neutrophils</dominant_immune_cells>
+        <immune_suppression_mechanisms>
+          <mechanism>
+            <name>High Treg infiltration</name>
+            <prevalence>Abundant in most HCC tumors</prevalence>
+            <functional_impact>Secrete IL-10, TGF-β; suppress effector T cell function; contribute to tolerance</functional_impact>
+          </mechanism>
+          <mechanism>
+            <name>MDSC accumulation</name>
+            <prevalence>High in HCC, particularly in cirrhotic liver</prevalence>
+            <functional_impact>Suppress T cell activation; produce arginase, iNOS; deplete arginine needed for T cell function</functional_impact>
+          </mechanism>
+          <mechanism>
+            <name>PD-L1 expression</name>
+            <prevalence>Variable - 15-25% of tumors, but not predictive of ICI response</prevalence>
+            <functional_impact>Engages PD-1 on T cells, leading to exhaustion and anergy; checkpoint blockade can reverse this</functional_impact>
+          </mechanism>
+          <mechanism>
+            <name>TGF-β signaling</name>
+            <prevalence>High in fibrotic/cirrhotic liver and HCC TME</prevalence>
+            <functional_impact>Promotes immunosuppression, fibrosis, Treg differentiation; excludes T cells from tumor; inhibits NK cell function</functional_impact>
+          </mechanism>
+          <mechanism>
+            <name>Liver tolerance mechanisms</name>
+            <prevalence>Inherent to liver immunology</prevalence>
+            <functional_impact>Liver induces tolerance to prevent autoimmunity against gut antigens; this creates baseline immunosuppressive environment that HCC exploits</functional_impact>
+          </mechanism>
+        </immune_suppression_mechanisms>
+      </tumor_microenvironment>
+      
+      <cytokine_environment>
+        <cytokine_profile>Predominantly immunosuppressive - The cirrhotic liver and HCC TME are characterized by chronic inflammation with paradoxical immunosuppression. High levels of TGF-β, IL-10, and IL-6 create hostile environment for anti-tumor immunity. Pro-inflammatory cytokines (IL-6, TNF-α) from chronic liver disease can paradoxically promote tumor growth.</cytokine_profile>
+        <key_cytokines>
+          <cytokine role="Protumor">
+            <name>TGF-β</name>
+            <expression_level>Very high in cirrhotic liver and HCC stroma</expression_level>
+            <function>Drives fibrosis; promotes Treg differentiation; suppresses T cell and NK cell function; contributes to immune exclusion</function>
+            <therapeutic_relevance>Major therapeutic target; TGF-β blockade could synergize with ICIs, but no approved agents yet. Bintrafusp alfa (PD-L1-TGF-β trap) showed some activity but failed in pivotal trials.</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor">
+            <name>IL-10</name>
+            <expression_level>Elevated in HCC and cirrhotic liver</expression_level>
+            <function>Immunosuppressive; produced by Tregs, MDSCs, TAMs; inhibits Th1 responses and T cell activation</function>
+            <therapeutic_relevance>Blockade could enhance immunity, but paradoxically high-dose pegylated IL-10 can activate CD8 T cells (not tested in HCC)</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Protumor/Inflammatory">
+            <name>IL-6</name>
+            <expression_level>High in chronic liver disease and HCC</expression_level>
+            <function>Promotes tumor cell proliferation via STAT3; recruits MDSCs; paradoxically pro-inflammatory but supports tumor growth</function>
+            <therapeutic_relevance>IL-6/STAT3 pathway inhibitors in preclinical development; could reduce immunosuppression</therapeutic_relevance>
+          </cytokine>
+          <cytokine role="Antitumor">
+            <name>IFN-γ</name>
+            <expression_level>Low in most HCC; marker of Th1 response when present</expression_level>
+            <function>Activates macrophages; enhances T cell cytotoxicity; upregulates MHC-I</function>
+            <therapeutic_relevance>Low IFN-γ signature associated with poor ICI response; increasing IFN-γ production could enhance efficacy</therapeutic_relevance>
+          </cytokine>
+        </key_cytokines>
+      </cytokine_environment>
+
+      <immune_receptors>
+        <receptor>
+          <name>PD-1</name>
+          <expression_pattern>Expressed on tumor-infiltrating T cells; often marks exhausted T cells from chronic viral hepatitis</expression_pattern>
+          <functional_status>Exhausted/anergic; can be partially rescued with checkpoint blockade, but response rates lower than other cancers</functional_status>
+          <targeting_potential>VALIDATED - Multiple anti-PD-1 antibodies approved IN COMBINATION (nivolumab, pembrolizumab); monotherapy shows modest activity (ORR 15-20%); combination therapy required for meaningful benefit</targeting_potential>
+        </receptor>
+        <receptor>
+          <name>PD-L1</name>
+          <expression_pattern>Expressed on subset of HCC tumor cells and immune cells; variable and non-predictive</expression_pattern>
+          <functional_status>Mediates immune evasion when expressed</functional_status>
+          <targeting_potential>VALIDATED - Anti-PD-L1 antibodies approved in combination (atezolizumab, durvalumab, avelumab); PD-L1 expression NOT required for response in HCC</targeting_potential>
+        </receptor>
+        <receptor>
+          <name>CTLA-4</name>
+          <expression_pattern>Expressed on activated T cells and highly on Tregs</expression_pattern>
+          <functional_status>Inhibits T cell priming; contributes to immunosuppression</functional_status>
+          <targeting_potential>VALIDATED - Ipilimumab and tremelimumab approved in combination with PD-1/L1 inhibitors; dual checkpoint blockade shows superior efficacy vs PD-1/L1 alone</targeting_potential>
+        </receptor>
+        <receptor>
+          <name>LAG-3</name>
+          <expression_pattern>Co-expressed with PD-1 on exhausted T cells in HCC</expression_pattern>
+          <functional_status>Contributes to T cell exhaustion; potential target for combination therapy</functional_status>
+          <targeting_potential>Emerging - Preclinical data suggests LAG-3 blockade could synergize with PD-1 inhibitors; clinical trials ongoing</targeting_potential>
+        </receptor>
+        <receptor>
+          <name>TIM-3</name>
+          <expression_pattern>Expressed on exhausted T cells and NK cells</expression_pattern>
+          <functional_status>Inhibitory receptor; marker of terminal T cell exhaustion</functional_status>
+          <targeting_potential>Emerging - Multiple TIM-3 inhibitors in clinical development for HCC</targeting_potential>
+        </receptor>
+        <receptor>
+          <name>TIGIT</name>
+          <expression_pattern>Expressed on T cells and NK cells</expression_pattern>
+          <functional_status>Inhibitory receptor; competes with CD226 for ligand binding</functional_status>
+          <targeting_potential>UNCERTAIN - TIGIT blockade has failed in other solid tumors; limited data in HCC specifically</targeting_potential>
+        </receptor>
+      </immune_receptors>
+    </immune_landscape>
+
+    <tumor_antigens>
+      <antigen>
+        <name>Glypican-3 (GPC3)</name>
+        <expression_frequency>70-80% of HCC tumors</expression_frequency>
+        <expression_level>High in HCC; oncofetal antigen</expression_level>
+        <expression_pattern>Cell surface heparan sulfate proteoglycan; membranous expression</expression_pattern>
+        <normal_tissue_expression>Expressed in fetal liver and placenta; minimal expression in adult tissues including normal liver</normal_tissue_expression>
+        <therapeutic_window>Excellent - high tumor expression, minimal normal adult tissue expression</therapeutic_window>
+        <prior_targeting_attempts>
+          - GPC3-targeted CAR-T cells: Multiple programs in Phase I/II (5+ programs); safety manageable but efficacy limited by poor T cell trafficking to liver tumor
+          - GPC3 x CD3 bispecific T-cell engagers: Early clinical development
+          - GPC3-targeted ADCs: Preclinical development
+          - GPC3 vaccines: Multiple trials; modest immunogenicity
+          Clinical data shows GPC3 is targetable but solid tumor challenges (trafficking, TME) limit efficacy to date
+        </prior_targeting_attempts>
+      </antigen>
+      
+      <antigen>
+        <name>Alpha-fetoprotein (AFP)</name>
+        <expression_frequency>50-70% of HCC tumors (serum AFP elevated in same proportion)</expression_frequency>
+        <expression_level>Variable; high in subset</expression_level>
+        <expression_pattern>Intracellular and secreted; can be used as tumor marker</expression_pattern>
+        <normal_tissue_expression>Expressed in fetal liver and yolk sac; minimal in normal adult tissues</normal_tissue_expression>
+        <therapeutic_window>Good for vaccine approaches; challenging for antibody-based due to secreted nature</therapeutic_window>
+        <prior_targeting_attempts>
+          - AFP-targeted vaccines: Multiple trials; can elicit immune responses but clinical benefit modest
+          - AFP-specific TCR-engineered T cells: Preclinical development
+          Validates as tumor-associated antigen but intracellular/secreted nature limits targeting strategies
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <name>Telomerase Reverse Transcriptase (TERT)</name>
+        <expression_frequency>High in most HCC tumors due to TERT promoter mutations (~60% of HCC)</expression_frequency>
+        <expression_level>High; critical for cancer cell immortality</expression_level>
+        <expression_pattern>Intracellular enzyme; nuclear localization</expression_pattern>
+        <normal_tissue_expression>Limited to stem cells and germline cells in adults</normal_tissue_expression>
+        <therapeutic_window>Good for vaccine approaches targeting TERT peptides</therapeutic_window>
+        <prior_targeting_attempts>
+          - Tertomotide (TERT vaccine): Reached Phase III development in HCC; results pending
+          - Other TERT-targeted vaccines: Multiple programs
+          Represents rational target given TERT promoter mutation frequency; vaccine approach most feasible
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <name>NY-ESO-1 (Cancer-Testis Antigen)</name>
+        <expression_frequency>~10-15% of HCC tumors</expression_frequency>
+        <expression_level>High when expressed</expression_level>
+        <expression_pattern>Intracellular protein</expression_pattern>
+        <normal_tissue_expression>Testis and placenta only (immune privileged sites)</normal_tissue_expression>
+        <therapeutic_window>Excellent when expressed; limited by low expression frequency</therapeutic_window>
+        <prior_targeting_attempts>
+          - NY-ESO-1 specific TCR-T cells: Clinical trials in HCC
+          - NY-ESO-1 vaccines: Multiple programs
+          Limited applicability due to low expression frequency in HCC
+        </prior_targeting_attempts>
+      </antigen>
+
+      <antigen>
+        <name>Other emerging targets</name>
+        <expression_frequency>Variable</expression_frequency>
+        <expression_level>Variable</expression_level>
+        <expression_pattern>Multiple cell surface and intracellular targets being explored</expression_pattern>
+        <normal_tissue_expression>Variable</normal_tissue_expression>
+        <therapeutic_window>Under investigation</therapeutic_window>
+        <prior_targeting_attempts>
+          Pipeline includes programs targeting multiple novel antigens, particularly for ADC and bispecific approaches
+        </prior_targeting_attempts>
+      </antigen>
+    </tumor_antigens>
+
+    <biological_features_for_moa_matching>
+      <feature moa_relevance="Checkpoint inhibitors (PD-1/PD-L1)">
+        <name>PD-1/PD-L1 axis activation in subset of tumors</name>
+        <description>Subset of HCC expresses PD-L1 and has exhausted PD-1+ T cells from chronic inflammation</description>
+        <frequency>PD-L1+ in 15-25% of tumors, but response not restricted to PD-L1+ subset</frequency>
+        <therapeutic_implication>
+          Checkpoint inhibitors are VALIDATED but REQUIRE COMBINATION therapy for meaningful benefit.
+          PD-1/L1 monotherapy shows only 15-20% ORR (much lower than melanoma, NSCLC).
+          SUCCESS depends on combination partner:
+          - ICI + VEGF inhibitor (atezolizumab+bevacizumab) is proven standard
+          - Dual ICI (nivolumab+ipilimumab, durvalumab+tremelimumab) also validated
+          - ICI + TKI showing promise (camrelizumab+rivoceranib best OS to date)
+          CRITICAL: PD-L1 expression is NOT predictive in HCC (unlike NSCLC)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="VEGF pathway inhibitors, anti-angiogenic therapy">
+        <name>Hypervascular tumor with VEGF overexpression</name>
+        <description>HCC is highly vascular; chronic liver disease and hypoxia drive angiogenesis; VEGF is master regulator</description>
+        <frequency>Nearly universal - HCC is one of most vascular solid tumors</frequency>
+        <therapeutic_implication>
+          VEGF pathway is HIGHLY VALIDATED target in HCC:
+          - Sorafenib (multi-kinase TKI) was first systemic therapy approved; standard for 10+ years
+          - Lenvatinib non-inferior to sorafenib in first-line
+          - Bevacizumab + atezolizumab now first-line standard (anti-VEGF antibody + ICI superior to TKI alone)
+          - Multiple VEGFR TKIs approved (cabozantinib, regorafenib) for later lines
+          CRITICAL SYNERGY: VEGF inhibition enhances ICI efficacy by:
+          (1) Normalizing tumor vasculature → improved T cell infiltration
+          (2) Reducing MDSCs and Tregs
+          (3) Counteracting ICI-induced compensatory VEGF upregulation
+          ICI+VEGF combination is more effective than either alone
+          SAFETY CONSIDERATION: Bleeding risk in cirrhotic patients with varices; requires careful patient selection
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Dual checkpoint blockade (PD-1 + CTLA-4)">
+        <name>Multiple checkpoint pathways active; high immunosuppression</name>
+        <description>HCC TME has multiple layers of immunosuppression; single checkpoint blockade insufficient for most patients</description>
+        <frequency>Relevant for all HCC patients; high Treg burden makes CTLA-4 blockade rational</frequency>
+        <therapeutic_implication>
+          Dual checkpoint blockade VALIDATED and superior to PD-1/L1 monotherapy:
+          - Nivolumab + ipilimumab: Phase III CheckMate 9DW showed mOS 23.7 months, ORR 36%, 3-year OS 38%
+          - STRIDE regimen (durvalumab + single priming dose tremelimumab): mOS 16.4 months, impressive 5-year OS 19.6%
+          ADVANTAGE: Higher response rates than ICI monotherapy; long-term survival in subset
+          CHALLENGE: Higher toxicity than ICI monotherapy (Grade 3+ AEs 41-50%); requires careful patient selection
+          STRATEGIC: Dual ICI may be preferred over ICI+VEGF in patients with contraindications to VEGF inhibitors (varices, thrombocytopenia)
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Bispecific antibodies (PD-1/L1 x VEGF)">
+        <name>Opportunity for dual pathway blockade with single molecule</name>
+        <description>Success of ICI+VEGF combinations creates rationale for bispecific antibodies targeting both pathways</description>
+        <frequency>Applicable to broad HCC population</frequency>
+        <therapeutic_implication>
+          Emerging approach with strong biological rationale:
+          - Ivonescimab (PD-1 x VEGF bispecific) and PM-8002 (PD-L1 x VEGF bispecific) in clinical development
+          - Potential advantages: Single molecule, simplified dosing, potential for unique PK/PD properties
+          - Challenge: Must demonstrate superiority or non-inferiority to approved ICI+VEGF combinations (high bar)
+          Pipeline shows ~18 bispecific programs in HCC across multiple target combinations
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="TGF-β pathway inhibitors">
+        <name>TGF-β dominant immunosuppressive driver in HCC TME</name>
+        <description>TGF-β drives fibrosis, Treg expansion, T cell exclusion; major barrier to immunotherapy</description>
+        <frequency>High TGF-β signaling in most HCC, especially in fibrotic/cirrhotic liver</frequency>
+        <therapeutic_implication>
+          TGF-β is BIOLOGICALLY VALIDATED but CLINICALLY UNPROVEN target:
+          - Bintrafusp alfa (PD-L1-TGF-β trap fusion protein) tested in HCC but failed to show superiority
+          - Challenge: TGF-β has complex biology; complete blockade may cause on-target toxicities
+          - Opportunity: Better TGF-β inhibitors or tumor-targeted approaches could unlock potential
+          STRATEGIC: TGF-β remains high-value target but requires different approach than bintrafusp alfa
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="CAR-T cells and cell therapies targeting tumor antigens">
+        <name>GPC3 and other tumor-associated antigens present</name>
+        <description>GPC3 expressed in 70-80% of HCC; other targets (AFP, TERT) also present</description>
+        <frequency>GPC3 in 70-80%; AFP in 50-70%; TERT in ~60%</frequency>
+        <therapeutic_implication>
+          Tumor antigens available but CELL THERAPY REMAINS UNPROVEN in solid tumors including HCC:
+          - 5+ GPC3 CAR-T programs in Phase I/II; safety acceptable but efficacy limited
+          - Challenges: Poor T cell trafficking to liver tumor, immunosuppressive TME, manufacturing complexity
+          - 3-5 year timeline minimum before potential approval (if successful)
+          STRATEGIC ASSESSMENT: High-risk, long-timeline approach; solid tumor CAR-T has not yet succeeded in any indication
+          No registrational trials expected before 2027-2028
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Cancer vaccines">
+        <name>Tumor-associated antigens suitable for vaccine approaches</name>
+        <description>Multiple immunogenic antigens (TERT, AFP, GPC3, NY-ESO-1) suitable for vaccine-based immunization</description>
+        <frequency>Variable by target; TERT mutations very common (~60%)</frequency>
+        <therapeutic_implication>
+          Cancer vaccines have LONG HISTORY in HCC but MODEST CLINICAL SUCCESS to date:
+          - Tertomotide (TERT vaccine) reached Phase III - awaiting results
+          - Multiple other vaccine programs (25+ in pipeline)
+          - Challenge: Generating strong, sustained immune responses in immunosuppressive TME
+          - Potential advantage: Could induce de novo immune responses in "cold" tumors
+          STRATEGIC: Vaccines may work best in adjuvant setting or in combination with ICIs to overcome tolerance
+        </therapeutic_implication>
+      </feature>
+
+      <feature moa_relevance="Novel checkpoint inhibitors (LAG-3, TIM-3, others)">
+        <name>Co-inhibitory receptors beyond PD-1/CTLA-4 expressed in HCC</name>
+        <description>LAG-3, TIM-3, TIGIT expressed on exhausted T cells in HCC</description>
+        <frequency>Variable; often co-expressed with PD-1</frequency>
+        <therapeutic_implication>
+          Novel checkpoints represent UNPROVEN but RATIONAL targets:
+          - LAG-3: Co-expressed with PD-1 on exhausted T cells; dual blockade could enhance efficacy
+          - TIM-3: Marker of terminal exhaustion; blockade could rescue deeply exhausted cells
+          - TIGIT: Failed in multiple other solid tumors; unclear if HCC is different
+          STRATEGIC: These are "second-generation" checkpoints; may work in combination with PD-1/L1 inhibitors
+          Challenge: Must show superiority to already-approved dual checkpoint blockade (nivolumab+ipilimumab, STRIDE)
+        </therapeutic_implication>
+      </feature>
+    </biological_features_for_moa_matching>
+    
+  </disease_biology>
+
+  <moa_landscape>
+    
+    <moa_category name="ICI + VEGF Inhibitor Combinations">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          HCC is uniquely suited for ICI+VEGF combinations due to:
+          (1) High tumor vascularity and VEGF overexpression from chronic hypoxia and inflammation
+          (2) VEGF-mediated immunosuppression (recruits Tregs, MDSCs; inhibits T cell infiltration)
+          (3) Synergy: VEGF inhibition "normalizes" tumor vasculature, allowing better T cell infiltration and ICI activity
+          (4) Complementary mechanisms: ICI activates T cells; VEGF inhibition allows T cell access to tumor
+          This combination addresses two fundamental barriers in HCC: immune exclusion and checkpoint-mediated exhaustion.
+          The success of atezolizumab+bevacizumab validated this approach and established it as first-line standard.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - HCC is one of most vascular solid tumors (nearly universal VEGF overexpression)
+          - VEGF creates immunosuppressive TME by recruiting Tregs and MDSCs
+          - "Vascular normalization" with VEGF inhibitors improves T cell infiltration
+          - ICI-induced VEGF upregulation (compensatory mechanism) is blocked by concurrent VEGF inhibition
+          - Bevacizumab has established safety profile in combination with chemotherapy in other cancers
+        </supporting_biology>
+        <theoretical_concerns>
+          - Bleeding risk in cirrhotic patients with esophageal varices (bevacizumab increases bleeding)
+          - Hypertension and proteinuria from VEGF inhibition
+          - Hepatotoxicity from ICI in already-compromised liver
+          - Cost of dual biologic therapy
+          - Requires IV administration (bevacizumab)
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Atezolizumab + Bevacizumab (Tecentriq + Avastin)</drug_name>
+          <specific_moa>
+            Dual mechanism:
+            (1) Atezolizumab: Anti-PD-L1 monoclonal antibody; binds PD-L1 on tumor and immune cells, blocking interaction with PD-1 and B7.1; restores T cell activation and proliferation
+            (2) Bevacizumab: Anti-VEGF monoclonal antibody; binds and neutralizes VEGF-A, preventing VEGFR activation; inhibits angiogenesis; normalizes tumor vasculature; reduces VEGF-mediated immunosuppression (decreases Tregs/MDSCs, improves T cell infiltration)
+            Synergy: VEGF blockade enhances ICI efficacy by improving T cell access to tumor and reducing immunosuppressive myeloid cells
+          </specific_moa>
+          <moa_classification>ICI_VEGF_combination | PD-L1_blockade | VEGF_neutralization | anti_angiogenesis | vascular_normalization | T_cell_checkpoint_blockade | immune_priming | dual_biologic | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA May 2020, EMA Jan 2021; Current first-line standard of care</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>IMbrave150</name>
+                <design>
+                  Randomized, open-label Phase III trial: Atezolizumab 1200 mg IV q3w + Bevacizumab 15 mg/kg IV q3w 
+                  vs. Sorafenib 400 mg PO BID in treatment-naive unresectable HCC.
+                  Primary endpoints: OS and PFS (by independent review, RECIST 1.1).
+                  N=501 patients; predominantly Child-Pugh A (95%); BCLC stage B (15%) or C (82%).
+                </design>
+                <efficacy>
+                  **MAJOR SUCCESS - Both primary endpoints met:**
+                  - Median OS: 19.2 months vs. 13.4 months (HR 0.66, 95% CI 0.52-0.85; P=0.0009)
+                  - Median PFS: 6.9 months vs. 4.3 months (HR 0.65, 95% CI 0.53-0.81; P<0.001)
+                  - ORR: 29.8% vs. 5.1% (confirmed responses; P<0.001)
+                  - Disease control rate: 73.6% vs. 55.3%
+                  - Median duration of response: 18.1 months (atezolizumab+bevacizumab)
+                  - 12-month OS: 67.2% vs. 54.6%
+                  - 18-month OS: 52.0% vs. 40.0%
+                  **Landmark achievement: First regimen to show OS superiority over sorafenib in first-line HCC**
+                </efficacy>
+                <safety>
+                  - Grade 3-4 treatment-related adverse events (TRAEs): 56.5% vs. 55.1% (similar to sorafenib)
+                  - Common AEs: Hypertension (29.8% any grade, 15.2% Grade 3-4), proteinuria (20.1%), fatigue (20.4%)
+                  - Bleeding events: 19.7% any grade, 7.0% Grade 3-5 (upper GI bleeding 4.5%)
+                  - Hepatic events: ALT increase 9.9%, AST increase 13.9%
+                  - Immune-related AEs (irAEs): Any grade 40.6%, Grade 3-4 12.8%
+                  - Treatment discontinuation due to AEs: 15.5% (atezolizumab+bevacizumab) vs. 10.5% (sorafenib)
+                  **Safety profile manageable; no unexpected toxicities; bleeding risk requires varices screening**
+                </safety>
+                <patient_selection>
+                  Inclusion: Unresectable HCC, Child-Pugh A liver function, ECOG PS 0-1, no prior systemic therapy
+                  Exclusion: Child-Pugh B/C, untreated/incompletely treated varices at high bleeding risk, inadequate organ function
+                  **CRITICAL: Requires endoscopy to rule out high-risk varices before bevacizumab**
+                </patient_selection>
+                <outcome>
+                  **LANDMARK SUCCESS:**
+                  - Established new standard of care for first-line unresectable HCC
+                  - Replaced sorafenib after 12 years
+                  - Full FDA approval (converted from accelerated approval in 2023)
+                  - Blockbuster commercial success (~$1.1B HCC revenue 2024)
+                  - Validated ICI+VEGF combination strategy
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **COMBINATION SYNERGY IS CRITICAL:** PD-L1 monotherapy showed only 15-20% ORR in HCC; adding VEGF inhibition dramatically improved efficacy
+              - **VEGF blockade "unlocks" ICI efficacy:** Bevacizumab normalized vasculature, reduced MDSCs/Tregs, improved T cell infiltration
+              - **Complementary toxicity profiles:** Atezolizumab + bevacizumab safety similar to sorafenib alone (no additive toxicity)
+              - **Durable responses:** 18.1-month median DoR indicates long-term benefit in responders
+              - **PD-L1 expression not required:** Response seen regardless of PD-L1 status (unlike NSCLC)
+              - **IV administration acceptable:** Despite q3w IV dosing, patient acceptance high due to efficacy
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS FOR MOA SELECTION:**
+              1. **ICI monotherapy is insufficient in HCC** - requires combination partner to overcome immune exclusion
+              2. **VEGF pathway is VALIDATED critical combination partner** - addresses vascular/immune barriers simultaneously
+              3. **Safety is manageable** despite dual biologics in cirrhotic patients (when Child-Pugh A selected)
+              4. **Varices screening mandatory** - bleeding risk is real but preventable with proper patient selection
+              5. **Commercial success validates willingness to pay** for effective HCC therapy despite high cost
+              6. **This is the BENCHMARK** - all new first-line HCC therapies compared against atezolizumab+bevacizumab
+              7. **Bar is HIGH** - new combinations must show superiority or non-inferiority with better safety/convenience
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>ICI_VEGF_combination</tag>
+            <tag>PD-L1_inhibitor</tag>
+            <tag>anti_VEGF_antibody</tag>
+            <tag>vascular_normalization</tag>
+            <tag>checkpoint_blockade</tag>
+            <tag>dual_biologic</tag>
+            <tag>IV_administration</tag>
+            <tag>first_line_HCC</tag>
+            <tag>Child_Pugh_A_required</tag>
+            <tag>varices_screening_needed</tag>
+            <tag>approved_standard_of_care</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <next_generation_approaches>
+        <approach>
+          <name>ICI + Multi-kinase TKI combinations</name>
+          <moa_modification>
+            Replace bevacizumab (anti-VEGF antibody) with multi-kinase TKI (oral, broader kinase inhibition including VEGFR, PDGFR, FGFR, c-KIT)
+          </moa_modification>
+          <rationale>
+            Potential advantages: Oral administration (vs IV bevacizumab), broader kinase inhibition may enhance anti-tumor activity, 
+            potentially lower cost, no varices requirement (TKIs have different bleeding profile)
+          </rationale>
+          <development_stage>Multiple Phase III trials completed or ongoing</development_stage>
+          <representative_assets>
+            Camrelizumab + rivoceranib (CARES-310: mOS 23.8 months - BEST OS to date in HCC)
+            Lenvatinib + pembrolizumab (LEAP-002: FAILED to meet primary endpoints)
+            Other ICI+TKI combinations in earlier phases
+          </representative_assets>
+        </approach>
+
+        <approach>
+          <name>PD-1/L1 x VEGF bispecific antibodies</name>
+          <moa_modification>
+            Single bispecific molecule binding both PD-L1 (or PD-1) and VEGF; tumor-targeted dual blockade
+          </moa_modification>
+          <rationale>
+            Simplify dosing (single agent vs two), potential for unique PK/PD with tumor-localized activity, 
+            may improve efficacy through enforced 2:1 stoichiometry at tumor site
+          </rationale>
+          <development_stage>Phase I/II - Multiple programs</development_stage>
+          <representative_assets>
+            Ivonescimab (PD-1 x VEGF), PM-8002 (PD-L1 x VEGF), others in pipeline (~18 bispecific programs in HCC)
+          </representative_assets>
+        </approach>
+      </next_generation_approaches>
+
+      <moa_compatibility_score>
+        <biological_fit>EXCELLENT (10/10) - HCC biology perfectly suits ICI+VEGF approach; addresses both immune exclusion and checkpoint exhaustion</biological_fit>
+        <clinical_validation>DEFINITIVE (10/10) - Atezolizumab+bevacizumab is approved first-line standard with Phase III data; commercial success proven</clinical_validation>
+        <unmet_need_match>HIGH (9/10) - Replaced sorafenib standard; addressed critical need for effective first-line therapy</unmet_need_match>
+        <overall_assessment>
+          **ICI+VEGF combination is the GOLD STANDARD for first-line HCC.**
+          - Strongest clinical validation: Phase III success (IMbrave150), regulatory approval, commercial success
+          - Biological rationale validated: VEGF blockade "unlocks" ICI efficacy in HCC
+          - This is the BENCHMARK all new therapies must match or beat
+          - Opportunities for next-gen: Oral TKI combinations, bispecific antibodies, improved safety/convenience
+          - Challenge: High bar for new entrants - must show superiority or significant advantage (safety, cost, convenience)
+          - Strategic positioning: "Better than atezolizumab+bevacizumab" is clear value proposition
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <moa_category name="Dual Checkpoint Inhibitor Combinations (PD-1/L1 + CTLA-4)">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          HCC has multiple layers of immunosuppression beyond PD-1/PD-L1 axis:
+          (1) High Treg infiltration (CD25+, CTLA-4+ cells) actively suppresses effector T cells
+          (2) Chronic liver inflammation creates immune exhaustion via multiple checkpoints
+          (3) Liver tolerance mechanisms create baseline immunosuppression
+          Dual checkpoint blockade attacks two critical immune evasion mechanisms:
+          - PD-1/L1 blockade reverses T cell exhaustion in tumor
+          - CTLA-4 blockade depletes Tregs (via ADCC) and enhances T cell priming in lymphoid organs
+          This approach can achieve deep, durable responses in subset of patients (responders have long survival).
+          Trade-off is higher toxicity vs ICI+VEGF, but may be preferred when VEGF inhibitors contraindicated (varices).
+        </indication_specific_rationale>
+        <supporting_biology>
+          - High Treg burden in HCC TME makes CTLA-4 blockade rational
+          - Dual checkpoint blockade shown superior to PD-1/L1 monotherapy in HCC trials
+          - Some patients achieve 3-5+ year survival (tail of survival curve)
+          - Works independently of VEGF pathway (alternative mechanism for patients with varices/bleeding risk)
+          - Can deplete intratumoral Tregs via ADCC (ipilimumab, tremelimumab have IgG1 Fc)
+        </supporting_biology>
+        <theoretical_concerns>
+          - Higher immune-related toxicity than PD-1/L1 monotherapy or ICI+VEGF
+          - Risk of hepatotoxicity (immune-mediated hepatitis) in patients with underlying liver disease
+          - Requires careful patient selection (Child-Pugh A, adequate organ function)
+          - More expensive than ICI monotherapy (two checkpoint inhibitors)
+          - Uncertain which patients benefit most (no validated biomarkers)
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Nivolumab + Ipilimumab (Opdivo + Yervoy)</drug_name>
+          <specific_moa>
+            Dual checkpoint blockade:
+            (1) Nivolumab: Anti-PD-1 monoclonal antibody (IgG4); binds PD-1 on T cells, blocking interaction with PD-L1/PD-L2; reverses T cell exhaustion and restores effector function
+            (2) Ipilimumab: Anti-CTLA-4 monoclonal antibody (IgG1); binds CTLA-4 on T cells (especially Tregs); blocks inhibitory signaling; depletes Tregs via ADCC; enhances T cell priming and activation
+            Synergy: PD-1 blockade acts in tumor; CTLA-4 blockade acts in lymph nodes and depletes Tregs; complementary mechanisms enhance anti-tumor immunity
+          </specific_moa>
+          <moa_classification>dual_checkpoint_blockade | PD-1_inhibitor | CTLA-4_inhibitor | Treg_depletion | T_cell_priming | T_cell_activation | immune_related_toxicity | dual_ICI | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - FDA approval for first-line HCC based on CheckMate 9DW Phase III data</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>CheckMate 9DW</name>
+                <design>
+                  Randomized Phase III trial: Nivolumab 1 mg/kg + Ipilimumab 3 mg/kg IV q3w for 4 doses, 
+                  then Nivolumab 240 mg IV q2w vs. Sorafenib 400 mg PO BID OR Lenvatinib 12 mg (or 8 mg if <60kg) PO daily 
+                  in treatment-naive unresectable HCC.
+                  Primary endpoint: OS.
+                  N=668 patients; Child-Pugh A; BCLC stage B/C.
+                </design>
+                <efficacy>
+                  **SUCCESS - Primary endpoint met:**
+                  - Median OS: 23.7 months vs. 20.6 months (HR 0.79, 95% CI 0.65-0.96; P=0.0196)
+                  - ORR: 36% vs. 13% (P<0.001)
+                  - Complete response rate: 9% vs. <1%
+                  - Median PFS: 4.2 months vs. 4.0 months (HR 0.75; not primary endpoint)
+                  - **LONG-TERM SURVIVAL:**
+                    - 3-year OS: 38% vs. 26%
+                    - Median duration of response: 30.4 months (nivolumab+ipilimumab)
+                  **Notable: HIGHEST 3-year survival rate in any HCC Phase III trial; impressive mOS 23.7 months**
+                </efficacy>
+                <safety>
+                  - Grade 3-4 treatment-related adverse events: 41% vs. 42%
+                  - Common Grade 3-4 AEs: Increased lipase (9%), diarrhea (3%), increased AST/ALT (5-6%)
+                  - Immune-related AEs (any grade): 53% (vs. 36% with nivolumab monotherapy historically)
+                  - Hepatotoxicity: Increased AST/ALT in ~20% (any grade), 5-6% Grade 3-4
+                  - Treatment discontinuation due to AEs: 18%
+                  - Serious immune-related AEs manageable with steroids
+                  **Safety profile acceptable; toxicity higher than ICI+VEGF but manageable with monitoring**
+                </safety>
+                <patient_selection>
+                  Inclusion: Unresectable HCC, Child-Pugh A, ECOG PS 0-1, no prior systemic therapy
+                  Exclusion: Child-Pugh B/C, active autoimmune disease, high-dose steroids
+                  **No varices exclusion (unlike bevacizumab regimens) - can use in patients with bleeding risk**
+                </patient_selection>
+                <outcome>
+                  **SUCCESS - FDA approval granted:**
+                  - Approved for first-line unresectable HCC
+                  - Provides alternative to atezolizumab+bevacizumab, especially for patients with varices/bleeding risk
+                  - Impressive long-term survival (3-year OS 38%, mDoR 30.4 months)
+                  - Higher ORR (36%) than atezolizumab+bevacizumab (29.8%)
+                  - Trade-off: Higher toxicity, slightly shorter mOS than camrelizumab+rivoceranib but longer than atezolizumab+bevacizumab
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **Dual checkpoint blockade SUPERIOR to PD-1/L1 monotherapy** in HCC (validates combination strategy)
+              - **Long-term survival achieved:** 3-year OS 38%, mDoR 30.4 months - demonstrates curative potential in subset
+              - **High ORR (36%) including 9% complete responses** - among highest in HCC trials
+              - **No varices requirement** - can be used in patients ineligible for bevacizumab
+              - **Complementary mechanisms** - PD-1 blockade in tumor + CTLA-4 blockade/Treg depletion = synergy
+              - **Validates Treg depletion strategy** - high Treg burden in HCC makes CTLA-4 blockade rational
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **Dual checkpoint blockade WORKS in HCC** - provides alternative to ICI+VEGF approach
+              2. **Trade-off is TOXICITY vs EFFICACY** - higher irAE rate (53%) but impressive long-term outcomes
+              3. **"Chemotherapy-free" regimen** - no TKI toxicity (hand-foot syndrome, diarrhea, hypertension)
+              4. **Patient selection critical** - best for fit patients who can tolerate potential irAEs
+              5. **Long tail of survival curve** - subset achieves multi-year survival (potential "cure" in responders)
+              6. **Alternative for varices patients** - fills unmet need when VEGF inhibitors contraindicated
+              7. **Competitive with atezolizumab+bevacizumab** - choice depends on patient factors (varices, preference, comorbidities)
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>dual_checkpoint_blockade</tag>
+            <tag>PD-1_inhibitor</tag>
+            <tag>CTLA-4_inhibitor</tag>
+            <tag>Treg_depletion</tag>
+            <tag>long_term_survival</tag>
+            <tag>high_ORR</tag>
+            <tag>chemotherapy_free</tag>
+            <tag>no_varices_requirement</tag>
+            <tag>immune_related_toxicity</tag>
+            <tag>approved_first_line_HCC</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Durvalumab + Tremelimumab (Imfinzi + Imjudo) - STRIDE Regimen</drug_name>
+          <specific_moa>
+            STRIDE (Single Tremelimumab Regular Interval Durvalumab) regimen:
+            (1) Durvalumab: Anti-PD-L1 monoclonal antibody (IgG1 kappa); binds PD-L1, blocking interaction with PD-1 and CD80; restores T cell function
+            (2) Tremelimumab: Anti-CTLA-4 monoclonal antibody (IgG2); SINGLE PRIMING DOSE of 300 mg (not continuous dosing like ipilimumab); blocks CTLA-4, enhances T cell activation, depletes Tregs
+            Unique approach: Single high-dose tremelimumab followed by durvalumab monotherapy maintenance
+            Rationale: Single CTLA-4 blockade dose provides initial immune priming/Treg depletion; ongoing PD-L1 blockade maintains response
+          </specific_moa>
+          <moa_classification>dual_checkpoint_blockade | PD-L1_inhibitor | CTLA-4_inhibitor | single_dose_CTLA4 | priming_regimen | Treg_depletion | T_cell_activation | long_term_survival | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>APPROVED - Approved based on HIMALAYA Phase III trial</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>HIMALAYA</name>
+                <design>
+                  Three-arm randomized Phase III: 
+                  (1) STRIDE: Durvalumab 1500 mg + Tremelimumab 300 mg IV (single dose), then Durvalumab 1500 mg q4w
+                  (2) Durvalumab 1500 mg q4w monotherapy
+                  (3) Sorafenib 400 mg PO BID
+                  in treatment-naive unresectable HCC.
+                  Primary endpoint: OS (STRIDE vs sorafenib).
+                  N=1,324 patients; Child-Pugh A; BCLC stage B/C.
+                </design>
+                <efficacy>
+                  **SUCCESS - Primary endpoint met (STRIDE vs sorafenib):**
+                  - Median OS (STRIDE): 16.4 months vs. 13.8 months sorafenib (HR 0.76, 95% CI 0.65-0.89; P=0.0035)
+                  - ORR (STRIDE): 20.1% vs. 5.1% sorafenib
+                  - Median PFS (STRIDE): 3.8 months vs. 4.0 months sorafenib (HR 0.90; not statistically significant)
+                  - **LONG-TERM SURVIVAL - STAND-OUT FEATURE:**
+                    - 5-year OS (STRIDE): **19.6%** - HIGHEST 5-year survival in any HCC Phase III trial
+                    - 4-year OS (STRIDE): 25.2% vs. 15.1% sorafenib
+                    - 3-year OS (STRIDE): 30.7% vs. 19.8% sorafenib
+                  **Notable: Durvalumab monotherapy also showed non-inferior OS vs sorafenib (HR 0.86)**
+                </efficacy>
+                <safety>
+                  - Grade 3-4 treatment-related adverse events (STRIDE): 25.8% vs. 36.9% sorafenib
+                  - **IMPROVED SAFETY vs continuous dual ICI:**
+                    - Lower toxicity than nivolumab+ipilimumab (Grade 3-4 25.8% vs 41%)
+                    - Single tremelimumab dose reduces immune-related toxicity burden
+                  - Common AEs (STRIDE): Pruritus (24%), rash (13%), diarrhea (11%)
+                  - Hepatotoxicity: Increased AST/ALT in ~10% (any grade)
+                  - Treatment discontinuation due to AEs: 8.3% (STRIDE) - LOWER than nivolumab+ipilimumab
+                  **STRIDE has FAVORABLE safety vs continuous dual ICI; comparable to ICI monotherapy**
+                </safety>
+                <patient_selection>
+                  Inclusion: Unresectable HCC, Child-Pugh A, ECOG PS 0-1, no prior systemic therapy
+                  No varices exclusion
+                </patient_selection>
+                <outcome>
+                  **SUCCESS - Regulatory approval:**
+                  - Approved for first-line unresectable HCC
+                  - **Differentiation: BEST long-term survival (5-year OS 19.6%)**
+                  - **Improved safety vs continuous dual ICI** while maintaining efficacy
+                  - Single tremelimumab dose reduces treatment burden and toxicity
+                  - Provides chemotherapy-free option with long-term survival potential
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **SINGLE-DOSE CTLA-4 BLOCKADE is sufficient** - don't need continuous dosing to achieve benefit
+              - **5-year OS 19.6% is BEST in HCC** - proves curative potential exists in subset of patients
+              - **IMPROVED SAFETY vs continuous dual ICI** - Grade 3-4 AE 25.8% vs 41% (nivolumab+ipilimumab)
+              - **Priming strategy validated** - single CTLA-4 dose provides initial immune activation; PD-L1 blockade maintains response
+              - **Durvalumab monotherapy also effective** - non-inferior to sorafenib (validates PD-L1 as HCC target)
+              - **Long treatment duration feasible** - q4w dosing with manageable toxicity allows extended therapy
+            </success_factors>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **LESS IS MORE with CTLA-4 blockade** - single priming dose achieves benefit without continuous toxicity
+              2. **STRIDE represents "optimized" dual checkpoint approach** - better safety than nivolumab+ipilimumab, similar efficacy
+              3. **Long-term survival is HALLMARK** - 5-year OS 19.6% is best-in-class; tail of survival curve impressive
+              4. **Alternative to ICI+VEGF** - for patients with varices, bleeding risk, or preference for chemotherapy-free regimen
+              5. **Patient messaging: "1 in 5 alive at 5 years"** - powerful narrative for marketing
+              6. **Strategic: Priming/maintenance design** may be applicable to other checkpoint combinations
+              7. **Commercial challenge:** Slightly lower mOS (16.4) vs nivolumab+ipilimumab (23.7) and camrelizumab+rivoceranib (23.8), but best long-term outcomes
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>dual_checkpoint_blockade</tag>
+            <tag>PD-L1_inhibitor</tag>
+            <tag>CTLA-4_inhibitor</tag>
+            <tag>single_dose_CTLA4</tag>
+            <tag>priming_maintenance_strategy</tag>
+            <tag>best_long_term_survival</tag>
+            <tag>5_year_OS_19_percent</tag>
+            <tag>improved_safety_vs_continuous_dual_ICI</tag>
+            <tag>chemotherapy_free</tag>
+            <tag>approved_first_line_HCC</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <next_generation_approaches>
+        <approach>
+          <name>Next-generation checkpoint inhibitor combinations (LAG-3, TIM-3)</name>
+          <moa_modification>
+            Add third checkpoint (LAG-3 or TIM-3) to PD-1/L1 inhibitor; target exhausted T cells with multiple checkpoint expression
+          </moa_modification>
+          <rationale>
+            LAG-3 and TIM-3 are co-expressed with PD-1 on exhausted T cells in HCC; dual/triple checkpoint blockade could 
+            rescue deeply exhausted cells and improve response rates. However, must overcome higher toxicity with triple therapy.
+          </rationale>
+          <development_stage>Early clinical trials (Phase I/II)</development_stage>
+          <representative_assets>
+            LAG-3 + PD-1 combinations, TIM-3 + PD-1 combinations in development
+          </representative_assets>
+        </approach>
+
+        <approach>
+          <name>Optimized CTLA-4 dosing schedules</name>
+          <moa_modification>
+            Explore different CTLA-4 inhibitor dosing (priming doses, intermittent dosing) to balance efficacy and safety
+          </moa_modification>
+          <rationale>
+            STRIDE regimen proved single-dose CTLA-4 blockade effective; other intermittent schedules may further optimize 
+            benefit/risk ratio. Goal is to achieve Treg depletion without continuous CTLA-4 blockade toxicity.
+          </rationale>
+          <development_stage>Exploratory - some ongoing trials testing different schedules</development_stage>
+          <representative_assets>
+            Various investigator-initiated trials exploring dosing optimization
+          </representative_assets>
+        </approach>
+      </next_generation_approaches>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (9/10) - High Treg burden and multiple checkpoint expression make dual blockade rational</biological_fit>
+        <clinical_validation>STRONG (9/10) - Two approved regimens (nivolumab+ipilimumab, STRIDE) with Phase III data; long-term survival proven</clinical_validation>
+        <unmet_need_match>HIGH (8/10) - Provides alternative to ICI+VEGF for patients with varices; achieves best long-term survival</unmet_need_match>
+        <overall_assessment>
+          **Dual checkpoint blockade is VALIDATED alternative to ICI+VEGF in first-line HCC.**
+          - Strong clinical validation: Two approved regimens with distinct approaches
+          - Nivolumab+ipilimumab: Continuous dual blockade, highest ORR (36%), excellent mOS (23.7)
+          - STRIDE: Single-dose CTLA-4 priming + PD-L1 maintenance, best 5-year OS (19.6%), improved safety
+          - Key advantage: No varices requirement (alternative for patients ineligible for bevacizumab)
+          - Trade-off: Higher toxicity than ICI+VEGF (especially nivolumab+ipilimumab)
+          - Strategic positioning: "Chemotherapy-free with curative potential" vs "dual biologic ICI+VEGF"
+          - Patient selection critical: Best for fit patients without autoimmune disease
+          - Competitive landscape: Three strong first-line options now (ICI+VEGF, nivo+ipi, STRIDE); choice depends on patient factors
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <moa_category name="ICI + TKI Combinations">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          Multi-kinase TKIs (targeting VEGFR, PDGFR, FGFR, c-KIT, c-MET) address multiple HCC pathways simultaneously:
+          (1) Anti-angiogenic effects (VEGFR inhibition) similar to bevacizumab but broader kinase profile
+          (2) Direct anti-tumor effects through inhibition of oncogenic kinases (c-MET, c-KIT)
+          (3) Immune-modulatory effects (VEGFR inhibition reduces MDSCs/Tregs, improves T cell infiltration)
+          Combination with ICI provides complementary mechanisms:
+          - TKI normalizes vasculature and reduces immunosuppression
+          - ICI activates T cells to kill tumor
+          Potential advantages over ICI+bevacizumab: Oral administration, broader kinase inhibition, no varices requirement
+          Challenge: Additive toxicities from TKI (GI, dermatologic) + ICI (immune-related)
+        </indication_specific_rationale>
+        <supporting_biology>
+          - TKIs have established single-agent activity in HCC (sorafenib, lenvatinib approved)
+          - VEGFR inhibition component provides similar vascular normalization as bevacizumab
+          - Broader kinase inhibition may address resistance mechanisms (c-MET, FGFR)
+          - Oral administration improves convenience vs IV biologics
+          - TKI-mediated MDSC/Treg reduction enhances ICI efficacy
+        </supporting_biology>
+        <theoretical_concerns>
+          - Additive toxicity: TKI side effects (diarrhea, hand-foot syndrome, hypertension) + irAEs from ICI
+          - Higher Grade 3-4 AE rates than ICI+VEGF or dual ICI combinations
+          - TKI toxicity can limit duration of treatment (dose reductions, interruptions)
+          - Cost similar to or higher than ICI+bevacizumab
+          - Need to demonstrate superiority over approved ICI+VEGF combinations
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Camrelizumab + Rivoceranib</drug_name>
+          <specific_moa>
+            Combination:
+            (1) Camrelizumab: Anti-PD-1 monoclonal antibody; blocks PD-1 on T cells, restoring anti-tumor immunity
+            (2) Rivoceranib (apatinib): Highly selective VEGFR-2 TKI; inhibits VEGFR-2 tyrosine kinase activity, blocking angiogenesis; 
+                more selective than multi-kinase TKIs like sorafenib/lenvatinib
+            Synergy: VEGFR-2 inhibition normalizes tumor vasculature and reduces immunosuppression; PD-1 blockade activates infiltrating T cells
+          </specific_moa>
+          <moa_classification>ICI_TKI_combination | PD-1_inhibitor | VEGFR2_selective_TKI | anti_angiogenesis | oral_TKI | checkpoint_blockade | vascular_normalization | high_toxicity</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Phase III completed - Approved in China; not yet approved in US/EU</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>CARES-310</name>
+                <design>
+                  Randomized Phase III: Camrelizumab 200 mg IV q2w + Rivoceranib (apatinib) 250 mg PO daily 
+                  vs. Sorafenib 400 mg PO BID in treatment-naive unresectable HCC.
+                  Primary endpoints: OS and PFS.
+                  N=543 patients; predominantly Asian population; Child-Pugh A.
+                </design>
+                <efficacy>
+                  **MAJOR SUCCESS - Both primary endpoints met:**
+                  - **Median OS: 23.8 months vs. 15.2 months sorafenib** (HR 0.64, 95% CI 0.52-0.79; P<0.0001)
+                  - **LONGEST median OS in any HCC Phase III trial to date**
+                  - Median PFS: 5.7 months vs. 3.7 months (HR 0.52, 95% CI 0.42-0.64; P<0.0001)
+                  - ORR: 25.4% vs. 5.9%
+                  - Disease control rate: 74.2% vs. 48.6%
+                  - Median duration of response: 16.4 months
+                  **This is the BEST overall survival result in first-line HCC Phase III trials**
+                </efficacy>
+                <safety>
+                  - **Grade 3-4 treatment-related adverse events: 80.9% vs. 52.4% sorafenib**
+                  - **HIGHEST toxicity rate among first-line HCC regimens**
+                  - Common Grade 3-4 AEs: Hypertension (40.9%), increased AST (27.4%), palmar-plantar erythrodysesthesia syndrome (hand-foot, 21.9%), decreased platelet count (18.3%)
+                  - Serious AEs: 41.6% vs. 25.5%
+                  - Treatment discontinuation due to AEs: 14.9% vs. 8.9%
+                  - Dose reductions common due to toxicity
+                  **Safety profile challenging - highest Grade 3-4 AE rate but manageable with dose modifications**
+                </safety>
+                <patient_selection>
+                  Inclusion: Unresectable HCC, Child-Pugh A, ECOG PS 0-1, no prior systemic therapy
+                  Predominantly Asian population (Chinese patients)
+                </patient_selection>
+                <outcome>
+                  **SUCCESS in China - Regulatory approval:**
+                  - Approved in China for first-line HCC
+                  - **BEST median OS (23.8 months) among all HCC Phase III trials - major achievement**
+                  - Challenge: Very high toxicity rate (80.9% Grade 3-4 AEs) vs other regimens:
+                    - Atezolizumab+bevacizumab: 56.5% Grade 3-4
+                    - Nivolumab+ipilimumab: 41% Grade 3-4
+                    - STRIDE: 25.8% Grade 3-4
+                  - US/EU approval uncertain - need to demonstrate acceptable benefit/risk ratio
+                  - May be best option for patients prioritizing efficacy over tolerability
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - **BEST median OS in HCC history (23.8 months)** - proves ICI+TKI can achieve superior survival
+              - **Strong ORR (25.4%) and DCR (74.2%)** - comparable to other approved regimens
+              - **Oral TKI component** - convenience advantage over IV bevacizumab
+              - **Rivoceranib is selective VEGFR-2 inhibitor** - may have better profile than multi-kinase TKIs
+              - **Validates ICI+TKI combination strategy** in HCC
+            </success_factors>
+            <failure_reasons>
+              - **TOXICITY IS MAJOR LIABILITY:** 80.9% Grade 3-4 AEs is highest among first-line regimens
+              - Hypertension (40.9% Grade 3-4), hand-foot syndrome (21.9%), hepatotoxicity (27.4% increased AST) are common
+              - High serious AE rate (41.6%) and treatment discontinuations (14.9%)
+              - Requires intensive monitoring and dose modifications
+              - May limit adoption in Western markets where safety increasingly important
+            </failure_reasons>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **ICI+TKI CAN achieve best-in-class efficacy** - 23.8 month OS sets new benchmark
+              2. **TOXICITY IS TRADE-OFF** - highest Grade 3-4 AE rate; patient selection and management critical
+              3. **Efficacy vs Safety balance** - different markets/patients will weigh differently:
+                 - Efficacy-focused: Camrelizumab+rivoceranib
+                 - Safety-focused: STRIDE (25.8% Grade 3-4)
+                 - Balanced: Atezolizumab+bevacizumab (56.5% Grade 3-4)
+              4. **Asian vs Western populations** - safety/efficacy balance may differ by ethnicity
+              5. **US/EU approval uncertain** despite best OS - regulators/payers increasingly value safety
+              6. **Strategic: "Best efficacy" niche** - for fit, motivated patients willing to accept higher toxicity
+              7. **Next-gen ICI+TKI must improve safety** while maintaining efficacy - current bar is very high
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>ICI_TKI_combination</tag>
+            <tag>PD-1_inhibitor</tag>
+            <tag>VEGFR2_selective_TKI</tag>
+            <tag>oral_TKI</tag>
+            <tag>best_median_OS</tag>
+            <tag>highest_toxicity</tag>
+            <tag>hypertension</tag>
+            <tag>hand_foot_syndrome</tag>
+            <tag>intensive_monitoring_required</tag>
+            <tag>approved_China</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+        <precedent_drug>
+          <drug_name>Lenvatinib + Pembrolizumab</drug_name>
+          <specific_moa>
+            Combination:
+            (1) Pembrolizumab: Anti-PD-1 monoclonal antibody; blocks PD-1 on T cells, restoring anti-tumor immunity
+            (2) Lenvatinib: Multi-kinase inhibitor targeting VEGFR1-3, FGFR1-4, PDGFRα, RET, KIT; broad anti-angiogenic and anti-tumor activity
+            Synergy: Multi-kinase inhibition (angiogenesis + oncogenic pathways) + checkpoint blockade
+          </specific_moa>
+          <moa_classification>ICI_TKI_combination | PD-1_inhibitor | multi_kinase_TKI | VEGFR_inhibitor | FGFR_inhibitor | anti_angiogenesis | oral_TKI | checkpoint_blockade | Phase_III_failure</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>FAILED Phase III - Did not meet primary endpoints</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>LEAP-002</name>
+                <design>
+                  Randomized, double-blind Phase III: Lenvatinib 12 mg (or 8 mg if <60kg) PO daily + Pembrolizumab 200 mg IV q3w 
+                  vs. Lenvatinib + Placebo in treatment-naive unresectable HCC.
+                  Primary endpoints: PFS (by RECIST 1.1) and OS.
+                  N=794 patients; Child-Pugh A; BCLC stage B/C.
+                </design>
+                <efficacy>
+                  **FAILED - Did not meet primary endpoints (statistical significance not achieved):**
+                  - Median OS: 21.1 months vs. 19.0 months lenvatinib alone (HR 0.80, 95% CI 0.69-0.94; **P=0.0227, not significant at pre-specified α=0.0185**)
+                  - Median PFS: 8.2 months vs. 8.0 months (HR 0.87, 95% CI 0.73-1.02; **P=0.0466, not significant**)
+                  - ORR: 26.3% vs. 17.5%
+                  - **NUMERICAL TRENDS FAVORED COMBINATION but did not reach statistical significance**
+                  - Trial stopped for futility based on pre-planned interim analysis
+                </efficacy>
+                <safety>
+                  - Grade 3-4 treatment-related adverse events: 62.8% vs. 58.0%
+                  - Common Grade 3-4 AEs: Hypertension (18.7%), increased AST (10.2%), fatigue (6.7%), diarrhea (4.9%)
+                  - Serious AEs: 34.1% vs. 28.5%
+                  - Treatment discontinuation due to AEs: 19.9% vs. 13.0%
+                  - Additive toxicity from combination but not dramatically worse than lenvatinib alone
+                </safety>
+                <patient_selection>
+                  Inclusion: Unresectable HCC, Child-Pugh A, ECOG PS 0-1, no prior systemic therapy
+                  Global population (not restricted to Asia)
+                </patient_selection>
+                <outcome>
+                  **FAILURE - Regulatory implications:**
+                  - Did not achieve FDA/EMA approval for first-line HCC
+                  - Pembrolizumab remains approved only for second-line HCC (post-sorafenib, in Asia per KEYNOTE-394)
+                  - Major setback for Merck's HCC strategy
+                  - Raised questions about which ICI+TKI combinations truly add value
+                  - Lenvatinib monotherapy remains approved option but largely displaced by ICI combinations
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <success_factors>
+              - Showed numerical OS improvement (21.1 vs 19.0 months, HR 0.80)
+              - ORR improved (26.3% vs 17.5%)
+              - Combination was tolerable (no unexpected toxicities)
+              - Validated that lenvatinib + ICI can be administered safely
+            </success_factors>
+            <failure_reasons>
+              - **CONTROL ARM WAS TOO STRONG:** Lenvatinib alone achieved 19.0 month OS - similar to approved combinations
+              - Lenvatinib monotherapy more effective than expected (non-inferiority to atezolizumab+bevacizumab in some analyses)
+              - **Statistical design issue:** Pre-specified α of 0.0185 very stringent; P=0.0227 for OS "close but not significant"
+              - **Magnitude of benefit too small:** HR 0.80 represents modest improvement over already-effective control
+              - Combination may not have achieved sufficient synergy (unlike camrelizumab+rivoceranib which showed HR 0.64)
+              - **Competitive landscape evolved:** Trial designed when sorafenib was standard; now competing against atezolizumab+bevacizumab
+            </failure_reasons>
+            <key_insights>
+              **CRITICAL STRATEGIC LESSONS:**
+              1. **NOT ALL ICI+TKI COMBINATIONS SUCCEED** - contrast with CARES-310 success highlights importance of:
+                 - TKI selection (lenvatinib multi-kinase vs rivoceranib VEGFR-2 selective)
+                 - Patient population (global vs Asian)
+                 - Control arm strength (lenvatinib very effective baseline)
+              2. **Control arm selection is CRITICAL** - lenvatinib monotherapy was unexpectedly competitive
+              3. **Bar is HIGH for new combinations** - must show clear superiority, not just numerical trends
+              4. **Statistical design matters** - stringent α meant "near-miss" was still failure
+              5. **Lenvatinib is highly active TKI** - may be difficult to improve upon with ICI addition (unlike sorafenib)
+              6. **Strategic: Drug selection in combo matters** - not all TKIs synergize equally with ICIs
+              7. **Regulatory: FDA/EMA increasingly stringent** - numerical trends insufficient for approval in competitive field
+              8. **LEAP-002 failure does NOT invalidate ICI+TKI class** - CARES-310 success proves approach can work
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>ICI_TKI_combination</tag>
+            <tag>PD-1_inhibitor</tag>
+            <tag>multi_kinase_TKI</tag>
+            <tag>lenvatinib</tag>
+            <tag>VEGFR_inhibitor</tag>
+            <tag>FGFR_inhibitor</tag>
+            <tag>Phase_III_failure</tag>
+            <tag>numerical_improvement_insufficient</tag>
+            <tag>strong_control_arm</tag>
+            <tag>statistical_miss</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <next_generation_approaches>
+        <approach>
+          <name>Selective kinase inhibitors + ICI</name>
+          <moa_modification>
+            Replace multi-kinase TKIs with more selective inhibitors (e.g., VEGFR-2 selective like rivoceranib) to reduce off-target toxicity
+          </moa_modification>
+          <rationale>
+            CARES-310 success with selective VEGFR-2 inhibitor suggests selectivity may improve therapeutic index. 
+            More targeted kinase inhibition could reduce toxicity while maintaining synergy with ICI.
+          </rationale>
+          <development_stage>Multiple Phase I/II trials ongoing</development_stage>
+          <representative_assets>
+            Various selective VEGFR, FGFR, or c-MET inhibitors + ICI combinations in early development
+          </representative_assets>
+        </approach>
+
+        <approach>
+          <name>Novel TKI + ICI combinations</name>
+          <moa_modification>
+            Test newer-generation TKIs with better safety profiles in combination with ICI
+          </moa_modification>
+          <rationale>
+            Newer TKIs may have improved selectivity, PK/PD properties, or toxicity profiles compared to sorafenib/lenvatinib. 
+            Goal is to maintain efficacy while improving tolerability.
+          </rationale>
+          <development_stage>Multiple Phase II trials</development_stage>
+          <representative_assets>
+            Anlotinib + penpulimab (Phase II: mOS 16.5 months), SCT-I10A + SCT510 (Phase II: mOS 22.1 months), others
+          </representative_assets>
+        </approach>
+      </next_generation_approaches>
+
+      <moa_compatibility_score>
+        <biological_fit>HIGH (8/10) - TKI anti-angiogenic effects synergize with ICI; broader kinase inhibition may address resistance</biological_fit>
+        <clinical_validation>MIXED (6/10) - Camrelizumab+rivoceranib succeeded (best OS); lenvatinib+pembrolizumab failed; class effect uncertain</clinical_validation>
+        <unmet_need_match>MODERATE (6/10) - Oral administration is advantage but toxicity is high; efficacy can be best-in-class but at cost of safety</unmet_need_match>
+        <overall_assessment>
+          **ICI+TKI combinations show MIXED results in HCC - success depends on specific TKI and patient population.**
+          - Major success: Camrelizumab+rivoceranib achieved best median OS (23.8 months) but highest toxicity (80.9% Grade 3-4)
+          - Major failure: Lenvatinib+pembrolizumab missed endpoints despite numerical improvement; control arm too strong
+          - Key learning: NOT all ICI+TKI combinations succeed; TKI selection, patient population, and control arm matter
+          - Advantages: Oral TKI (convenience), broader kinase inhibition may overcome resistance
+          - Challenges: Additive toxicity (TKI + irAEs), high Grade 3-4 AE rates, difficult to improve on effective TKI monotherapy
+          - Strategic positioning: "Best efficacy" niche for highly motivated patients; must demonstrate superiority to ICI+VEGF/dual ICI
+          - Competitive landscape: Faces strong competition from atezolizumab+bevacizumab, nivolumab+ipilimumab, STRIDE
+          - Future: Selective TKIs may improve therapeutic index; need better patient selection/biomarkers
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+    <!-- Additional MOA categories below with similar structure -->
+
+    <moa_category name="Checkpoint Inhibitor Monotherapy (PD-1/PD-L1)">
+      
+      <biological_rationale>
+        <indication_specific_rationale>
+          PD-1/PD-L1 checkpoint blockade as monotherapy showed promise in early HCC trials, leading to initial approvals.
+          However, subsequent data showed monotherapy is INSUFFICIENT for most HCC patients compared to combinations.
+          Challenge: HCC has multiple layers of immunosuppression beyond PD-1/PD-L1 axis (Tregs, MDSCs, TGF-β, immune exclusion).
+          Single-agent checkpoint blockade cannot overcome these barriers in majority of patients.
+          Result: Monotherapy relegated to second-line setting or specific subpopulations; combinations now standard.
+        </indication_specific_rationale>
+        <supporting_biology>
+          - PD-1/PD-L1 expression in subset of HCC validates target
+          - Exhausted T cells present from chronic viral hepatitis can be partially rescued
+          - Some patients achieve durable responses (tail of survival curve)
+        </supporting_biology>
+        <theoretical_concerns>
+          - Low response rates (15-20% ORR) vs other tumor types (melanoma 40%, NSCLC 30-45%)
+          - Most patients do not benefit from monotherapy
+          - Immune exclusion and high Treg burden limit efficacy
+          - Combinations clearly superior in head-to-head trials
+        </theoretical_concerns>
+      </biological_rationale>
+
+      <clinical_precedent>
+        
+        <precedent_drug>
+          <drug_name>Pembrolizumab (Keytruda) Monotherapy</drug_name>
+          <specific_moa>
+            Anti-PD-1 monoclonal antibody (IgG4-kappa); binds PD-1 on T cells, blocking interaction with PD-L1 and PD-L2; 
+            restores T cell proliferation, cytokine production, and cytotoxic function
+          </specific_moa>
+          <moa_classification>PD-1_inhibitor | checkpoint_blockade | T_cell_activation | monotherapy | second_line | accelerated_approval | IV_administration</moa_classification>
+          
+          <clinical_evidence>
+            <development_stage>Approved second-line (post-sorafenib) in Asia; limited use in US/EU after combinations approved</development_stage>
+            <trial_data>
+              <trial>
+                <phase>Phase III</phase>
+                <name>KEYNOTE-394</name>
+                <design>
+                  Randomized, double-blind Phase III: Pembrolizumab 200 mg IV q3w vs. Placebo in Asian patients with HCC 
+                  who progressed on or were intolerant to sorafenib or oxaliplatin-based chemotherapy.
+                  Primary endpoints: OS and PFS.
+                  N=453 patients; predominantly Asian (China, Taiwan, South Korea); Child-Pugh A; prior sorafenib.
+                </design>
+                <efficacy>
+                  - Median OS: 14.6 months vs. 13.0 months placebo (HR 0.79, 95% CI 0.63-0.99; P=0.0180)
+                  - Median PFS: 2.6 months vs. 2.3 months (HR 0.74, 95% CI 0.60-0.92)
+                  - ORR: 12.7% vs. 1.3%
+                  - **MODEST OS benefit in second-line setting; response rate low**
+                </efficacy>
+                <safety>
+                  - Grade 3-5 treatment-related AEs: 14.0% vs. 6.3%
+                  - Generally well-tolerated; typical immune-related AEs
+                </safety>
+                <patient_selection>Asian patients, post-sorafenib, Child-Pugh A</patient_selection>
+                <outcome>
+                  Approved in Asia for second-line HCC. In US/EU, largely displaced by first-line ICI combinations. 
+                  Demonstrates PD-1 blockade has activity but insufficient as monotherapy.
+                </outcome>
+              </trial>
+            </trial_data>
+          </clinical_evidence>
+
+          <lessons_learned>
+            <key_insights>
+              - PD-1 blockade validated as HCC target but MONOTHERAPY INSUFFICIENT in first-line
+              - Second-line setting may be appropriate niche after ICI combinations
+              - Response rates (12.7%) much lower than melanoma/NSCLC (30-45%)
+              - Combinations required for meaningful first-line benefit
+            </key_insights>
+          </lessons_learned>
+
+          <similarity_matching_tags>
+            <tag>PD-1_inhibitor</tag>
+            <tag>monotherapy</tag>
+            <tag>second_line</tag>
+            <tag>low_ORR</tag>
+            <tag>modest_OS_benefit</tag>
+            <tag>insufficient_first_line</tag>
+          </similarity_matching_tags>
+        </precedent_drug>
+
+      </clinical_precedent>
+
+      <moa_compatibility_score>
+        <biological_fit>MODERATE (6/10) - PD-1/PD-L1 is relevant target but insufficient alone due to multiple immunosuppression mechanisms</biological_fit>
+        <clinical_validation>LIMITED (5/10) - Monotherapy shows modest activity; combinations clearly superior</clinical_validation>
+        <unmet_need_match>LOW (4/10) - First-line need addressed by combinations; limited role for monotherapy</unmet_need_match>
+        <overall_assessment>
+          **Checkpoint inhibitor monotherapy is INADEQUATE for first-line HCC; combinations required.**
+          - Clear message: PD-1/PD-L1 blockade alone is insufficient in HCC (unlike melanoma)
+          - ORR only 12-20% as monotherapy vs 26-36% with combinations
+          - Multiple immunosuppression mechanisms require multi-pronged approach
+          - Strategic: Monotherapy relegated to second/third-line or maintenance after combination induction
+          - New PD-1/L1 inhibitors face very high bar unless combined with other agents
+        </overall_assessment>
+      </moa_compatibility_score>
+
+    </moa_category>
+
+  </moa_landscape>
+
+  <current_treatment_landscape>
+    
+    <first_line_standard_of_care>
+      <regimen priority="1">
+        <name>Atezolizumab + Bevacizumab</name>
+        <approval_status>FDA approved May 2020, EMA approved Jan 2021</approval_status>
+        <clinical_data>mOS 19.2 months, ORR 29.8%, generally considered default first-line option</clinical_data>
+        <market_position>Market leader; ~$1.1B HCC revenue 2024</market_position>
+      </regimen>
+      <regimen priority="2">
+        <name>Durvalumab + Tremelimumab (STRIDE)</name>
+        <approval_status>Approved based on HIMALAYA trial</approval_status>
+        <clinical_data>mOS 16.4 months, 5-year OS 19.6% (best long-term survival), lower toxicity than nivo+ipi</clinical_data>
+        <market_position>Growing; differentiated by excellent long-term outcomes and improved safety</market_position>
+      </regimen>
+      <regimen priority="3">
+        <name>Nivolumab + Ipilimumab</name>
+        <approval_status>FDA approved for first-line HCC (CheckMate 9DW)</approval_status>
+        <clinical_data>mOS 23.7 months, ORR 36% (highest), 3-year OS 38%, but higher toxicity (Grade 3-4 41%)</clinical_data>
+        <market_position>Alternative for patients with varices or preference for chemotherapy-free regimen</market_position>
+      </regimen>
+      <regimen priority="Regional (China)">
+        <name>Camrelizumab + Rivoceranib</name>
+        <approval_status>Approved in China; not yet approved US/EU</approval_status>
+        <clinical_data>mOS 23.8 months (best), but highest toxicity (Grade 3-4 80.9%)</clinical_data>
+        <market_position>Approved China; US/EU approval uncertain due to toxicity concerns</market_position>
+      </regimen>
+    </first_line_standard_of_care>
+
+    <second_line_options>
+      <option>TKI monotherapy (cabozantinib, regorafenib, ramucirumab)</option>
+      <option>Pembrolizumab monotherapy (in Asia, post-sorafenib)</option>
+      <option>Clinical trials</option>
+    </second_line_options>
+
+    <locoregional_therapy>
+      <option>
+        <name>TACE + Durvalumab + Bevacizumab</name>
+        <indication>Intermediate-stage HCC

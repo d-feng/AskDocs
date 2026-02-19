@@ -1,0 +1,25 @@
+# Secrets
+.env
+
+# Vector store (rebuild with scripts/build_vectorstore.py)
+vector_store/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

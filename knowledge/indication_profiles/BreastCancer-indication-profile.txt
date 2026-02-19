@@ -1,0 +1,1833 @@
+{
+  "metadata": {
+    "indication_name": "Non-Small Cell Lung Cancer (NSCLC)",
+    "indication_code": "C34 (ICD-10)",
+    "subtypes": [
+      {
+        "subtype": "Lung Adenocarcinoma (LUAD)",
+        "prevalence": "40-50%",
+        "molecular_features": "EGFR mutations (15-20% Western, 40-50% Asian), KRAS mutations (25-30%), ALK fusions (3-5%)"
+      },
+      {
+        "subtype": "Lung Squamous Cell Carcinoma (LUSC)",
+        "prevalence": "25-30%",
+        "molecular_features": "Fewer actionable mutations, higher TMB, PD-L1 expression variable"
+      },
+      {
+        "subtype": "Large Cell Carcinoma",
+        "prevalence": "10-15%",
+        "molecular_features": "Heterogeneous, often diagnosed by exclusion"
+      },
+      {
+        "subtype": "Other NSCLC subtypes",
+        "prevalence": "5-10%",
+        "molecular_features": "Includes adenosquamous, sarcomatoid variants"
+      }
+    ],
+    "geographic_scope": "United States and European Union",
+    "data_version": "2025-10-03",
+    "data_sources": "LungCa.docx memo, ClinicalTrials.gov, PubMed (2024-2025), FDA/EMA regulatory filings, NoahAI clinical trial database",
+    "usage_for_claude": "This NSCLC profile enables MOA-based indication selection by providing: (1) Disease biology and immunological features for matching drug MOAs, (2) Comprehensive precedent of MOAs tested in NSCLC with detailed clinical outcomes and lessons learned, (3) Unmet needs framed as MOA requirements, (4) Scoring framework for ranking NSCLC attractiveness for specific MOAs. When provided with a drug MOA, assess fit by matching against precedent drugs with similar MOA tags and evaluating biological rationale."
+  },
+
+  "disease_biology": {
+    "pathophysiology": {
+      "summary": "NSCLC is characterized by diverse molecular drivers (EGFR, KRAS, ALK, etc.) and variable immune landscapes. The tumor microenvironment ranges from 'hot' (T-cell inflamed, checkpoint-responsive) to 'cold' (immune-excluded). Immune resistance mechanisms are multifactorial, involving tumor-intrinsic factors (antigen presentation defects, oncogenic signaling), immunosuppressive TME (CAFs, MDSCs, Tregs), and metabolic reprogramming (lactate accumulation, acidic TME).",
+      "key_pathways": [
+        {
+          "name": "PD-1/PD-L1 Checkpoint Axis",
+          "relevance": "HIGH",
+          "role_in_disease": "PD-L1 expressed in 25-50% of NSCLC tumors; mediates T-cell exhaustion and immune evasion. Expression varies by histology (higher in squamous) and is modulated by IFN-γ signaling.",
+          "druggability": "VALIDATED - Multiple PD-1/PD-L1 inhibitors approved and constitute backbone of therapy",
+          "clinical_validation": "Pembrolizumab, nivolumab, atezolizumab, durvalumab approved across multiple lines. Combinations with chemotherapy and/or CTLA-4 blockade are standard of care in first-line settings."
+        },
+        {
+          "name": "CTLA-4 Checkpoint",
+          "relevance": "MODERATE",
+          "role_in_disease": "Expressed on T cells, particularly Tregs; mediates immune suppression during T-cell priming phase",
+          "druggability": "VALIDATED - Ipilimumab approved in combination with nivolumab for first-line NSCLC",
+          "clinical_validation": "Ipilimumab + nivolumab showed benefit in PD-L1≥1% population but with increased toxicity vs PD-1 monotherapy"
+        },
+        {
+          "name": "TIGIT Checkpoint (Next-Gen)",
+          "relevance": "LOW - Clinical validation failed",
+          "role_in_disease": "Co-inhibitory receptor on T cells and NK cells; competes with CD226 for binding to CD155/CD112",
+          "druggability": "INVALIDATED - Multiple Phase III failures suggest limited clinical utility in NSCLC",
+          "clinical_validation": "Tiragolumab + atezolizumab FAILED Phase III (SKYSCRAPER-01); Belrestotug program TERMINATED. Class-wide failures indicate TIGIT may not be viable target in NSCLC."
+        },
+        {
+          "name": "EGFR Pathway",
+          "relevance": "HIGH in EGFR+ subset (15-20% Western, 40-50% Asian)",
+          "role_in_disease": "Activating mutations (exon 19 del, L858R) drive oncogenic signaling; acquired resistance mutations (T790M, C797S) emerge on TKI therapy",
+          "druggability": "VALIDATED - Multiple generations of EGFR TKIs approved",
+          "clinical_validation": "Osimertinib is standard first-line; resistance mechanisms drive need for novel combinations (e.g., amivantamab + lazertinib)"
+        },
+        {
+          "name": "KRAS Pathway",
+          "relevance": "HIGH in KRAS+ subset (25-30% of NSCLC)",
+          "role_in_disease": "G12C mutation (13% of NSCLC) is directly druggable; drives proliferation and metabolic reprogramming",
+          "druggability": "VALIDATED for G12C - Sotorasib and adagrasib approved; combinations with PD-1 inhibitors in development",
+          "clinical_validation": "Sotorasib monotherapy ORR ~40%; olomorasib + pembrolizumab received breakthrough designation for superior efficacy"
+        },
+        {
+          "name": "Tumor Microenvironment (TME) - Immunosuppressive",
+          "relevance": "CRITICAL for resistance",
+          "role_in_disease": "CAFs create physical barriers and secrete inhibitory factors (TGF-β, IL-6); MDSCs and M2 macrophages suppress T-cell function; metabolic dysregulation (lactate) creates acidic, immunosuppressive milieu",
+          "druggability": "EMERGING - CAF-targeted therapies (autophagy inhibitors), TGF-β blockade, metabolic modulators in preclinical/early clinical",
+          "clinical_validation": "No approved TME-directed agents yet; represents major unmet need and opportunity for novel MOAs"
+        }
+      ]
+    },
+
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "immune_infiltration": "VARIABLE - 'Hot' tumors (T-cell inflamed, ~30-40% of NSCLC) vs 'Cold' tumors (immune-excluded, ~30-40%) vs 'Immunosuppressed' (T-cell present but dysfunctional, ~20-30%). PD-L1 high tumors tend to be more inflamed. Squamous histology generally has higher immune infiltration than adenocarcinoma.",
+        "dominant_immune_cells": "CD8+ cytotoxic T cells (often exhausted with PD-1+/TIGIT+ phenotype), CD4+ helper T cells, Regulatory T cells (Tregs), Tumor-associated macrophages (TAMs, M2-polarized), Myeloid-derived suppressor cells (MDSCs), Cancer-associated fibroblasts (CAFs)",
+        "immune_suppression_mechanisms": [
+          {
+            "name": "PD-L1/PD-1 Axis",
+            "prevalence": "PD-L1+ in 25-50% (varies by assay and cutoff); PD-1+ exhausted T cells common in TME",
+            "functional_impact": "Inhibits T-cell effector function, induces apoptosis of tumor-reactive T cells, promotes T-cell exhaustion",
+            "therapeutic_relevance": "PRIMARY VALIDATED TARGET - backbone of immunotherapy; checkpoint inhibitors reverse exhaustion in subset of patients"
+          },
+          {
+            "name": "TIGIT/CD155 Axis",
+            "prevalence": "TIGIT+ CD8 T cells correlate with exhaustion; CD155 expressed on tumor cells and APCs",
+            "functional_impact": "Co-inhibitory signal that reinforces exhaustion; competes with costimulatory CD226",
+            "therapeutic_relevance": "FAILED TARGET - Multiple Phase III trials (tiragolumab, belrestotug) showed no benefit; class-wide failure suggests limited utility"
+          },
+          {
+            "name": "Cancer-Associated Fibroblasts (CAFs)",
+            "prevalence": "Abundant in desmoplastic NSCLC tumors",
+            "functional_impact": "Create physical barriers excluding T cells; secrete TGF-β, IL-6, CXCL12; CAF autophagy signatures correlate with immunotherapy resistance",
+            "therapeutic_relevance": "EMERGING TARGET - Autophagy inhibitors, CAF-depleting strategies in preclinical; represents key resistance mechanism"
+          },
+          {
+            "name": "Metabolic Reprogramming - Lactate Accumulation",
+            "prevalence": "High in glycolytic NSCLC tumors",
+            "functional_impact": "Lactate creates acidic TME; 'lactylation' of immune cells causes dysfunction; inhibits T-cell proliferation and cytokine production",
+            "therapeutic_relevance": "NOVEL TARGET - Lactylation-related gene signatures (LARRGs) identified as biomarkers; metabolic modulators in early development"
+          },
+          {
+            "name": "Immunosuppressive Cytokines (TGF-β, IL-10, MDK, MIF)",
+            "prevalence": "Elevated in subset of NSCLC tumors, especially in resistance settings",
+            "functional_impact": "TGF-β promotes Treg function and T-cell exclusion; IL-10/MDK/MIF inhibit effector T-cell responses",
+            "therapeutic_relevance": "COMBINATION TARGET - TGF-β inhibitors + checkpoint blockade rational; cytokine-neutralizing approaches in development"
+          }
+        ]
+      },
+
+      "cytokine_environment": {
+        "cytokine_profile": "Mixed - Some tumors show Th1-skewed responses (IFN-γ, IL-2) correlating with ICI response; others dominated by immunosuppressive cytokines (TGF-β, IL-10). IL-26/CX3CL1 axis identified as protumor in recent studies.",
+        "key_cytokines": [
+          {
+            "name": "IFN-γ",
+            "role": "Antitumor",
+            "expression_level": "Elevated in 'hot' tumors and ICI responders",
+            "function": "Activates antitumor immunity; induces PD-L1 expression (adaptive immune resistance); activates macrophages and NK cells",
+            "therapeutic_relevance": "Biomarker of immune activation; IFN-γ gene signatures predict ICI response; also drives adaptive resistance via PD-L1 induction"
+          },
+          {
+            "name": "TGF-β",
+            "role": "Protumor",
+            "expression_level": "High in fibrotic/desmoplastic NSCLC",
+            "function": "Promotes immunosuppression, Treg differentiation, T-cell exclusion, EMT, CAF activation",
+            "therapeutic_relevance": "KEY RESISTANCE MECHANISM - TGF-β blockade + ICI combinations in development; addresses 'cold' tumor phenotype"
+          },
+          {
+            "name": "IL-26 / CX3CL1",
+            "role": "Protumor",
+            "expression_level": "Elevated in subset; associated with poor prognosis",
+            "function": "Promotes tumor progression and immunosuppression via unclear mechanisms",
+            "therapeutic_relevance": "NOVEL TARGET - Recently identified (2024-2025); cytokine-neutralizing antibodies potential therapeutic approach"
+          },
+          {
+            "name": "IL-6",
+            "role": "Protumor",
+            "expression_level": "Elevated in inflammatory NSCLC",
+            "function": "Promotes MDSC recruitment, STAT3 activation, tumor progression",
+            "therapeutic_relevance": "Target for combination therapy; IL-6R blockade (tocilizumab) used to manage CRS in bispecific antibody trials"
+          }
+        ]
+      },
+
+      "immune_receptors": {
+        "validated_targets": [
+          {
+            "name": "PD-1",
+            "expression_pattern": "Expressed on tumor-infiltrating T cells; marks exhausted T cells; levels correlate with prior antigen exposure",
+            "functional_status": "Exhausted/anergic in many cases; reversible with checkpoint blockade in 20-40% of patients",
+            "targeting_potential": "FULLY VALIDATED - Pembrolizumab, nivolumab, cemiplimab approved; backbone of NSCLC immunotherapy",
+            "clinical_data": "Pembrolizumab monotherapy: ORR 45% in PD-L1≥50%, 29% in PD-L1 1-49%; Nivolumab approved neoadjuvant/adjuvant setting"
+          },
+          {
+            "name": "PD-L1",
+            "expression_pattern": "Expressed on tumor cells (25-50%) and immune cells; inducible by IFN-γ; heterogeneous within tumors",
+            "functional_status": "Active immune evasion mechanism; also marker of IFN-γ-driven inflammation",
+            "targeting_potential": "FULLY VALIDATED - Atezolizumab, durvalumab, avelumab approved",
+            "clinical_data": "Durvalumab post-chemoradiation: PFS benefit in Stage III unresectable NSCLC; now standard of care"
+          },
+          {
+            "name": "CTLA-4",
+            "expression_pattern": "Expressed on T cells, particularly Tregs; upregulated upon T-cell activation",
+            "functional_status": "Active inhibitory signal during priming phase",
+            "targeting_potential": "VALIDATED in combination - Ipilimumab + nivolumab approved first-line",
+            "clinical_data": "Ipi+nivo vs chemo: improved OS in PD-L1≥1% (HR 0.79); higher toxicity than PD-1 monotherapy"
+          }
+        ],
+        "failed_targets": [
+          {
+            "name": "TIGIT",
+            "expression_pattern": "Expressed on exhausted T cells and NK cells",
+            "functional_status": "Co-inhibitory receptor; mechanistic rationale was sound",
+            "targeting_potential": "INVALIDATED - Multiple Phase III failures",
+            "clinical_data": "Tiragolumab + atezolizumab: OS 22.9 vs 16.7 months (HR 0.81, NS); Belrestotug: terminated for PFS failure",
+            "lessons": "CRITICAL LESSON - Next-gen checkpoints may not translate mechanistic rationale to clinical benefit; TIGIT is not viable in NSCLC"
+          }
+        ],
+        "emerging_targets": [
+          {
+            "name": "LAG-3",
+            "expression_pattern": "Expressed on exhausted T cells; often co-expressed with PD-1",
+            "functional_status": "Contributes to T-cell exhaustion in preclinical models",
+            "targeting_potential": "IN DEVELOPMENT - Fianlimab, cobolimab in Phase III trials",
+            "clinical_data": "Early data mixed; awaiting Phase III readouts; cautious optimism given TIGIT failures"
+          },
+          {
+            "name": "4-1BB (CD137)",
+            "expression_pattern": "Costimulatory receptor on activated T cells and NK cells",
+            "functional_status": "Can enhance T-cell activation and persistence when agonized",
+            "targeting_potential": "EMERGING - PD-L1 x 4-1BB bispecifics aim for tumor-localized costimulation",
+            "clinical_data": "Preclinical data promising; clinical trials ongoing; conditional agonism approach to avoid systemic toxicity"
+          }
+        ]
+      }
+    },
+
+    "tumor_antigens": {
+      "highly_expressed_targets": [
+        {
+          "name": "TROP2 (Trophoblast Cell-Surface Antigen 2)",
+          "expression_frequency": "80-90% of NSCLC (both LUAD and LUSC)",
+          "expression_level": "Medium to High when expressed",
+          "expression_pattern": "Membranous expression; relatively homogeneous across tumor",
+          "normal_tissue_expression": "Low-level expression in normal epithelial tissues (trachea, prostate, breast); therapeutic window exists",
+          "therapeutic_window": "EXCELLENT - High tumor expression with manageable normal tissue expression",
+          "prior_targeting_attempts": [
+            "Datopotamab deruxtecan (Dato-DXd): TROP2 ADC with topoisomerase I inhibitor payload; FDA accelerated approval in EGFR+ NSCLC post-TKI (2024); ORR 57.5% in combo with durvalumab in Phase I",
+            "Sacituzumab tirumotecan: TROP2 ADC; demonstrated superiority over docetaxel (ORR 45.1% vs 15.6%, PFS 6.9 vs 2.8 months)",
+            "Validates TROP2 as premier ADC target in NSCLC - emerging as new pillar of therapy"
+          ],
+          "strategic_importance": "CRITICAL - TROP2 ADCs are breakthrough therapy; expected to become standard across NSCLC subtypes; high unmet need in TKI-resistant EGFR+ and chemotherapy-refractory settings"
+        },
+        {
+          "name": "HER3 (ERBB3)",
+          "expression_frequency": "60-70% of NSCLC",
+          "expression_level": "Variable; higher in EGFR-mutant tumors",
+          "expression_pattern": "Membranous; heterogeneous in some tumors",
+          "normal_tissue_expression": "Expressed in various epithelial tissues",
+          "therapeutic_window": "GOOD - Sufficient differential for ADC targeting",
+          "prior_targeting_attempts": [
+            "Patritumab deruxtecan (HER3-DXd): Phase III ongoing; promising Phase II data in EGFR-mutant NSCLC",
+            "Represents second-wave ADC target after TROP2"
+          ],
+          "strategic_importance": "HIGH - Particularly relevant in EGFR-mutant subset; complements TROP2 ADCs"
+        },
+        {
+          "name": "c-Met",
+          "expression_frequency": "50-60% of NSCLC (amplification/overexpression)",
+          "expression_level": "Variable; enriched in EGFR-mutant tumors and resistance settings",
+          "expression_pattern": "Membranous; c-Met amplification is resistance mechanism to EGFR TKIs",
+          "normal_tissue_expression": "Moderate in liver, kidney; manageable for bispecific antibodies",
+          "therapeutic_window": "GOOD for bispecific antibodies; ADC development ongoing",
+          "prior_targeting_attempts": [
+            "Amivantamab (EGFR/c-Met bispecific): Landmark Phase III data - median OS not reached vs 36.7 months for osimertinib (HR 0.75); PFS 23.7 vs 16.6 months (HR 0.70) when combined with lazertinib in EGFR+ NSCLC",
+            "Positions amivantamab + lazertinib as new standard of care in EGFR+ setting",
+            "c-Met also target for ADCs (mecbotamab vedotin) in development"
+          ],
+          "strategic_importance": "VALIDATED - Critical target in EGFR+ NSCLC, especially for overcoming resistance"
+        },
+        {
+          "name": "Integrin β6",
+          "expression_frequency": "High in subset of NSCLC",
+          "expression_level": "Overexpressed in tumors vs normal lung",
+          "expression_pattern": "Cell surface; role in TGF-β activation and EMT",
+          "normal_tissue_expression": "Limited in normal tissues",
+          "therapeutic_window": "EMERGING - Good preclinical therapeutic window",
+          "prior_targeting_attempts": [
+            "Sigvotatug vedotin: Integrin β6 ADC; Phase III trials ongoing"
+          ],
+          "strategic_importance": "MODERATE - Novel target distinct from TROP2/HER3"
+        }
+      ],
+      "emerging_targets": [
+        {
+          "name": "FOLR1 (Folate Receptor Alpha)",
+          "expression_frequency": "20-30% of NSCLC (enriched in certain subtypes)",
+          "expression_level": "Medium when expressed",
+          "expression_pattern": "Heterogeneous",
+          "normal_tissue_expression": "Limited; expressed in kidney proximal tubules",
+          "therapeutic_window": "MODERATE",
+          "prior_targeting_attempts": [
+            "Luveltamab tazevibulin: FOLR1 ADC in Phase II"
+          ],
+          "strategic_importance": "LOW-MODERATE - Niche target, subset-specific"
+        },
+        {
+          "name": "AXL Receptor Tyrosine Kinase",
+          "expression_frequency": "Variable; enriched in EMT-high, therapy-resistant tumors",
+          "expression_level": "Medium to High in resistant clones",
+          "expression_pattern": "Membranous; associated with mesenchymal phenotype",
+          "normal_tissue_expression": "Moderate in various tissues",
+          "therapeutic_window": "MODERATE",
+          "prior_targeting_attempts": [
+            "Mecbotamab vedotin (AXL ADC) in development"
+          ],
+          "strategic_importance": "MODERATE - Resistance mechanism; emerging target"
+        }
+      ],
+      "neoantigen_landscape": {
+        "description": "NSCLC, especially lung adenocarcinoma with KRAS mutations and squamous histology, can have high tumor mutational burden (TMB) leading to neoantigen generation. Neoantigens are patient-specific and can be targeted with personalized vaccines or TCR-T cell therapies.",
+        "expression_frequency": "Variable; TMB-high in ~20-30% of NSCLC (smokers, certain molecular subtypes)",
+        "therapeutic_approaches": [
+          "Personalized mRNA vaccines (Merck/Moderna): Phase III ongoing; tailored to individual tumor neoantigens",
+          "ELI-002 (KRAS neoantigen vaccine): Targets common KRAS mutations (G12D, G12V, G12C); Phase II",
+          "VB10.NEO: Neoantigen-based therapeutic vaccine",
+          "Tedopi: Multi-peptide vaccine targeting shared tumor antigens (MUC1, HER2, etc.)"
+        ],
+        "strategic_importance": "HIGH - Represents paradigm shift to personalized immunotherapy; key Phase III readouts anticipated; complements checkpoint inhibitors"
+      }
+    },
+
+    "biological_features_for_moa_matching": [
+      {
+        "feature_name": "Checkpoint pathway activation (PD-1/PD-L1)",
+        "moa_relevance": ["Checkpoint inhibitors", "Combination strategies"],
+        "description": "PD-L1 expressed in 25-50% of NSCLC; PD-1+ exhausted T cells in TME; established immune evasion mechanism",
+        "frequency": "High - most NSCLC tumors have some degree of checkpoint pathway engagement",
+        "therapeutic_implication": "VALIDATED PATHWAY - Multiple approved ICIs; standard of care backbone. Post-ICI resistance is major unmet need - MOAs that work independently of PD-1/PD-L1 are valuable (e.g., ADCs, bispecifics, KRAS inhibitors). Combination opportunities: ICI + ADC, ICI + targeted therapy, ICI + novel cytokines."
+      },
+      {
+        "feature_name": "TROP2 overexpression",
+        "moa_relevance": ["Antibody-drug conjugates", "TROP2-targeted therapies"],
+        "description": "TROP2 expressed in 80-90% of NSCLC with good therapeutic window",
+        "frequency": "Very High - pan-NSCLC target",
+        "therapeutic_implication": "PREMIER ADC TARGET - Dato-DXd approved, sacituzumab in late development. TROP2 ADCs emerging as new standard of care across NSCLC subtypes. High ORR (45-58%) validates target. MOAs targeting TROP2 have strong biological rationale and clinical proof-of-concept."
+      },
+      {
+        "feature_name": "EGFR pathway addiction (in EGFR+ subset)",
+        "moa_relevance": ["EGFR TKIs", "EGFR-targeted bispecifics", "ADCs"],
+        "description": "EGFR mutations in 15-20% (Western) to 40-50% (Asian); drives oncogenic signaling; resistance mechanisms (T790M, c-Met amplification) emerge",
+        "frequency": "15-50% depending on ethnicity",
+        "therapeutic_implication": "VALIDATED in subset - EGFR TKIs standard first-line; resistance inevitable. Amivantamab (EGFR/c-Met bispecific) + lazertinib showed superiority over osimertinib (OS HR 0.75). MOAs that address EGFR resistance (dual inhibition, ADCs, immune combinations) are high-value."
+      },
+      {
+        "feature_name": "KRAS mutations (G12C druggable)",
+        "moa_relevance": ["KRAS G12C inhibitors", "Combination with ICIs"],
+        "description": "KRAS mutations in 25-30%; G12C specifically in ~13% of NSCLC; directly druggable",
+        "frequency": "KRAS total: 25-30%; G12C: ~13%",
+        "therapeutic_implication": "VALIDATED TARGET - Sotorasib, adagrasib approved for G12C. Olomorasib + pembrolizumab received breakthrough designation. KRAS inhibitors + ICIs synergistic (KRAS inhibition may increase immunogenicity). MOAs combining KRAS inhibition with immune activation are rational."
+      },
+      {
+        "feature_name": "Immunosuppressive tumor microenvironment (CAFs, lactate, TGF-β)",
+        "moa_relevance": ["TME-modulating agents", "CAF inhibitors", "Metabolic modulators", "TGF-β blockade"],
+        "description": "CAFs create barriers and secrete TGF-β; lactate accumulation causes T-cell dysfunction; major resistance mechanism to ICIs",
+        "frequency": "Variable - subset of NSCLC (desmoplastic, metabolically dysregulated tumors)",
+        "therapeutic_implication": "MAJOR UNMET NEED - TME is critical resistance mechanism. No approved TME-directed therapies. CAF autophagy inhibitors, TGF-β blockade, metabolic modulators in early development. MOAs targeting TME could overcome 'cold' tumor phenotype and ICI resistance. High-risk, high-reward opportunity."
+      },
+      {
+        "feature_name": "High neoantigen burden (TMB-high subset)",
+        "moa_relevance": ["Cancer vaccines", "Personalized immunotherapy", "TCR-T cell therapy"],
+        "description": "TMB-high in 20-30% of NSCLC (smokers, certain subtypes); generates patient-specific neoantigens",
+        "frequency": "20-30% have high TMB",
+        "therapeutic_implication": "EMERGING OPPORTUNITY - Personalized mRNA vaccines (Merck/Moderna Phase III ongoing); KRAS neoantigen vaccines. Paradigm shift toward individualized therapy. MOAs leveraging neoantigens could achieve durable responses in TMB-high subset."
+      },
+      {
+        "feature_name": "Limited intratumoral T-cell infiltration ('cold' tumors)",
+        "moa_relevance": ["T-cell recruiting therapies", "Bispecific T-cell engagers", "Oncolytic viruses"],
+        "description": "30-40% of NSCLC are 'cold' tumors with minimal T-cell infiltration; ICI response poor",
+        "frequency": "30-40% of NSCLC",
+        "therapeutic_implication": "UNMET NEED - 'Cold' tumors don't respond to ICIs. Bispecific T-cell engagers (e.g., DLL3 x CD3 in SCLC showed benefit) could recruit and activate T cells at tumor site. Oncolytic viruses, intratumoral IL-2/IL-12, T-cell recruiting antibodies are rational approaches."
+      },
+
+      {
+        "name": "Cancer Vaccines - Neoantigen and Shared Antigen Targeting",
+        "biological_rationale": {
+          "indication_specific_rationale": "NSCLC, particularly in smokers and TMB-high tumors, generates abundant neoantigens due to high mutational burden. Neoantigens are tumor-specific (absent in normal tissues), providing ideal vaccination targets. KRAS mutations (G12C, G12D, G12V) are shared neoantigens in 25-30% of NSCLC. Personalized mRNA vaccines can be designed against individual patient neoantigens. Cancer vaccines aim to prime/boost tumor-specific T-cell responses, complementing checkpoint inhibitors that remove brakes but don't provide gas pedal.",
+          "supporting_biology": [
+            "TMB-high in 20-30% of NSCLC (smokers especially); correlates with neoantigen burden",
+            "KRAS mutations are shared neoantigens (G12C in 13%, G12D/G12V in additional 12-15%)",
+            "Personalized neoantigen prediction possible via tumor sequencing and HLA typing",
+            "Vaccines can generate memory T-cell responses (durability)",
+            "Synergy with checkpoint inhibitors (vaccine primes, ICI amplifies)"
+          ],
+          "theoretical_concerns": [
+            "Manufacturing complexity for personalized vaccines (4-8 week production time)",
+            "Immunosuppressive TME may blunt vaccine responses",
+            "Antigen selection critical - not all neoantigens are immunogenic",
+            "Cost and logistical challenges for individualized therapy"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Personalized Neoantigen mRNA Vaccine (Merck/Moderna)",
+              "specific_moa": "Individualized mRNA vaccine encoding up to 34 patient-specific tumor neoantigens; mRNA delivered in lipid nanoparticles; dendritic cells take up mRNA, translate neoantigens, present on MHC-I and MHC-II; primes CD8+ and CD4+ T-cell responses against tumor-specific antigens; combined with pembrolizumab (PD-1 blockade) to amplify T-cell responses",
+              "moa_classification": ["cancer_vaccine", "personalized_neoantigen", "mRNA_platform", "individualized_therapy", "checkpoint_combination"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING - Keynote-942 trial",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Keynote-942 Phase IIb",
+                    "phase": "Phase IIb",
+                    "design": "Personalized mRNA vaccine (mRNA-4157) + pembrolizumab vs pembrolizumab alone in resected high-risk melanoma (proof-of-concept)",
+                    "efficacy": {
+                      "RFS": "44% improvement in recurrence-free survival (HR 0.56)",
+                      "Note": "Demonstrated neoantigen vaccines work; NSCLC Phase III ongoing"
+                    },
+                    "safety": "Well-tolerated; injection site reactions, fatigue; no major toxicities",
+                    "outcome": "SUCCESS in melanoma - Phase III initiated in NSCLC based on proof-of-concept"
+                  },
+                  {
+                    "trial_name": "Phase III in NSCLC (ongoing)",
+                    "phase": "Phase III",
+                    "design": "mRNA-4157 + pembrolizumab in resected NSCLC (adjuvant setting)",
+                    "patient_selection": "Stage IB-IIIA resected NSCLC with high-risk features",
+                    "outcome": "PENDING - represents paradigm shift toward personalized immunotherapy"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Personalized neoantigen approach addresses tumor heterogeneity",
+                  "mRNA platform allows rapid manufacturing (4-8 weeks from biopsy to vaccine)",
+                  "Combination with pembrolizumab synergistic (vaccine primes, ICI amplifies)",
+                  "Adjuvant setting optimal - lower tumor burden, less immunosuppressive TME",
+                  "Melanoma proof-of-concept (44% RFS improvement) validates platform"
+                ],
+                "key_insights": "Personalized mRNA vaccines represent FUTURE OF IMMUNOTHERAPY - tailored to individual tumor genetics. Manufacturing timeline (4-8 weeks) is feasible for adjuvant setting (post-surgery delay acceptable). Combination with checkpoint inhibitors is rational and validated. NSCLC Phase III critical - if successful, establishes new standard in resected high-risk NSCLC. STRATEGIC: Personalized vaccines require biotech/pharma partnership (sequencing, bioinformatics, manufacturing). Adjuvant setting is sweet spot (curative intent, manageable tumor burden). If Phase III succeeds, metastatic setting will follow."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "personalized_neoantigen", "mRNA", "adjuvant", "checkpoint_combination", "individualized"]
+            },
+            {
+              "drug_name": "ELI-002 (KRAS Neoantigen Vaccine, Elicio Therapeutics)",
+              "specific_moa": "Amphiphile (AMP) vaccine platform targeting common KRAS mutations (G12D, G12V, G12C); long peptides corresponding to mutant KRAS sequences conjugated to amphiphile molecules that traffic to lymph nodes; engages dendritic cells for T-cell priming; off-the-shelf vaccine (not personalized) targeting shared neoantigens",
+              "moa_classification": ["cancer_vaccine", "KRAS_neoantigen", "shared_antigen", "off_the_shelf", "AMP_platform"],
+              "clinical_evidence": {
+                "development_stage": "Phase II ONGOING",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I in KRAS-mutant solid tumors",
+                    "phase": "Phase I",
+                    "design": "ELI-002 monotherapy or with pembrolizumab in KRAS-mutant cancers (pancreatic, colorectal, NSCLC)",
+                    "efficacy": {
+                      "Immunogenicity": "Generated KRAS-specific T-cell responses in majority of patients",
+                      "Clinical_activity": "Preliminary signals of disease control; data maturing"
+                    },
+                    "safety": "Well-tolerated; injection site reactions; no DLTs",
+                    "outcome": "Promising immunogenicity - Phase II ongoing in NSCLC"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "KRAS mutations are shared neoantigens (not patient-specific) - enables off-the-shelf approach",
+                  "AMP platform enhances lymph node trafficking and DC uptake",
+                  "T-cell responses generated against KRAS mutant epitopes",
+                  "No manufacturing delay (off-the-shelf) - logistical advantage vs personalized vaccines"
+                ],
+                "key_insights": "ELI-002 represents ALTERNATIVE to personalized vaccines - targets shared KRAS neoantigens. Off-the-shelf approach solves manufacturing/logistics challenges. KRAS-mutant NSCLC (25-30%) is large target population. If effective, provides accessible vaccine option (no sequencing/customization delay). Competitive to personalized vaccines in KRAS+ subset. Phase II readout critical - must demonstrate clinical benefit, not just immunogenicity."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "KRAS_neoantigen", "shared_antigen", "off_the_shelf", "NSCLC_subset"]
+            },
+            {
+              "drug_name": "Tedopi (OSE Immunotherapeutics)",
+              "specific_moa": "Multi-peptide vaccine targeting 5 shared tumor-associated antigens (TAAs) highly expressed in NSCLC: HER2, CEA, MAGE2, MAGE3, and a 5th proprietary antigen; optimized peptides designed to induce CD4+ and CD8+ T-cell responses; administered with Montanide adjuvant",
+              "moa_classification": ["cancer_vaccine", "multi_peptide", "shared_TAA", "off_the_shelf", "HER2_MAGE"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III in NSCLC",
+                    "phase": "Phase III",
+                    "design": "Tedopi vs chemotherapy or best supportive care in HLA-A2+ advanced NSCLC (2L/3L post-ICI)",
+                    "patient_selection": "HLA-A2+ patients (40% of population); post-ICI progression",
+                    "efficacy": "Pending - trial ongoing",
+                    "outcome": "PENDING - tests shared TAA approach in post-ICI resistance setting"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "key_insights": "Tedopi tests whether shared TAAs (vs neoantigens) can drive effective antitumor immunity. HLA-A2 restriction limits to 40% of patients. Post-ICI setting is high-need but challenging (exhausted T cells, immunosuppressive TME). If successful, validates simpler vaccine approach (no sequencing/customization). If fails, suggests neoantigens are superior targets (tumor-specific, higher affinity)."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "shared_TAA", "multi_peptide", "post_ICI", "HLA_restricted"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "8/10 - TMB-high NSCLC (20-30%) has abundant neoantigens; KRAS mutations are shared targets in 25-30%",
+          "clinical_validation": "6/10 - Proof-of-concept in melanoma (Merck/Moderna); NSCLC Phase III ongoing; immunogenicity shown but clinical benefit pending",
+          "unmet_need_match": "8/10 - Adjuvant setting (post-resection) lacks effective therapies; post-ICI resistance needs novel approaches; vaccines provide durable memory",
+          "overall_assessment": "Cancer vaccines are EMERGING HIGH-POTENTIAL modality in NSCLC. Personalized mRNA vaccines (Merck/Moderna) represent state-of-art - melanoma proof-of-concept (44% RFS benefit) validates platform. NSCLC Phase III (adjuvant) is CRITICAL readout - success would establish new paradigm. Shared neoantigen vaccines (ELI-002 for KRAS) offer off-the-shelf alternative. STRATEGIC OPPORTUNITIES: (1) Adjuvant setting is optimal - lower tumor burden, immune system intact, (2) Combination with ICIs synergistic (vaccine + pembrolizumab standard design), (3) TMB-high biomarker enrichment may improve success. CHALLENGES: Manufacturing complexity/timeline for personalized vaccines, cost, and need to demonstrate OS benefit (not just immunogenicity). RECOMMENDATION: MODERATE-HIGH PRIORITY - vaccines are rational, have proof-of-concept, but clinical validation in NSCLC pending. Phase III readouts will determine viability."
+        }
+      },
+
+      {
+        "name": "Tumor Microenvironment Modulators - CAF, TGF-β, Metabolic Targets",
+        "biological_rationale": {
+          "indication_specific_rationale": "Immune resistance in NSCLC is driven by immunosuppressive TME - CAFs create physical barriers and secrete inhibitory factors, TGF-β promotes Treg function and T-cell exclusion, metabolic reprogramming (lactate accumulation) creates acidic environment causing T-cell dysfunction. These mechanisms are independent of checkpoint pathways, making TME modulators rational for ICI-resistant disease. No approved TME-directed therapies exist - major unmet need and opportunity.",
+          "supporting_biology": [
+            "CAF autophagy signatures correlate with ICI resistance (recent 2024-2025 data)",
+            "TGF-β highly expressed in fibrotic/desmoplastic NSCLC; promotes 'cold' tumor phenotype",
+            "Lactylation-related gene signatures (LARRGs) predict poor ICI response",
+            "IL-26/CX3CL1 axis identified as novel protumor pathway (2025)",
+            "Targeting TME could convert 'cold' to 'hot' tumors, enhancing ICI efficacy"
+          ],
+          "theoretical_concerns": [
+            "TME is complex - single target may be insufficient",
+            "Normal tissue fibrosis/wound healing may be affected (on-target toxicity)",
+            "Biomarker development challenging - TME heterogeneity",
+            "Combinations likely required (TME modulator + ICI)"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "TGF-β Inhibitors (multiple programs)",
+              "specific_moa": "Small molecule or antibody-based TGF-β pathway inhibitors; mechanisms include: (1) Anti-TGF-β antibodies (pan-isoform or isoform-selective), (2) TGF-β receptor kinase inhibitors, (3) Bifunctional fusion proteins (e.g., M7824 - PD-L1 x TGF-β trap). Aim to block TGF-β-mediated immunosuppression, Treg expansion, and T-cell exclusion.",
+              "moa_classification": ["TME_modulator", "TGF-beta_inhibitor", "immunosuppression_reversal", "cold_to_hot_conversion"],
+              "clinical_evidence": {
+                "development_stage": "Multiple programs in Phase I/II; none approved yet",
+                "rationale": "TGF-β is major driver of 'cold' tumor phenotype; blockade may enable T-cell infiltration and ICI response",
+                "early_data": "Preclinical models show TGF-β inhibition + ICI converts resistant to responsive tumors; clinical translation ongoing",
+                "challenges": "Toxicity concerns (fibrosis, cardiac effects) with systemic TGF-β blockade; need tumor-targeted approaches",
+                "outcome": "PENDING - represents high-risk, high-reward opportunity; no Phase III successes yet"
+              },
+              "lessons_learned": {
+                "key_insights": "TGF-β biology is compelling but clinical translation challenging. Systemic blockade risks on-target toxicities (normal fibrosis processes). Tumor-targeted approaches (e.g., PD-L1-TGF-β trap to localize to PD-L1+ TME) may improve therapeutic index. Biomarker selection critical - TGF-β-high tumors (desmoplastic, fibrotic) most likely to benefit. Combination with ICI likely required (TME modulation + checkpoint blockade)."
+              },
+              "similarity_matching_tags": ["TME_modulator", "TGF-beta_inhibitor", "early_development", "high_risk", "ICI_combination"]
+            },
+            {
+              "drug_name": "CAF-Targeted Therapies (Autophagy Inhibitors, FAP Inhibitors)",
+              "specific_moa": "Target cancer-associated fibroblasts to disrupt TME: (1) Autophagy inhibitors (e.g., chloroquine analogs) - CAF autophagy promotes immunosuppression; blockade may restore immune function, (2) FAP (fibroblast activation protein) inhibitors or FAP-targeted ADCs - deplete CAFs or block their function",
+              "moa_classification": ["TME_modulator", "CAF_targeting", "autophagy_inhibitor", "FAP_targeting", "stromal_depletion"],
+              "clinical_evidence": {
+                "development_stage": "Preclinical to early Phase I",
+                "biological_validation": "CAF autophagy signatures correlate with ICI resistance (2024-2025 publications from lung cancer memo); autophagy inhibition in preclinical models restores immune function",
+                "early_clinical": "Chloroquine/hydroxychloroquine + ICI trials showed mixed results; newer autophagy inhibitors in development",
+                "outcome": "EMERGING - CAF biology validated, but therapeutic approach unproven"
+              },
+              "lessons_learned": {
+                "key_insights": "CAF autophagy is recently validated resistance mechanism (2024-2025 data). Represents cutting-edge target. Autophagy inhibition is strategy but selectivity is challenge (autophagy in many cell types). FAP-targeted approaches (ADCs, CAR-T) may provide CAF selectivity. If successful, could address major resistance mechanism. High scientific interest but early-stage development."
+              },
+              "similarity_matching_tags": ["TME_modulator", "CAF_targeting", "autophagy", "emerging_target", "resistance_mechanism"]
+            },
+            {
+              "drug_name": "Metabolic Modulators (Lactate/Lactylation Inhibitors)",
+              "specific_moa": "Target metabolic dysregulation in TME: (1) Lactate production inhibitors (e.g., LDHA inhibitors) - block glycolytic lactate generation, (2) Lactate transport inhibitors (MCT1/MCT4) - prevent lactate efflux/acidification, (3) Lactylation inhibitors - block histone lactylation causing immune dysfunction",
+              "moa_classification": ["TME_modulator", "metabolic_targeting", "lactate_pathway", "lactylation_inhibitor", "acidic_TME_reversal"],
+              "clinical_evidence": {
+                "development_stage": "Preclinical - Lactylation-related gene signatures (LARRGs) identified as biomarkers (2025 publication)",
+                "biological_validation": "Lactate accumulation creates acidic TME; lactylation of immune cells causes dysfunction (recent mechanistic understanding)",
+                "therapeutic_approaches": "LDHA inhibitors, MCT1/4 inhibitors in preclinical; lactylation pathway druggability being explored",
+                "outcome": "VERY EARLY - biology validated, therapeutic modalities in development"
+              },
+              "lessons_learned": {
+                "key_insights": "Metabolic reprogramming is NOVEL resistance mechanism - lactate/lactylation pathway recently elucidated (2024-2025). LARRGs biomarker could identify patients with metabolic immunosuppression. Therapeutic approaches nascent but rational. Represents frontier of TME research. High risk (early-stage, unproven drugs) but potentially high reward (addresses resistance not targeted by current therapies)."
+              },
+              "similarity_matching_tags": ["TME_modulator", "metabolic_targeting", "lactate_lactylation", "novel_mechanism", "preclinical"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "9/10 - TME is CRITICAL resistance mechanism; CAF, TGF-β, metabolic dysregulation all validated in NSCLC",
+          "clinical_validation": "3/10 - No approved agents; multiple programs in early development; biological rationale strong but clinical proof lacking",
+          "unmet_need_match": "10/10 - Addresses PRIMARY resistance (ICI non-responders) and ACQUIRED resistance; no existing therapies target TME",
+          "overall_assessment": "TME modulators represent MAJOR UNMET NEED and HIGH-RISK, HIGH-REWARD OPPORTUNITY. Biological rationale is COMPELLING - CAF autophagy, TGF-β, lactate/lactylation all validated resistance mechanisms (recent 2024-2025 data). However, NO approved TME-directed therapies exist; all programs early-stage. STRATEGIC CHALLENGES: (1) TME complexity - may need multi-targeted approach, (2) Biomarker development essential (TME-high tumors for patient selection), (3) Combination strategies required (TME modulator + ICI), (4) Toxicity risks with systemic exposure. STRATEGIC OPPORTUNITIES: (1) First-in-class potential (no competition), (2) Addresses 60-70% of NSCLC that doesn't respond to ICIs ('cold' tumors), (3) Could convert ICI non-responders to responders. RECOMMENDATION: HIGH SCIENTIFIC PRIORITY but CAUTIOUS INVESTMENT - support early research, biomarker development, and rational combination designs. Expect long development timelines and high attrition. Partner with academic centers for mechanistic studies. TME modulators are FUTURE direction but not near-term commercial opportunity."
+        }
+      }
+    ]
+  },
+
+  "unmet_needs": [
+    {
+      "need_category": "Post-ICI Resistance (Primary and Acquired)",
+      "description": "60-70% of NSCLC patients do not respond to checkpoint inhibitors (primary resistance), and responders eventually progress (acquired resistance, median PFS 7-12 months). Post-ICI setting has limited effective therapies.",
+      "patient_population": "60-70% primary resistance; 100% of initial responders eventually progress",
+      "current_gaps": "Mechanisms include: tumor-intrinsic (antigen presentation defects, JAK1/2 mutations), TME-mediated (CAFs, TGF-β, metabolic), and immune exhaustion. No approved therapies specifically for post-ICI resistance.",
+      "moa_requirements": [
+        "ICI-independent mechanisms (don't rely on checkpoint pathways)",
+        "ADCs - payload-dependent killing regardless of immune status",
+        "Bispecific T-cell engagers - MHC-independent, forced synapse",
+        "KRAS inhibitors + ICI combinations - increase immunogenicity",
+        "TME modulators + ICI - convert 'cold' to 'hot'",
+        "Novel cytokines (IL-2, IL-15, IL-18) - activate new T-cell populations"
+      ],
+      "priority": "CRITICAL - Largest unmet need; 60-70% of patients",
+      "commercial_opportunity": "Very High - post-ICI market expanding as ICI use increases; premium pricing for effective agents",
+      "strategic_notes": "Dato-DXd (TROP2 ADC) approved in this setting validates approach. Bispecifics (tarlatamab in SCLC) prove concept. MOAs that work independent of PD-1/PD-L1 axis are highly valued."
+    },
+    {
+      "need_category": "EGFR TKI Resistance (Acquired)",
+      "description": "EGFR-mutant NSCLC (15-20% Western, 40-50% Asian) inevitably develops resistance to EGFR TKIs. Mechanisms include on-target (C797S), bypass (c-Met/HER3 amplification), and histologic transformation (SCLC).",
+      "patient_population": "100% of EGFR+ patients on TKI eventually progress; median PFS 18-19 months with osimertinib",
+      "current_gaps": "Limited options post-osimertinib. Amivantamab approved for exon 20 insertions but expanding. Dato-DXd approved post-TKI but more options needed.",
+      "moa_requirements": [
+        "Dual EGFR/c-Met inhibition (amivantamab model) - addresses bypass resistance",
+        "TROP2/HER3 ADCs - circumvent RTK pathways",
+        "4th-gen EGFR TKIs - target C797S resistance mutation",
+        "Combinations: EGFR TKI + ICI, EGFR TKI + ADC"
+      ],
+      "priority": "HIGH - Large population (15-50% depending on ethnicity); inevitable resistance",
+      "commercial_opportunity": "Very High - EGFR+ market lucrative; Asia-Pacific particularly large",
+      "strategic_notes": "Amivantamab + lazertinib now first-line standard (beats osimertinib). Post-osimertinib setting still has need. ADCs (Dato-DXd, HER3-DXd) promising."
+    },
+    {
+      "need_category": "Early-Stage Disease (Neoadjuvant/Adjuvant)",
+      "description": "Stages IB-IIIA resectable NSCLC (~40% of new diagnoses) has 30-50% recurrence risk post-surgery. Nivolumab approved neoadjuvant/adjuvant (2024) but many patients still recur.",
+      "patient_population": "~40% of NSCLC diagnoses; 2x larger than metastatic population",
+      "current_gaps": "Nivolumab + chemo neoadjuvant achieves 24% pCR, but 76% have residual disease. Adjuvant therapies limited. Biomarker-directed approaches needed.",
+      "moa_requirements": [
+        "Pathological complete response (pCR) enhancers - vaccines, ADCs, intensified ICIs",
+        "Personalized vaccines (Merck/Moderna Phase III) - adjuvant to prevent recurrence",
+        "Minimal residual disease (MRD) targeting - ctDNA-guided therapy",
+        "Combination neoadjuvant regimens - ICI + ADC, ICI + vaccine, ICI + targeted"
+      ],
+      "priority": "HIGH - Large population; curative intent; market expanding (nivolumab approval opened \$1B+ opportunity)",
+      "commercial_opportunity": "Very High - early-stage market 2x metastatic; premium pricing in curative setting",
+      "strategic_notes": "Nivolumab approval (2024) validates perioperative ICI. Personalized vaccines (Phase III ongoing) could be paradigm shift. MRD monitoring emerging."
+    },
+    {
+      "need_category": "Predictive Biomarkers",
+      "description": "PD-L1 is imperfect biomarker - responses in PD-L1 negative, non-responses in PD-L1 high. No validated biomarkers for ADCs, bispecifics, or resistance mechanisms. Patient selection suboptimal.",
+      "patient_population": "All NSCLC patients - need better treatment selection",
+      "current_gaps": "PD-L1 (≥50%, 1-49%, <1%) guides ICI but limited. TMB used but not routinely. No biomarkers for: TROP2 ADC response, TME phenotype, immune resistance mechanisms.",
+      "moa_requirements": [
+        "Composite biomarker panels (PD-L1 + TMB + gene signatures)",
+        "Liquid biopsy (ctDNA dynamics for real-time resistance monitoring)",
+        "Immune cell phenotyping (PD-1+/TIGIT+ exhausted vs progenitor T cells)",
+        "TME signatures (CAF autophagy, lactylation scores, TGF-β activity)",
+        "Neoantigen burden assessment for vaccine selection"
+      ],
+      "priority": "HIGH - Impacts all therapies; better selection improves response rates and reduces costs",
+      "commercial_opportunity": "Moderate-High - Companion diagnostics market; enables precision medicine",
+      "strategic_notes": "FDA/EMA support composite biomarker development. ctDNA (circ_PPAPDC1A) showed AUC 0.98 for ICI resistance prediction. Regulatory pathways exist (CDx co-development)."
+    },
+    {
+      "need_category": "Squamous NSCLC",
+      "description": "Squamous NSCLC (25-30% of NSCLC) has fewer targeted therapies. Limited actionable mutations (no EGFR/ALK). Relies on chemo-IO but outcomes lag adenocarcinoma.",
+      "patient_population": "25-30% of NSCLC; ~75,000-90,000 cases/year in US",
+      "current_gaps": "No approved targeted therapies (EGFR/ALK drugs don't apply). ICI + chemo is standard but ORR ~40%, median OS ~15-17 months. Higher PD-L1 expression than adenocarcinoma but still suboptimal responses.",
+      "moa_requirements": [
+        "Squamous-enriched targets - IBI363 (PD-1/IL-2α bispecific) FDA fast-track for squamous NSCLC",
+        "TROP2 ADCs - TROP2 expressed in squamous (pan-NSCLC target)",
+        "Bispecific antibodies - T-cell engagers for squamous antigens",
+        "TME modulators - squamous often has desmoplastic, fibrotic TME"
+      ],
+      "priority": "MODERATE-HIGH - Underserved population; 25-30% of NSCLC",
+      "commercial_opportunity": "Moderate - Smaller than adenocarcinoma but significant unmet need",
+      "strategic_notes": "IBI363 (PD-1/IL-2α) received FDA fast-track for squamous - validates need. TROP2 ADCs work in squamous (not EGFR-restricted). Squamous may be more immunogenic (higher TMB) - vaccines rational."
+    }
+  ],
+
+  "current_treatment_landscape": {
+    "standard_of_care_by_line": {
+      "first_line_pd_l1_high": {
+        "definition": "PD-L1 TPS ≥50%",
+        "patient_percentage": "~30% of NSCLC",
+        "regimens": [
+          "Pembrolizumab monotherapy (ORR 45%, PFS 10.3 mo, OS 30.0 mo)",
+          "Pembrolizumab + chemo (non-squamous: pemetrexed-platinum; squamous: carboplatin-taxane) - higher ORR but more toxicity",
+          "Atezolizumab + bevacizumab + chemo (non-squamous; includes EGFR/ALK+)"
+        ],
+        "emerging_options": "Ivonescimab (PD-1/VEGF bispecific) showed superiority over pembrolizumab in Phase III"
+      },
+      "first_line_pd_l1_low_negative": {
+        "definition": "PD-L1 TPS <50%",
+        "patient_percentage": "~70% of NSCLC",
+        "regimens": [
+          "Pembrolizumab + platinum-doublet chemo (standard)",
+          "Nivolumab + ipilimumab (if PD-L1 ≥1%; higher toxicity)",
+          "Atezolizumab + carboplatin + paclitaxel/nab-paclitaxel ± bevacizumab"
+        ],
+        "notes": "Chemo-IO combination is backbone; ORR ~50%, PFS 6-9 mo, OS 15-22 mo depending on PD-L1"
+      },
+      "first_line_egfr_mutant": {
+        "definition": "EGFR exon 19 del or L858R mutations",
+        "patient_percentage": "15-20% Western, 40-50% Asian",
+        "regimens": [
+          "Osimertinib (previous standard; ORR 80%, PFS 18.9 mo, OS 38.6 mo)",
+          "Amivantamab + lazertinib (NEW STANDARD 2024; superior OS and PFS vs osimertinib)"
+        ],
+        "notes": "Amivantamab + lazertinib Phase III (MARIPOSA): mOS not reached vs 36.7 mo (HR 0.75); PFS 23.7 vs 16.6 mo (HR 0.70)"
+      },
+      "first_line_alk_fusion": {
+        "definition": "ALK rearrangements",
+        "patient_percentage": "3-5% of NSCLC",
+        "regimens": [
+          "Alectinib (ORR 83%, PFS 34.8 mo)",
+          "Brigatinib (ORR 71%, PFS 24 mo)",
+          "Lorlatinib (ORR 76%, PFS 36 mo - longest)"
+        ],
+        "notes": "Lorlatinib emerging as preferred (longest PFS, CNS activity)"
+      },
+      "second_line_post_ici": {
+        "definition": "Progression after ICI-containing regimen",
+        "patient_percentage": "Majority of 1L patients eventually",
+        "regimens": [
+          "Docetaxel (ORR 10-15%, PFS 3-4 mo) - historical standard",
+          "Dato-DXd (TROP2 ADC; approved EGFR+ post-TKI; expanding) - ORR 45-58%",
+          "Targeted therapy if actionable mutation (EGFR, ALK, ROS1, KRAS G12C)",
+          "Clinical trials (vaccines, bispecifics, novel ADCs)"
+        ],
+        "emerging_options": "Sacituzumab tirumotecan (TROP2 ADC; Phase III success), HER3-DXd, sigvotatug vedotin (integrin β6 ADC)"
+      },
+      "neoadjuvant_adjuvant": {
+        "definition": "Resectable NSCLC stages IB-IIIA",
+        "patient_percentage": "~40% of new diagnoses; 2x metastatic population",
+        "regimens": [
+          "Nivolumab + chemo (neoadjuvant 3 cycles) → surgery → nivolumab adjuvant (1 year) - FDA approved 2024",
+          "Pembrolizumab + chemo (neoadjuvant) → surgery → pembrolizumab adjuvant (also approved)",
+          "Durvalumab consolidation (Stage III unresectable post-chemoRT)"
+        ],
+        "emerging_options": "Personalized mRNA vaccine + pembrolizumab (Phase III ongoing); MRD-directed therapy"
+      }
+    },
+    "market_size_and_growth": {
+      "us_market": {
+        "2024_estimate": "$54.26B (total IO market); ~$11-14B lung cancer subset",
+        "2027_forecast": "$11-14B lung cancer immunotherapy",
+        "cagr": "12-15% (lung subset)",
+        "growth_drivers": [
+          "Neoadjuvant/adjuvant expansion (nivolumab approval 2024; 18-20% population increase)",
+          "Premium-priced ADCs (Dato-DXd) and bispecifics (amivantamab) - 2-3x price vs ICIs",
+          "Combination regimens (chemo-IO, ICI+ADC) - 2x drug spend per patient"
+        ]
+      },
+      "eu_market": {
+        "2024_estimate": "~$4.00B lung cancer immunotherapy",
+        "2027_forecast": "$7.02B lung cancer immunotherapy",
+        "cagr": "20.67%",
+        "growth_drivers": [
+          "Faster HTA assessments for adjuvant indications",
+          "Strong uptake in Germany, France, Italy",
+          "Novel combination regimens"
+        ]
+      },
+      "combined_forecast": "$18-21B by 2027 (US + EU lung cancer immunotherapy market)"
+    }
+  },
+
+  "development_pipeline": {
+    "by_phase_and_moa": {
+      "phase_iii_bla": [
+        {
+          "drug": "Datopotamab deruxtecan (Dato-DXd)",
+          "moa": "TROP2 ADC",
+          "sponsor": "Daiichi Sankyo / AstraZeneca",
+          "status": "BLA submitted; accelerated approval granted EGFR+ post-TKI",
+          "notes": "Expanding to broader NSCLC; combinations with durvalumab ongoing"
+        },
+        {
+          "drug": "Sacituzumab tirumotecan",
+          "moa": "TROP2 ADC",
+          "sponsor": "Kelun-Biotech / Merck",
+          "status": "Phase III complete; BLA anticipated",
+          "notes": "ORR 45.1% vs 15.6% docetaxel in EGFR+ NSCLC"
+        },
+        {
+          "drug": "Amivantamab + Lazertinib",
+          "moa": "EGFR/c-Met bispecific + EGFR TKI",
+          "sponsor": "Janssen / J&J",
+          "status": "Approved based on MARIPOSA Phase III",
+          "notes": "NEW first-line standard in EGFR+ NSCLC"
+        },
+        {
+          "drug": "Ivonescimab",
+          "moa": "PD-1/VEGF bispecific",
+          "sponsor": "Akeso / Summit Therapeutics",
+          "status": "Phase III positive; regulatory submissions",
+          "notes": "Superior to pembrolizumab in PD-L1≥1% NSCLC"
+        },
+        {
+          "drug": "Patritumab deruxtecan (HER3-DXd)",
+          "moa": "HER3 ADC",
+          "sponsor": "Daiichi Sankyo",
+          "status": "Phase III ongoing",
+          "notes": "~40% ORR in Phase II; EGFR-mutant enriched"
+        },
+        {
+          "drug": "Sigvotatug vedotin",
+          "moa": "Integrin β6 ADC",
+          "sponsor": "AbbVie",
+          "status": "Phase III ongoing",
+          "notes": "Novel ADC target; MMAE payload"
+        },
+        {
+          "drug": "Acasunlimab",
+          "moa": "PD-L1 x 4-1BB bispecific",
+          "sponsor": "Merus",
+          "status": "Phase III ongoing",
+          "notes": "Conditional 4-1BB agonism; no hepatotoxicity"
+        },
+        {
+          "drug": "Fianlimab + Cemiplimab",
+          "moa": "LAG-3 + PD-1 dual checkpoint",
+          "sponsor": "Regeneron",
+          "status": "Phase III ongoing",
+          "notes": "Test case for LAG-3 after TIGIT failures"
+        },
+        {
+          "drug": "Personalized mRNA vaccine (mRNA-4157)",
+          "moa": "Neoantigen vaccine",
+          "sponsor": "Merck / Moderna",
+          "status": "Phase III ongoing (Keynote-942)",
+          "notes": "Adjuvant NSCLC; melanoma proof-of-concept (44% RFS improvement)"
+        },
+        {
+          "drug": "Domvanalimab + Zimberelimab",
+          "moa": "TIGIT + PD-1",
+          "sponsor": "Arcus / Gilead",
+          "status": "Phase III (HIGH RISK - TIGIT class failures)",
+          "notes": "Facing headwinds from tiragolumab/belrestotug failures"
+        }
+      ],
+      "phase_ii": [
+        {
+          "drug": "ELI-002",
+          "moa": "KRAS neoantigen vaccine",
+          "sponsor": "Elicio Therapeutics",
+          "notes": "Off-the-shelf vaccine for KRAS mutations (G12C/D/V)"
+        },
+        {
+          "drug": "Tedopi",
+          "moa": "Multi-peptide vaccine (HER2, CEA, MAGE)",
+          "sponsor": "OSE Immunotherapeutics",
+          "notes": "Phase III ongoing; post-ICI setting; HLA-A2 restricted"
+        },
+        {
+          "drug": "MCLA-129",
+          "moa": "EGFR/c-Met bispecific",
+          "sponsor": "Merus",
+          "notes": "Alternative to amivantamab"
+        },
+        {
+          "drug": "Davutamig",
+          "moa": "MET bispecific",
+          "sponsor": "Various",
+          "notes": "Targeting c-Met amplification"
+        },
+        {
+          "drug": "Luveltamab tazevibulin",
+          "moa": "FOLR1 ADC",
+          "sponsor": "Elevation Oncology",
+          "notes": "Subset with FOLR1 expression"
+        },
+        {
+          "drug": "Mecbotamab vedotin",
+          "moa": "AXL ADC",
+          "sponsor": "ABL Bio",
+          "notes": "Targets EMT/resistance phenotype"
+        },
+        {
+          "drug": "IBI363",
+          "moa": "PD-1/IL-2α bispecific",
+          "sponsor": "Innovent",
+          "notes": "FDA fast-track for squamous NSCLC"
+        },
+        {
+          "drug": "Volrustomig",
+          "moa": "PD-1/CTLA-4 bispecific",
+          "sponsor": "Roche",
+          "notes": "Dual checkpoint in bispecific format"
+        },
+        {
+          "drug": "Rilvegostomig",
+          "moa": "PD-L1/4-1BB bispecific",
+          "sponsor": "Sotio/Cytune",
+          "notes": "Similar to acasunlimab"
+        }
+      ],
+      "phase_i_preclinical": [
+        {
+          "drug": "THOR-707",
+          "moa": "Not-alpha IL-2 (CD25-sparing)",
+          "notes": "Next-gen IL-2; complete Treg-sparing"
+        },
+        {
+          "drug": "TGF-β inhibitors (multiple)",
+          "moa": "TGF-β pathway blockade",
+          "notes": "TME modulator; multiple programs"
+        },
+        {
+          "drug": "CAF autophagy inhibitors",
+          "moa": "CAF-targeted TME modulation",
+          "notes": "Novel resistance mechanism (2024-2025 data)"
+        },
+        {
+          "drug": "Lactate/lactylation inhibitors",
+          "moa": "Metabolic TME modulation",
+          "notes": "LDHA, MCT1/4 inhibitors"
+        },
+        {
+          "drug": "TROP2 x CD3 bispecifics",
+          "moa": "T-cell engager",
+          "notes": "Leverage TROP2 target in TCE format"
+        },
+        {
+          "drug": "CD70 x CD3 bispecifics",
+          "moa": "T-cell engager",
+          "notes": "Preclinical; CD70 validated in RCC (CTX130 CAR-T)"
+        },
+        {
+          "drug": "Anti-PD-1-IL-2v immunocytokines",
+          "moa": "PD-1 antibody fused to IL-2 variant",
+          "notes": "Tumor-targeted cytokine delivery"
+        },
+        {
+          "drug": "Decoy-resistant IL-18 (DR-18)",
+          "moa": "IL-18 agonist (IL-18BP-resistant)",
+          "notes": "Preclinical; activates NK cells and Th1"
+        }
+      ]
+    },
+    "competitive_intensity": {
+      "saturated_areas": [
+        "PD-1/PD-L1 inhibitors (5 approved; market saturated)",
+        "EGFR TKIs (4 generations; amivantamab now standard)",
+        "ALK inhibitors (4 approved; lorlatinib emerging leader)"
+      ],
+      "high_competition": [
+        "TROP2 ADCs (Dato-DXd approved; sacituzumab coming; others in pipeline)",
+        "EGFR/c-Met bispecifics (amivantamab approved; MCLA-129 following)",
+        "PD-1/VEGF bispecifics (ivonescimab leading; others developing)"
+      ],
+      "emerging_opportunities": [
+        "Next-gen IL-2 variants (THOR-707; limited competition)",
+        "TME modulators (TGF-β, CAF, metabolic - early stage, low competition)",
+        "Personalized vaccines (Merck/Moderna leading; field nascent)",
+        "Post-ICI resistance therapies (high need, moderate competition)"
+      ]
+    }
+  },
+
+  "strategic_insights": {
+    "moa_success_patterns": {
+      "validated_and_succeeding": [
+        {
+          "moa_class": "TROP2 ADCs",
+          "evidence": "Dato-DXd approved (ORR 45-58%); sacituzumab Phase III success (ORR 45%)",
+          "key_success_factors": "Near-universal target (80-90%), good therapeutic window, potent payloads, ICI-independent mechanism",
+          "strategic_takeaway": "TROP2 is PREMIER ADC target in NSCLC; multiple players will succeed; differentiate on safety (ILD profile), combinations (ADC+ICI), or indications (expand beyond EGFR+)"
+        },
+        {
+          "moa_class": "EGFR/c-Met bispecifics",
+          "evidence": "Amivantamab + lazertinib superior to osimertinib (OS HR 0.75, PFS HR 0.70)",
+          "key_success_factors": "Dual targeting prevents c-Met bypass resistance, trogocytosis adds mechanism, subcutaneous formulation",
+          "strategic_takeaway": "Bispecifics can achieve first-line standard by preempting resistance; amivantamab model applicable to other resistance pathways"
+        },
+        {
+          "moa_class": "PD-1/VEGF bispecifics",
+          "evidence": "Ivonescimab beat pembrolizumab in Phase III",
+          "key_success_factors": "Synergy between checkpoint and anti-angiogenesis, single-agent convenience",
+          "strategic_takeaway": "Checkpoint + other mechanism bispecifics can displace PD-1 monotherapy; validates dual-pathway single agents"
+        },
+        {
+          "moa_class": "Neoadjuvant checkpoint inhibitors",
+          "evidence": "Nivolumab + chemo: pCR 24%, MPR 36%, EFS benefit (HR 0.63)",
+          "key_success_factors": "Early-stage tumors less immunoedited, pathological response predicts long-term benefit, large population (2x metastatic)",
+          "strategic_takeaway": "Perioperative setting is high-value opportunity; pathological response is validated surrogate; room for improvement (76% don't achieve pCR)"
+        }
+      ],
+      "validated_but_saturated": [
+        {
+          "moa_class": "PD-1/PD-L1 inhibitors",
+          "evidence": "5 approved (pembrolizumab, nivolumab, atezolizumab, durvalumab, cemiplimab); backbone of therapy",
+          "market_status": "SATURATED - limited differentiation for new entrants",
+          "strategic_takeaway": "Avoid 'me-too' PD-1/PD-L1 inhibitors unless clear differentiation (e.g., bispecific format, conditional agonist fusion)"
+        }
+      ],
+      "failed_or_failing": [
+        {
+          "moa_class": "TIGIT inhibitors",
+          "evidence": "Tiragolumab Phase III failure (OS HR 0.81, NS); belrestotug terminated",
+          "failure_reasons": "Preclinical models misleading; TIGIT/CD155 axis less critical in NSCLC than hypothesized; dual exhaustion targeting insufficient",
+          "strategic_takeaway": "AVOID TIGIT in NSCLC - class-wide failure; next-gen checkpoints high-risk without validated biomarker"
+        },
+        {
+          "moa_class": "Bempegaldesleukin (pegylated IL-2)",
+          "evidence": "PIVOT-09 Phase III failed vs TKI (sunitinib/cabo)",
+          "failure_reasons": "Partial CD25-biasing insufficient; still activated Tregs; prodrug kinetics suboptimal",
+          "strategic_takeaway": "Partial Treg-sparing not enough; need COMPLETE CD25 ablation (THOR-707 approach); validates IL-2 pathway but design must be precise"
+        }
+      ],
+      "emerging_high_potential": [
+        {
+          "moa_class": "Personalized neoantigen vaccines",
+          "evidence": "Melanoma proof-of-concept (44% RFS benefit); NSCLC Phase III ongoing",
+          "potential": "Paradigm shift to individualized therapy; durable memory responses",
+          "risks": "Manufacturing complexity, cost, clinical validation in NSCLC pending",
+          "strategic_takeaway": "HIGH POTENTIAL if Phase III succeeds; adjuvant setting optimal; combination with ICIs standard; monitor Keynote-942 readout closely"
+        },
+        {
+          "moa_class": "TME modulators (TGF-β, CAF, metabolic)",
+          "evidence": "Biological validation (CAF autophagy, lactylation signatures); no approved agents",
+          "potential": "First-in-class opportunity; addresses 'cold' tumor phenotype and ICI resistance",
+          "risks": "Early-stage development, toxicity concerns, biomarker challenges",
+          "strategic_takeaway": "HIGH-RISK, HIGH-REWARD; support early research but expect long timelines; essential for addressing 60-70% ICI non-responders"
+        }
+      ]
+    },
+    "key_learnings": {
+      "tigit_failure_implications": "Next-generation checkpoint inhibitors are NOT automatic successes. TIGIT class-wide failure (tiragolumab, belrestotug) demonstrates: (1) Preclinical rationale ≠ clinical benefit, (2) Co-inhibitory receptors on exhausted T cells may be consequence not cause, (3) Biomarker-unselected populations high-risk. DE-PRIORITIZE next-gen checkpoints (LAG-3, TIM-3) unless highly differentiated or validated biomarker. Focus on non-checkpoint MOAs.",
+      
+      "adc_breakthrough": "ADCs are NEW PILLAR of NSCLC therapy. TROP2 ADCs (Dato-DXd, sacituzumab) achieve 45-58% ORR in refractory settings - TRANSFORMATIVE. Key insights: (1) TROP2 is premier target (80-90% expression, good window), (2) Deruxtecan payload consistently effective, (3) ADCs work independent of immune/checkpoint status (ideal for post-ICI), (4) Combinations with ICIs synergistic (57.5% ORR Dato-DXd + durvalumab). STRATEGIC: ADC development/licensing is HIGHEST PRIORITY - proven efficacy, expanding indications, premium pricing.",
+      
+      "bispecific_dual_targeting": "Bispecifics that address resistance mechanisms UPFRONT can achieve first-line standards. Amivantamab (EGFR/c-Met) dethroned osimertinib by preventing c-Met bypass resistance. Lesson: Dual targeting > sequential single agents. Applicable to other pathways (EGFR/HER3, PD-1/TGF-β, etc). Design principle: Target primary driver + anticipated resistance mechanism simultaneously.",
+      
+      "il2_pathway_design_requirements": "IL-2 pathway is validated in cancer (aldesleukin approved in RCC, bempegaldesleukin tested in NSCLC) BUT design is critical. Bempegaldesleukin failure proves partial CD25-biasing insufficient - still activates Tregs. Next-gen IL-2 MUST have: (1) COMPLETE CD25 ablation (not just reduction), (2) Maintained IL-2Rβγ activity for effectors, (3) Extended half-life, (4) Optionally tumor-targeted (anti-PD-1-IL-2v fusions). THOR-707 (not-alpha IL-2) is correct design approach.",
+      
+      "tme_is_critical_frontier": "TME-mediated resistance is MAJOR unmet need. Recent data (2024-2025): CAF autophagy signatures predict ICI resistance, lactylation causes T-cell dysfunction, TGF-β creates 'cold' phenotype. NO approved TME modulators exist - first-in-class opportunity. Challenge: TME complexity requires multi-modal approaches, biomarker development, and combinations (TME modulator + ICI). Long development timeline expected but addresses 60-70% of patients (ICI non-responders).",
+      
+      "early_stage_expansion": "Perioperative setting is MAJOR market opportunity. Nivolumab neoadjuvant/adjuvant approval (2024) opens ~$1B market. Population 2x larger than metastatic. Pathological responses (pCR, MPR) are validated surrogates for OS. Opportunity: Improve pCR rates beyond 24% (vaccines, ADC combinations, intensified regimens). Personalized vaccines (Merck/Moderna Phase III) could be paradigm shift in adjuvant setting.",
+      
+      "biomarker_evolution": "PD-L1 is necessary but insufficient. Composite biomarkers needed: PD-L1 + TMB + gene signatures (IFN-γ, lactylation, CAF autophagy). Liquid biopsy (ctDNA dynamics, EV-derived biomarkers like circ_PPAPDC1A) enable real-time monitoring and early resistance detection. Regulatory pathways exist (FDA Biomarker Qualification, EMA scientific advice). Co-development of companion diagnostics essential for novel MOAs (TME modulators, vaccines)."
+    },
+    "recommendations_for_rd_strategy": [
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Prioritize Precision Immuno-Oncology",
+        "rationale": "De-prioritize broad-acting 'me-too' checkpoint inhibitors. Focus on assets for molecularly defined populations (EGFR+, KRAS+, TMB-high). Amivantamab (EGFR/c-Met for EGFR+), ELI-002 (KRAS vaccine for KRAS+), personalized vaccines (neoantigen-high) are models.",
+        "action_items": [
+          "License or develop ADCs with validated targets (TROP2, HER3)",
+          "Pursue bispecifics addressing specific resistance mechanisms (EGFR/c-Met model)",
+          "Invest in biomarker co-development for patient selection",
+          "Partner on personalized vaccine platforms (if not building internally)"
+        ]
+      },
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Invest in High-Growth Platforms: ADCs and Bispecifics",
+        "rationale": "Clinical and commercial potential undeniable. TROP2 ADCs (Dato-DXd ORR 58%, sacituzumab 45%) emerging as new standard. Bispecifics (amivantamab beats osimertinib, ivonescimab beats pembrolizumab) can achieve first-line positioning. Ability to deliver potent payloads or engage multiple pathways addresses checkpoint limitations.",
+        "action_items": [
+          "Aggressively pursue internal development or external licensing of ADCs (TROP2, HER3, novel targets)",
+          "Develop bispecifics with rational target combinations (resistance prevention, checkpoint + other mechanism)",
+          "Prioritize deruxtecan-based ADCs (proven payload) or differentiate with novel payloads/linkers",
+          "Explore ADC + ICI combinations (Dato-DXd + durvalumab 57.5% ORR model)"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Re-evaluate Novel Checkpoint Inhibitor Programs",
+        "rationale": "TIGIT class FAILED definitively (tiragolumab, belrestotug). LAG-3, TIM-3, CD73 unproven. All internal/partnered programs targeting TIGIT must be TERMINATED. Future checkpoint investment contingent on: (1) Highly differentiated mechanism, (2) Validated biomarker identifying responsive subpopulation, (3) Mechanistic understanding of prior failures.",
+        "action_items": [
+          "IMMEDIATELY halt any TIGIT programs in NSCLC",
+          "Critically review LAG-3/TIM-3/CD73 programs - require biomarker strategy or terminate",
+          "Do NOT initiate new next-gen checkpoint programs without compelling differentiation",
+          "Redirect resources to non-checkpoint MOAs (ADCs, bispecifics, TME modulators)"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Design Trials to Overcome Resistance",
+        "rationale": "Post-ICI resistance is largest unmet need (60-70% never respond, responders progress). TME, tumor-intrinsic factors, metabolic dysregulation drive resistance. Future trials must address these mechanisms proactively.",
+        "action_items": [
+          "Rational combinations: Pair novel agents with established backbones (ADC + ICI, bispecific + ICI)",
+          "Explore novel-novel combinations targeting TME (e.g., CAF inhibitor + PD-1, TGF-β blockade + ADC)",
+          "Design trials in resistance settings (post-ICI cohorts) with ICI-independent MOAs",
+          "Incorporate resistance biomarkers (CAF autophagy, lactylation, TGF-β signatures) for patient selection"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Embed World-Class Biomarker Strategy",
+        "rationale": "PD-L1 alone insufficient. Composite biomarkers, liquid biopsy, immune profiling needed. Regulatory frameworks support co-development (FDA CDx pathway, EMA scientific advice). Biomarker-selected populations improve success rates and enable precision medicine positioning.",
+        "action_items": [
+          "Invest in biomarker discovery: single-cell transcriptomics, proteomics, liquid biopsy platforms",
+          "Develop composite panels: PD-L1 + TMB + gene signatures (IFN-γ, exhaustion, TME, metabolic)",
+          "Initiate companion diagnostic (CDx) development early - engage FDA/EMA during Phase I/II",
+          "Explore ctDNA dynamics (circ_PPAPDC1A model, AUC 0.98 for ICI resistance) for real-time monitoring",
+          "Partner with diagnostic companies (Foundation Medicine, Guardant, etc.) for biomarker validation"
+        ]
+      },
+      {
+        "priority": "MODERATE-HIGH",
+        "recommendation": "Address Immune Resistance Directly via TME Targeting",
+        "rationale": "TME (CAFs, TGF-β, metabolic) is fundamental resistance mechanism. No approved agents - first-in-class opportunity. Recent biology (2024-2025: CAF autophagy, lactylation) validates targets. High-risk (early-stage) but addresses 60-70% ICI non-responders.",
+        "action_items": [
+          "Support early-stage TME modulator programs (TGF-β inhibitors, CAF autophagy inhibitors, lactate/lactylation inhibitors)",
+          "Require robust biomarker strategies (TME-high tumors for patient selection)",
+          "Plan combination trials (TME modulator + ICI) - monotherapy unlikely sufficient",
+          "Partner with academic centers for mechanistic studies and biomarker discovery",
+          "Expect long timelines (5-10 years to approval) - balance portfolio with near-term assets"
+        ]
+      },
+      {
+        "priority": "MODERATE-HIGH",
+        "recommendation": "Capitalize on Early-Stage / Perioperative Opportunity",
+        "rationale": "Neoadjuvant/adjuvant market 2x metastatic population. Nivolumab approval (2024) opened ~$1B opportunity. pCR 24% leaves room for improvement. Personalized vaccines Phase III ongoing - potential paradigm shift.",
+        "action_items": [
+          "Develop assets for perioperative setting (neoadjuvant/adjuvant indications)",
+          "Focus on pathological response endpoints (pCR, MPR) - validated surrogates",
+          "Explore intensified regimens (ADC + ICI neoadjuvant, vaccine + ICI adjuvant)",
+          "Leverage MRD (minimal residual disease) monitoring - ctDNA-guided therapy post-surgery",
+          "If personalized vaccine Phase III succeeds, partner or build platform for adjuvant vaccines"
+        ]
+      }
+    ]
+  },
+
+  "executive_summary": {
+    "indication_overview": "NSCLC is the LARGEST and MOST DYNAMIC oncology market, projected to reach $18-21B (US+EU) by 2027. Checkpoint inhibitors (PD-1/PD-L1) are established backbone but 60-70% of patients don't respond (primary resistance) or progress (acquired resistance). The landscape is RAPIDLY EVOLVING with breakthrough modalities: TROP2 ADCs emerging as new standard (Dato-DXd approved, ORR 45-58%), EGFR/c-Met bispecifics achieving first-line supremacy (amivantamab beats osimertinib), and personalized vaccines entering Phase III. However, next-gen checkpoints (TIGIT) have FAILED - critical lesson for MOA selection.",
+    
+    "most_validated_moas": [
+      "PD-1/PD-L1 checkpoint inhibitors (5 approved; backbone but saturated)",
+      "TROP2 ADCs (Dato-DXd approved, sacituzumab Phase III success; ORR 45-58%; NEW STANDARD)",
+      "EGFR/c-Met bispecifics (Amivantamab + lazertinib beats osimertinib; OS HR 0.75)",
+      "Neoadjuvant checkpoint inhibitors (Nivolumab approved 2024; pCR 24%, MPR 36%)"
+    ],
+    
+    "emerging_moa_opportunities": [
+      "Personalized neoantigen vaccines (Merck/Moderna Phase III; melanoma proof-of-concept 44% RFS benefit)",
+      "PD-1/VEGF bispecifics (Ivonescimab beat pembrolizumab Phase III)",
+      "Conditional agonist bispecifics (Acasunlimab PD-L1 x 4-1BB; no hepatotoxicity)",
+      "TME modulators (TGF-β, CAF autophagy, lactate inhibitors; early-stage but addresses 'cold' tumors)"
+    ],
+    
+    "failed_moas_avoid": [
+      "TIGIT inhibitors (tiragolumab, belrestotug FAILED Phase III - class-wide issue; AVOID)",
+      "Non-selective IL-2 (bempegaldesleukin failed; partial CD25-biasing insufficient; need complete CD25 ablation)"
+    ],
+    
+    "highest_priority_unmet_needs": [
+      {
+        "need": "Post-ICI resistance (primary 60-70%, acquired 100% eventually)",
+        "moa_solutions": "ADCs (ICI-independent), bispecific TCEs (MHC-independent), TME modulators (convert cold→hot), KRAS inhibitors + ICI"
+      },
+      {
+        "need": "EGFR TKI resistance (100% of EGFR+ on TKI progress)",
+        "moa_solutions": "Dual EGFR/c-Met inhibition (amivantamab model), TROP2/HER3 ADCs, 4th-gen TKIs"
+      },
+      {
+        "need": "Early-stage recurrence prevention (30-50% recur post-surgery despite nivolumab)",
+        "moa_solutions": "Personalized vaccines (improve pCR beyond 24%), ADC + ICI combinations, MRD-directed therapy"
+      },
+      {
+        "need": "Predictive biomarkers (PD-L1 imperfect; no biomarkers for ADCs, TME resistance)",
+        "moa_solutions": "Composite panels (PD-L1 + TMB + signatures), liquid biopsy (ctDNA, EVs), immune phenotyping, TME signatures"
+      }
+    ],
+    
+    "key_success_factors_by_moa": {
+      "ADCs": "Target selection CRITICAL (TROP2 is gold standard: 80-90% expression, good window). Deruxtecan payload proven effective. ICI combinations synergistic (Dato-DXd + durvalumab 57.5% ORR). Manage ILD toxicity. Premium pricing (2-3x ICIs).",
+      
+      "Bispecifics": "Dual targeting of primary driver + resistance mechanism (amivantamab EGFR/c-Met model). Checkpoint + other mechanism synergy (ivonescimab PD-1/VEGF). Conditional agonism solves toxicity (acasunlimab PD-L1/4-1BB no hepatotoxicity).",
+      
+      "Vaccines": "Personalized neoantigens > shared TAAs (tumor-specific, higher affinity). Adjuvant setting optimal (lower tumor burden, immune-intact). Combination with ICIs standard (vaccine primes, ICI amplifies). Manufacturing timeline (4-8 weeks) acceptable for perioperative.",
+      
+      "Checkpoint inhibitors": "Market SATURATED for PD-1/PD-L1. Next-gen (TIGIT, LAG-3) HIGH-RISK - AVOID without validated biomarker. Differentiation requires novel format (bispecific, immunocytokine) or conditional agonism.",
+      
+      "TME modulators": "Biomarker selection ESSENTIAL (TME-high tumors). Combination with ICI likely required (monotherapy insufficient). Long development timeline. First-in-class opportunity but high attrition risk."
+    },
+    
+    "strategic_positioning": {
+      "avoid": [
+        "TIGIT inhibitors in NSCLC (class-wide Phase III failures)",
+        "'Me-too' PD-1/PD-L1 inhibitors (saturated market, 5 approved)",
+        "Non-selective IL-2 (bempegaldesleukin failed; need CD25-null design)",
+        "Unselected next-gen checkpoint programs (LAG-3, TIM-3 without biomarker)"
+      ],
+      "pursue_aggressively": [
+        "TROP2 ADCs or other validated ADC targets (HER3, integrin β6) - HIGHEST PRIORITY",
+        "Bispecifics with rational dual targeting (resistance prevention, checkpoint + other)",
+        "Personalized vaccine partnerships (if Phase III succeeds)",
+        "Post-ICI resistance MOAs (ADCs, bispecifics, TME modulators)"
+      ],
+      "monitor_closely": [
+        "Personalized vaccine Phase III readout (Keynote-942) - paradigm shift if succeeds",
+        "LAG-3 inhibitor Phase III (fianlimab) - test case for next-gen checkpoints",
+        "TME modulator early trials (TGF-β, CAF, metabolic) - validates biology",
+        "MRD/ctDNA-guided therapy - emerging paradigm in early-stage"
+      ]
+    },
+    
+    "overall_nsclc_attractiveness": "NSCLC is PREMIER indication for oncology R&D: (1) Largest market ($18-21B by 2027), (2) Multiple validated MOAs with clinical proof (ADCs, bispecifics, checkpoints, vaccines), (3) Clear unmet needs with commercial opportunity (post-ICI resistance, early-stage, EGFR TKI resistance), (4) Regulatory support (breakthrough designations, accelerated approvals), (5) Biomarker infrastructure developing. CHALLENGES: Competitive intensity high (TROP2 ADCs, EGFR/c-Met bispecifics crowded), TIGIT failures indicate not all MOAs work (biomarker selection critical), long development timelines for novel MOAs (TME modulators). RECOMMENDATION: NSCLC remains TOP PRIORITY indication - focus on differentiated assets (novel ADC targets, rational bispecific combinations, biomarker-selected approaches) and avoid 'me-too' programs in saturated areas."
+  }
+}
+
+
+  "moa_landscape": {
+    "moa_categories": [
+      {
+        "name": "Checkpoint Inhibitors - PD-1/PD-L1 Axis",
+        "biological_rationale": {
+          "indication_specific_rationale": "PD-1/PD-L1 axis is primary immune evasion mechanism in NSCLC. PD-L1 expressed in 25-50% of tumors (varies by histology, with squamous higher than adenocarcinoma). IFN-γ-driven adaptive immune resistance is common - tumors upregulate PD-L1 in response to T-cell infiltration. Checkpoint blockade can reverse T-cell exhaustion and restore antitumor immunity in 20-40% of patients. First-line efficacy established; combinations with chemotherapy, CTLA-4 blockade, or targeted therapy extend benefit.",
+          "supporting_biology": [
+            "PD-L1 expression validated as predictive biomarker (though not required for response)",
+            "PD-1+ exhausted T cells abundant in NSCLC TME",
+            "IFN-γ signatures correlate with response",
+            "TMB and neoantigen burden associated with ICI benefit",
+            "Squamous histology generally more responsive than adenocarcinoma"
+          ],
+          "theoretical_concerns": [
+            "Primary resistance in 60-70% of unselected patients",
+            "Acquired resistance develops in responders (median PFS ~7-12 months)",
+            "Toxicity with combinations (chemo-IO, dual ICI) can be significant",
+            "Biomarker limitations - PD-L1 imperfect predictor"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Pembrolizumab (Keytruda)",
+              "specific_moa": "Humanized IgG4 monoclonal antibody targeting PD-1 receptor on T cells; blocks interaction with PD-L1 and PD-L2; prevents inhibitory signaling and restores T-cell effector function; long half-life allows Q3W dosing",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "T_cell_disinhibition", "anti_exhaustion"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2015 (2L), expanded to 1L monotherapy and combinations",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "KEYNOTE-024",
+                    "phase": "Phase III",
+                    "design": "Pembrolizumab vs platinum-doublet chemotherapy in PD-L1≥50% first-line NSCLC",
+                    "efficacy": {
+                      "ORR": "45% vs 28%",
+                      "PFS": "10.3 vs 6.0 months (HR 0.50)",
+                      "OS": "30.0 vs 14.2 months (HR 0.63)"
+                    },
+                    "safety": "Grade 3-5 AEs: 27% vs 53%; immune-related AEs manageable",
+                    "patient_selection": "PD-L1 TPS ≥50% (enriched population)",
+                    "outcome": "SUCCESS - Established pembrolizumab as first-line standard in PD-L1 high"
+                  },
+                  {
+                    "trial_name": "KEYNOTE-189",
+                    "phase": "Phase III",
+                    "design": "Pembrolizumab + platinum-pemetrexed vs chemo alone in non-squamous NSCLC (all PD-L1 levels)",
+                    "efficacy": {
+                      "ORR": "48% vs 19%",
+                      "PFS": "9.0 vs 4.9 months (HR 0.49)",
+                      "OS": "22.0 vs 10.7 months (HR 0.56)"
+                    },
+                    "safety": "Grade 3-5 AEs: 71% vs 66%; added toxicity acceptable for benefit",
+                    "patient_selection": "Unselected for PD-L1 (all comers)",
+                    "outcome": "SUCCESS - Chemo-IO combination became standard regardless of PD-L1"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "PD-1 blockade definitively validated in NSCLC",
+                  "PD-L1 enrichment strategy (≥50%) identifies high responders (45% ORR)",
+                  "Chemotherapy combination extends benefit to PD-L1 low/negative (synergy via immunogenic cell death)",
+                  "Durability of responses - tail of survival curve suggests long-term benefit in subset"
+                ],
+                "key_insights": "Pembrolizumab established PD-1 as backbone of NSCLC therapy. PD-L1 is imperfect biomarker - responses seen in PD-L1 negative, non-responses in PD-L1 high. Chemo-IO combination became dominant paradigm (trade toxicity for broader efficacy). Post-ICI resistance is now major challenge - 60-70% never respond, responders eventually progress. Need for ICI-independent MOAs (ADCs, bispecifics) or resistance-overcoming combinations."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "first_line", "chemo_combination", "PD-L1_biomarker"]
+            },
+            {
+              "drug_name": "Nivolumab (Opdivo)",
+              "specific_moa": "Fully human IgG4 monoclonal antibody targeting PD-1; mechanism identical to pembrolizumab (blocks PD-L1/PD-L2 binding); distinct epitope recognition",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "T_cell_disinhibition"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2015 (2L), expanded to neoadjuvant/adjuvant (2024)",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "CheckMate 227 (Part 1)",
+                    "phase": "Phase III",
+                    "design": "Nivolumab + ipilimumab vs chemotherapy in PD-L1≥1% first-line NSCLC",
+                    "efficacy": {
+                      "PFS": "5.1 vs 5.6 months (HR 0.82, not significant)",
+                      "OS": "17.1 vs 14.9 months (HR 0.79)"
+                    },
+                    "safety": "Grade 3-4 AEs: 33% vs 36%; immune-related AEs higher with dual ICI",
+                    "outcome": "QUALIFIED SUCCESS - OS benefit but PFS miss; toxicity concerns with dual ICI"
+                  },
+                  {
+                    "trial_name": "CheckMate 816 (Neoadjuvant)",
+                    "phase": "Phase III",
+                    "design": "Nivolumab + chemotherapy (neoadjuvant) vs chemo alone in resectable NSCLC (IB-IIIA)",
+                    "efficacy": {
+                      "pCR": "24% vs 2.2%",
+                      "MPR": "36% vs 8%",
+                      "EFS": "31.6 vs 20.8 months (HR 0.63)"
+                    },
+                    "safety": "Manageable perioperative toxicity; no increase in surgical complications",
+                    "patient_selection": "Resectable NSCLC stages IB-IIIA",
+                    "outcome": "BREAKTHROUGH SUCCESS - FDA approval neoadjuvant/adjuvant 2024; opens large new market (2x metastatic population); ~$1B revenue potential"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Neoadjuvant setting is major opportunity - pathological responses (pCR 24%) translate to EFS benefit",
+                  "Combination with chemotherapy optimal in perioperative setting",
+                  "Expands treatable population by 18-20% (stages IB-IIIA)",
+                  "Validates checkpoint blockade in curative-intent setting"
+                ],
+                "key_insights": "Nivolumab neoadjuvant/adjuvant approval (2024) is paradigm shift - moves immunotherapy into early-stage disease with curative intent. Pathological response (pCR, MPR) is surrogate for long-term benefit. Market expansion: resectable NSCLC population ~2x larger than metastatic. Strategic: Early-stage setting may have lower resistance (less immunoedited tumors). Future: Biomarker-selected neoadjuvant approaches could improve pCR rates."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "neoadjuvant", "adjuvant", "early_stage", "pathological_response"]
+            },
+            {
+              "drug_name": "Atezolizumab (Tecentriq)",
+              "specific_moa": "Humanized IgG1 monoclonal antibody targeting PD-L1 (not PD-1); blocks PD-L1 binding to PD-1 and B7.1; preserves PD-L2/PD-1 interaction (theoretical advantage unclear)",
+              "moa_classification": ["checkpoint_inhibitor", "PD-L1_antagonist", "monoclonal_antibody", "T_cell_disinhibition"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2016 (2L), combinations in 1L",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "IMpower150",
+                    "phase": "Phase III",
+                    "design": "Atezolizumab + bevacizumab + carboplatin-paclitaxel vs bevacizumab + chemo in non-squamous NSCLC",
+                    "efficacy": {
+                      "PFS": "8.3 vs 6.8 months (HR 0.62)",
+                      "OS": "19.2 vs 14.7 months (HR 0.78)"
+                    },
+                    "safety": "Grade 3-4 AEs: 57% vs 50%",
+                    "patient_selection": "Included EGFR/ALK+ patients (typically excluded from ICI trials)",
+                    "outcome": "SUCCESS - Showed benefit even in EGFR/ALK+ subset; validates IO in oncogene-driven NSCLC"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Bevacizumab (VEGF inhibitor) combination showed synergy with checkpoint blockade",
+                  "Activity in EGFR/ALK+ NSCLC (typically ICI-resistant) when combined with anti-angiogenic + chemo"
+                ],
+                "key_insights": "Atezolizumab validated PD-L1 targeting (vs PD-1). No clear clinical difference between PD-1 and PD-L1 inhibitors in efficacy. IMpower150 key lesson: VEGF inhibition + ICI + chemo can overcome ICI resistance in oncogene-driven NSCLC. Multi-modal combinations (ICI + targeted + chemo) may address primary resistance."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-L1_antagonist", "VEGF_combination", "EGFR_ALK_inclusive"]
+            },
+            {
+              "drug_name": "Durvalumab (Imfinzi)",
+              "specific_moa": "Human IgG1 monoclonal antibody targeting PD-L1; engineered Fc region to minimize ADCC/CDC; blocks PD-L1/PD-1 and PD-L1/B7.1 interactions",
+              "moa_classification": ["checkpoint_inhibitor", "PD-L1_antagonist", "monoclonal_antibody", "consolidation_therapy"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA 2018 for Stage III unresectable NSCLC post-chemoradiation",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "PACIFIC",
+                    "phase": "Phase III",
+                    "design": "Durvalumab consolidation vs placebo after concurrent chemoradiation in Stage III unresectable NSCLC",
+                    "efficacy": {
+                      "PFS": "16.8 vs 5.6 months (HR 0.52)",
+                      "OS": "47.5 vs 29.1 months (HR 0.68)"
+                    },
+                    "safety": "Grade 3-4 AEs: 30% vs 26%; pneumonitis 3.4% (manageable post-radiation)",
+                    "outcome": "LANDMARK SUCCESS - Established new standard of care in Stage III; prevents progression to metastatic disease"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Consolidation strategy after chemoradiation is highly effective (converts locoregional disease to systemic immune response)",
+                  "Radiation may enhance immunogenicity (abscopal effect) - synergy with ICI",
+                  "Stage III is distinct biology - less immunoedited than metastatic, more responsive"
+                ],
+                "key_insights": "PACIFIC trial paradigm: Radiation + chemotherapy primes immune system, durvalumab consolidation maintains and amplifies response. OS benefit (18 months improvement) is exceptional. Post-chemoradiation ICI is now standard of care in Stage III. Durvalumab also used in combinations with TROP2 ADCs (Dato-DXd) - PD-L1 blockade + ADC synergy emerging."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-L1_antagonist", "consolidation", "post_chemoradiation", "Stage_III"]
+            }
+          ]
+        },
+        "next_generation_approaches": [
+          {
+            "approach_name": "Anti-PD-1 immunocytokines (e.g., PD-1-IL-2v fusions)",
+            "moa_modification": "Fusion protein combining PD-1 blockade with tumor-targeted IL-2 variant (CD25-sparing); delivers IL-2 to PD-1+ TILs",
+            "rationale": "Combines checkpoint blockade with localized immune activation; reduces systemic IL-2 toxicity; activates exhausted PD-1+ T cells at tumor site",
+            "development_stage": "Preclinical - strong proof-of-concept data",
+            "representative_assets": "Multiple academic/biotech groups; preclinical models show enhanced antitumor activity vs PD-1 alone"
+          },
+          {
+            "approach_name": "PD-L1 x 4-1BB conditional agonist bispecifics",
+            "moa_modification": "Dual mechanism: PD-L1 blockade + conditional 4-1BB costimulation (only activates in PD-L1+ TME)",
+            "rationale": "Tumor-localized costimulation avoids systemic 4-1BB agonist hepatotoxicity; enhances T-cell function and persistence; overcomes exhaustion",
+            "development_stage": "Preclinical to early Phase I",
+            "representative_assets": "Acasunlimab (PD-L1 x 4-1BB) in Phase III for NSCLC"
+          }
+        ],
+        "moa_compatibility_score": {
+          "biological_fit": "10/10 - PD-1/PD-L1 axis is definitively validated as primary immune evasion mechanism",
+          "clinical_validation": "10/10 - Multiple approved agents across all lines; standard of care backbone",
+          "unmet_need_match": "6/10 - While validated, majority of patients still don't respond (primary resistance 60-70%) or develop acquired resistance. Post-ICI setting is major unmet need requiring ICI-independent MOAs.",
+          "overall_assessment": "PD-1/PD-L1 checkpoint inhibitors are FULLY VALIDATED in NSCLC and constitute backbone of therapy. However, market is SATURATED with 5 approved agents. Incremental PD-1/PD-L1 inhibitors have limited differentiation opportunity. Strategic focus should be: (1) Novel combinations (ICI + ADC, ICI + bispecific, ICI + targeted therapy) to extend benefit, (2) Biomarker-selected approaches to improve response rates, (3) Post-ICI resistance setting where ICI-independent MOAs are needed. Next-gen approaches (immunocytokines, conditional costimulation) may offer differentiation."
+        }
+      },
+
+      {
+        "name": "Checkpoint Inhibitors - Next-Generation (TIGIT, LAG-3, TIM-3, CD73)",
+        "biological_rationale": {
+          "indication_specific_rationale": "Next-generation checkpoint inhibitors aimed to build on PD-1/PD-L1 success by targeting additional co-inhibitory receptors that contribute to T-cell exhaustion. Preclinical rationale was compelling - TIGIT, LAG-3, TIM-3 are upregulated on exhausted T cells and co-expressed with PD-1. Dual blockade hypothesized to provide synergistic benefit. However, clinical translation has been disappointing, with multiple Phase III failures (especially TIGIT class).",
+          "supporting_biology": [
+            "TIGIT, LAG-3, TIM-3 expressed on exhausted T cells in NSCLC TME",
+            "Often co-expressed with PD-1 (dual positive cells may represent terminal exhaustion)",
+            "Preclinical models showed additive/synergistic effects with PD-1 blockade",
+            "CD73 produces adenosine (immunosuppressive) - blockade rational"
+          ],
+          "theoretical_concerns": [
+            "TIGIT clinical failures suggest preclinical models don't predict human biology",
+            "Dual checkpoint blockade may not address fundamental resistance mechanisms (TME, tumor-intrinsic)",
+            "Increased toxicity without efficacy benefit",
+            "Biomarker strategies lacking - unselected populations"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Tiragolumab (Roche)",
+              "specific_moa": "Humanized IgG1 monoclonal antibody targeting TIGIT receptor on T cells and NK cells; blocks TIGIT binding to CD155/CD112; aims to restore costimulatory CD226 signaling and reduce inhibitory signals",
+              "moa_classification": ["checkpoint_inhibitor", "TIGIT_antagonist", "next_generation", "combination_with_PD-L1"],
+              "clinical_evidence": {
+                "development_stage": "FAILED Phase III - Program halted",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "SKYSCRAPER-01",
+                    "phase": "Phase III",
+                    "design": "Tiragolumab + atezolizumab vs placebo + atezolizumab in PD-L1 high (≥50%) first-line NSCLC",
+                    "efficacy": {
+                      "OS": "22.9 vs 16.7 months (HR 0.81, NOT statistically significant)",
+                      "PFS": "No significant improvement",
+                      "Note": "Failed to meet primary OS endpoint despite trend toward benefit"
+                    },
+                    "safety": "Toxicity increased with dual checkpoint blockade; no new safety signals",
+                    "patient_selection": "PD-L1 high (≥50%) - enriched population where atezolizumab alone already effective",
+                    "outcome": "FAILURE - Did not demonstrate superiority over PD-L1 inhibitor alone; Roche halted TIGIT programs"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "TIGIT blockade did not provide incremental benefit over PD-L1 inhibition alone in NSCLC",
+                  "Preclinical rationale did not translate to clinical benefit",
+                  "PD-L1 high population already responds well to ICI monotherapy - difficult comparator",
+                  "May reflect biology - TIGIT/CD155 axis less critical in NSCLC than in preclinical models",
+                  "Dual exhaustion marker targeting (TIGIT+PD-1+) may not reverse exhaustion effectively"
+                ],
+                "key_insights": "CRITICAL LESSON: Next-gen checkpoint inhibitors are HIGH RISK. Tiragolumab failure (and subsequent Roche exit from TIGIT) indicates that: (1) Co-inhibitory receptors on exhausted T cells may be consequence, not cause, of dysfunction, (2) Preclinical models overpredict benefit, (3) Need for better patient selection (biomarker-driven) and understanding of resistance mechanisms beyond checkpoints. STRATEGIC: De-prioritize 'me-too' checkpoint inhibitors without clear differentiation or validated biomarker."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "TIGIT_antagonist", "failed_Phase_III", "next_generation", "high_risk"]
+            },
+            {
+              "drug_name": "Belrestotug (GSK/iTeos)",
+              "specific_moa": "Anti-TIGIT monoclonal antibody; mechanism similar to tiragolumab (blocks TIGIT/CD155 interaction)",
+              "moa_classification": ["checkpoint_inhibitor", "TIGIT_antagonist", "next_generation"],
+              "clinical_evidence": {
+                "development_stage": "TERMINATED - Development program halted",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II study with dostarlimab (PD-1)",
+                    "phase": "Phase II",
+                    "design": "Belrestotug + dostarlimab in NSCLC",
+                    "efficacy": {
+                      "ORR": "Initial improvement in ORR vs historical controls",
+                      "PFS": "Failed to meet PFS criteria - primary endpoint miss",
+                      "Note": "Despite ORR signal, did not translate to meaningful PFS benefit"
+                    },
+                    "outcome": "FAILURE - Program terminated after PFS failure; GSK/iTeos abandoned TIGIT"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "ORR improvement did not translate to PFS/OS - responses not durable or meaningful",
+                  "Echoes tiragolumab failure - validates TIGIT class-wide issue in NSCLC",
+                  "High response rate without PFS benefit suggests transient or non-clinically meaningful responses"
+                ],
+                "key_insights": "Belrestotug failure CONFIRMS TIGIT is not viable target in NSCLC. Class-wide failures (tiragolumab, belrestotug, others) indicate fundamental biological issue. ORR is insufficient endpoint - must demonstrate PFS/OS benefit. STRATEGIC IMPERATIVE: AVOID TIGIT in NSCLC. Any internal or partnered TIGIT programs must be critically re-evaluated or terminated."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "TIGIT_antagonist", "failed_Phase_II", "program_terminated", "class_failure"]
+            },
+            {
+              "drug_name": "Fianlimab (Regeneron)",
+              "specific_moa": "Human monoclonal antibody targeting LAG-3 (Lymphocyte Activation Gene 3); blocks LAG-3 binding to MHC-II and other ligands; aims to reverse T-cell exhaustion",
+              "moa_classification": ["checkpoint_inhibitor", "LAG-3_antagonist", "next_generation", "Phase_III"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING - Awaiting readout",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III in NSCLC (combination with cemiplimab - PD-1)",
+                    "phase": "Phase III",
+                    "design": "Fianlimab + cemiplimab vs cemiplimab alone",
+                    "efficacy": "Pending - trial ongoing",
+                    "safety": "Phase I/II showed manageable toxicity",
+                    "patient_selection": "To be determined - likely biomarker-enriched given TIGIT lessons",
+                    "outcome": "PENDING - represents test case for LAG-3 class after TIGIT failures"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "key_insights": "Fianlimab Phase III is CRITICAL readout for next-gen checkpoint class. After TIGIT failures, LAG-3 is under scrutiny. If fianlimab succeeds, validates that some next-gen targets work (and TIGIT was exception). If it fails, suggests broader issue with dual checkpoint blockade approach. CAUTIOUS OPTIMISM warranted - LAG-3 has distinct biology from TIGIT, but TIGIT failures raise bar for proof."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "LAG-3_antagonist", "next_generation", "Phase_III_ongoing", "high_scrutiny"]
+            },
+            {
+              "drug_name": "Oleclumab (AstraZeneca)",
+              "specific_moa": "Anti-CD73 monoclonal antibody; blocks CD73 ectonucleotidase activity; prevents conversion of AMP to adenosine (immunosuppressive metabolite)",
+              "moa_classification": ["checkpoint_inhibitor", "CD73_antagonist", "adenosine_pathway", "TME_modulator"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING",
+                "rationale": "CD73-derived adenosine is immunosuppressive (binds A2A receptors on T cells); CD73 blockade aims to reduce adenosine-mediated immunosuppression in TME",
+                "outcome": "PENDING - represents distinct mechanism (metabolic checkpoint vs receptor blockade)"
+              },
+              "lessons_learned": {
+                "key_insights": "Oleclumab represents different approach - targeting metabolic immunosuppression rather than T-cell receptors. May avoid pitfalls of TIGIT/LAG-3 if adenosine is critical resistance mechanism in subset. CD73 expression may serve as biomarker for patient selection."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "CD73_antagonist", "metabolic_target", "adenosine_pathway"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "5/10 - Mechanistic rationale exists but clinical validation lacking; TIGIT failures suggest preclinical models misleading",
+          "clinical_validation": "2/10 - Multiple Phase III failures (TIGIT class); LAG-3/TIM-3/CD73 unproven; high failure risk",
+          "unmet_need_match": "4/10 - Aims to address ICI resistance but hasn't delivered; post-ICI setting may not respond to additional checkpoint blockade",
+          "overall_assessment": "Next-generation checkpoint inhibitors are HIGH-RISK, LOW-REWARD in NSCLC. TIGIT class has FAILED definitively (tiragolumab, belrestotug) - avoid at all costs. LAG-3, TIM-3, CD73 remain unproven - cautious approach warranted. Key lessons: (1) Dual checkpoint blockade may not address fundamental resistance (TME, tumor-intrinsic factors), (2) Biomarker-selected populations essential (unselected trials high risk), (3) Need mechanistic understanding of WHY TIGIT failed to avoid repeating mistakes. STRATEGIC RECOMMENDATION: DE-PRIORITIZE next-gen checkpoint inhibitors unless highly differentiated mechanism or validated biomarker strategy. Focus R&D on non-checkpoint MOAs (ADCs, bispecifics, TME modulators) that work independently of exhaustion pathways."
+        }
+      },
+
+      {
+        "name": "Antibody-Drug Conjugates (ADCs) - TROP2, HER3, Integrin β6",
+        "biological_rationale": {
+          "indication_specific_rationale": "ADCs represent major breakthrough in NSCLC, particularly TROP2-targeting agents. TROP2 is overexpressed in 80-90% of NSCLC (both LUAD and LUSC) with good therapeutic window. ADCs deliver potent cytotoxic payloads (topoisomerase I inhibitors, microtubule inhibitors) directly to tumor cells, bypassing immune resistance mechanisms. They work independent of checkpoint status, making them ideal for ICI-refractory disease. HER3 (60-70% expression, enriched in EGFR-mutant) and Integrin β6 are additional validated targets.",
+          "supporting_biology": [
+            "TROP2 near-universal expression (80-90%) in NSCLC with low normal tissue expression",
+            "HER3 overexpressed in 60-70%, especially EGFR-mutant tumors",
+            "Integrin β6 high in subset, role in TGF-β activation and EMT",
+            "Payload-dependent killing independent of immune system",
+            "Bystander effect can kill neighboring tumor cells without target expression",
+            "Synergy with ICIs via immunogenic cell death"
+          ],
+          "theoretical_concerns": [
+            "Payload-related toxicities (ILD for topoisomerase I inhibitors, neuropathy for microtubule inhibitors)",
+            "Antigen heterogeneity may limit efficacy in some tumors",
+            "Resistance can develop (efflux pumps, target downregulation)",
+            "High cost - premium pricing 2-3x checkpoint inhibitors"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Datopotamab deruxtecan (Dato-DXd, Daiichi Sankyo/AstraZeneca)",
+              "specific_moa": "TROP2-targeting antibody-drug conjugate; humanized anti-TROP2 IgG1 antibody linked via cleavable tetrapeptide linker to deruxtecan (topoisomerase I inhibitor payload); DAR ~8; upon internalization, linker cleaved in lysosome releasing payload; membrane-permeable payload causes bystander killing",
+              "moa_classification": ["ADC", "TROP2_targeting", "topoisomerase_I_inhibitor", "deruxtecan_payload", "bystander_effect"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA accelerated approval May 2024 for EGFR-mutant NSCLC post-TKI failure",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "TROPION-Lung01",
+                    "phase": "Phase III",
+                    "design": "Dato-DXd vs docetaxel in previously treated advanced NSCLC (post-platinum, post-PD-1/L1)",
+                    "efficacy": {
+                      "ORR": "Dato-DXd superior to docetaxel",
+                      "PFS": "Improvement vs docetaxel (detailed data pending full publication)",
+                      "Note": "Led to accelerated approval in EGFR+ subset"
+                    },
+                    "safety": {
+                      "Key_toxicities": "ILD/pneumonitis (class effect for deruxtecan ADCs), stomatitis, nausea",
+                      "ILD_rate": "~5-10% (manageable with monitoring and dose adjustments)"
+                    },
+                    "patient_selection": "Accelerated approval in EGFR-mutant NSCLC post-TKI; broader approvals anticipated",
+                    "outcome": "SUCCESS - First TROP2 ADC approved in NSCLC; breakthrough for ADC class"
+                  },
+                  {
+                    "trial_name": "Phase I - Dato-DXd + Durvalumab",
+                    "phase": "Phase I",
+                    "design": "Combination of Dato-DXd with durvalumab (PD-L1 inhibitor) in first-line NSCLC",
+                    "efficacy": {
+                      "ORR": "57.5% in first-line setting",
+                      "Note": "Synergy between ADC and checkpoint inhibitor"
+                    },
+                    "safety": "Combination tolerable; ILD monitored closely",
+                    "outcome": "Highly promising - ADC + ICI combination may become new standard"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "TROP2 is PREMIER target - 80-90% expression, good therapeutic window",
+                  "Deruxtecan payload highly potent - effective at low doses",
+                  "Bystander effect extends efficacy beyond TROP2+ cells",
+                  "Works in ICI-refractory and TKI-resistant settings (independent mechanism)",
+                  "Combination with durvalumab (ICI) shows synergy (57.5% ORR 1L) - immunogenic cell death enhances ICI response"
+                ],
+                "key_insights": "Dato-DXd is PARADIGM-SHIFTING. TROP2 ADCs are emerging as NEW PILLAR of NSCLC therapy alongside ICIs and targeted agents. Accelerated approval in EGFR+ post-TKI validates unmet need (previously limited options). 57.5% ORR with durvalumab in 1L suggests ADC + ICI may rival or exceed chemo-IO. STRATEGIC: TROP2 ADCs expected to expand across NSCLC subtypes and lines of therapy. Premium pricing (2-3x ICIs) drives market value. ILD is manageable class effect. Dato-DXd sets benchmark - ORR ~40-50% monotherapy, ~55-60% with ICI."
+              },
+              "similarity_matching_tags": ["ADC", "TROP2_target", "topoisomerase_I_inhibitor", "deruxtecan", "ICI_combination", "breakthrough"]
+            },
+            {
+              "drug_name": "Sacituzumab tirumotecan (MK-2870, Kelun-Biotech/Merck)",
+              "specific_moa": "TROP2-targeting ADC; humanized anti-TROP2 antibody conjugated to topoisomerase I inhibitor (similar to Dato-DXd but different linker/payload chemistry); mechanism: TROP2 binding, internalization, payload release, DNA damage",
+              "moa_classification": ["ADC", "TROP2_targeting", "topoisomerase_I_inhibitor", "second_generation"],
+              "clinical_evidence": {
+                "development_stage": "Phase III - BLA submission anticipated",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III in EGFR-mutant NSCLC",
+                    "phase": "Phase III",
+                    "design": "Sacituzumab tirumotecan vs docetaxel in EGFR+ NSCLC post-TKI",
+                    "efficacy": {
+                      "ORR": "45.1% vs 15.6% (docetaxel)",
+                      "PFS": "6.9 vs 2.8 months (HR favorable)",
+                      "Note": "Demonstrated clear superiority over chemotherapy"
+                    },
+                    "safety": "Manageable toxicity profile; ILD lower than Dato-DXd (different payload)",
+                    "patient_selection": "EGFR-mutant NSCLC post-TKI progression",
+                    "outcome": "SUCCESS - Confirmatory data for TROP2 ADC class; BLA expected"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Confirms TROP2 is validated target (second ADC with positive Phase III)",
+                  "ORR 45% in heavily pretreated population (post-EGFR TKI)",
+                  "PFS 6.9 months vs 2.8 for chemo - clinically meaningful",
+                  "Potentially differentiated safety vs Dato-DXd (lower ILD?)"
+                ],
+                "key_insights": "Sacituzumab tirumotecan validates TROP2 ADC class - not just Dato-DXd effect. Multiple TROP2 ADCs succeeding indicates target is robust. Competitive landscape: Dato-DXd approved first (first-mover advantage), but sacituzumab may differentiate on safety (ILD profile) or efficacy. EGFR+ post-TKI is high-value setting - limited options, ORR 45% is practice-changing. STRATEGIC: TROP2 ADC market will have multiple players; differentiation on safety, dosing convenience, or combination strategies."
+              },
+              "similarity_matching_tags": ["ADC", "TROP2_target", "topoisomerase_I_inhibitor", "EGFR_post_TKI", "confirmatory"]
+            },
+            {
+              "drug_name": "Patritumab deruxtecan (HER3-DXd, Daiichi Sankyo)",
+              "specific_moa": "HER3-targeting ADC; anti-HER3 antibody conjugated to deruxtecan (topoisomerase I inhibitor); targets HER3 (ERBB3) expressed in 60-70% of NSCLC, enriched in EGFR-mutant tumors; mechanism identical to Dato-DXd (internalization, lysosomal cleavage, payload release, DNA damage, bystander effect)",
+              "moa_classification": ["ADC", "HER3_targeting", "topoisomerase_I_inhibitor", "deruxtecan_payload", "EGFR_enriched"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II in EGFR-mutant NSCLC",
+                    "phase": "Phase II",
+                    "design": "HER3-DXd in EGFR+ NSCLC post-TKI",
+                    "efficacy": {
+                      "ORR": "~40% in Phase II",
+                      "Note": "Promising activity in EGFR-mutant subset where HER3 highly expressed"
+                    },
+                    "safety": "ILD consistent with deruxtecan class; manageable",
+                    "outcome": "Phase III initiated based on Phase II promise"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "HER3 is validated ADC target - expression 60-70%, enriched in EGFR+ NSCLC",
+                  "Deruxtecan payload consistently effective across targets (TROP2, HER3, HER2)",
+                  "Addresses EGFR TKI resistance (HER3 upregulated in resistance)"
+                ],
+                "key_insights": "HER3-DXd represents SECOND-WAVE ADC target after TROP2. EGFR-mutant enrichment provides biomarker-driven strategy. Deruxtecan platform (used in Dato-DXd, HER3-DXd, Enhertu for HER2) is highly successful - validates payload choice. Competitive positioning: HER3-DXd may be preferred in EGFR+ NSCLC (mechanistic rationale for HER3 in EGFR resistance). Broader NSCLC, TROP2 ADCs likely dominant. Phase III readout critical - success would establish multi-ADC landscape."
+              },
+              "similarity_matching_tags": ["ADC", "HER3_target", "topoisomerase_I_inhibitor", "deruxtecan", "EGFR_mutant_enriched"]
+            },
+            {
+              "drug_name": "Sigvotatug vedotin (Integrin β6 ADC, AbbVie)",
+              "specific_moa": "Integrin αvβ6-targeting ADC; anti-integrin β6 antibody conjugated to MMAE (monomethyl auristatin E, microtubule inhibitor); targets integrin β6 overexpressed in subset of NSCLC; integrin β6 activates TGF-β and promotes EMT; payload disrupts microtubules, causing mitotic arrest",
+              "moa_classification": ["ADC", "integrin_beta6_targeting", "microtubule_inhibitor", "MMAE_payload", "EMT_target"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING",
+                "rationale": "Integrin β6 distinct target from TROP2/HER3; may address tumors with high EMT/TGF-β signaling",
+                "safety": "MMAE payload: peripheral neuropathy is dose-limiting toxicity (class effect)",
+                "outcome": "PENDING - represents alternative ADC target; success would diversify ADC landscape"
+              },
+              "lessons_learned": {
+                "key_insights": "Sigvotatug vedotin tests whether integrin β6 is viable ADC target. Distinct from TROP2/HER3 - may capture different patient population (EMT-high, TGF-β-driven tumors). MMAE payload has different toxicity profile (neuropathy vs ILD). If successful, provides alternative for patients who fail TROP2 ADCs or have integrin β6-high tumors. If fails, suggests integrin β6 expression insufficient or MMAE payload suboptimal in NSCLC."
+              },
+              "similarity_matching_tags": ["ADC", "integrin_beta6_target", "microtubule_inhibitor", "MMAE", "TGF-beta_pathway"]
+            }
+          ]
+        },
+        "next_generation_approaches": [
+          {
+            "approach_name": "TROP2 ADCs + Checkpoint Inhibitor combinations",
+            "moa_modification": "Combine TROP2 ADC (Dato-DXd or sacituzumab) with PD-1/PD-L1 inhibitor",
+            "rationale": "ADC-induced immunogenic cell death enhances ICI response; Dato-DXd + durvalumab showed 57.5% ORR in 1L; may replace chemo-IO as preferred combination",
+            "development_stage": "Phase III trials ongoing (Dato-DXd + durvalumab, sacituzumab + pembrolizumab)",
+            "strategic_importance": "HIGH - Could become new first-line standard; premium pricing; addresses chemo-IO toxicity"
+          },
+          {
+            "approach_name": "Multi-target ADC strategies",
+            "moa_modification": "Sequential ADC therapy (TROP2 ADC → HER3 ADC upon progression) or combination ADCs",
+            "rationale": "Overcome resistance to single ADC; address antigen heterogeneity",
+            "development_stage": "Conceptual - clinical trials planned",
+            "strategic_importance": "MODERATE - May extend ADC benefit but complexity/toxicity concerns"
+          }
+        ],
+        "moa_compatibility_score": {
+          "biological_fit": "10/10 - TROP2, HER3, integrin β6 are well-validated targets with excellent therapeutic windows",
+          "clinical_validation": "9/10 - Dato-DXd approved, sacituzumab Phase III success, HER3-DXd Phase III ongoing; overwhelming evidence",
+          "unmet_need_match": "10/10 - Addresses ICI-refractory, TKI-resistant, chemotherapy-refractory settings; works independent of immune status",
+          "overall_assessment": "ADCs are BREAKTHROUGH MODALITY in NSCLC, emerging as NEW PILLAR of therapy. TROP2 ADCs (Dato-DXd, sacituzumab) have TRANSFORMED treatment landscape with ORR 45-58% in refractory settings. Mechanism-independent of checkpoints makes ADCs ideal for post-ICI resistance (60-70% of patients). HER3 ADCs provide additional option, especially in EGFR-mutant subset. STRATEGIC OPPORTUNITIES: (1) ADC + ICI combinations (Dato-DXd + durvalumab 57.5% ORR) may become first-line standard, (2) Sequential ADC strategies for resistance, (3) Novel targets (integrin β6, FOLR1, AXL) to expand patient population. Premium pricing (2-3x ICIs) drives market value (\$18-21B by 2027). COMPETITIVE LANDSCAPE: Dato-DXd has first-mover advantage; multiple players will enter. Differentiation on safety (ILD profile), efficacy, or dosing. RECOMMENDATION: PRIORITIZE ADC development/licensing for NSCLC - highest return opportunity in oncology."
+        }
+      },
+
+      {
+        "name": "Bispecific Antibodies - EGFR/c-Met, PD-1/VEGF, PD-L1/4-1BB",
+        "biological_rationale": {
+          "indication_specific_rationale": "Bispecific antibodies enable simultaneous targeting of two pathways, providing synergistic effects or overcoming resistance. In NSCLC, several bispecific approaches are highly successful: (1) EGFR/c-Met bispecifics address TKI resistance (c-Met amplification is common resistance mechanism to EGFR TKIs), (2) PD-1/VEGF bispecifics combine checkpoint blockade with anti-angiogenesis, (3) PD-L1/4-1BB bispecifics provide conditional costimulation (4-1BB activation only in PD-L1+ TME). These dual-targeting strategies show superior efficacy vs single agents.",
+          "supporting_biology": [
+            "c-Met amplification in 10-20% of EGFR-mutant NSCLC (resistance to EGFR TKIs)",
+            "VEGF overexpression common; synergy between anti-VEGF and checkpoint blockade (IMpower150 precedent)",
+            "4-1BB costimulation enhances T-cell function but systemic agonism causes hepatotoxicity - PD-L1-conditional activation solves this",
+            "Bispecifics enable tumor-targeted dual pathway inhibition with single agent"
+          ],
+          "theoretical_concerns": [
+            "Dual pathway toxicity (combination AEs)",
+            "Manufacturing complexity and cost",
+            "Resistance to dual blockade still possible",
+            "Biomarker strategies for patient selection"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Amivantamab (Janssen/J&J)",
+              "specific_moa": "EGFR/c-Met bispecific antibody; IgG1-based format with two binding arms - one targeting EGFR, one targeting c-Met; blocks ligand binding to both receptors; induces receptor degradation via trogocytosis (immune-mediated); administered subcutaneously with hyaluronidase for improved PK",
+              "moa_classification": ["bispecific_antibody", "EGFR_targeting", "c-Met_targeting", "receptor_degradation", "trogocytosis", "subcutaneous"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA for EGFR exon 20 insertion mutations; Phase III success in first-line EGFR-mutant NSCLC",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "MARIPOSA (Phase III)",
+                    "phase": "Phase III",
+                    "design": "Amivantamab + lazertinib (3rd-gen EGFR TKI) vs osimertinib (current standard) in first-line EGFR-mutant NSCLC",
+                    "efficacy": {
+                      "OS": "Median OS not reached vs 36.7 months for osimertinib (HR 0.75, p<0.05)",
+                      "PFS": "23.7 vs 16.6 months (HR 0.70, p<0.001)",
+                      "Note": "LANDMARK RESULT - Superior to best-in-class EGFR TKI"
+                    },
+                    "safety": "Manageable toxicity; rash, paronychia (EGFR-related), peripheral edema; subcutaneous formulation improves tolerability",
+                    "patient_selection": "EGFR-mutant NSCLC (exon 19 del or L858R) first-line",
+                    "outcome": "BREAKTHROUGH SUCCESS - Amivantamab + lazertinib positioned as NEW STANDARD OF CARE in EGFR+ NSCLC; dethroning osimertinib"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "DUAL TARGETING of EGFR + c-Met overcomes resistance - c-Met amplification is key resistance mechanism to EGFR TKIs",
+                  "Trogocytosis (immune-mediated receptor degradation) provides additional mechanism beyond ligand blockade",
+                  "Combination with 3rd-gen TKI (lazertinib) maximizes EGFR pathway inhibition",
+                  "Subcutaneous formulation improves patient experience (vs IV infusion)",
+                  "OS benefit (HR 0.75) is exceptional - translates to ~9+ month OS improvement over osimertinib"
+                ],
+                "key_insights": "Amivantamab is PARADIGM-SHIFTING in EGFR+ NSCLC. First bispecific to demonstrate OS superiority over best-in-class targeted therapy (osimertinib). Validates bispecific antibody approach for addressing resistance mechanisms UPFRONT (not waiting for resistance). c-Met co-targeting is critical - prevents bypass signaling. STRATEGIC: Bispecific antibodies can achieve first-line standard of care when designed to preempt resistance. EGFR/c-Met combination is model for other tumor types with resistance pathways. Market impact: Amivantamab will capture significant share in EGFR+ NSCLC (15-20% Western, 40-50% Asian populations)."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "EGFR_c-Met", "resistance_prevention", "OS_benefit", "new_standard_of_care"]
+            },
+            {
+              "drug_name": "Ivonescimab (PD-1/VEGF bispecific, Akeso/Summit Therapeutics)",
+              "specific_moa": "PD-1/VEGF bispecific antibody; one arm blocks PD-1 (checkpoint inhibition), other arm blocks VEGF (anti-angiogenesis); combines mechanisms of checkpoint blockade and anti-angiogenic therapy in single molecule; hypothesized synergy via VEGF-mediated immunosuppression reversal and PD-1 blockade",
+              "moa_classification": ["bispecific_antibody", "PD-1_targeting", "VEGF_targeting", "checkpoint_plus_angiogenesis", "first_line"],
+              "clinical_evidence": {
+                "development_stage": "Phase III - Positive readout; regulatory submissions planned",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III in first-line NSCLC (China)",
+                    "phase": "Phase III",
+                    "design": "Ivonescimab vs pembrolizumab in PD-L1≥1% first-line NSCLC",
+                    "efficacy": {
+                      "PFS": "Ivonescimab superior to pembrolizumab (detailed data pending publication)",
+                      "ORR": "Numerically higher with ivonescimab",
+                      "Note": "First bispecific to show superiority over PD-1 inhibitor in Phase III"
+                    },
+                    "safety": "Manageable; AEs consistent with PD-1 and anti-VEGF components",
+                    "patient_selection": "PD-L1≥1% NSCLC",
+                    "outcome": "SUCCESS - Validates PD-1/VEGF bispecific concept; regulatory path forward"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "VEGF + PD-1 dual blockade shows synergy (validates IMpower150 concept in bispecific format)",
+                  "Single agent bispecific superior to PD-1 monotherapy - improves upon checkpoint inhibitor backbone",
+                  "Anti-VEGF may reverse immunosuppression in TME (normalize vasculature, reduce Tregs, improve T-cell infiltration)",
+                  "Potentially replaces PD-1 + bevacizumab combination with single agent (convenience, cost)"
+                ],
+                "key_insights": "Ivonescimab validates PD-1/VEGF bispecific approach - synergy between checkpoint and anti-angiogenesis confirmed. Competitive threat to PD-1 monotherapy (pembrolizumab) and PD-1 + VEGF combinations (atezolizumab + bevacizumab). Single-agent bispecific offers simplicity vs combination therapy. STRATEGIC: PD-1/VEGF bispecifics may become preferred first-line option in PD-L1+ NSCLC. Geography: Strong data in China; Western trials needed for global approval. Other PD-1/VEGF bispecifics in development - competitive class."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "PD-1_VEGF", "checkpoint_angiogenesis", "first_line", "pembrolizumab_superior"]
+            },
+            {
+              "drug_name": "Acasunlimab (PD-L1 x 4-1BB, Merus)",
+              "specific_moa": "PD-L1 x 4-1BB bispecific antibody; PD-L1 arm blocks checkpoint (similar to atezolizumab/durvalumab); 4-1BB arm provides costimulatory signal to T cells BUT only when crosslinked by PD-L1 on tumor cells (conditional agonism); avoids systemic 4-1BB activation and hepatotoxicity",
+              "moa_classification": ["bispecific_antibody", "PD-L1_antagonist", "4-1BB_conditional_agonist", "tumor_localized_costimulation"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING - Recruited based on Phase II promise",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II in NSCLC",
+                    "phase": "Phase II",
+                    "design": "Acasunlimab monotherapy in PD-L1+ NSCLC",
+                    "efficacy": {
+                      "ORR": "Promising activity in Phase II",
+                      "Note": "Responses in PD-1/PD-L1 inhibitor-naive and some post-ICI patients"
+                    },
+                    "safety": "NO hepatotoxicity (key differentiation from systemic 4-1BB agonists); manageable immune-related AEs",
+                    "outcome": "Phase III initiated - tests whether conditional 4-1BB costimulation improves over PD-L1 blockade alone"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "CONDITIONAL 4-1BB AGONISM solves major problem - systemic 4-1BB agonists caused severe hepatotoxicity in trials",
+                  "PD-L1-dependent crosslinking localizes 4-1BB activation to tumor microenvironment",
+                  "4-1BB costimulation enhances T-cell persistence and memory formation",
+                  "Potentially superior to PD-L1 blockade alone (checkpoint + costimulation)"
+                ],
+                "key_insights": "Acasunlimab represents SMART BISPECIFIC DESIGN - solves toxicity issue (hepatotoxicity) by tumor-localized activation. 4-1BB has compelling biology (costimulatory, enhances T-cell memory) but prior systemic agonists failed due to liver toxicity. Conditional agonism via PD-L1 crosslinking is elegant solution. Phase III readout critical - if successful, validates conditional agonist platform (could apply to other costimulatory receptors like OX40, GITR). STRATEGIC: Acasunlimab may differentiate from PD-L1 inhibitors by enhancing durability of responses (4-1BB → memory T cells)."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "PD-L1_4-1BB", "conditional_agonist", "tumor_localized", "no_hepatotoxicity"]
+            },
+            {
+              "drug_name": "Tarlatamab (CD3/DLL3 bispecific, Amgen)",
+              "specific_moa": "DLL3 x CD3 bispecific T-cell engager; DLL3 arm targets delta-like ligand 3 (highly expressed in small-cell lung cancer, SCLC); CD3 arm engages T cells; creates forced immune synapse leading to T-cell activation and tumor lysis; MHC-independent killing",
+              "moa_classification": ["bispecific_T-cell_engager", "DLL3_targeting", "CD3_binding", "SCLC", "MHC_independent"],
+              "clinical_evidence": {
+                "development_stage": "APPROVED - FDA approval for SCLC based on Phase III success",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III in SCLC",
+                    "phase": "Phase III",
+                    "design": "Tarlatamab vs standard chemotherapy in relapsed/refractory SCLC (2L+)",
+                    "efficacy": {
+                      "OS": "13.6 vs 8.3 months (HR ~0.60, 40% reduction in death risk)",
+                      "ORR": "~40% vs 15% for chemo",
+                      "Note": "Establishes new benchmark in notoriously difficult SCLC"
+                    },
+                    "safety": "CRS manageable with step-up dosing; neurologic AEs (SCLC expresses DLL3 in brain - on-target/off-tumor)",
+                    "patient_selection": "Relapsed/refractory SCLC (heavily pretreated population)",
+                    "outcome": "BREAKTHROUGH - First bispecific T-cell engager in lung cancer; validates platform in solid tumors"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "DLL3 is excellent target in SCLC - highly expressed, neuroendocrine marker",
+                  "T-cell engager format works in solid tumors (previously thought to be heme-specific)",
+                  "40% reduction in death risk is exceptional in SCLC (historically poor prognosis)",
+                  "Step-up dosing mitigates CRS effectively"
+                ],
+                "key_insights": "Tarlatamab is PROOF-OF-CONCEPT for bispecific T-cell engagers in lung cancer. SCLC is aggressive, ICI-resistant disease - 40% ORR and OS benefit validate novel mechanism. DLL3 targeting demonstrated - opens door for DLL3 bispecifics in NSCLC subset (neuroendocrine differentiation). STRATEGIC: While tarlatamab is SCLC-specific, it validates T-cell engager platform in lung. NSCLC targets (TROP2, EGFR, others) could be pursued in bispecific TCE format. CRS manageable - not barrier to solid tumor development."
+              },
+              "similarity_matching_tags": ["bispecific_T-cell_engager", "DLL3_CD3", "SCLC", "solid_tumor_proof", "OS_benefit"]
+            }
+          ]
+        },
+        "next_generation_approaches": [
+          {
+            "approach_name": "TROP2 x CD3 bispecific T-cell engagers",
+            "moa_modification": "T-cell engager format targeting TROP2 (80-90% NSCLC expression) and CD3",
+            "rationale": "Leverage TROP2 as validated target (from ADC success); engage T cells for tumor killing; MHC-independent",
+            "development_stage": "Preclinical - early clinical trials planned",
+            "strategic_importance": "HIGH - Could combine advantages of TROP2 targeting with T-cell engager mechanism; competitive to ADCs"
+          },
+          {
+            "approach_name": "Multi-specific antibodies (3+ targets)",
+            "moa_modification": "Tri-specific or quad-specific antibodies (e.g., PD-1 + VEGF + TGF-β or EGFR + c-Met + HER3)",
+            "rationale": "Address multiple resistance mechanisms simultaneously",
+            "development_stage": "Preclinical - significant manufacturing challenges",
+            "strategic_importance": "MODERATE - High risk due to complexity; may over-engineer solution"
+          }
+        ],
+        "moa_compatibility_score": {
+          "biological_fit": "10/10 - Multiple validated target combinations (EGFR/c-Met, PD-1/VEGF, PD-L1/4-1BB); synergistic pathways",
+          "clinical_validation": "9/10 - Amivantamab shows OS benefit vs osimertinib; Ivonescimab beats pembrolizumab; Tarlatamab breakthrough in SCLC",
+          "unmet_need_match": "9/10 - Addresses resistance (EGFR/c-Met), enhances ICI efficacy (PD-1/VEGF, PD-L1/4-1BB), provides ICI-independent option (TCEs)",
+          "overall_assessment": "Bispecific antibodies are HIGHLY SUCCESSFUL and TRANSFORMATIVE in NSCLC. Amivantamab (EGFR/c-Met) is NEW FIRST-LINE STANDARD in EGFR+ NSCLC, demonstrating OS superiority over osimertinib (HR 0.75). Ivonescimab (PD-1/VEGF) beats pembrolizumab in Phase III. Acasunlimab (PD-L1/4-1BB) validates conditional agonist approach. Tarlatamab (DLL3/CD3) breakthrough in SCLC proves T-cell engagers work in lung cancer. STRATEGIC OPPORTUNITIES: (1) Dual pathway blockade addresses resistance upfront (amivantamab model), (2) Checkpoint + other mechanism bispecifics improve ICI efficacy (ivonescimab, acasunlimab), (3) T-cell engagers for NSCLC targets (TROP2, EGFR) are next frontier. Bispecifics offer single-agent convenience with combination-level efficacy. COMPETITIVE LANDSCAPE: Multiple bispecifics advancing; differentiation on target combination, safety, and biomarker strategies. RECOMMENDATION: HIGH PRIORITY for R&D - bispecifics can achieve first-line standards or best-in-class positioning."

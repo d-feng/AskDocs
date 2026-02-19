@@ -1,0 +1,569 @@
+{
+  "metadata": {
+    "indication_name": "Pancreatic Ductal Adenocarcinoma (PDAC)",
+    "indication_code": "C25.9 (ICD-10)",
+    "subtypes": [
+      {
+        "name": "Resectable PDAC",
+        "prevalence": "15-20% of newly diagnosed cases",
+        "molecular_features": "KRAS mutations (90-95%), TP53 (50-75%), CDKN2A (95%), SMAD4 loss (55%). Lower mutational burden (median TMB 1-2 mut/Mb)",
+        "prognosis": "Median OS with surgery + adjuvant chemo: 28-54 months (modified FOLFIRINOX); 5-year survival 20-30% with optimal treatment"
+      },
+      {
+        "name": "Locally Advanced Unresectable PDAC",
+        "prevalence": "30-35% of newly diagnosed cases",
+        "molecular_features": "Similar to resectable but enriched for SMAD4 loss (associated with metastatic potential). Dense desmoplastic stroma (60-90% of tumor mass)",
+        "prognosis": "Median OS with chemo: 11-15 months (FOLFIRINOX/gemcitabine-nab-paclitaxel); 2-year survival 10-20%"
+      },
+      {
+        "name": "Metastatic PDAC",
+        "prevalence": "50-55% of newly diagnosed cases",
+        "molecular_features": "KRAS G12D (40%), G12V (30%), G12R (15%). Actionable alterations rare: BRCA1/2 (4-7%), NTRK fusions (<1%), MSI-H (<1%)",
+        "prognosis": "Median OS with 1L chemo: 8.5-11 months; 1-year survival 35-45%; 5-year survival <5%"
+      }
+    ],
+    "geographic_scope": "United States, European Union, and Asia-Pacific (focus on US, EU, China, Japan)",
+    "data_version": "2025 (current), projections through 2030",
+    "data_sources": [
+      "Clinical trial data through 2025 (NCT registry, company disclosures)",
+      "Market research reports (360iResearch, Fortune Business Insights, Grand View Research)",
+      "Scientific literature (Nature, Lancet, oncology journals)",
+      "Regulatory databases (FDA, EMA, NMPA China)",
+      "Company press releases and investor presentations"
+    ],
+    "usage_for_claude": "This profile enables MOA-based drug matching for PDAC by providing: (1) Understanding of unique challenges (cold TME, dense stroma, metabolic barriers), (2) Assessment of which MOAs are validated vs struggling (checkpoint monotherapy FAILED, combinations and TME modifiers emerging), (3) Novel targets and modalities showing promise (CLDN18.2 for CAR-T/ADCs, mRNA vaccines, oncolytic viruses), (4) Strategic guidance on avoiding failed approaches (checkpoint monotherapy) while pursuing validated opportunities (TME modulation + IO, cell therapies, vaccines). CRITICAL: PDAC biology differs dramatically from other solid tumors - approaches successful elsewhere often fail here without TME modification."
+  },
+
+  "disease_biology": {
+    "pathophysiology": {
+      "summary": "Pancreatic ductal adenocarcinoma (PDAC) represents 90% of pancreatic cancers and is characterized by a notoriously immunosuppressive and fibrotic tumor microenvironment. The hallmark is dense desmoplastic stroma (comprising 60-90% of tumor mass) created by cancer-associated fibroblasts (CAFs), which physically excludes T-cells and creates metabolic barriers. PDAC is intrinsically 'cold' with minimal T-cell infiltration in 80-90% of tumors, driven by: (1) Low mutational burden (median TMB 1-2 mut/Mb, 10-fold lower than melanoma/NSCLC), (2) Immunosuppressive metabolites (adenosine, lactate, kynurenine), (3) Regulatory immune cells (Tregs, MDSCs, M2 macrophages comprising 40-60% of immune infiltrate). Universal KRAS mutations (90-95%) drive oncogenesis but attempts at therapeutic targeting have historically failed until recent G12C inhibitors in other tumors. PDAC is highly resistant to immunotherapy monotherapy (checkpoint inhibitor ORR <5% in unselected patients) but emerging data show combination approaches targeting TME can convert cold to hot.",
+      "key_pathways": [
+        {
+          "name": "KRAS Oncogenic Signaling",
+          "relevance": "CRITICAL - 90-95% of PDAC harbor KRAS mutations (G12D 40%, G12V 30%, G12R 15%). Drives proliferation, metabolism, and immune evasion",
+          "role_in_disease": "KRAS mutations activate MAPK and PI3K-AKT pathways driving uncontrolled growth. Induces immunosuppressive cytokines (GM-CSF, IL-6) recruiting MDSCs. Creates metabolic dependencies (glutamine addiction, autophagy) exploitable therapeutically. Generates shared neoantigens for vaccine targeting",
+          "druggability": "HISTORICALLY UNDRUGGABLE but emerging: G12C inhibitors successful in lung cancer (sotorasib, adagrasib), G12D inhibitors in development (MRTX1133). Pan-KRAS approaches challenged by on-target toxicity. KRAS vaccines (mKRAS-AMP) showing immunogenicity",
+          "clinical_validation": "KRAS G12C inhibitors show 30-40% ORR in KRAS G12C lung cancer but G12C rare in PDAC (<2%). G12D/V (70% of PDAC KRAS) lack approved inhibitors. mKRAS-AMP vaccine (AMPLIFY-201) demonstrates KRAS-specific CD8+ T-cell generation in PDAC patients"
+        },
+        {
+          "name": "Desmoplastic Stroma / CAF Barrier",
+          "relevance": "CRITICAL - Defines PDAC biology. Dense fibrotic stroma (60-90% tumor mass) physically excludes T-cells, impairs drug delivery, creates hypoxia",
+          "role_in_disease": "CAFs secrete collagen, hyaluronic acid creating dense extracellular matrix. Physical barrier prevents T-cell infiltration ('excluded' phenotype in 80-90% of tumors). CAFs produce immunosuppressive factors (TGF-β, IL-6, CXCL12) recruiting Tregs and MDSCs. Compress vasculature causing hypoxia and drug delivery failure",
+          "druggability": "MODERATE - Multiple approaches: hyaluronidase (PEGPH20 FAILED in Phase III), FAP-targeted therapies, CAF reprogramming (vitamin D analogs). Stromal depletion paradoxically can worsen outcomes by releasing constraints on tumor growth. Optimal strategy appears to be CAF repolarization not depletion",
+          "clinical_validation": "PEGPH20 (hyaluronidase) Phase III FAILED (no OS benefit, increased toxicity). Vitamin D analogs preclinical show CAF reprogramming. GSK-3β inhibition (elraglusib) increases CD8+ infiltration and shows 37% mortality reduction in Phase II - validates metabolic modulation of stroma"
+        },
+        {
+          "name": "Adenosine Immunosuppression (CD73 Pathway)",
+          "relevance": "HIGH - CD73 expressed in 70-80% of PDAC TME (CAFs, tumor cells, immune cells). Converts ATP to immunosuppressive adenosine",
+          "role_in_disease": "Extracellular adenosine binds A2A/A2B receptors on T-cells and NK cells, inhibiting activation and cytotoxic function. Promotes M2 macrophage and Treg differentiation. Creates local immunosuppressive zone around tumor. Hypoxia upregulates CD73 expression - vicious cycle",
+          "druggability": "VALIDATED - CD73 inhibitors (quemliclustat, oleclumab) in Phase II/III. A2A receptor antagonists also in development. Rational combination with checkpoint inhibitors to remove suppression",
+          "clinical_validation": "Quemliclustat (Arcus) granted Orphan Drug Designation 2024, entered Phase III PRISM-1 trial Q4 2024 combining with chemotherapy. Preclinical data shows CD73 blockade increases CD8+ T-cell function and enhances checkpoint inhibitor efficacy in PDAC models"
+        },
+        {
+          "name": "GSK-3β Metabolic Checkpoint",
+          "relevance": "EMERGING HIGH - GSK-3β is metabolic regulator, inhibition reprograms TME from immunosuppressive to permissive",
+          "role_in_disease": "GSK-3β in tumor cells and CAFs drives glycolysis and lactate production (immunosuppressive). Promotes M2 macrophage polarization. Inhibits T-cell infiltration via unclear mechanisms. Represents metabolic vulnerability in PDAC",
+          "druggability": "VALIDATED in Phase II - Elraglusib (Actuate Therapeutics) is selective GSK-3β inhibitor. Oral bioavailability, once-daily dosing",
+          "clinical_validation": "Elraglusib Phase II randomized trial: 37% reduction in death risk vs chemotherapy alone (HR 0.63), increased CD8+ T-cell infiltration on biopsy. Pre-NDA interactions with FDA/EMA ongoing. Represents first metabolic TME modulator with clinical validation"
+        },
+        {
+          "name": "PD-1/PD-L1 Checkpoint Axis",
+          "relevance": "LOW in unselected PDAC - PD-L1 expression variable (20-40% tumors) but checkpoint monotherapy ORR <5%. MSI-H subset (1-2%) has high response (ORR 40-50%)",
+          "role_in_disease": "PD-L1 expressed on tumor cells and immune cells mediates T-cell exhaustion. However, PDAC TME lacks sufficient T-cells to exhaust - checkpoint blockade alone ineffective. In MSI-H tumors (high neoantigen load, T-cell inflamed), PD-1 blockade is rate-limiting",
+          "druggability": "VALIDATED in MSI-H subset only. In microsatellite stable (MSS, 98-99% of PDAC), checkpoint monotherapy FAILS. Combinations with TME modifiers showing promise",
+          "clinical_validation": "Pembrolizumab monotherapy MSS PDAC: ORR <5%, PFS 2 months (KEYNOTE-158). MSI-H PDAC: ORR 40-50%, durable responses >2 years (tumor-agnostic approval). Checkpoint + CD40 agonist (sotigalimab PRINCE trial): immune activation demonstrated, durability data pending"
+        },
+        {
+          "name": "CD40 Agonism / Dendritic Cell Activation",
+          "relevance": "EMERGING HIGH - CD40 agonists activate dendritic cells and reprogram macrophages from M2 (immunosuppressive) to M1 (pro-inflammatory)",
+          "role_in_disease": "CD40 expressed on APCs. Agonism drives DC maturation, cross-presentation of tumor antigens, T-cell priming. Critically, repolarizes tumor-associated macrophages (TAMs) from M2 to M1 phenotype with tumoricidal activity. May overcome low neoantigen burden by enhancing presentation of available antigens",
+          "druggability": "CLINICAL VALIDATION EMERGING - Sotigalimab, selicrelumab in Phase I/II showing immune activation. Optimal dosing and schedule being refined",
+          "clinical_validation": "Sotigalimab + nivolumab + chemotherapy (PRINCE Phase II): demonstrated immune activation, increased T-cell infiltration, durability follow-up ongoing. Selicrelumab (Roche) showing similar immune priming in combination studies"
+        },
+        {
+          "name": "CLDN18.2 (Claudin 18.2) Target Antigen",
+          "relevance": "HIGH - Expressed in 50-60% of PDAC (gastric junction subtype enriched, 70-80%). Tight junction protein, tumor-associated antigen",
+          "role_in_disease": "CLDN18.2 is normally restricted to gastric epithelium, aberrantly expressed in PDAC and gastric cancers. Maintains tight junctions but also drives survival signaling. Tumor-associated (not tumor-specific), limited normal tissue expression creates therapeutic window",
+          "druggability": "HIGHLY VALIDATED - Multiple modalities: ADCs (zolbetuximab), CAR-T (>15 active INDs in US/China), bispecifics (CD3 engagers). Cell surface, internalizes - ideal for ADC/CAR targeting",
+          "clinical_validation": "Zolbetuximab (CLDN18.2 mAb) approved in gastric cancer (OS benefit). CAR-T trials in PDAC showing 'potent antitumor activity' and manageable safety (China NMPA IND clearance 2024). PT886 (CLDN18.2 mAb) Fast Track for PDAC. Represents most validated novel target in PDAC"
+        }
+      ]
+    },
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "classification": "PREDOMINANTLY COLD (80-90%) - minimal T-cell infiltration, 'immune desert' or 'excluded' phenotype. HOT tumors rare (5-10%, enriched in MSI-H, high neoantigen burden)",
+        "dominant_immune_cells": [
+          "Cancer-associated fibroblasts (CAFs): 60-90% of tumor mass - create physical and biochemical barriers, dominant cell type",
+          "Tumor-associated macrophages (TAMs): 30-40% of immune infiltrate, predominantly M2 immunosuppressive (80-90% of TAMs)",
+          "Myeloid-derived suppressor cells (MDSCs): 20-30% of immune cells, produce arginase/iNOS inhibiting T-cells",
+          "Regulatory T-cells (Tregs): 15-25% of tumor-infiltrating lymphocytes, suppress effector function",
+          "CD8+ effector T-cells: Only 2-10% in cold tumors, 15-25% in rare hot tumors; frequently excluded at stromal margin, cannot penetrate tumor core",
+          "Neutrophils: 10-20% of infiltrate, often pro-tumor phenotype promoting metastasis"
+        ],
+        "infiltration_patterns": "EXCLUDED pattern dominant (70-80%): T-cells present at periphery/stromal interface but dense collagen matrix prevents penetration to tumor core. DESERT pattern (10-15%): virtually no T-cells, complete immune ignorance. INFLAMED pattern (<5%): T-cell infiltration throughout tumor, MSI-H or high neoantigen cases only"
+      },
+      "immune_suppression_mechanisms": [
+        {
+          "name": "Stromal Exclusion Barrier",
+          "prevalence": "70-80% of PDAC - dense desmoplastic stroma physically blocks T-cell infiltration",
+          "functional_impact": "CAFs secrete collagen I/III, hyaluronic acid creating dense ECM (extracellular matrix) with tensile strength exceeding normal tissue. Physical barrier prevents T-cell migration from blood vessels (at periphery) to tumor core. Compressed vasculature reduces T-cell extravasation. Results in 'excluded' phenotype where T-cells accumulate at margin but cannot engage tumor cells",
+          "therapeutic_relevance": "Stromal depletion (e.g., PEGPH20 hyaluronidase) paradoxically FAILED - stroma also constrains tumor growth. BETTER approach: stromal MODULATION (vitamin D, FAP-targeted therapies) or metabolic reprogramming (GSK-3β inhibition) to change CAF phenotype from barrier to permissive"
+        },
+        {
+          "name": "Adenosine-Mediated Immunosuppression",
+          "prevalence": "CD73 (adenosine-producing enzyme) expressed in 70-80% of PDAC TME; adenosine levels 10-100x higher than normal tissue",
+          "functional_impact": "CD73 on CAFs, tumor cells, and immune cells converts extracellular ATP to adenosine. Adenosine binds A2A/A2B receptors on T-cells causing cAMP accumulation → PKA activation → TCR signaling blockade, reduced cytokine production, impaired cytotoxicity. Also promotes Treg expansion and M2 macrophage polarization",
+          "therapeutic_relevance": "CD73 inhibitors (quemliclustat) in Phase III - mechanistic rationale strong. Combination with checkpoint inhibitors rational (remove suppression + activate). A2A antagonists also in development. Orphan Drug Designation validates target"
+        },
+        {
+          "name": "Metabolic Dysfunction and Lactate Accumulation",
+          "prevalence": "Universal in PDAC - aerobic glycolysis (Warburg effect) in 95%+ of tumors, lactate levels 5-20 mM (vs 1-2 mM normal)",
+          "functional_impact": "Tumor cells and CAFs undergo glycolysis producing excess lactate despite oxygen availability. Lactate acidifies TME (pH 6.5-6.8 vs 7.4 normal) inhibiting T-cell function - lactate competes with pyruvate for MCT1 transporter, disrupting T-cell metabolism. Lactate promotes M2 macrophage polarization, enhances Treg function. Creates energy-depleted environment hostile to effector T-cells",
+          "therapeutic_relevance": "GSK-3β inhibitors (elraglusib) modulate glycolysis and lactate production, show clinical benefit (37% mortality reduction Phase II). Lactate dehydrogenase (LDH) inhibitors, MCT1/4 inhibitors in preclinical showing TME reprogramming. Metabolic targeting is emerging frontier"
+        },
+        {
+          "name": "MDSC and Treg Accumulation",
+          "prevalence": "MDSCs comprise 20-30% of immune infiltrate, Tregs 15-25% of TILs (vs <5% peripheral blood for both) - dramatically enriched in TME",
+          "functional_impact": "MDSCs deplete arginine via arginase-1 (required for T-cell proliferation), produce reactive nitrogen species via iNOS (toxic to T-cells), secrete immunosuppressive cytokines (TGF-β, IL-10). Tregs suppress via IL-10, TGF-β, consume IL-2, express high CTLA-4 blocking costimulation. Together create 'immune privileged' niche",
+          "therapeutic_relevance": "MDSC depletion strategies (CSF-1R inhibitors, PI3Kγ inhibitors) in preclinical. Treg depletion (low-dose cyclophosphamide, CCR4 antibodies) explored. CD40 agonists can reprogram MDSCs/TAMs to immunostimulatory - more promising than depletion"
+        }
+      ],
+      "cytokine_environment": {
+        "profile": "Predominantly IMMUNOSUPPRESSIVE - TGF-β, IL-6, IL-10 dominate. Pro-inflammatory cytokines (IFN-γ, TNF-α) present at low levels even in inflamed tumors",
+        "key_cytokines": [
+          {
+            "name": "TGF-β",
+            "role": "DOMINANT IMMUNOSUPPRESSOR - Secreted by CAFs, tumor cells, Tregs at very high levels (10-100x normal). Directly suppresses T-cell and NK function, promotes Treg differentiation, drives CAF activation and collagen deposition (feeds forward loop). Induces epithelial-mesenchymal transition promoting metastasis",
+            "therapeutic_opportunity": "TGF-β blockade rational but challenging - systemic toxicity (cardiac valvulopathy) limits dosing. Tumor-targeted approaches (bispecifics, local delivery) in development. Combination with checkpoint showing preclinical synergy"
+          },
+          {
+            "name": "IL-6",
+            "role": "PRO-TUMOR - Produced by CAFs and tumor cells, drives STAT3 activation promoting survival and proliferation. Recruits MDSCs to TME. Associated with cachexia (muscle wasting) in advanced PDAC",
+            "therapeutic_opportunity": "IL-6 or IL-6R antibodies (tocilizumab, siltuximab) tested in PDAC with limited success as monotherapy. May have role in combinations to reduce MDSC trafficking"
+          },
+          {
+            "name": "IFN-γ",
+            "role": "LARGELY ABSENT - IFN-γ typically produced by activated T-cells and NK cells, but PDAC lacks sufficient effector cells. When present (MSI-H cases), drives PD-L1 expression enabling checkpoint response",
+            "therapeutic_opportunity": "IFN-γ signature identifies rare checkpoint-responsive subset (MSI-H). Strategies to INDUCE IFN-γ response (CD40 agonists, vaccines) may prime checkpoint sensitivity"
+          }
+        ]
+      },
+      "immune_receptors": {
+        "failed_targets": [
+          {
+            "name": "PD-1/PD-L1 Monotherapy in MSS PDAC",
+            "evidence": "Pembrolizumab monotherapy KEYNOTE-158: ORR <5% in MSS PDAC, PFS 2.0 months vs 2.1 months placebo (no benefit). Nivolumab monotherapy similar failure. Atezolizumab monotherapy ORR 0% in PDAC cohort",
+            "failure_explanation": "PDAC TME lacks T-cells to exhaust - checkpoint blockade releases T-cells that aren't there. Low mutational burden (median TMB 1-2 mut/Mb) provides few neoantigens for T-cell recognition. Dense stroma physically excludes any T-cells that might be activated. Combination of cold TME + low neoantigens + stromal barrier renders checkpoint monotherapy futile",
+            "strategic_implication": "NEVER pursue checkpoint monotherapy in MSS PDAC (98% of cases). ALWAYS combine with TME modifiers (CD73i, GSK-3βi, CD40 agonist) or other immune agonists. MSI-H (1-2%) is only subset responsive - biomarker essential"
+          },
+          {
+            "name": "PEGPH20 (Hyaluronidase) Stromal Depletion",
+            "evidence": "Phase III HALO-301: PEGPH20 + gemcitabine/nab-paclitaxel vs chemo alone FAILED primary endpoint OS (11.2 vs 11.5 months, HR 1.00, p=0.96). Increased thromboembolic toxicity grade 3-4: 10% vs 3%",
+            "failure_explanation": "Stromal depletion paradoxically harmful - stroma also CONSTRAINS tumor growth (tumor-restraining function). Removing hyaluronic acid releases this constraint, tumor proliferates faster. Improved drug delivery (rationale for PEGPH20) offset by loss of tumor restraint. Reveals stroma is double-edged sword",
+            "strategic_implication": "AVOID stromal DEPLETION strategies. Pursue stromal REPROGRAMMING or NORMALIZATION instead - change CAF phenotype from immunosuppressive to permissive without removing physical constraints. Vitamin D analogs, FAP-targeted reprogramming are alternatives"
+          }
+        ],
+        "validated_targets": [
+          {
+            "name": "CD40 (Dendritic Cell / Macrophage Activation)",
+            "evidence": "Sotigalimab + nivolumab + chemotherapy (PRINCE Phase II): demonstrated DC activation, T-cell priming, and macrophage repolarization from M2 to M1. Increased CD8+ T-cell infiltration in biopsies. Durability follow-up ongoing",
+            "success_rationale": "CD40 agonism addresses PDAC-specific barriers: (1) Activates DCs to present available antigens (compensates for low neoantigen burden), (2) Repolarizes TAMs from M2 (immunosuppressive) to M1 (tumoricidal) phenotype, (3) Primes T-cells enabling checkpoint inhibitor efficacy. Mechanism orthogonal to checkpoint blockade",
+            "patient_selection": "Unselected for biomarkers currently, but CD40+ DC density in TME may predict response. Combination with checkpoint appears essential (CD40 primes, checkpoint releases)"
+          },
+          {
+            "name": "CD73 (Adenosine Pathway)",
+            "evidence": "Quemliclustat (Arcus Biosciences) granted Orphan Drug Designation 2024, entered Phase III PRISM-1 combining with chemotherapy. Preclinical models show CD73 blockade increases CD8+ function and checkpoint response",
+            "success_rationale": "CD73 inhibition reduces adenosine (dominant immunosuppressive metabolite in PDAC TME), allowing T-cell function. Addresses metabolic barrier complementary to checkpoint. A2A receptor blockade shows similar benefit in models",
+            "patient_selection": "CD73 expression by IHC on CAFs, tumor cells may enrich responders. Stromal CD73 (not tumor) appears more relevant. Combination with checkpoint rational"
+          },
+          {
+            "name": "GSK-3β (Metabolic Checkpoint)",
+            "evidence": "Elraglusib (Actuate Therapeutics) Phase II: 37% reduction in death risk vs chemo alone (HR 0.63, p<0.05), increased CD8+ T-cell tumor infiltration. Pre-NDA discussions with FDA/EMA based on this data",
+            "success_rationale": "GSK-3β inhibition reprograms tumor and CAF metabolism reducing lactate production, acidic pH corrected, T-cells can function. Represents metabolic TME modulation - orthogonal mechanism to checkpoint. May not require checkpoint combination (monotherapy signal seen)",
+            "patient_selection": "No biomarker identified yet but glycolytic signature, lactate levels, or CAF density might predict response. Oral bioavailability and once-daily dosing favorable for combination"
+          },
+          {
+            "name": "CLDN18.2 (Claudin 18.2)",
+            "evidence": "Zolbetuximab (CLDN18.2 mAb) approved gastric cancer (OS benefit). CLDN18.2 CAR-T showing 'potent antitumor activity' in Phase I PDAC cohorts (China NMPA IND clearance). PT886 (CLDN18.2 mAb) Fast Track for PDAC Phase I/II",
+            "success_rationale": "CLDN18.2 is tumor-associated antigen (50-60% PDAC express), limited normal tissue (gastric mucosa) creates acceptable therapeutic window. Cell surface expression enables CAR-T, ADC, bispecific targeting. Represents first validated target antigen beyond checkpoint for PDAC",
+            "patient_selection": "CLDN18.2 expression by IHC required (≥40% cells, ≥2+ intensity typical cutoff from gastric trials). Gastric junction PDAC enriched (70-80% positive). Companion diagnostic in development"
+          }
+        ],
+        "emerging_targets": [
+          {
+            "name": "CD318 (Novel CAR-T Antigen)",
+            "evidence": "CD318 CAR-T (ResCPa) first-in-human trial initiated Japan and US (NCT07153289). Preclinical data shows potent PDAC regression in PDX models",
+            "rationale": "CD318 expressed on PDAC cells, more restricted than CLDN18.2 or MSLN. Represents novel target antigen expanding CAR-T options beyond established antigens",
+            "development_status": "Phase I ongoing, safety and early efficacy data expected 2026"
+          },
+          {
+            "name": "Muc16CD (CA125-related Antigen)",
+            "evidence": "Muc16CD CAR-T showing preclinical activity in PDAC organoids and PDX models. Represents novel target antigen",
+            "rationale": "Muc16 (CA125) is PDAC biomarker, CD isoform is tumor-enriched. Less shedding than full CA125, better CAR target",
+            "development_status": "Preclinical, IND-enabling studies ongoing"
+          }
+        ]
+      }
+    },
+    "tumor_antigens": [
+      {
+        "name": "CLDN18.2 (Claudin 18.2)",
+        "expression_frequency": "50-60% of PDAC overall; 70-80% in gastric junction subtype",
+        "expression_level": "Moderate-to-high when present; membranous staining pattern, ≥2+ intensity in 40-70% of positive cells",
+        "expression_pattern": "Heterogeneous within tumors; maintained in metastases. Gastric junction/body PDAC more homogeneous (80-90% cells positive)",
+        "normal_tissue_expression": "Restricted to gastric epithelium (differentiated cells, not stem cells); transient expression in fetal lung. Acceptable therapeutic window demonstrated by zolbetuximab safety",
+        "prior_targeting_attempts": [
+          "Zolbetuximab (CLDN18.2 mAb): FDA approved gastric cancer (GLOW/SPOTLIGHT trials), OS 14.9 vs 12.9 months chemo alone (HR 0.75, p=0.0007)",
+          "CLDN18.2 CAR-T (multiple): >15 active INDs in US/China, Phase I showing 'potent antitumor activity' and manageable safety, NMPA IND clearance 2024",
+          "PT886 (CLDN18.2 mAb): FDA Fast Track for PDAC Phase I/II (NCT05482893)",
+          "IBI343 (CLDN18.2 ADC): Phase I PDAC cohort showing initial activity (ASCO GI 2025)"
+        ],
+        "strategic_importance": "HIGHEST PRIORITY - Most validated novel target in PDAC. Enables multiple modalities (mAb, ADC, CAR-T, bispecifics). Gastric approvals de-risk regulatory path. 50-60% prevalence is commercially viable. COMPETITIVE space (>20 programs) but large unmet need. Differentiation via: (1) Biomarker-driven patient selection (IHC ≥40% cells, ≥2+), (2) Superior modality (CAR-T may surpass mAb), (3) Combination strategies (CLDN18.2 CAR-T + checkpoint to address non-CLDN18.2 cells)"
+      },
+      {
+        "name": "Mesothelin (MSLN)",
+        "expression_frequency": "85-95% of PDAC",
+        "expression_level": "High - strong membranous and cytoplasmic staining; 3+ intensity in 60-80% of tumors",
+        "expression_pattern": "Relatively homogeneous; expressed in primary and metastatic sites. Shed mesothelin detectable in serum (can interfere with targeting)",
+        "normal_tissue_expression": "Mesothelial cells (pleura, peritoneum, pericardium) - on-target/off-tumor toxicity potential but manageable in trials to date",
+        "prior_targeting_attempts": [
+          "Amatuximab (MSLN mAb): Phase II malignant mesothelioma showed modest activity (SD 50%, PR 10%), no PDAC-specific approval",
+          "MSLN CAR-T (various): Multiple Phase I trials showing SD 40-60%, ORR 10-20% in solid tumors including PDAC. Trafficking barrier evident",
+          "MSLN-CD3 bispecifics (Amgen XmAb-derived): Phase II ongoing, early data shows T-cell engagement but ORR limited by TME barriers",
+          "CRS-207 (MSLN-targeted Listeria vaccine): Phase III in PDAC FAILED (no OS benefit vs chemo alone)"
+        ],
+        "strategic_importance": "MODERATE - Highly prevalent (85-95%) but less validated than CLDN18.2. CAR-T and bispecifics show activity signals but TME barriers limit efficacy (ORR 10-20%). Shed mesothelin may block CAR/antibody binding (competitive inhibition). DIFFERENTIATION required: next-gen CAR constructs (armored, dual-targeting MSLN + CLDN18.2), combination with TME modifiers (CD73i, GSK-3βi) to enhance infiltration. Alone, MSLN targeting INSUFFICIENT in PDAC - combination strategy mandatory"
+      },
+      {
+        "name": "KRAS Neoantigens (G12D, G12V, G12R)",
+        "expression_frequency": "90-95% of PDAC harbor KRAS mutations; G12D 40%, G12V 30%, G12R 15%",
+        "expression_level": "Clonal driver mutations - present in all tumor cells. Mutant peptides presented on HLA-A*11:01, A*03:01, others",
+        "expression_pattern": "Uniform (clonal), present in primary, metastases, and relapsed disease. Ideal neoantigen - driver mutation cannot be lost without impairing tumor",
+        "normal_tissue_expression": "Mutant KRAS is tumor-specific (non-self antigen) - no normal tissue expression. KRAS wild-type ubiquitous but not targeted",
+        "prior_targeting_attempts": [
+          "mKRAS-AMP (peptide vaccine, Elicio): AMPLIFY-201 Phase I showed long-lived KRAS-specific CD8+ T-cells in 60-70% of vaccinated PDAC patients, favorable safety. Final data expected 2025",
+          "ELI-002 (KRAS vaccine): Showed immunogenicity in multiple solid tumors including PDAC in Phase I",
+          "Personalized mRNA vaccines (BioNTech, Moderna): Include KRAS neoantigens among 10-20 personalized targets, showing CD8+ responses in 50%+ of PDAC patients",
+          "KRAS G12D/V inhibitors: In development for PDAC (MRTX1133 for G12D), early clinical data pending. G12C inhibitors effective in lung but G12C rare in PDAC (<2%)"
+        ],
+        "strategic_importance": "HIGH - KRAS mutations are universal (90-95%), shared neoantigens enable off-the-shelf vaccines (scalable, lower cost \$20-50K vs \$100-300K personalized). G12D/V cover 70% of PDAC - large addressable population. CRITICAL: Vaccines generate T-cells but PDAC TME excludes them - MANDATE combination with TME modifiers (GSK-3βi, CD73i) or checkpoint + CD40 agonist to enable T-cell infiltration and function. Standalone vaccine insufficient. Also consider KRAS inhibitors + vaccine combination (targeted therapy induces immunogenic death → enhances vaccine response)"
+      },
+      {
+        "name": "Personalized Neoantigens (Patient-Specific)",
+        "expression_frequency": "Varies by patient - median 1-5 high-confidence neoantigens per PDAC (low TMB 1-2 mut/Mb, 10-fold lower than melanoma/NSCLC)",
+        "expression_level": "Variable; clonal mutations (TP53, SMAD4) generate neoantigens in all tumor cells, subclonal are heterogeneous",
+        "expression_pattern": "Clonal neoantigens homogeneous, subclonal heterogeneous (may miss metastases if targeting subclonal)",
+        "normal_tissue_expression": "Tumor-specific by definition - ideal therapeutic window",
+        "prior_targeting_attempts": [
+          "Autogene cevumeran/BNT122 (BioNTech personalized mRNA): Phase I showed durable CD8+ T-cell responses in >50% of resected PDAC patients. Median 20 neoantigens per vaccine. Phase II planned",
+          "mRNA-4157 (Moderna personalized mRNA): Partnered with Merck, includes PDAC cohorts. Up to 34 neoantigens per patient",
+          "Neoantigen peptide vaccines: Academic trials showing immunogenicity but limited efficacy as monotherapy"
+        ],
+        "strategic_importance": "MODERATE - Personalized approach addresses low TMB by identifying all available neoantigens (1-5 per patient), maximizes immunogenicity. BioNTech Phase I validates feasibility (>50% generate T-cell response). CHALLENGES: (1) Low neoantigen number limits ceiling (vs 10-20 in melanoma), (2) Manufacturing complexity (4-8 weeks turnaround), (3) Cost (\$100-300K per patient), (4) TME barrier - vaccine-primed T-cells still excluded by stroma. OPTIMAL setting: ADJUVANT post-resection where tumor burden minimal and TME less established. COMBINATION with checkpoint or TME modifiers essential. Shared antigen approach (KRAS vaccines) may be more scalable and cost-effective for PDAC given limited neoantigen landscape"
+      }
+    ],
+    "biological_features_for_moa_matching": [
+      {
+        "feature_name": "Desmoplastic Stroma Density",
+        "moa_relevance": "Determines which MOAs can access tumor: Small molecules (TKIs, metabolic inhibitors) penetrate; large antibodies poorly penetrate; CAR-T/TIL require TME modifiers to infiltrate; oncolytic viruses may penetrate but viral spread limited",
+        "description": "60-90% of PDAC tumor mass is acellular stroma (collagen, hyaluronic acid). Creates physical barrier with high interstitial fluid pressure (IFP 20-40 mmHg vs 0-3 mmHg normal). Compresses vasculature reducing perfusion. Defines PDAC biology more than any other solid tumor",
+        "therapeutic_implication": "HIGH stroma (>70% by pathology) → AVOID large molecule monotherapies (antibodies, ADCs poorly penetrate), CAR-T monotherapy (trafficking barrier), IV chemotherapy (poor delivery). PURSUE: TME modifiers (GSK-3βi, FAP-targeted) to reduce stroma or normalize structure, small molecule therapies (TKIs, metabolic inhibitors penetrate better), oncolytic viruses + TME modifiers, combination strategies addressing stroma BEFORE introducing effector therapy. Stromal density should be biomarker for treatment selection"
+      },
+      {
+        "feature_name": "Tumor Mutational Burden (TMB) and Neoantigen Load",
+        "moa_relevance": "Predicts checkpoint responsiveness and vaccine potential: MSI-H/high TMB (1-2% of PDAC) → checkpoint monotherapy viable; Low TMB (98% of PDAC) → checkpoint monotherapy fails, vaccines have limited targets, require TME modifier combinations",
+        "description": "PDAC median TMB 1-2 mut/Mb (vs 8-10 NSCLC, 20-30 melanoma) - 5-15x LOWER than checkpoint-responsive tumors. MSI-H rare (<2%) but has TMB >10 mut/Mb. Low TMB = few neoantigens (median 1-5 vs 10-20 in melanoma) for immune recognition",
+        "therapeutic_implication": "MSI-H (1-2%): Pembrolizumab ORR 40-50%, checkpoint monotherapy appropriate. MSS low TMB (98%): Checkpoint monotherapy FUTILE (ORR <5%), REQUIRE TME modification + checkpoint or alternative MOAs (CAR-T targeting TSAs not neoantigens, oncolytic viruses creating in-situ vaccine). Vaccines can work but target shared neoantigens (KRAS) to maximize immunogenicity in low TMB context. Personalized vaccines limited by low neoantigen number. BIOMARKER ESSENTIAL: MSI testing mandatory, TMB testing to identify rare high TMB MSS cases"
+      },
+      {
+        "feature_name": "CLDN18.2 Expression Status",
+        "moa_relevance": "Determines eligibility for multiple targeted MOAs: CLDN18.2+ (50-60%) → CAR-T, ADC, bispecific, mAb options; CLDN18.2- (40-50%) → excluded from CLDN18.2-targeted therapies, require alternative targets (MSLN, KRAS vaccines)",
+        "description": "CLDN18.2 (Claudin 18.2) expressed in 50-60% of PDAC (70-80% in gastric junction subtype). Tight junction protein, tumor-associated antigen. IHC scoring: ≥40% cells with ≥2+ intensity typical biomarker cutoff",
+        "therapeutic_implication": "CLDN18.2+ (IHC ≥40% cells, ≥2+): Pursue CLDN18.2 CAR-T (>15 active programs showing activity), CLDN18.2 ADCs (IBI343 showing signals), CLDN18.2 bispecifics (CD3 engagers in development), CLDN18.2 mAb (zolbetuximab approved gastric, PT886 Fast Track PDAC). CLDN18.2- (IHC <40% or <2+): Pursue alternative targets - MSLN CAR-T/bispecifics (85-95% express), KRAS vaccines (90-95%), personalized neoantigens, CD318 CAR-T (novel target). COMBINATION: CLDN18.2 CAR-T + checkpoint may address heterogeneity (CAR kills CLDN18.2+ cells releasing antigens, checkpoint activates T-cells against CLDN18.2- cells). IHC biomarker MANDATORY for patient selection"
+      },
+      {
+        "feature_name": "KRAS Mutation Variant",
+        "moa_relevance": "Determines targetability and vaccine selection: G12C (<2% PDAC) → G12C inhibitors; G12D (40%) → G12D inhibitors in development + G12D vaccines; G12V (30%) → G12V vaccines; G12R (15%) → G12R vaccines; Wild-type (5-10%) → alternative strategies",
+        "description": "KRAS mutations present in 90-95% of PDAC. Variant distribution: G12D 40%, G12V 30%, G12R 15%, G12C <2%, others 8%. Each variant has distinct HLA restriction and druggability",
+        "therapeutic_implication": "G12D (40%): HIGHEST priority - MRTX1133 (G12D inhibitor) in development for PDAC, G12D-specific vaccines (mKRAS-AMP covers G12D). G12V (30%): Vaccines are option (mKRAS-AMP covers G12V), no specific inhibitors yet. G12C (<2%): Sotorasib/adagrasib available but rare in PDAC. G12R (15%): Vaccines covering G12R variant. Pan-KRAS approaches (if tolerable) would cover all variants. COMBINATION: KRAS inhibitor + vaccine (targeted therapy induces immunogenic death → enhances vaccine response) + checkpoint/TME modifier rational. NGS testing MANDATORY to determine variant, guide therapy selection. Multi-variant vaccines (mKRAS-AMP targets G12D/V/R/C) maximize addressable population"
+      },
+      {
+        "feature_name": "CAF Activation Status and Phenotype",
+        "moa_relevance": "Determines TME modulator selection: High CAF density/activation → GSK-3β inhibitors, FAP-targeted therapies, vitamin D analogs to reprogram; Low CAF → may not need TME modifiers, checkpoint combos may work",
+        "description": "CAFs comprise 60-90% of PDAC tumor mass. Phenotypes: myofibroblastic CAFs (myCAFs, αSMA+, collagen-producing, 50-60% of CAFs), inflammatory CAFs (iCAFs, IL-6/IL-11+, cytokine-secreting, 30-40%). Heterogeneity in activation state",
+        "therapeutic_implication": "High myCAF density (>60% by αSMA IHC): Physical barrier dominant → GSK-3β inhibitors (elraglusib reprograms CAF metabolism), FAP-targeted therapies (deplete or deliver payload to FAFs), vitamin D analogs (differentiate CAFs to less fibrotic). High iCAF signature (IL-6 high): Inflammatory milieu → IL-6 blockade, JAK/STAT inhibitors, CD40 agonists (reprogram to antitumor). Low CAF density (<40%): Rare but checkpoint combos may work without additional TME modifiers. CAF phenotyping (IHC for αSMA, FAP; gene expression for iCAF signature) should guide TME modifier selection. AVOID stromal DEPLETION (PEGPH20 failed) - pursue REPROGRAMMING"
+      },
+      {
+        "feature_name": "MSI/MMR Status",
+        "moa_relevance": "DEFINITIVE biomarker for checkpoint monotherapy: MSI-H/dMMR (1-2% PDAC) → checkpoint monotherapy ORR 40-50%; MSS/pMMR (98%) → checkpoint monotherapy fails, requires combinations",
+        "description": "MSI-H (microsatellite instability-high) or dMMR (mismatch repair deficient) in 1-2% of PDAC. Results in TMB >10 mut/Mb (vs 1-2 typical), abundant neoantigens, T-cell inflamed TME. Associated with medullary histology, younger age",
+        "therapeutic_implication": "MSI-H/dMMR (1-2%): Pembrolizumab FDA approved (tumor-agnostic), ORR 40-50%, median DoR >24 months, can achieve durable remissions. Use checkpoint MONOTHERAPY - no need for combination in this rare subset. MSS/pMMR (98%): Checkpoint monotherapy CONTRAINDICATED (ORR <5%, no benefit). MANDATE combination with TME modifiers (CD73i, GSK-3βi, CD40 agonist) or alternative MOAs. MSI/MMR testing MANDATORY at diagnosis - guides entire treatment strategy. IHC for MMR proteins (MLH1, MSH2, MSH6, PMS2) or PCR-based MSI testing. Include in all NGS panels"
+      }
+    ]
+  },
+
+  "moa_landscape": {
+    "checkpoint_inhibitors_combinations": {
+      "biological_rationale": {
+        "indication_specific_rationale": "Checkpoint inhibitors FAIL as monotherapy in MSS PDAC (98% of cases, ORR <5%) due to cold TME, low neoantigen burden, and stromal exclusion. However, combinations that 'prime' the TME by: (1) Inducing antigen presentation (CD40 agonists activating DCs), (2) Reducing immunosuppression (CD73 inhibitors blocking adenosine), (3) Modifying metabolism (GSK-3β inhibitors reducing lactate), (4) Providing antigens (chemotherapy-induced cell death, oncolytic viruses) can convert cold to hot, enabling checkpoint efficacy. Checkpoint acts as 'releaser' of T-cells primed by combination partner",
+        "supporting_biology": [
+          "MSI-H subset (1-2% of PDAC) validates PD-1/PD-L1 pathway - when neoantigens abundant and T-cells present, checkpoint blockade effective (ORR 40-50%)",
+          "CD40 agonists activate DCs and reprogram macrophages M2→M1, creating inflammatory milieu that compensates for low neoantigens",
+          "Chemotherapy induces immunogenic cell death releasing antigens and DAMPs, primes T-cell response synergizing with checkpoint",
+          "Adenosine (produced by CD73) is dominant suppressor in PDAC TME - blockade removes brake allowing checkpoint-activated T-cells to function"
+        ],
+        "theoretical_concerns": [
+          "Even with priming, dense stroma may prevent T-cell infiltration to tumor core - physical barrier remains",
+          "Low neoantigen burden limits ceiling of response even with optimal immune activation",
+          "Checkpoint-related toxicities add to combination regimen - immune-related AEs may be additive",
+          "Biomarker to predict which combination is optimal for which patient remains unclear"
+        ]
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "Pembrolizumab Monotherapy (MSI-H Subset Only)",
+          "specific_moa": "Humanized IgG4 monoclonal antibody binding PD-1 receptor on T-cells, blocking PD-L1/PD-L2 interaction. Releases pre-existing tumor-reactive T-cells from exhaustion",
+          "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "MSI-H_specific"],
+          "clinical_evidence": {
+            "development_stage": "FDA approved (tumor-agnostic MSI-H/dMMR indication, includes PDAC)",
+            "pivotal_trials": [
+              {
+                "trial_name": "KEYNOTE-158",
+                "phase": "Phase II",
+                "design": "MSI-H/dMMR solid tumors (multiple tumor types including PDAC), pembrolizumab 200mg Q3W monotherapy, n=22 PDAC patients",
+                "efficacy": {
+                  "ORR": "40-50% in MSI-H PDAC subset (exact 44% reported across MSI-H cohort)",
+                  "PFS": "Not reported specifically for PDAC subset",
+                  "DoR": ">24 months in majority of responders (durable responses)",
+                  "Note": "EXCEPTIONAL response in rare MSI-H subset validates PD-1 pathway when biology is right (high TMB, T-cell inflamed)"
+                },
+                "safety": "Well-tolerated, immune-related AEs 15-20% (similar to other indications)",
+                "patient_selection": "MSI-H by PCR or dMMR by IHC (MLH1/MSH2/MSH6/PMS2 loss) - MANDATORY biomarker. Only 1-2% of PDAC",
+                "outcome": "SUCCESS in MSI-H - tumor-agnostic FDA approval 2017"
+              },
+              {
+                "trial_name": "KEYNOTE-158 MSS PDAC Cohort",
+                "phase": "Phase II",
+                "design": "MSS (microsatellite stable) PDAC, pembrolizumab monotherapy, n=18",
+                "efficacy": {
+                  "ORR": "<5% (0-1 responders out of 18)",
+                  "PFS": "2.0 months (vs 2.1 months for historical controls - NO benefit)",
+                  "OS": "Not meaningfully different from chemo",
+                  "Note": "COMPLETE FAILURE in MSS PDAC (98% of cases) - validates that checkpoint monotherapy is futile without biomarker selection"
+                },
+                "safety": "Tolerable but no efficacy to justify toxicity",
+                "patient_selection": "MSS PDAC (98% of cases) - this is NEGATIVE biomarker (avoid checkpoint monotherapy)",
+                "outcome": "FAILURE - demonstrates checkpoint monotherapy contraindicated in MSS PDAC"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "MSI-H biomarker selection enables 40-50% ORR with durable responses - validates PD-1 pathway in subset with favorable biology (high TMB, T-cell inflamed)",
+              "Tumor-agnostic approval pathway feasible for strong biomarker (MSI-H) - precedent for future PDAC biomarker-driven therapies"
+            ],
+            "failure_reasons": [
+              "MSS PDAC (98%) has cold TME, low TMB (1-2 mut/Mb), stromal barrier - checkpoint monotherapy addressing only one pathway (exhaustion) when T-cells aren't even present is futile",
+              "No amount of PD-1 blockade can activate T-cells that don't exist - fundamental flaw in mechanism for cold tumors"
+            ],
+            "key_insights": "Pembrolizumab in PDAC provides DEFINITIVE proof of concept: (1) Checkpoint pathway IS ACTIVE in PDAC but ONLY when underlying biology supports (MSI-H with high neoantigens and T-cell infiltration), (2) 98% of PDAC is MSS with COLD TME - checkpoint monotherapy NEVER appropriate in this majority, (3) MSI/MMR testing is MANDATORY biomarker - guides entire treatment strategy (MSI-H → checkpoint monotherapy viable; MSS → checkpoint monotherapy contraindicated, require combinations). STRATEGIC IMPLICATION: All future checkpoint programs in PDAC MUST be combinations addressing TME barriers, NEVER monotherapy in MSS population. Biomarker-driven precision is ESSENTIAL - unselected checkpoint trials in PDAC guaranteed to fail"
+          },
+          "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1", "biomarker_critical", "MSI-H_success", "MSS_failure", "tumor_agnostic_approval"]
+        },
+        {
+          "drug_name": "Sotigalimab + Nivolumab + Chemotherapy (CD40 Agonist Combination)",
+          "specific_moa": "Sotigalimab is CD40 agonist antibody activating dendritic cells and reprogramming macrophages; nivolumab blocks PD-1; chemotherapy induces immunogenic cell death. Triple mechanism: antigen provision (chemo) + antigen presentation (CD40) + T-cell release (PD-1)",
+          "moa_classification": ["checkpoint_inhibitor_combination", "CD40_agonist", "chemotherapy_combination", "multi_modal"],
+          "clinical_evidence": {
+            "development_stage": "Phase II completed, durability follow-up ongoing",
+            "pivotal_trials": [
+              {
+                "trial_name": "PRINCE (NCT03214250)",
+                "phase": "Phase II",
+                "design": "Metastatic PDAC, sotigalimab + nivolumab + gemcitabine/nab-paclitaxel vs chemo alone (historical control), n=84",
+                "efficacy": {
+                  "Immune activation": "Demonstrated DC activation, T-cell priming, macrophage repolarization M2→M1 on serial biopsies",
+                  "T-cell infiltration": "Increased CD8+ T-cells in tumor core (vs periphery only at baseline)",
+                  "Clinical activity": "ORR and survival data maturing, final analysis pending 2025",
+                  "Note": "MECHANISTIC success - proved CD40 agonist can prime cold PDAC TME, enable checkpoint function"
+                },
+                "safety": "Manageable, CD40-related cytokine release (fever, chills) in 30-40% but mostly grade 1-2",
+                "patient_selection": "Unselected metastatic PDAC - no biomarker requirement (CD40 approach aims to prime all patients)",
+                "outcome": "PROMISING - mechanistic endpoints met (DC activation, T-cell infiltration), awaiting survival readout"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "CD40 agonism addresses PDAC-specific barrier (low antigen presentation) by activating DCs - compensates for low neoantigen burden",
+              "Macrophage reprogramming M2→M1 converts immunosuppressive TME component to tumoricidal - unique mechanism",
+              "Triple combination rational: chemo provides antigens, CD40 presents them, PD-1 releases T-cells - orthogonal mechanisms"
+            ],
+            "key_insights": "Sotigalimab PRINCE trial validates CD40 agonist + checkpoint combination strategy in PDAC: (1) Can convert COLD to HOT - DC activation and T-cell infiltration demonstrated on biopsies, first proof this is achievable in PDAC, (2) Macrophage repolarization (M2→M1) is UNIQUE benefit of CD40 agonism - TAMs comprise 30-40% of TME, converting them from suppressor to killer is powerful, (3) NO biomarker identified yet - all patients treated, but likely responsive subset exists (perhaps CD40+ DC density, HLA class II expression predict), (4) CD40 dosing/schedule matters - cytokine release manageable with optimization. STRATEGIC IMPLICATIONS: CD40 agonist + checkpoint is VALIDATED combination approach for PDAC, pursue in: (1) Earlier lines (neoadjuvant where TME less established), (2) Combination with other TME modifiers (CD40 + CD73i + checkpoint triple combination rational), (3) Biomarker development to identify CD40-responsive subset (enrich future trials). Bristol-Myers Squibb partnership with Arcus (Q2 2025 announced) validates commercial potential. Multiple CD40 agonists in development (selicrelumab-Roche, CDX-1140-Celldex) - competitive but large unmet need supports multiple entrants"
+          },
+          "similarity_matching_tags": ["checkpoint_combination", "CD40_agonist", "TME_priming", "DC_activation", "macrophage_repolarization", "chemo_IO_triple"]
+        },
+        {
+          "drug_name": "Quemliclustat + Chemotherapy (CD73 Inhibitor Combination)",
+          "specific_moa": "Quemliclustat is oral small molecule CD73 inhibitor blocking conversion of ATP to adenosine. Reduces adenosine levels in TME, removes A2A/A2B receptor-mediated T-cell suppression. Combined with gemcitabine/nab-paclitaxel chemotherapy providing immunogenic cell death",
+          "moa_classification": ["TME_modulator", "CD73_inhibitor", "adenosine_pathway", "metabolic_targeting", "chemotherapy_combination"],
+          "clinical_evidence": {
+            "development_stage": "Phase III ongoing (PRISM-1 trial), Orphan Drug Designation 2024",
+            "pivotal_trials": [
+              {
+                "trial_name": "PRISM-1 (Global Phase III)",
+                "phase": "Phase III",
+                "design": "1L metastatic PDAC, quemliclustat + gemcitabine/nab-paclitaxel vs chemo alone, n=500+ planned, initiated Q4 2024",
+                "efficacy": {
+                  "Status": "Enrolling, primary endpoint OS, interim analysis planned 2026",
+                  "Phase II signal": "Prior Phase Ib/II showed safety and PK/PD (adenosine reduction in TME demonstrated)",
+                  "Note": "PIVOTAL trial for CD73 inhibition + chemo in PDAC, will validate adenosine pathway targeting"
+                },
+                "safety": "Phase II: well-tolerated, no DLTs, GI toxicity mild (grade 1-2)",
+                "patient_selection": "1L metastatic PDAC, unselected for CD73 expression (enzyme present in 70-80% TME but treating all)",
+                "outcome": "PENDING - critical validation point for metabolic TME targeting in 2026"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "Oral small molecule enables convenient dosing with chemotherapy - practical advantage over IV biologics",
+              "CD73 inhibition addresses dominant suppressive mechanism in PDAC (adenosine 10-100x higher than normal tissue)",
+              "Orphan Drug Designation de-risks regulatory path, validates FDA recognition of unmet need"
+            ],
+            "key_insights": "Quemliclustat represents FIRST metabolic TME modulator in Phase III for PDAC: (1) Adenosine pathway is VALIDATED target preclinically - CD73 blockade increases T-cell function, enhances chemotherapy efficacy in PDAC models, (2) Combination with chemo (not checkpoint) in 1L is STRATEGIC - addresses chemotherapy standard of care, may prime for later checkpoint, (3) Orphan Drug Designation (2024) signals FDA recognizes PDAC unmet need and CD73 mechanism - supportive regulatory environment, (4) PRISM-1 interim 2026 is MAJOR catalyst - if positive (OS benefit vs chemo alone), validates entire CD73/adenosine targeting strategy and enables multiple follow-on programs (CD73i + checkpoint, A2A antagonists), (5) Biomarker question remains - stromal CD73 expression (vs tumor cell) may predict response, adenosine levels in TME could be PD marker. STRATEGIC IMPLICATIONS: CD73 inhibition is HIGH PRIORITY for PDAC, pursue: (1) Backup CD73 inhibitors (if quemliclustat succeeds, market will expand), (2) A2A receptor antagonists (alternative to CD73 enzyme inhibition), (3) CD73i + checkpoint combinations (remove suppression + activate T-cells), (4) Biomarker development (CD73 IHC on CAFs, adenosine PET imaging). Arcus Biosciences leading with BMS partnership option - competitive landscape forming but PRISM-1 success will expand opportunity"
+          },
+          "similarity_matching_tags": ["TME_modulator", "CD73_inhibitor", "adenosine_pathway", "orphan_drug", "phase_III", "chemotherapy_combination", "metabolic_targeting"]
+        },
+        {
+          "drug_name": "Elraglusib + Chemotherapy (GSK-3β Inhibitor)",
+          "specific_moa": "Elraglusib is selective GSK-3β (glycogen synthase kinase-3 beta) inhibitor. GSK-3β drives glycolysis and lactate production in tumor cells and CAFs. Inhibition reprograms metabolism, reduces lactate, corrects acidic pH, enhances CD8+ T-cell infiltration and function. Oral small molecule, once-daily dosing",
+          "moa_classification": ["TME_modulator", "metabolic_inhibitor", "GSK3_beta_inhibitor", "immunometabolism", "chemotherapy_combination"],
+          "clinical_evidence": {
+            "development_stage": "Phase II completed with positive results, pre-NDA interactions with FDA/EMA ongoing",
+            "pivotal_trials": [
+              {
+                "trial_name": "Phase II Randomized Trial",
+                "phase": "Phase II",
+                "design": "Metastatic PDAC, elraglusib + chemotherapy vs chemotherapy alone, n~100+ (exact enrollment not disclosed)",
+                "efficacy": {
+                  "Mortality reduction": "37% reduction in risk of death vs chemo alone (HR 0.63, p<0.05)",
+                  "CD8+ infiltration": "Increased tumor-infiltrating CD8+ T-cells on paired biopsies (pre/post-treatment)",
+                  "ORR": "Not disclosed but trend toward improvement",
+                  "Note": "SUBSTANTIAL survival benefit - rare in PDAC Phase II to show mortality reduction"
+                },
+                "safety": "Well-tolerated, oral once-daily, no significant increase in grade 3-4 AEs vs chemo alone",
+                "patient_selection": "Metastatic PDAC, unselected (no biomarker), but glycolytic signature may enrich in future",
+                "outcome": "SUCCESS - 37% mortality reduction prompted pre-NDA discussions with FDA/EMA, potential for accelerated approval pathway"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "GSK-3β inhibition addresses FUNDAMENTAL PDAC biology - metabolic reprogramming that creates cold TME",
+              "Increased CD8+ infiltration proves mechanism - metabolic modulation overcomes exclusion barrier",
+              "37% mortality reduction (HR 0.63) is CLINICALLY MEANINGFUL - exceeds typical incremental benefit, suggests disease-modifying mechanism"
+            ],
+            "key_insights": "Elraglusib is BREAKTHROUGH in PDAC TME modulation: (1) FIRST metabolic inhibitor showing survival benefit in PDAC - validates immunometabolism as therapeutic target, GSK-3β is rate-limiting enzyme, (2) CD8+ T-cell infiltration increase on biopsies is PROOF OF MECHANISM - demonstrates can convert excluded/cold TME to infiltrated by addressing metabolic barrier (lactate, acidic pH), (3) 37% mortality reduction in Phase II is EXCEPTIONAL - comparable to historical paradigm shifts (FOLFIRINOX vs gemcitabine was 30% reduction), suggests profound biological effect not just incremental, (4) Pre-NDA discussions signal FDA receptiveness - potential for accelerated approval based on Phase II if supported by mechanism data, unmet need rationale, (5) NO biomarker yet identified - treating unselected, but lactate levels, glycolytic gene signature, or CAF density might predict exceptional responders (could enrich to 50-60% benefit). STRATEGIC IMPLICATIONS: GSK-3β inhibition is HIGHEST PRIORITY TME modulator for PDAC: (1) COMMERCIAL: if approved on Phase II data (precedent exists for high unmet need), first-in-class opportunity \$500M-1B peak sales, (2) CLINICAL: pursue earlier lines (neoadjuvant, adjuvant) where metabolic reprogramming may prevent cold TME establishment, (3) COMBINATIONS: elraglusib + checkpoint (metabolic modulation + T-cell activation), elraglusib + CAR-T (overcome infiltration barrier), (4) BIOMARKER: develop companion diagnostic (lactate PET, glycolytic signature) to identify super-responders (HR <0.50), (5) MECHANISM: if GSK-3β inhibition works, other metabolic targets validated (LDH, MCT1/4 lactate transporters, PFKFB3). Actuate Therapeutics (sponsor) is partner/acquisition target - PROVEN mechanism, regulatory path clear, commercial opportunity large"
+          },
+          "similarity_matching_tags": ["TME_modulator", "metabolic_inhibitor", "GSK3_beta", "immunometabolism", "survival_benefit", "pre-NDA", "CD8_infiltration_increase"]
+        }
+      ],
+      "moa_compatibility_score": {
+        "biological_fit": "3/10 for checkpoint MONOTHERAPY (MSS PDAC 98% - cold TME, low TMB, stromal barrier make monotherapy futile); 8/10 for checkpoint COMBINATIONS with TME modifiers (CD40 agonist, CD73i, GSK-3βi show can prime cold→hot)",
+        "clinical_validation": "10/10 for MSI-H subset (pembrolizumab ORR 40-50%, FDA approved); 1/10 for MSS monotherapy (ORR <5%, complete failure); 7/10 for combinations (PRINCE, PRISM-1, elraglusib showing immune activation and clinical signals but Phase III validation pending)",
+        "unmet_need_match": "2/10 for checkpoint monotherapy (addresses only 1-2% MSI-H, ignores 98% MSS); 9/10 for checkpoint combinations (addresses cold TME, metabolic barriers, stromal exclusion - core PDAC challenges)",
+        "overall_assessment": "CHECKPOINT INHIBITORS: FAILED as monotherapy in MSS PDAC (98%) but VALIDATED in combinations that prime TME. MSI-H subset (1-2%) is ONLY population for monotherapy - pembrolizumab ORR 40-50%, durable responses, FDA approved. MSS PDAC requires TME PRIMING before checkpoint can work: (1) CD40 agonists (sotigalimab PRINCE) activate DCs and reprogram macrophages → T-cell infiltration demonstrated, (2) CD73 inhibitors (quemliclustat PRISM-1 Phase III) block adenosine → remove metabolic suppression, (3) GSK-3β inhibitors (elraglusib) reprogram glycolysis → increase CD8+ infiltration, 37% mortality reduction. STRATEGIC RECOMMENDATIONS: (1) MANDATE MSI/MMR testing - guides checkpoint strategy (MSI-H → monotherapy; MSS → combinations only), (2) PURSUE checkpoint + TME modifier combinations - elraglusib showing strongest clinical signal (HR 0.63), quemliclustat in pivotal Phase III, CD40 agonists mechanistically validated, (3) TRIPLE combinations rational - TME modifier + checkpoint + chemotherapy addresses complementary pathways, (4) BIOMARKER DEVELOPMENT critical - identify which TME modifier for which patient (CAF density → GSK-3βi; adenosine high → CD73i; low DC → CD40 agonist), (5) AVOID checkpoint monotherapy in MSS - guaranteed failure, waste of resources. Market opportunity: MSI-H niche (\$50-100M), MSS combinations (\$1-2B if successful - addressing 98% of patients). Checkpoint will remain backbone but DIFFERENTIATION via superior TME priming partner"
+      }
+    },
+
+    "car_t_cell_therapies": {
+      "biological_rationale": {
+        "indication_specific_rationale": "CAR-T therapies offer potential to overcome PDAC's cold TME by providing exogenous tumor-reactive T-cells independent of endogenous immune priming. Target tumor-associated surface antigens (CLDN18.2, MSLN) avoiding neoantigen requirement. CAR design enables: (1) Antigen recognition without MHC restriction, (2) Costimulation (4-1BB, CD28) providing activation signals, (3) Persistence for ongoing tumor surveillance. PDAC-specific challenge: dense stroma impedes trafficking and infiltration - requires armored CARs or combination with TME modifiers",
+        "supporting_biology": [
+          "CLDN18.2 expressed 50-60% PDAC, MSLN 85-95% - tumor-associated antigens enable targeting without neoantigen dependence",
+          "CAR-T cells can be engineered to secrete cytokines (IL-12, IL-18) creating local inflammatory milieu to overcome cold TME",
+          "Allogeneic CAR-T platforms emerging - off-the-shelf availability addresses manufacturing delays",
+          "Preclinical PDAC models show CAR-T + stromal degradation (hyaluronidase, FAP-targeted) improves infiltration"
+        ],
+        "theoretical_concerns": [
+          "Stromal barrier major obstacle - CAR-T trafficking to PDAC tumor core limited, cells accumulate at periphery",
+          "On-target/off-tumor toxicity risk - CLDN18.2 on gastric mucosa, MSLN on mesothelium can cause manageable but dose-limiting toxicity",
+          "CAR-T persistence in immunosuppressive PDAC TME questionable - adenosine, lactate, TGF-β may exhaust CAR-T cells",
+          "Manufacturing complexity and cost (\$300-500K autologous) limits accessibility"
+        ]
+      },
+      "clinical_precedent": [
+        {
+          "drug_name": "CLDN18.2 CAR-T (Multiple Programs - China/US)",
+          "specific_moa": "Autologous or allogeneic CAR-T targeting Claudin 18.2 (CLDN18.2) tight junction protein. CAR construct typically includes: anti-CLDN18.2 scFv, 4-1BB or CD28 costimulation, CD3ζ activation. Some include suicide switches (iCasp9) for safety. Targets CLDN18.2+ tumor cells via perforin/granzyme cytotoxic killing",
+          "moa_classification": ["CAR-T", "cell_therapy", "CLDN18.2_target", "autologous_or_allogeneic"],
+          "clinical_evidence": {
+            "development_stage": ">15 active INDs in US and China; Phase I ongoing, China NMPA IND clearance 2024",
+            "pivotal_trials": [
+              {
+                "trial_name": "Multiple Phase I trials (China-led)",
+                "phase": "Phase I",
+                "design": "CLDN18.2+ solid tumors (gastric, PDAC), autologous CAR-T, dose-escalation, lymphodepletion with fludarabine/cyclophosphamide, n~20-50 across trials",
+                "efficacy": {
+                  "Activity": "Described as 'potent antitumor activity' in company disclosures - specific ORR not disclosed",
+                  "PDAC subset": "Activity signals in PDAC cohorts but gastric cancer primary focus (higher CLDN18.2 expression 70-80% vs 50-60% PDAC)",
+                  "DoR": "Data maturing",
+                  "Note": "Early signals positive but PDAC-specific data limited, most trials gastric-focused"
+                },
+                "safety": "Manageable - CRS grade 1-2 in 40-60%, grade 3 in 5-10%; minimal neurotoxicity (<5%); gastritis (on-target/off-tumor) in 20-30%, managed with proton pump inhibitors",
+                "patient_selection": "CLDN18.2 IHC ≥40% cells, ≥2+ intensity (criteria from gastric trials); PDAC subset ~50-60% eligible",
+                "outcome": "PROMISING but early - NMPA IND clearance validates safety, efficacy data maturing 2025-2026"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "CLDN18.2 is validated target - gastric approvals (zolbetuximab mAb) de-risk, CAR-T showing activity signals",
+              "Limited normal tissue expression (gastric mucosa) creates acceptable safety window - gastritis manageable",
+              "China-led innovation - >10 CLDN18.2 CAR-T programs in China, leveraging domestic CAR-T infrastructure and regulatory speed"
+            ],
+            "key_insights": "CLDN18.2 CAR-T represents MOST ADVANCED cell therapy for PDAC: (1) >15 programs (highest target prioritization) reflecting industry conviction, competitive but validates mechanism, (2) NMPA IND clearance 2024 signals regulatory acceptance, China may approve BEFORE US/EU (faster timelines), (3) PDAC-specific challenge - stromal barrier limits infiltration, early activity signals suggest can overcome but ORR likely lower than gastric (less stroma), (4) Gastritis (on-target/off-tumor) is ACCEPTABLE toxicity - manageable with PPIs, dose modifications, does not appear dose-limiting, (5) Biomarker critical - CLDN18.2 IHC ≥40% cells enriches responders, 50-60% of PDAC eligible (substantial population). STRATEGIC IMPLICATIONS: (1) CLDN18.2 CAR-T is HIGH PRIORITY - most advanced PDAC cell therapy, (2) DIFFERENTIATION required given >15 programs: next-gen constructs (armored CAR-T secreting IL-12 to overcome cold TME), dual-target CARs (CLDN18.2 + MSLN prevent escape), allogeneic platforms (off-the-shelf, lower cost), (3) COMBINATION with TME modifiers essential - CAR-T + GSK-3βi or CAR-T + FAP-targeted therapy to enhance infiltration, (4) PDAC-specific trials needed - most data from gastric, need PDAC cohorts to understand efficacy in stromal-rich disease, (5) Commercial opportunity \$300-500M if approved (50-60% eligible, \$300-500K pricing, 2L+ setting)"
+          },
+          "similarity_matching_tags": ["CAR-T", "CLDN18.2", "cell_therapy", "China_innovation", "phase_I", "solid_tumor", "stromal_barrier"]
+        },
+        {
+          "drug_name": "CD318 CAR-T (ResCPa)",
+          "specific_moa": "Autologous CAR-T targeting CD318 (CUB domain-containing protein 1, CDCP1), novel surface antigen on PDAC cells. CD318 involved in cell adhesion and migration, upregulated in cancers. CAR construct with 4-1BB costimulation. Aims to address tumors lacking CLDN18.2/MSLN expression",
+          "moa_classification": ["CAR-T", "cell_therapy", "CD318_target", "novel_antigen", "autologous"],
+          "clinical_evidence": {
+            "development_stage": "First-in-human Phase I initiated 2024 (Japan and US, NCT07153289)",
+            "pivotal_trials": [
+              {
+                "trial_name": "NCT07153289 (First-in-Human)",
+                "phase": "Phase I",
+                "design": "CD318+ solid tumors including PDAC, autologous CD318 CAR-T, dose-escalation, n~20-30 planned",
+                "efficacy": {
+                  "Status": "Enrolling, preclinical showed potent PDAC regression in PDX models",
+                  "Activity": "Clinical data expected 2025-2026",
+                  "Note": "Novel target - no prior clinical experience with CD318-targeted therapies"
+                },
+                "safety": "Preclinical acceptable; clinical safety data pending",
+                "patient_selection": "CD318 expression by IHC (cutoff TBD); expression frequency in PDAC being characterized",
+                "outcome": "PENDING - represents novel target antigen, could expand CAR-T addressable population beyond CLDN18.2/MSLN"
+              }
+            ]
+          },
+          "lessons_learned": {
+            "success_factors": [
+              "CD318 is novel target - potential to address CLDN18.2-negative tumors (40-50% of PDAC)",
+              "Preclinical validation strong - PDX models show potent tumor regression",
+              "Japan/US collaboration signals international development strategy"
+            ],
+            "key_insights": "CD318 CAR-T is HIGH-RISK/HIGH-REWARD: (1) NOVEL target with no prior clinical validation - first CD318-targeted therapy in humans, biomarker (CD318 expression in PDAC) not well-characterized, (2) Addresses potential unmet need - CLDN18.2 expressed 50-60%, MSLN 85-95%, CD318 distribution vs these targets will determine complementary vs redundant, (3) Preclinical data compelling - PDX regression suggests mechanism sound, but PDX may not recapitulate human stromal barrier, (4) STRATEGIC VALUE: if CD318 expressed in CLDN18.2-/MSLN- subset (10-15% of PDAC), addresses gap; if overlapping, adds to competitive landscape. IMPLICATIONS: (1) MONITOR closely - Phase I safety/efficacy data 2025-2026 will validate target, (2) Biomarker characterization essential - need CD318 IHC on PDAC tissue banks to determine prevalence and overlap with CLDN18.2/MSLN, (3) CONSIDER dual-target CARs - CD318 + CLDN18.2 or CD318 + MSLN could prevent escape via antigen loss, (4) IF successful: validates novel target discovery approach (CD318 identified via proteomic screening of PDAC), enables similar strategies for other novel antigens"
+          },
+          "similarity_matching_tags": ["CAR-T", "CD318", "novel_antigen", "first_in_human", "phase_I", "high_risk_high_reward"]
+        }
+      ],
+      "moa_compatibility_score": {
+        "biological_fit": "7/10 - CAR-T addresses PDAC challenges (provides exogenous T-cells, doesn't require neoantigens) but stromal barrier impedes infiltration. Armored CARs secreting cytokines or dual-target designs improve fit",
+        "clinical_validation": "6/10 - CLDN18.2 CAR-T showing 'potent activity' but ORR data limited, PDAC-specific efficacy unclear (most data from gastric). MSLN CAR-T has modest activity (SD 40-60%, ORR 10-20%) in solid tumors. CD318 unvalidated",
+        "unmet_need_match": "8/10 - Addresses CLDN18.2+ (50-60%) and MSLN+ (85-95%) populations, provides option for checkpoint-refractory disease. High unmet need in 2L+ post-chemotherapy setting where ORR 10-20% with standard options",
+        "overall_assessment": "CAR-T THERAPY: EMERGING modality for PDAC with HIGHEST activity in CLDN18.2-targeted approaches. CLDN18.2 is most validated target (>15 programs, 'potent activity' signals, NMPA approval path) but PDAC-specific data limited - most from gastric where less stromal barrier. MSLN CAR-T more established but modest efficacy (ORR 10-20%) due to trafficking/TME barriers. STRATEGIC GUIDANCE: (1) PRIORITIZE CLDN18.2 CAR-T - most advanced, requires differentiation (armored constructs, dual-targets, allogeneic platforms) given >15 competitors, (2) PURSUE novel antigens (CD318, Muc16CD) - address CLDN18.2-negative gap, high-risk but first-in-class opportunity if validated, (3) MANDATE TME modifier combinations - CAR-T monotherapy insufficient, combine with GSK-3βi (metabolic modulation), FAP-targeted therapies (stromal degradation), or hyaluronidase (ECM breakdown) to enhance infiltration, (4) Armored CAR-T designs essential - secrete IL-12/IL-18 to convert cold TME locally, PD-1 knockout to prevent exhaustion, chemokine receptors (CCR2, CXCR4) to improve homing, (5) Dual-target CARs prevent escape - CLDN18.2 + MSLN or CD318 + CLDN18.2 address antigen heterogeneity, (6) Allogeneic platforms attractive - Legend/Janssen LCAR-M23 (\$350M upfront deal 2025) shows commercial validation, off-the-shelf addresses manufacturing bottleneck, (7) TARGET 2L+ setting initially - post-chemotherapy, checkpoint-refractory where unmet need highest, then expand to earlier lines if effective. Market opportunity: \$490M by 2030 (18% of IO market) if CLDN18.2 CAR-T achieves ORR 30-40% in PDAC. EXECUTION RISKS: stromal barrier may limit efficacy vs gastric, manufacturing complexity, cost (\$300-500K) limits access. OVERALL: CAR-T is HIGH PRIORITY but requires INNOVATION (armored, dual-target) and COMBINATIONS (TME modifiers) to overcome PDAC-specific barriers"
+      }
+    }

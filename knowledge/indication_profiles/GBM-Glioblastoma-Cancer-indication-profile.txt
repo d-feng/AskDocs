@@ -1,0 +1,1206 @@
+{
+  "metadata": {
+    "indication_name": "Glioblastoma Multiforme (GBM)",
+    "indication_code": "C71.9 (ICD-10)",
+    "subtypes": [
+      {
+        "subtype": "IDH-wildtype GBM (Primary GBM)",
+        "prevalence": "90%",
+        "molecular_features": "EGFR amplification (40-50%), EGFRvIII mutation (25-30%), PTEN loss (25-40%), TERT promoter mutations (70-80%)",
+        "prognosis": "Median OS 12-15 months with standard of care"
+      },
+      {
+        "subtype": "IDH-mutant GBM (Secondary GBM)",
+        "prevalence": "10%",
+        "molecular_features": "IDH1/2 mutations, TP53 mutations, ATRX loss",
+        "prognosis": "Better prognosis; median OS 24-30 months"
+      },
+      {
+        "subtype": "MGMT-methylated",
+        "prevalence": "45-50% (biomarker, not histologic subtype)",
+        "molecular_features": "MGMT promoter methylation - predicts temozolomide response",
+        "prognosis": "Median OS 21-24 months vs 12-15 months (unmethylated)"
+      }
+    ],
+    "geographic_scope": "United States and European Union",
+    "data_version": "2025-10-03",
+    "data_sources": "GBMa.docx memo, ClinicalTrials.gov, PubMed, NoahAI clinical trial database, FDA/EMA regulatory filings, patent databases",
+    "usage_for_claude": "This GBM profile enables MOA-based indication selection by providing: (1) Disease biology and unique challenges (BBB, immunosuppressive TME, antigen loss) for matching drug MOAs, (2) Comprehensive precedent of MOAs tested in GBM with detailed clinical outcomes emphasizing why many failed, (3) Unmet needs framed as MOA requirements with BBB penetration and TME modulation as critical success factors, (4) Scoring framework for ranking GBM attractiveness noting NO approved immunotherapies exist. CRITICAL: GBM is high-risk indication with multiple Phase III failures; success requires addressing BBB, cold TME, and antigen escape."
+  },
+
+  "disease_biology": {
+    "pathophysiology": {
+      "summary": "GBM is the most aggressive primary brain tumor with median survival 12-15 months despite maximal therapy (surgery, radiation, temozolomide). It is characterized by diffuse infiltration, pseudopalisading necrosis, microvascular proliferation, and profound immunosuppression. The blood-brain barrier (BBB) restricts immune cell trafficking and therapeutic antibody penetration. The tumor microenvironment is dominated by immunosuppressive M2 macrophages, Tregs, and MDSCs, making GBM an immunologically 'cold' tumor. High-dose corticosteroids (used for cerebral edema) further blunt immune responses. Antigen escape is common - EGFRvIII lost in ~50% of recurrent tumors.",
+      "key_pathways": [
+        {
+          "name": "EGFR / EGFRvIII Pathway",
+          "relevance": "HIGH in 40-50% (EGFR amplification), 25-30% (EGFRvIII mutation)",
+          "role_in_disease": "EGFR amplification drives proliferation; EGFRvIII (deletion mutant) is tumor-specific, constitutively active, and immunogenic target. However, EGFRvIII is lost in ~50% of recurrent tumors (antigen escape).",
+          "druggability": "VALIDATED as CAR-T target but limited by antigen loss; monoclonal antibodies struggle with BBB penetration",
+          "clinical_validation": "Multiple EGFRvIII CAR-T trials show activity but acquired resistance via antigen loss. Drives multi-antigen targeting strategies."
+        },
+        {
+          "name": "PD-1/PD-L1 Checkpoint Axis",
+          "relevance": "LOW - Expression variable and checkpoint blockade FAILED",
+          "role_in_disease": "PD-L1 expressed in subset of GBM (~30-40%); however, single-agent PD-1 inhibitors comprehensively failed in Phase III trials. TME immunosuppression and lack of neoantigen burden contribute to resistance.",
+          "druggability": "INVALIDATED as monotherapy - nivolumab failed CheckMate 143, 498, 548 trials",
+          "clinical_validation": "NEGATIVE - Multiple Phase III failures (nivolumab). Checkpoint blockade may work ONLY in combination with immune-priming agents (OVs, vaccines) that convert 'cold' to 'hot' TME."
+        },
+        {
+          "name": "Blood-Brain Barrier (BBB)",
+          "relevance": "CRITICAL - Major therapeutic obstacle",
+          "role_in_disease": "BBB restricts penetration of large molecules (antibodies, CAR-T cells). Systemically administered therapies show erratic CNS exposure. Limits efficacy of checkpoint inhibitors and bispecific antibodies.",
+          "druggability": "MAJOR CHALLENGE - requires: (1) Direct delivery (intratumoral, intracavitary, intraventricular), (2) BBB disruption strategies, (3) Small molecules, or (4) Novel carriers (stem cells, nanocapsules)",
+          "clinical_validation": "Direct delivery is current standard for cell therapies and OVs. Neoadjuvant dosing (pre-surgery when BBB transiently open) showing promise. Systemic delivery remains unsolved."
+        },
+        {
+          "name": "Immunosuppressive Tumor Microenvironment (TME)",
+          "relevance": "CRITICAL - GBM is quintessential 'cold' tumor",
+          "role_in_disease": "TME dominated by: M2 macrophages (60-70% of tumor mass), Tregs, MDSCs, suppressive cytokines (TGF-β, IL-10, adenosine). High corticosteroid use (cerebral edema management) further blunts immunity. Limited T-cell infiltration.",
+          "druggability": "EMERGING - TME modulation required for immunotherapy success; strategies include: OVs (induce inflammation), TGF-β blockade, adenosine pathway inhibition (CD73), IDO inhibition",
+          "clinical_validation": "OVs (DNX-2401) demonstrate TME modulation - convert cold to inflamed. Combination approaches (OV + checkpoint inhibitor) showing promise where monotherapy failed."
+        },
+        {
+          "name": "Wnt/β-catenin Signaling",
+          "relevance": "EMERGING - Recently identified resistance mechanism",
+          "role_in_disease": "Wnt7b pathway drives resistance to PD-1 blockade; active Wnt signaling excludes T cells from TME",
+          "druggability": "VALIDATED in preclinical - Porcupine inhibitor (WNT974) + PD-1 blockade restored immune response",
+          "clinical_validation": "Preclinical only (2024-2025 data); represents novel combination target"
+        },
+        {
+          "name": "Antigen Loss / Immune Escape",
+          "relevance": "CRITICAL - Major resistance mechanism for targeted therapies",
+          "role_in_disease": "GBM exhibits high antigen heterogeneity and plasticity. EGFRvIII lost in ~50% of recurrent tumors post-CAR-T. IL13Rα2, HER2, B7-H3 also heterogeneously expressed.",
+          "druggability": "Requires multi-antigen targeting strategies - bivalent/trivalent CARs, dual-mechanism constructs (CAR + T-cell engager)",
+          "clinical_validation": "EGFRvIII CAR-T failures validated antigen loss mechanism. Next-gen multi-targeted constructs (CARv3-TEAM-E, bivalent CARs) in clinical development."
+        }
+      ]
+    },
+
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "immune_infiltration": "COLD - Minimal T-cell infiltration; TME dominated by immunosuppressive myeloid cells (M2 macrophages 60-70%, MDSCs, microglia). Rare 'hot' tumors exist (TMB-high, MSI-high <1%) but most GBM is immune-excluded. Corticosteroid use (>80% of patients for cerebral edema) further suppresses immune response.",
+        "dominant_immune_cells": "M2 macrophages/microglia (60-70% of tumor mass, highly immunosuppressive), Regulatory T cells (Tregs, abundant), Myeloid-derived suppressor cells (MDSCs), CD8+ T cells (scarce, often exhausted), NK cells (present but inhibited by MHC-I expression on GBM)",
+        "immune_suppression_mechanisms": [
+          {
+            "name": "M2 Macrophage/Microglia Polarization",
+            "prevalence": "60-70% of GBM tumor mass",
+            "functional_impact": "Secrete immunosuppressive cytokines (TGF-β, IL-10), express PD-L1, inhibit T-cell activation, promote tumor growth and angiogenesis",
+            "therapeutic_relevance": "MAJOR TARGET - M2 repolarization to M1 (pro-inflammatory) is strategy; CSF-1R inhibitors, CD40 agonists in development"
+          },
+          {
+            "name": "Corticosteroid-Induced Immunosuppression",
+            "prevalence": "80%+ of GBM patients receive dexamethasone for cerebral edema",
+            "functional_impact": "Systemic lymphopenia, impaired T-cell function, reduced antigen presentation, blunted response to immunotherapy",
+            "therapeutic_relevance": "CRITICAL CHALLENGE - Trials must minimize steroid use; steroid-sparing strategies (targeted edema management) needed"
+          },
+          {
+            "name": "TGF-β Signaling",
+            "prevalence": "High in most GBM tumors",
+            "functional_impact": "Promotes Treg expansion, inhibits cytotoxic T-cell function, drives M2 polarization, creates immunosuppressive milieu",
+            "therapeutic_relevance": "VALIDATED TARGET - TGF-β blockade + checkpoint inhibitor combinations in development; bifunctional molecules (PD-L1 x TGF-β trap) rational"
+          },
+          {
+            "name": "Adenosine Pathway (CD73/CD39)",
+            "prevalence": "CD73 highly expressed in GBM",
+            "functional_impact": "CD73 converts AMP to adenosine; adenosine binds A2A receptors on T cells causing immunosuppression and anergy",
+            "therapeutic_relevance": "EMERGING TARGET - CD73 inhibitors + checkpoint blockade in trials; addresses metabolic immunosuppression"
+          },
+          {
+            "name": "IDO (Indoleamine 2,3-dioxygenase)",
+            "prevalence": "Expressed in subset of GBM",
+            "functional_impact": "Depletes tryptophan in TME; kynurenine metabolites suppress T cells and promote Tregs",
+            "therapeutic_relevance": "Previously pursued; IDO inhibitors failed in other cancers but GBM combinations may differ"
+          },
+          {
+            "name": "Alternative Checkpoint Upregulation (Adaptive Resistance)",
+            "prevalence": "Post-PD-1 blockade, tumors upregulate TIM-3, LAG-3, TIGIT",
+            "functional_impact": "Compensatory inhibitory pathways maintain T-cell exhaustion despite PD-1 blockade",
+            "therapeutic_relevance": "Rationale for multi-checkpoint blockade or dual-targeted bispecifics; however, next-gen checkpoints unproven in GBM"
+          }
+        ]
+      },
+
+      "cytokine_environment": {
+        "cytokine_profile": "Heavily immunosuppressive - dominated by TGF-β, IL-10, VEGF. Pro-inflammatory cytokines (IFN-γ, IL-12, TNF-α) absent in most tumors. Oncolytic viruses induce transient inflammatory burst (IFN, IL-6, TNF) which can synergize with checkpoint blockade.",
+        "key_cytokines": [
+          {
+            "name": "TGF-β",
+            "role": "Protumor",
+            "expression_level": "High in most GBM",
+            "function": "Master immunosuppressor; promotes Tregs, inhibits CTLs, drives M2 macrophages, excludes T cells",
+            "therapeutic_relevance": "PRIMARY TARGET - TGF-β blockade essential for converting cold to hot TME; bifunctional PD-L1 x TGF-β trap molecules in development"
+          },
+          {
+            "name": "IL-10",
+            "role": "Protumor",
+            "expression_level": "Elevated in GBM TME",
+            "function": "Immunosuppressive; secreted by M2 macrophages and Tregs; inhibits DC maturation and T-cell activation",
+            "therapeutic_relevance": "Target for blockade in combination strategies"
+          },
+          {
+            "name": "VEGF",
+            "role": "Protumor (indirect immunosuppression)",
+            "expression_level": "Very high - GBM is highly vascular tumor",
+            "function": "Drives angiogenesis; also immunosuppressive (inhibits DC maturation, promotes Treg infiltration)",
+            "therapeutic_relevance": "Bevacizumab (anti-VEGF) approved for recurrent GBM but no OS benefit; VEGF blockade may have immunomodulatory effects (improve T-cell infiltration)"
+          },
+          {
+            "name": "IFN-γ (Induced by OVs)",
+            "role": "Antitumor (when induced)",
+            "expression_level": "Low at baseline; induced by oncolytic viruses",
+            "function": "Type II interferon; activates M1 macrophages, enhances MHC expression, recruits T cells",
+            "therapeutic_relevance": "OVs (DNX-2401, MB-108) induce IFN-γ burst - creates window for checkpoint blockade synergy"
+          }
+        ]
+      },
+
+      "immune_receptors": {
+        "failed_targets": [
+          {
+            "name": "PD-1",
+            "expression_pattern": "Expressed on tumor-infiltrating T cells (when present); however, T-cell infiltration is minimal in most GBM",
+            "functional_status": "Exhausted T cells express PD-1, but checkpoint blockade alone insufficient due to lack of T cells and overwhelming TME immunosuppression",
+            "targeting_potential": "FAILED AS MONOTHERAPY - Nivolumab Phase III trials (CheckMate 143, 498, 548) all negative",
+            "clinical_data": "CheckMate 143: nivolumab vs bevacizumab in recurrent GBM - no OS benefit. CheckMate 498: nivolumab + radiation vs temozolomide + radiation in unmethylated MGMT - FAILED. CheckMate 548: nivolumab + chemoradiation vs placebo + chemoradiation in methylated MGMT - FAILED.",
+            "lessons": "CRITICAL LESSON - PD-1 blockade does NOT work as monotherapy in GBM. Cold TME and lack of neoantigens render checkpoint monotherapy ineffective. Future: PD-1 may work ONLY when combined with immune-priming (OVs, vaccines) that create inflammation and recruit T cells."
+          }
+        ],
+        "emerging_targets": [
+          {
+            "name": "LAG-3, TIM-3, TIGIT (Next-Gen Checkpoints)",
+            "expression_pattern": "Upregulated on GBM-infiltrating T cells, especially post-PD-1 blockade (adaptive resistance)",
+            "functional_status": "Co-inhibitory receptors; contribute to T-cell exhaustion",
+            "targeting_potential": "UNPROVEN IN GBM - Preclinical rationale but no clinical validation; given PD-1 failures, cautious approach warranted",
+            "clinical_data": "No GBM-specific data; extrapolating from other tumors risky given GBM's unique biology"
+          },
+          {
+            "name": "B7-H3 (CD276)",
+            "expression_pattern": "Highly expressed on GBM tumor cells and vasculature (70-80% of GBM)",
+            "functional_status": "Co-inhibitory molecule; correlates with poor prognosis; expression on tumor cells (not just immune) makes it attractive CAR-T target",
+            "targeting_potential": "EMERGING - B7-H3 CAR-T in early trials; bispecific antibodies in development",
+            "clinical_data": "Early-phase CAR-T trials ongoing; B7-H3 may avoid antigen loss issue (broadly expressed)"
+          }
+        ]
+      }
+    },
+
+    "tumor_antigens": {
+      "highly_expressed_targets": [
+        {
+          "name": "EGFRvIII (EGFR variant III)",
+          "expression_frequency": "25-30% of GBM at diagnosis",
+          "expression_level": "High when present; tumor-specific (not on normal brain)",
+          "expression_pattern": "Heterogeneous within tumors; CRITICALLY, lost in ~50% of recurrent tumors (antigen escape)",
+          "normal_tissue_expression": "NONE - tumor-specific neoantigen; ideal target",
+          "therapeutic_window": "EXCELLENT for initial targeting BUT antigen loss is major liability",
+          "prior_targeting_attempts": [
+            "Multiple EGFRvIII CAR-T trials: Showed initial responses but rapid recurrence with EGFRvIII-negative clones",
+            "Rindopepimut (EGFRvIII vaccine): Phase III (ACT IV) FAILED to improve OS vs control",
+            "KEY LESSON: EGFRvIII is excellent target BUT single-antigen approach fails due to escape; requires multi-antigen strategy"
+          ],
+          "strategic_importance": "VALIDATED but INSUFFICIENT ALONE - Must combine with second target (IL13Rα2, HER2, EGFR wild-type) to prevent escape"
+        },
+        {
+          "name": "IL13Rα2 (Interleukin-13 Receptor Alpha 2)",
+          "expression_frequency": "50-75% of GBM",
+          "expression_level": "High in expressing tumors; absent in normal brain",
+          "expression_pattern": "Heterogeneous; often co-expressed with other targets",
+          "normal_tissue_expression": "Minimal - restricted to testes; excellent therapeutic window",
+          "therapeutic_window": "EXCELLENT",
+          "prior_targeting_attempts": [
+            "IL13Rα2 CAR-T (City of Hope): Showed durable responses in case reports (>7 years follow-up)",
+            "Frequently paired with EGFRvIII or HER2 in bivalent CAR constructs to prevent escape",
+            "CARv3-TEAM-E (Mass General): Dual mechanism - CAR targets EGFRvIII, secreted T-cell engager targets EGFR wild-type; showed 61% tumor regression in Phase I"
+          ],
+          "strategic_importance": "HIGH - Key component of multi-antigen strategies; validated target with durable response potential"
+        },
+        {
+          "name": "HER2 (ERBB2)",
+          "expression_frequency": "60-80% of GBM (overexpression, not amplification)",
+          "expression_level": "Medium to High when expressed",
+          "expression_pattern": "Variable within tumors",
+          "normal_tissue_expression": "Low-level in normal brain; expressed in heart, lungs (requires careful safety monitoring)",
+          "therapeutic_window": "MODERATE - on-target/off-tumor toxicity possible but manageable with dose titration",
+          "prior_targeting_attempts": [
+            "HER2 CAR-T trials: Activity demonstrated; used in trivalent constructs (EGFRvIII + IL13Rα2 + HER2)",
+            "Trastuzumab (Herceptin) tested but BBB penetration limited systemic efficacy",
+            "Trastuzumab emtansine (T-DM1, ADC) tested - limited BBB penetration"
+          ],
+          "strategic_importance": "MODERATE-HIGH - Valuable third target in multi-antigen CAR constructs; complements EGFRvIII and IL13Rα2"
+        },
+        {
+          "name": "B7-H3 (CD276)",
+          "expression_frequency": "70-80% of GBM",
+          "expression_level": "High on tumor cells and tumor vasculature",
+          "expression_pattern": "Relatively homogeneous; maintained in recurrent disease",
+          "normal_tissue_expression": "Limited in normal brain; expressed on some normal tissues but GBM expression much higher",
+          "therapeutic_window": "GOOD - broad tumor expression, may avoid antigen loss",
+          "prior_targeting_attempts": [
+            "B7-H3 CAR-T: Early-phase trials ongoing",
+            "B7-H3 bispecific antibodies in preclinical",
+            "Advantage: NOT lost in recurrence (unlike EGFRvIII); may provide durable targeting"
+          ],
+          "strategic_importance": "EMERGING HIGH - May solve antigen escape problem; broad expression; under active investigation"
+        },
+        {
+          "name": "CMV Antigens (pp65, IE1)",
+          "expression_frequency": "Controversial - initially reported 90-100%, recent studies show 30-50%",
+          "expression_level": "Variable; detection method-dependent",
+          "expression_pattern": "Heterogeneous",
+          "normal_tissue_expression": "CMV proteins in GBM may be from latent viral infection or cross-reactive antibodies",
+          "therapeutic_window": "UNCERTAIN - CMV expression debated in field",
+          "prior_targeting_attempts": [
+            "CMV-specific DC vaccines (VBI-1901): Phase II ongoing",
+            "CMV pp65 vaccines showed initial promise but conflicting results on CMV presence",
+            "Controversy limits enthusiasm"
+          ],
+          "strategic_importance": "LOW-MODERATE - Uncertain target; some programs ongoing but CMV presence in GBM remains debated"
+        },
+        {
+          "name": "Survivin",
+          "expression_frequency": "High in GBM (anti-apoptotic protein)",
+          "expression_level": "Overexpressed in tumor vs normal brain",
+          "expression_pattern": "Broadly expressed",
+          "normal_tissue_expression": "Low in differentiated tissues; higher in proliferating cells",
+          "therapeutic_window": "MODERATE",
+          "prior_targeting_attempts": [
+            "SurVaxM (survivin peptide vaccine): Phase IIb SURVIVE trial ongoing; passed futility analysis May 2025",
+            "Represents vaccine approach to shared tumor antigen"
+          ],
+          "strategic_importance": "MODERATE - Vaccine target; broad applicability if validated"
+        }
+      ],
+      "neoantigen_landscape": {
+        "description": "CRITICAL LIMITATION - GBM has LOW tumor mutational burden (TMB ~1-2 mutations/Mb) compared to other cancers. Few neoantigens for immune recognition. IDH-mutant GBM has specific R132H neoepitope (10% of GBM). Personalized neoantigen vaccines being tested but limited neoantigen repertoire is challenge.",
+        "expression_frequency": "TMB-high GBM <1%; most GBM have <10 neoantigens",
+        "therapeutic_approaches": [
+          "GAPVAC (BioNTech/Immatics): Personalized neoantigen vaccine - Phase II",
+          "mRNA vaccines (CVGBM, CureVac): Induced de-novo CD8+ T-cell responses in 77% of patients (Phase I)",
+          "Challenge: Low neoantigen burden limits vaccine immunogenicity; may explain checkpoint inhibitor failures (no neoantigens to recognize)"
+        ],
+        "strategic_importance": "MODERATE - Personalized vaccines rational but limited by low TMB; IDH neoantigen (R132H) is opportunity in 10% subset"
+      }
+    },
+
+    "biological_features_for_moa_matching": [
+      {
+        "feature_name": "Blood-Brain Barrier (BBB) Restriction",
+        "moa_relevance": ["Direct delivery modalities", "Small molecules", "BBB-penetrant agents", "Carriers (stem cells, nanoparticles)"],
+        "description": "BBB prevents systemic antibodies and large CAR-T cells from reaching brain tumors; CSF circulation limited; intact BBB in non-enhancing tumor regions",
+        "frequency": "Universal challenge - affects ALL systemic therapies",
+        "therapeutic_implication": "CRITICAL MOA REQUIREMENT: (1) Direct delivery (intratumoral, intracavitary, intraventricular) is current standard for cell therapies and OVs, (2) Neoadjuvant dosing (pre-surgery when BBB transiently open) emerging strategy, (3) Small molecules preferred for systemic delivery, (4) Novel carriers (CAVES platform - stem cells carrying OVs) in development. MOAs requiring systemic antibody exposure (bispecific antibodies, ADCs, checkpoint inhibitors) face major efficacy limitations in GBM unless BBB-penetrant or locally delivered."
+      },
+      {
+        "feature_name": "Immunologically 'Cold' Tumor Microenvironment",
+        "moa_relevance": ["Immune-priming agents (OVs, vaccines)", "TME modulators (TGF-β, CD73, CSF-1R inhibitors)", "M2→M1 repolarization"],
+        "description": "GBM TME dominated by M2 macrophages (60-70%), Tregs, MDSCs; minimal T-cell infiltration; high TGF-β, IL-10, adenosine; corticosteroids worsen immunosuppression",
+        "frequency": "90%+ of GBM are 'cold' tumors",
+        "therapeutic_implication": "CRITICAL SUCCESS FACTOR: Checkpoint inhibitors FAILED because no T cells to activate. MOAs must FIRST convert cold to hot: (1) Oncolytic viruses (DNX-2401, MB-108) induce inflammation, release antigens, upregulate PD-L1 → create window for checkpoint blockade, (2) Vaccines prime new T-cell responses, (3) TME modulators (TGF-β blockade, CD73 inhibitors, CSF-1R inhibitors) reduce immunosuppression. Single-agent checkpoint blockade WILL FAIL. Combination strategies ESSENTIAL."
+      },
+      {
+        "feature_name": "Antigen Heterogeneity and Escape",
+        "moa_relevance": ["Multi-antigen targeting", "Bivalent/trivalent CARs", "Dual-mechanism constructs (CAR + T-cell engager)", "Broadly expressed targets (B7-H3)"],
+        "description": "EGFRvIII lost in ~50% of recurrent tumors; IL13Rα2, HER2 heterogeneously expressed; single-antigen CAR-T therapies fail via antigen escape",
+        "frequency": "Antigen loss in 50%+ of recurrences",
+        "therapeutic_implication": "ESSENTIAL MOA REQUIREMENT: Multi-antigen targeting REQUIRED. Single-antigen approaches (EGFRvIII CAR-T, rindopepimut vaccine) FAILED due to escape. Successful MOAs: (1) Bivalent CARs (EGFRvIII + IL13Rα2), (2) Trivalent CARs (+ HER2), (3) Dual-mechanism (CARv3-TEAM-E: CAR + secreted T-cell engager targeting different antigen), (4) Broadly expressed targets less prone to loss (B7-H3). Monovalent antigen targeting HIGH RISK in GBM."
+      },
+      {
+        "feature_name": "Corticosteroid Use (Immunosuppression)",
+        "moa_relevance": ["All immunotherapies", "Steroid-sparing edema management", "Steroid timing strategies"],
+        "description": "80%+ of GBM patients receive dexamethasone for cerebral edema; causes lymphopenia, impairs T-cell function, blunts immunotherapy responses",
+        "frequency": "80%+ of patients",
+        "therapeutic_implication": "MAJOR CONFOUNDING FACTOR: Steroids blunt ALL immunotherapies. Trial designs must: (1) Minimize steroid use (inclusion criteria: low or no steroids), (2) Develop steroid-sparing strategies (targeted edema management), (3) Time immunotherapy dosing when steroids lowest. Checkpoint inhibitor failures may partly reflect steroid-induced immunosuppression. Cell therapies and vaccines less affected (given locally or prime before steroids) but still impacted."
+      },
+      {
+        "feature_name": "Low Tumor Mutational Burden / Neoantigen Paucity",
+        "moa_relevance": ["Vaccines targeting shared antigens (survivin, CMV)", "NOT ideal for checkpoint monotherapy", "NOT ideal for neoantigen vaccines"],
+        "description": "GBM has TMB ~1-2 mutations/Mb (vs 10-20 in NSCLC); few neoantigens; IDH-mutant has R132H neoepitope (10% of GBM)",
+        "frequency": "TMB-high <1% of GBM",
+        "therapeutic_implication": "EXPLAINS CHECKPOINT FAILURES: Low neoantigens → no targets for T cells even if PD-1 blocked. Vaccine strategies must target: (1) Shared tumor antigens (survivin, EGFRvIII, IL13Rα2) NOT neoantigens, (2) IDH R132H neoepitope in 10% subset, (3) Whole tumor lysates (DCVax-L approach - use all antigens). Personalized neoantigen vaccines CHALLENGED by limited repertoire. Checkpoint inhibitors ONLY work if T-cell priming occurs first (via OV or vaccine)."
+      },
+      {
+        "feature_name": "Wnt/β-catenin Driven Checkpoint Resistance",
+        "moa_relevance": ["Wnt inhibitors + checkpoint blockade", "Porcupine inhibitors", "Novel combination strategies"],
+        "description": "Wnt7b pathway recently identified as PD-1 resistance mechanism; active Wnt signaling excludes T cells; porcupine inhibitor (WNT974) + PD-1 blockade restored response in preclinical",
+        "frequency": "Subset of GBM with active Wnt signaling",
+        "therapeutic_implication": "EMERGING COMBINATION TARGET: Wnt inhibition + checkpoint blockade is rational. Porcupine inhibitors (block Wnt secretion) in development. Represents novel mechanism-based combination distinct from standard TME modulation. Early-stage but could address subset of checkpoint-resistant GBM."
+      }
+    ]
+  },
+
+  "moa_landscape": {
+    "moa_categories": [
+      {
+        "name": "Checkpoint Inhibitors - PD-1/PD-L1 Monotherapy",
+        "biological_rationale": {
+          "indication_specific_rationale": "Initial rationale for PD-1 blockade in GBM was based on: (1) PD-L1 expression in subset (30-40%), (2) Infiltrating T cells express PD-1 (exhaustion marker), (3) Preclinical models showed benefit. However, this rationale FAILED to translate clinically. GBM's immunologically 'cold' TME, minimal T-cell infiltration, low neoantigen burden, and overwhelming immunosuppression (M2 macrophages, TGF-β, steroids) render checkpoint monotherapy ineffective.",
+          "supporting_biology": [
+            "PD-L1 expressed in 30-40% of GBM",
+            "PD-1+ T cells present (when T cells exist)",
+            "Preclinical models showed checkpoint blockade efficacy"
+          ],
+          "theoretical_concerns": [
+            "CRITICAL: Minimal T-cell infiltration - no cells to 'unleash'",
+            "Low TMB/neoantigen burden - no targets even if T cells activated",
+            "Overwhelming TME immunosuppression (M2, TGF-β, adenosine)",
+            "Corticosteroid use blunts immune response",
+            "BBB limits antibody penetration to tumor"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Nivolumab (Opdivo)",
+              "specific_moa": "Fully human IgG4 monoclonal antibody targeting PD-1 receptor on T cells; blocks PD-L1/PD-L2 binding; prevents inhibitory signaling; mechanism identical to other tumor types BUT unique GBM challenges (BBB, cold TME, steroids) limit efficacy",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "systemic_delivery", "BBB_limited"],
+              "clinical_evidence": {
+                "development_stage": "FAILED - Multiple Phase III trials negative; NO approval",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "CheckMate 143",
+                    "phase": "Phase III",
+                    "design": "Nivolumab vs bevacizumab in recurrent GBM (1:1 randomization)",
+                    "efficacy": {
+                      "OS": "9.8 months (nivolumab) vs 10.0 months (bevacizumab) - NO DIFFERENCE",
+                      "ORR": "8% vs 23% (bevacizumab superior)",
+                      "Note": "FAILED primary endpoint; bevacizumab actually better"
+                    },
+                    "safety": "Manageable; typical checkpoint toxicities but less frequent than other cancers",
+                    "patient_selection": "Recurrent GBM post-surgery/radiation/temozolomide",
+                    "outcome": "FAILURE - Nivolumab NO better than bevacizumab; ended GBM development"
+                  },
+                  {
+                    "trial_name": "CheckMate 498",
+                    "phase": "Phase III",
+                    "design": "Nivolumab + radiation vs temozolomide + radiation in NEWLY DIAGNOSED GBM with UNMETHYLATED MGMT (poor prognosis group)",
+                    "efficacy": {
+                      "OS": "13.4 months (nivolumab + RT) vs 14.9 months (TMZ + RT) - NIVOLUMAB INFERIOR",
+                      "Note": "FAILED - Did not improve over standard of care; actually trended worse"
+                    },
+                    "safety": "Favorable vs chemotherapy but no efficacy",
+                    "patient_selection": "Newly diagnosed, MGMT unmethylated (non-responders to TMZ)",
+                    "outcome": "MAJOR FAILURE - Even in selected population (unmethylated MGMT), nivolumab failed"
+                  },
+                  {
+                    "trial_name": "CheckMate 548",
+                    "phase": "Phase III",
+                    "design": "Nivolumab + chemoradiation (TMZ + RT) vs placebo + chemoradiation in NEWLY DIAGNOSED GBM with METHYLATED MGMT",
+                    "efficacy": {
+                      "PFS": "10.6 vs 10.3 months - NO BENEFIT",
+                      "OS": "28.9 vs 32.1 months - TRENDED WORSE",
+                      "Note": "FAILED - Adding nivolumab to standard chemoradiation provided ZERO benefit"
+                    },
+                    "safety": "Increased toxicity (immune-related AEs) without efficacy benefit",
+                    "patient_selection": "Methylated MGMT (best prognosis group, TMZ responders)",
+                    "outcome": "COMPREHENSIVE FAILURE - Even in best-prognosis patients, nivolumab added nothing"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "COLD TME - Minimal T-cell infiltration; PD-1 blockade cannot activate T cells that aren't there",
+                  "LOW NEOANTIGEN BURDEN - TMB ~1-2 mutations/Mb; few targets for T cells even if activated",
+                  "OVERWHELMING IMMUNOSUPPRESSION - M2 macrophages (60-70%), TGF-β, adenosine, Tregs create hostile environment",
+                  "CORTICOSTEROIDS - 80%+ patients on dexamethasone; systemic immunosuppression blunts checkpoint blockade",
+                  "BBB PENETRATION - Uncertain if therapeutic antibody levels reached all tumor regions",
+                  "WRONG PATIENT SELECTION - MGMT methylation predicts TMZ response, NOT immunotherapy response"
+                ],
+                "key_insights": "DEFINITIVE LESSON: PD-1 MONOTHERAPY DOES NOT WORK IN GBM. Three separate Phase III trials (CheckMate 143, 498, 548) covering recurrent AND newly diagnosed, MGMT methylated AND unmethylated - ALL FAILED. This is NOT a 'close call' - nivolumab provided ZERO benefit and trended worse in some trials. Checkpoint monotherapy is DEAD in GBM. ROOT CAUSE: GBM is quintessential 'cold' tumor - checkpoint blockade removes brakes but there's no engine (no T cells, no neoantigens). STRATEGIC IMPERATIVE: DO NOT develop PD-1/PD-L1 monotherapy for GBM. Future checkpoint use ONLY in combinations that FIRST create inflammation and T-cell infiltration (OVs, vaccines). Biomarker selection based on IMMUNE status (T-cell infiltration, IFN signature) NOT MGMT methylation."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "Phase_III_failed", "cold_tumor_failure", "AVOID_monotherapy"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "2/10 - GBM biology fundamentally incompatible with checkpoint monotherapy (cold TME, low neoantigens, steroids)",
+          "clinical_validation": "0/10 - Complete failure across THREE Phase III trials; nivolumab provided zero benefit",
+          "unmet_need_match": "0/10 - Checkpoint monotherapy does NOT address GBM's challenges (BBB, TME, antigen escape)",
+          "overall_assessment": "PD-1/PD-L1 checkpoint inhibitors as MONOTHERAPY are DEFINITIVELY INVALIDATED in GBM. CheckMate 143, 498, 548 failures are comprehensive - covering all patient populations (recurrent, newly diagnosed, MGMT methylated, unmethylated). This is HIGHEST CONFIDENCE NEGATIVE DATA in oncology. STRATEGIC RECOMMENDATION: ABANDON checkpoint monotherapy development in GBM. DO NOT initiate trials with PD-1/PD-L1 alone. EXCEPTION: Checkpoint blockade MAY work in COMBINATIONS with immune-priming agents (OVs, vaccines) that convert cold to hot TME - DNX-2401 + pembrolizumab shows promise (56% 12-month OS). Checkpoint role in GBM is ONLY as combination partner, NEVER monotherapy."
+        }
+      },
+
+      {
+        "name": "Cell-Based Therapies - Dendritic Cell Vaccines",
+        "biological_rationale": {
+          "indication_specific_rationale": "Dendritic cell (DC) vaccines address GBM's fundamental challenge - lack of T-cell priming. DCs are professional antigen-presenting cells; loading with tumor antigens (lysate or peptides) and maturing ex vivo creates potent T-cell primers. DC vaccines can overcome low neoantigen burden by presenting ALL tumor antigens (lysate approach) or selected antigens (peptide approach). Autologous DCs avoid rejection; can be given intradermally or directly into tumor cavity. Unlike checkpoint inhibitors, DC vaccines CREATE new immune responses rather than removing brakes.",
+          "supporting_biology": [
+            "DCs are professional APCs - can prime naive T cells against tumor antigens",
+            "Autologous tumor lysate provides personalized antigen repertoire (overcomes low neoantigen burden)",
+            "Intradermal/intratumoral delivery bypasses BBB",
+            "No requirement for pre-existing T-cell infiltration (vaccines CREATE infiltration)",
+            "Minimal impact from steroids if DC dosing before/between steroid courses"
+          ],
+          "theoretical_concerns": [
+            "Manufacturing complexity (autologous cells, 4-8 week production)",
+            "Requires tumor tissue for lysate (limits to post-surgical patients)",
+            "Quality/viability of DCs from brain tumor patients (immunosuppressed hosts)",
+            "Immunosuppressive TME may blunt vaccine-induced T-cell responses",
+            "Antigen selection for peptide-based vaccines (which antigens?)"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "DCVax-L (murcidencel) - Northwest Biotherapeutics",
+              "specific_moa": "Autologous dendritic cell vaccine loaded with autologous tumor lysate; patient's own DCs isolated from leukapheresis, pulsed with lysate from resected tumor, matured ex vivo, then injected intradermally; DCs migrate to lymph nodes, present tumor antigens to T cells, prime tumor-specific CTL and helper T-cell responses; whole tumor lysate ensures broad antigen coverage",
+              "moa_classification": ["cell_therapy", "dendritic_cell_vaccine", "autologous", "tumor_lysate", "personalized", "intradermal_delivery"],
+              "clinical_evidence": {
+                "development_stage": "BLA/NDA FILED - Regulatory submission in US and UK; MOST ADVANCED immunotherapy for GBM",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase III Trial (Open-label with crossover)",
+                    "phase": "Phase III",
+                    "design": "Complex crossover design: Initially randomized to DCVax-L + TMZ vs TMZ alone; control arm crossed over to DCVax-L at progression; final analysis of all patients who received DCVax-L",
+                    "efficacy": {
+                      "mOS_newly_diagnosed": "19.3 months (DCVax-L) vs 16.5 months (external control), p=0.002",
+                      "mOS_all_patients": "23.1 months (intent-to-treat population including crossover)",
+                      "Long_term_survivors": "13% alive at 5 years (vs historical 5% with TMZ alone)",
+                      "Note": "Crossover design complicates interpretation but OS trends positive"
+                    },
+                    "safety": "EXCELLENT - Very few serious AEs attributed to therapy; NO cytokine release syndrome (CRS); injection site reactions mild",
+                    "patient_selection": "Newly diagnosed GBM post-surgery; requires tumor tissue for lysate",
+                    "outcome": "SUCCESS - BLA filed based on OS benefit and exceptional safety; awaiting regulatory decision"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "WHOLE TUMOR LYSATE approach overcomes antigen escape - presents ALL antigens, not just EGFRvIII",
+                  "Personalized to each patient's tumor - accounts for GBM heterogeneity",
+                  "Intradermal delivery bypasses BBB",
+                  "Primes NEW T-cell responses - creates 'hot' immune infiltrate in cold tumor",
+                  "EXCELLENT SAFETY - No CRS, no neurologic toxicity, well-tolerated",
+                  "Long-term survivors (5+ years) suggest durable immunity in subset"
+                ],
+                "key_insights": "DCVax-L is MOST ADVANCED immunotherapy in GBM, with BLA filed. Demonstrates that DC vaccines CAN work in GBM by addressing core challenges: (1) Whole lysate overcomes low neoantigen burden and antigen escape, (2) Ex vivo DC maturation creates potent APCs despite immunosuppressed host, (3) Intradermal delivery bypasses BBB, (4) Primes T cells de novo (doesn't require pre-existing infiltration). CRITICAL: Crossover trial design makes efficacy interpretation complex - external control comparison shows benefit but not placebo-controlled. STRATEGIC: If approved, DCVax-L validates DC vaccine platform in GBM. Other DC vaccines (AV-GBM-1, ERC-1671) following similar path. Manufacturing complexity (autologous, tumor-dependent) limits scalability but precision medicine value high."
+              },
+              "similarity_matching_tags": ["cell_therapy", "dendritic_cell_vaccine", "autologous", "tumor_lysate", "personalized", "BLA_filed", "GBM_leading_asset"]
+            },
+            {
+              "drug_name": "AV-GBM-1 (AIVITA Biomedical)",
+              "specific_moa": "Autologous dendritic cell vaccine loaded with autologous tumor antigens; similar to DCVax-L but with proprietary DC maturation protocol; DCs pulsed with tumor lysate, matured, injected intradermally",
+              "moa_classification": ["cell_therapy", "dendritic_cell_vaccine", "autologous", "tumor_lysate", "Phase_III"],
+              "clinical_evidence": {
+                "development_stage": "Phase III ONGOING",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II Trial",
+                    "phase": "Phase II",
+                    "design": "AV-GBM-1 + standard of care vs SOC alone in newly diagnosed GBM",
+                    "efficacy": {
+                      "PFS": "50% IMPROVEMENT over standard of care",
+                      "Note": "Strong Phase II signal led to Phase III initiation"
+                    },
+                    "safety": "Well-tolerated; similar to DCVax-L (minimal AEs)",
+                    "outcome": "Promising - Phase III ongoing based on PFS benefit"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Confirms DC vaccine platform viability - second asset showing benefit",
+                  "50% PFS improvement is substantial in GBM",
+                  "Validates tumor lysate approach (overcomes antigen heterogeneity)"
+                ],
+                "key_insights": "AV-GBM-1 reinforces DCVax-L findings - DC vaccines are VIABLE modality in GBM. Multiple companies (Northwest Bio, AIVITA) achieving similar results suggests platform effect, not single-asset success. Phase III critical to confirm Phase II promise. STRATEGIC: DC vaccine space has multiple players; differentiation may be on: (1) Manufacturing efficiency/cost, (2) DC maturation protocols (immunogenicity), (3) Combination strategies (DC + checkpoint, DC + OV)."
+              },
+              "similarity_matching_tags": ["cell_therapy", "dendritic_cell_vaccine", "autologous", "tumor_lysate", "Phase_III_ongoing", "PFS_benefit"]
+            },
+            {
+              "drug_name": "ERC-1671 (Gliovac) - Epitopoietic Research",
+              "specific_moa": "ALLOGENEIC dendritic cell vaccine (key difference from autologous DCVax-L/AV-GBM-1); uses lysate from ALLOGENEIC tumor tissue (not patient's own); DCs loaded with allogeneic lysate, administered intradermally; rationale: allogeneic approach faster (no patient tumor needed), off-the-shelf potential, may present broader antigen repertoire",
+              "moa_classification": ["cell_therapy", "dendritic_cell_vaccine", "ALLOGENEIC", "allogeneic_tumor_lysate", "off_the_shelf"],
+              "clinical_evidence": {
+                "development_stage": "Phase II ONGOING",
+                "rationale": "Allogeneic lysate from multiple donor tumors may cover more antigens than single autologous tumor; manufacturing simpler (no patient tumor dependency)",
+                "early_data": "Phase I/II showed immunogenicity; OS data maturing",
+                "outcome": "Represents ALTERNATIVE DC vaccine approach - allogeneic vs autologous"
+              },
+              "lessons_learned": {
+                "key_insights": "ERC-1671 tests whether allogeneic lysate can match autologous efficacy. ADVANTAGES: (1) No patient tumor required (broader patient eligibility), (2) Off-the-shelf potential (faster treatment), (3) Multiple donor tumors may provide more comprehensive antigen coverage. RISKS: (1) Allogeneic antigens may not match patient's tumor perfectly (lower efficacy?), (2) Potential for allogeneic rejection (though DCs are patient's own). Phase II readout will determine if allogeneic approach viable alternative to autologous."
+              },
+              "similarity_matching_tags": ["cell_therapy", "dendritic_cell_vaccine", "allogeneic", "off_the_shelf_potential", "Phase_II"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "9/10 - DC vaccines address GBM's core challenges: prime T cells de novo, bypass BBB, overcome low neoantigens with lysate approach",
+          "clinical_validation": "8/10 - DCVax-L has BLA filed with OS benefit; AV-GBM-1 showed 50% PFS improvement; multiple assets successful",
+          "unmet_need_match": "9/10 - Creates T-cell infiltration in cold tumors, personalizes to tumor antigens, avoids antigen escape (whole lysate)",
+          "overall_assessment": "Dendritic cell vaccines are MOST SUCCESSFUL immunotherapy modality in GBM. DCVax-L (BLA filed, mOS 19.3 vs 16.5 months) is closest to approval. AV-GBM-1 (50% PFS improvement) confirms platform. DC vaccines WORK because they: (1) Prime NEW T-cell responses (not dependent on pre-existing infiltration like checkpoints), (2) Whole tumor lysate prevents antigen escape, (3) Intradermal delivery bypasses BBB, (4) Excellent safety (no CRS, minimal AEs). CHALLENGES: (1) Manufacturing complexity (autologous, tumor-dependent), (2) Crossover trial designs complicate efficacy interpretation, (3) Scalability limited. STRATEGIC OPPORTUNITIES: (1) If DCVax-L approved, validates platform - other DC vaccines will follow, (2) Allogeneic approaches (ERC-1671) could simplify manufacturing, (3) Combinations (DC + checkpoint, DC + OV) rational to amplify T-cell responses. RECOMMENDATION: HIGH PRIORITY - DC vaccines are LEADING modality in GBM; partnership or platform development warranted."
+        }
+      },
+
+      {
+        "name": "Cell-Based Therapies - CAR-T (Chimeric Antigen Receptor T cells)",
+        "biological_rationale": {
+          "indication_specific_rationale": "CAR-T cells offer tumor-specific cytotoxicity independent of MHC presentation. In GBM, CAR-T addresses: (1) Antigen-specific killing (target EGFRvIII, IL13Rα2, HER2, B7-H3), (2) Bypasses exhaustion pathways (synthetic receptor, not PD-1 dependent), (3) Can be delivered directly (intratumoral, intracavitary, intraventricular) to bypass BBB. HOWEVER, first-generation single-antigen CAR-T failed due to antigen escape (EGFRvIII lost in 50% of recurrences). Next-generation approaches use multi-antigen targeting (bivalent, trivalent CARs) or dual-mechanism constructs (CAR + secreted T-cell engager) to prevent escape.",
+          "supporting_biology": [
+            "Tumor-specific antigens available (EGFRvIII tumor-specific; IL13Rα2, HER2 tumor-enriched)",
+            "Direct delivery (intratumoral, intracavitary) bypasses BBB",
+            "MHC-independent killing (overcomes HLA downregulation)",
+            "Persistence potential (CAR-T can survive months in CSF/brain)",
+            "Engineered costimulation (4-1BB, CD28) provides activation independent of TME"
+          ],
+          "theoretical_concerns": [
+            "ANTIGEN ESCAPE - EGFRvIII lost in 50% of recurrences (MAJOR limitation)",
+            "Heterogeneous antigen expression within tumors",
+            "Immunosuppressive TME (TGF-β, adenosine) inhibits CAR-T function",
+            "T-cell trafficking challenges (even with local delivery, reaching infiltrative tumor margins difficult)",
+            "On-target/off-tumor toxicity (HER2 CARs can affect normal brain if not carefully dosed)",
+            "Manufacturing complexity and cost"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "CARv3-TEAM-E (Mass General Cancer Center)",
+              "specific_moa": "DUAL-MECHANISM CAR-T construct: (1) CAR component targets EGFRvIII (tumor-specific mutation), (2) SAME cells engineered to secrete bispecific T-cell engager (BiTE) targeting EGFR wild-type (broadly expressed); Mechanism: CAR kills EGFRvIII+ cells directly; secreted BiTE recruits additional T cells (both CAR-T and endogenous) to kill EGFR wild-type cells; Addresses antigen escape - even if EGFRvIII lost, EGFR wild-type remains; Intratumoral/intracavitary delivery",
+              "moa_classification": ["CAR-T", "dual_mechanism", "CAR_plus_BiTE", "EGFRvIII_EGFR_targeting", "multivalent", "intratumoral_delivery"],
+              "clinical_evidence": {
+                "development_stage": "Phase I - BREAKTHROUGH results published 2024",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I INCIPIENT Trial",
+                    "phase": "Phase I",
+                    "design": "CARv3-TEAM-E via intratumoral/intracavitary delivery in RECURRENT GBM patients (heavily pretreated)",
+                    "efficacy": {
+                      "tumor_regression": "Up to 61% tumor volume reduction within DAYS of infusion (rapid response)",
+                      "response_rate": "Near-complete regressions observed in subset",
+                      "durability": "Some responses ongoing; follow-up maturing",
+                      "Note": "UNPRECEDENTED rapid tumor regression in GBM - within days, not weeks/months"
+                    },
+                    "safety": "Manageable; no dose-limiting toxicities in initial dose-escalation; monitoring for neurotoxicity ongoing",
+                    "patient_selection": "Recurrent GBM with EGFRvIII and/or EGFR expression",
+                    "outcome": "MAJOR BREAKTHROUGH - Fastest, deepest regressions seen in GBM immunotherapy; validates dual-mechanism approach"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "DUAL-MECHANISM PREVENTS ANTIGEN ESCAPE - CAR targets EGFRvIII, BiTE targets EGFR wild-type; tumor cannot escape by losing one antigen",
+                  "Secreted BiTE recruits ADDITIONAL T cells (bystander effect) - amplifies response beyond CAR-T alone",
+                  "Intratumoral delivery achieves high local concentrations, bypasses BBB",
+                  "RAPID RESPONSES (days) unprecedented in GBM - suggests potent immune activation",
+                  "61% tumor regression in RECURRENT disease (notoriously resistant) is exceptional"
+                ],
+                "key_insights": "CARv3-TEAM-E is PARADIGM-SHIFTING - demonstrates that antigen escape CAN be overcome with smart design. Key innovation: CAR + secreted BiTE targeting different antigens on same tumor. This is SOLUTION to single-antigen CAR-T failures (EGFRvIII CARs). Rapid tumor regressions (within days) suggest potent immune activation - CAR-T killing EGFRvIII cells, releasing antigens, BiTE recruiting more T cells → amplification loop. STRATEGIC: Dual-mechanism CAR-T is FUTURE of GBM cell therapy. Single-antigen CARs are OBSOLETE. Design principles applicable beyond GBM (any tumor with antigen heterogeneity). CHALLENGES: Manufacturing complexity (dual-engineered cells), durability unknown (follow-up maturing), scalability. RECOMMENDATION: Dual-mechanism CAR-T is HIGH PRIORITY - represents next-generation approach that addresses GBM's antigen escape problem."
+              },
+              "similarity_matching_tags": ["CAR-T", "dual_mechanism", "CAR_plus_BiTE", "multivalent", "antigen_escape_solution", "breakthrough_efficacy", "GBM_leading_asset"]
+            },
+            {
+              "drug_name": "EGFRvIII CAR-T (Single-Antigen, Various Developers)",
+              "specific_moa": "First-generation CAR-T targeting EGFRvIII (tumor-specific deletion mutant); CAR construct with anti-EGFRvIII scFv, CD28 or 4-1BB costimulation, CD3ζ signaling; intratumoral or intraventricular delivery; MHC-independent killing of EGFRvIII+ cells",
+              "moa_classification": ["CAR-T", "single_antigen", "EGFRvIII_targeting", "first_generation", "antigen_escape_prone"],
+              "clinical_evidence": {
+                "development_stage": "Multiple Phase I trials - FAILED due to antigen escape",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Various Phase I trials (City of Hope, U Penn, others)",
+                    "phase": "Phase I",
+                    "design": "EGFRvIII CAR-T intratumoral/intraventricular in recurrent GBM",
+                    "efficacy": {
+                      "initial_responses": "Tumor regressions observed in subset (30-40%)",
+                      "durability": "POOR - Nearly all patients progressed within months",
+                      "resistance_mechanism": "Recurrent tumors LOST EGFRvIII expression (~50% of recurrences EGFRvIII-negative)",
+                      "Note": "Classic antigen escape - tumor evades CAR-T by downregulating/losing target"
+                    },
+                    "safety": "Generally safe; no major neurotoxicity or CRS in most trials",
+                    "outcome": "FAILURE - Antigen escape rendered single-antigen approach ineffective"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "ANTIGEN ESCAPE IS DOMINANT RESISTANCE MECHANISM - EGFRvIII lost in 50% of recurrences",
+                  "Single-antigen targeting insufficient in heterogeneous tumor (GBM has clonal diversity)",
+                  "EGFRvIII+ clones killed → EGFRvIII-negative clones proliferate (Darwinian selection)",
+                  "No backup target - once EGFRvIII lost, CAR-T ineffective"
+                ],
+                "key_insights": "DEFINITIVE LESSON: Single-antigen CAR-T FAILS in GBM due to antigen escape. EGFRvIII is excellent target (tumor-specific, immunogenic) BUT heterogeneous expression and plasticity doom monovalent approach. This is NOT a 'dose' or 'persistence' issue - it's FUNDAMENTAL biology. Recurrent tumors analyzed post-CAR-T: 50% EGFRvIII-negative. STRATEGIC IMPERATIVE: ABANDON single-antigen CAR-T in GBM. Future CAR-T MUST be multivalent (2-3 antigens) or dual-mechanism (CAR + BiTE) to prevent escape. EGFRvIII remains valid target but ONLY in multi-antigen context. Rindopepimut (EGFRvIII vaccine) also failed for same reason."
+              },
+              "similarity_matching_tags": ["CAR-T", "single_antigen", "EGFRvIII", "Phase_I_failed", "antigen_escape", "AVOID_monovalent"]
+            },
+            {
+              "drug_name": "Bivalent/Trivalent CAR-T (EGFRvIII + IL13Rα2 ± HER2)",
+              "specific_moa": "Multi-antigen CAR-T constructs targeting 2-3 antigens simultaneously; Configurations: (1) Bivalent: EGFRvIII + IL13Rα2 (two scFvs on one CAR), (2) Trivalent: + HER2 (three targets), (3) TanCAR: Two separate CARs (EGFRvIII-CAR and IL13Rα2-CAR) co-expressed; Mechanism: Targets multiple antigens to prevent escape; if one lost, other CARs remain functional; Intratumoral/intracavitary delivery",
+              "moa_classification": ["CAR-T", "multivalent", "bivalent_trivalent", "EGFRvIII_IL13Ra2_HER2", "antigen_escape_resistant"],
+              "clinical_evidence": {
+                "development_stage": "Phase I - Early promising data; patent filings indicate active development",
+                "rationale": "Overcome antigen escape by targeting multiple antigens; GBM cannot simultaneously lose all targets without losing viability",
+                "early_data": "Case reports show durable responses (>7 years) with IL13Rα2 CAR-T; bivalent constructs showing activity",
+                "outcome": "Promising approach - addresses single-antigen CAR-T failures; clinical validation ongoing"
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "Multi-antigen targeting prevents escape - tumor must lose ALL targets (unlikely)",
+                  "EGFRvIII + IL13Rα2 covers ~75% of GBM (both expressed in majority)",
+                  "Adding HER2 (trivalent) further broadens coverage",
+                  "TanCAR design (two separate CARs) allows independent signaling - may enhance function"
+                ],
+                "key_insights": "Bivalent/trivalent CAR-T is RATIONAL solution to antigen escape. By targeting 2-3 antigens, likelihood of simultaneous loss approaches zero. EGFRvIII + IL13Rα2 is optimal pair (complementary expression, both tumor-enriched). HER2 adds third layer. CHALLENGES: (1) Manufacturing complexity (multi-component constructs), (2) Risk of tonic signaling if targets broadly expressed, (3) Optimal antigen combinations unknown (trial and error). STRATEGIC: Multivalent CAR-T is FUTURE; single-antigen is past. Key question: bivalent sufficient or trivalent needed? Clinical trials will answer."
+              },
+              "similarity_matching_tags": ["CAR-T", "multivalent", "bivalent_trivalent", "EGFRvIII_IL13Ra2_HER2", "next_generation", "escape_resistant"]
+            }
+          ]
+        },
+        "next_generation_approaches": [
+          {
+            "approach_name": "Armored CAR-T (Cytokine-Secreting)",
+            "moa_modification": "CAR-T engineered to secrete pro-inflammatory cytokines (IL-12, IL-18, IL-15) or checkpoint inhibitors (anti-PD-L1 scFv); remodels immunosuppressive TME locally",
+            "rationale": "TME suppresses CAR-T function; armored CARs create favorable local environment; IL-12 polarizes M2→M1 macrophages; IL-18 activates NK cells; IL-15 sustains CAR-T persistence",
+            "development_stage": "Preclinical to early Phase I",
+            "strategic_importance": "HIGH - Addresses TME immunosuppression; could enhance efficacy of multi-antigen CARs"
+          },
+          {
+            "approach_name": "B7-H3 CAR-T",
+            "moa_modification": "CAR targeting B7-H3 (CD276), broadly expressed in GBM (70-80%); less heterogeneous than EGFRvIII; may avoid antigen loss",
+            "rationale": "B7-H3 maintained in recurrent disease (not lost like EGFRvIII); broad expression covers most tumor cells; tumor-enriched (low normal brain)",
+            "development_stage": "Phase I ongoing",
+            "strategic_importance": "MODERATE-HIGH - If effective, provides broadly applicable CAR-T (not subset-specific like EGFRvIII)"
+          }
+        ],
+        "moa_compatibility_score": {
+          "biological_fit": "8/10 - CAR-T addresses GBM challenges (direct delivery bypasses BBB, MHC-independent, antigen-specific) BUT antigen escape is major liability",
+          "clinical_validation": "7/10 - CARv3-TEAM-E breakthrough (61% regression) validates dual-mechanism; single-antigen CARs failed; multivalent CARs promising",
+          "unmet_need_match": "8/10 - Provides potent tumor killing, overcomes checkpoint resistance, but requires multi-antigen design to address escape",
+          "overall_assessment": "CAR-T in GBM is HIGH-RISK, HIGH-REWARD modality with CRITICAL DESIGN REQUIREMENTS. Single-antigen CAR-T (EGFRvIII) FAILED definitively - antigen escape in 50% of recurrences. Next-generation approaches show promise: (1) CARv3-TEAM-E (CAR + BiTE dual-mechanism) achieved 61% regression in Phase I - BREAKTHROUGH, (2) Bivalent/trivalent CARs (EGFRvIII + IL13Rα2 ± HER2) prevent escape by targeting multiple antigens. SUCCESS FACTORS: Multi-antigen targeting ESSENTIAL (bivalent minimum, trivalent preferred), Direct delivery (intratumoral/intracavitary) to bypass BBB, Armored CARs (cytokine-secreting) to overcome TME. STRATEGIC OPPORTUNITIES: (1) Dual-mechanism CAR-T (CARv3-TEAM-E model) is leading edge - CAR + secreted BiTE prevents escape and recruits bystander T cells, (2) B7-H3 CAR-T (broad expression, maintained in recurrence) may avoid antigen loss, (3) Armored CARs address TME suppression. RECOMMENDATION: HIGH PRIORITY for next-gen designs (multivalent, dual-mechanism); AVOID single-antigen approaches. Partner with academic centers (Mass General, City of Hope) leading CAR-T innovation in GBM."
+        }
+      }
+    ]
+  },
+
+  "unmet_needs": [
+    {
+      "need_category": "First Approved Immunotherapy (Market Creation)",
+      "description": "NO immunotherapies approved for GBM despite decades of research. Standard of care remains surgery + radiation + temozolomide (median OS 12-15 months). First approved immunotherapy will create new market and validate therapeutic category.",
+      "patient_population": "~15,000 newly diagnosed GBM/year in US; ~12,000 in EU",
+      "current_gaps": "Checkpoint inhibitors (nivolumab) failed Phase III; no approved vaccines, no approved cell therapies. DCVax-L has BLA filed but approval uncertain.",
+      "moa_requirements": [
+        "Address GBM-specific challenges: BBB penetration (direct delivery), cold TME (immune priming), antigen escape (multi-antigen)",
+        "DC vaccines (DCVax-L, AV-GBM-1) - prime T cells, bypass BBB, whole lysate prevents escape",
+        "Multi-antigen CAR-T (CARv3-TEAM-E, bivalent/trivalent) - potent killing, overcome escape",
+        "OV + checkpoint combinations (DNX-2401 + pembrolizumab) - convert cold to hot, then checkpoint block",
+        "Safety profile acceptable (no CRS, manageable neurotoxicity) - GBM patients fragile"
+      ],
+      "priority": "CRITICAL - First approval creates market, validates category, attracts investment",
+      "commercial_opportunity": "Market creation - GBM treatment market $2.48B (2024) but no immunotherapy share; first approved therapy captures substantial portion; premium pricing justified (life-threatening, unmet need)",
+      "strategic_notes": "DCVax-L (BLA filed) is leading candidate - if approved, validates DC vaccine platform. CARv3-TEAM-E breakthrough data (61% regression) positions for accelerated path. ONcolytic virus combinations (DNX-2401) have regulatory designations (Fast Track, PRIME). Race is on - first to market wins."
+    },
+    {
+      "need_category": "Overcoming Blood-Brain Barrier",
+      "description": "BBB prevents systemic antibodies and large molecules from reaching brain tumors. Checkpoint inhibitors, bispecific antibodies, ADCs show erratic CNS penetration. Limits efficacy of systemic immunotherapies.",
+      "patient_population": "ALL GBM patients - BBB is universal challenge",
+      "current_gaps": "Nivolumab (checkpoint) failed partly due to BBB; no BBB-penetrant bispecifics in development; IV-administered therapies suboptimal",
+      "moa_requirements": [
+        "Direct delivery (intratumoral, intracavitary, intraventricular) - current standard for cell therapies (CAR-T, DC vaccines) and OVs",
+        "Neoadjuvant dosing (pre-surgery when BBB transiently open) - allows systemic dosing with sampling resected tissue",
+        "Novel carriers: Stem cells (CAVES platform - shields OVs for IV delivery), Nanocapsules (engineered BBB crossing)",
+        "Small molecules preferably (checkpoint inhibitors are antibodies - too large)",
+        "BBB disruption strategies (focused ultrasound, hyperosmolar agents) - transiently open BBB for drug delivery"
+      ],
+      "priority": "CRITICAL - BBB is #1 technical challenge; solving it enables systemic therapies",
+      "commercial_opportunity": "High - BBB-penetrant or BBB-bypassing delivery is major differentiation; enables therapies that otherwise fail",
+      "strategic_notes": "Direct delivery is current workaround (90% of successful therapies use it). Novel carriers (CAVES, nanocapsules) in preclinical - could enable IV administration. Neoadjuvant dosing emerging (window-of-opportunity trials). Small molecule immunotherapies (IDO inhibitors, adenosine antagonists) inherently BBB-penetrant. Focused ultrasound + microbubbles can transiently disrupt BBB - combination approach."
+    },
+    {
+      "need_category": "Converting 'Cold' to 'Hot' Tumor Microenvironment",
+      "description": "GBM is quintessential immunologically 'cold' tumor - minimal T-cell infiltration, dominated by immunosuppressive M2 macrophages (60-70%), Tregs, MDSCs. Checkpoint inhibitors failed because no T cells to activate. Must create inflammation first.",
+      "patient_population": "90%+ of GBM are 'cold' tumors (TMB-high <1%)",
+      "current_gaps": "Checkpoint monotherapy failed (CheckMate trials); no approved TME modulators; steroids worsen immunosuppression (80% patients on dexamethasone)",
+      "moa_requirements": [
+        "Oncolytic viruses (DNX-2401, MB-108, GLIX1) - induce inflammation, release tumor antigens, upregulate PD-L1 → prime for checkpoint blockade",
+        "DC vaccines (DCVax-L, AV-GBM-1) - create de novo T-cell responses, recruit T cells to tumor",
+        "TGF-β blockade (bifunctional PD-L1 x TGF-β trap) - reduce immunosuppression, allow T-cell infiltration",
+        "CD73 inhibitors + checkpoint - block adenosine immunosuppression",
+        "CSF-1R inhibitors - deplete/repolarize M2 macrophages to M1",
+        "Combination strategies ESSENTIAL - single agent TME modulators insufficient"
+      ],
+      "priority": "CRITICAL - Cold TME is why checkpoint monotherapy failed; must address to enable immunotherapy",
+      "commercial_opportunity": "High - TME-modulating agents are combination partners for checkpoints, vaccines, CAR-T; enable/enhance efficacy",
+      "strategic_notes": "Oncolytic viruses are leading TME-modulating approach - DNX-2401 + pembrolizumab showed 56% 12-month OS (vs <20% historical). Vaccines also prime T cells (create hot infiltrate). TGF-β blockade + checkpoint rational but early-stage. Steroids are confounding factor - trial designs must minimize steroid use or develop steroid-sparing edema management."
+    },
+    {
+      "need_category": "Preventing Antigen Escape",
+      "description": "Single-antigen therapies fail due to antigen loss - EGFRvIII lost in 50% of recurrences post-CAR-T; rindopepimut (EGFRvIII vaccine) failed Phase III. GBM's heterogeneity and plasticity enable escape.",
+      "patient_population": "All patients receiving antigen-targeted therapies (CAR-T, targeted vaccines)",
+      "current_gaps": "EGFRvIII CAR-T failed; rindopepimut vaccine failed; single-antigen approaches obsolete",
+      "moa_requirements": [
+        "Multi-antigen targeting: Bivalent/trivalent CAR-T (EGFRvIII + IL13Rα2 ± HER2) - targets 2-3 antigens simultaneously",
+        "Dual-mechanism constructs: CARv3-TEAM-E (CAR + secreted BiTE) - CAR targets one antigen, BiTE targets another",
+        "Whole tumor lysate approaches: DCVax-L (DC vaccine with all antigens) - covers heterogeneity, prevents escape",
+        "Broadly expressed targets: B7-H3 CAR-T (70-80% GBM) - maintained in recurrence, less prone to loss",
+        "Sequential targeting: Adaptive strategies where second-line therapy targets escape clones"
+      ],
+      "priority": "HIGH - Antigen escape is dominant resistance mechanism for targeted therapies; must address for durability",
+      "commercial_opportunity": "Moderate-High - Escape-resistant therapies have durable responses (long-term survivors), superior outcomes; differentiation from failed single-antigen approaches",
+      "strategic_notes": "CARv3-TEAM-E is proof-of-concept for escape prevention - dual-mechanism (CAR + BiTE) achieved 61% regression. Bivalent/trivalent CARs in development. DCVax-L whole lysate approach inherently escape-resistant (all antigens). B7-H3 broad expression may avoid loss. Single-antigen therapies are DEAD - multivalent is future."
+    },
+    {
+      "need_category": "Steroid-Sparing Strategies",
+      "description": "80%+ of GBM patients receive dexamethasone for cerebral edema; steroids cause systemic immunosuppression (lymphopenia, impaired T-cell function), blunting immunotherapy efficacy. Steroid use confounds clinical trials and limits real-world effectiveness.",
+      "patient_population": "80%+ of GBM patients on steroids at some point",
+      "current_gaps": "No steroid-sparing edema management; trials allow steroids (confounds results); checkpoint failures may partly reflect steroid suppression",
+      "moa_requirements": [
+        "Targeted edema management: Focal therapies (bevacizumab for edema, not tumor) reduce steroid need",
+        "Immunotherapy timing: Dose when steroids lowest (neoadjuvant - before steroids started; maintenance - between courses)",
+        "Steroid-resistant immune approaches: Cell therapies (CAR-T, DC vaccines) less affected if given before/between steroids",
+        "Trial design requirements: Minimize steroid use (inclusion criteria), stratify by steroid dose, measure steroid impact"
+      ],
+      "priority": "MODERATE-HIGH - Steroids are major confounding factor; addressing improves efficacy and interpretability",
+      "commercial_opportunity": "Moderate - Steroid-sparing strategies enable better immunotherapy responses; cleaner clinical data; real-world applicability",
+      "strategic_notes": "Bevacizumab used off-label for edema management (steroid-sparing). Neoadjuvant immunotherapy (pre-surgery, before steroids) is opportunity. Cell therapies (DC vaccines) can be given when steroids low. Trial designs evolving - stricter steroid criteria. Solving steroid problem unlocks immunotherapy potential."
+    }
+  ],
+
+  "current_treatment_landscape": {
+    "standard_of_care": {
+      "newly_diagnosed_gbm": {
+        "regimen": "Maximal safe resection → Concurrent chemoradiation (temozolomide + radiation 60 Gy) → Adjuvant temozolomide (6-12 cycles)",
+        "efficacy": "Median OS 12-15 months (unmethylated MGMT), 21-24 months (methylated MGMT)",
+        "notes": "MGMT methylation (45-50% of patients) predicts temozolomide benefit; unmethylated patients have poor outcomes"
+      },
+      "recurrent_gbm": {
+        "regimen": "Bevacizumab (anti-VEGF) ± lomustine chemotherapy; Re-resection if feasible; Clinical trials",
+        "efficacy": "Bevacizumab: ORR 20-30%, median OS 9-10 months (no OS benefit vs placebo but approved for symptom control)",
+        "notes": "NO standard of care - bevacizumab for edema/symptoms, not survival; trial enrollment encouraged"
+      }
+    },
+    "market_size_and_growth": {
+      "global_market": {
+        "2024_estimate": "$2.48 billion (total GBM treatment market)",
+        "2025_forecast": "$2.73 billion",
+        "2029_forecast": "$3.5-4.0 billion (projected)",
+        "cagr": "10.5% (2024-2029)",
+        "growth_drivers": [
+          "Introduction of first immunotherapies (market creation - currently $0 immunotherapy revenue)",
+          "Label expansions (neoadjuvant, adjuvant settings)",
+          "Premium pricing for novel therapies (immunotherapy, targeted agents)",
+          "Increasing incidence (aging population)"
+        ]
+      },
+      "immunotherapy_opportunity": {
+        "current_share": "$0 - NO approved immunotherapies",
+        "potential_share": "$500M-1B+ if first immunotherapy approved (20-40% of market)",
+        "rationale": "First approved immunotherapy captures significant share; unmet need justifies premium pricing; combination potential (IO + SOC) expands market"
+      }
+    }
+  },
+
+  "development_pipeline": {
+    "by_phase_and_moa": {
+      "phase_iii_bla": [
+        {
+          "drug": "murcidencel (DCVax-L)",
+          "moa": "Autologous DC vaccine (tumor lysate)",
+          "sponsor": "Northwest Biotherapeutics",
+          "status": "BLA/NDA filed (US, UK)",
+          "notes": "MOST ADVANCED immunotherapy; mOS 19.3 vs 16.5 months; awaiting regulatory decision"
+        },
+        {
+          "drug": "AV-GBM-1",
+          "moa": "Autologous DC vaccine (tumor lysate)",
+          "sponsor": "AIVITA Biomedical",
+          "status": "Phase III ongoing",
+          "notes": "50% PFS improvement in Phase II; confirmatory Phase III"
+        },
+        {
+          "drug": "vocimagene amiretrorepvec (Toca 511)",
+          "moa": "Retroviral vector + prodrug (gene therapy)",
+          "sponsor": "Denovo Biopharma",
+          "status": "Phase III",
+          "notes": "Suicide gene therapy approach; late-stage development"
+        }
+      ],
+      "phase_ii": [
+        {
+          "drug": "DNX-2401 + pembrolizumab",
+          "moa": "Oncolytic adenovirus + PD-1 inhibitor",
+          "sponsor": "DNAtrix / Merck",
+          "status": "Phase II; FDA Fast Track, EMA PRIME",
+          "notes": "12-month OS 56% (vs <20% historical); 3 durable CRs >3 years; viral priming + checkpoint synergy"
+        },
+        {
+          "drug": "SurVaxM",
+          "moa": "Survivin peptide vaccine",
+          "sponsor": "MimiVax",
+          "status": "Phase IIb SURVIVE trial; passed futility (May 2025)",
+          "notes": "Targets survivin (broadly expressed anti-apoptotic protein)"
+        },
+        {
+          "drug": "lerapolturev (PVS-RIPO)",
+          "moa": "Modified poliovirus (oncolytic)",
+          "sponsor": "Istari Oncology",
+          "status": "Phase II",
+          "notes": "Intratumoral delivery; induces inflammation"
+        },
+        {
+          "drug": "Ivonescimab",
+          "moa": "PD-1/VEGF bispecific",
+          "sponsor": "Akeso / Summit",
+          "status": "Phase II in GBM",
+          "notes": "Dual checkpoint + anti-angiogenic; success in NSCLC"
+        },
+        {
+          "drug": "Bavituximab",
+          "moa": "Anti-phosphatidylserine antibody",
+          "sponsor": "OncXerna",
+          "status": "Phase II",
+          "notes": "12-month OS 73% in Phase II (small study)"
+        },
+        {
+          "drug": "ERC-1671 (Gliovac)",
+          "moa": "Allogeneic DC vaccine",
+          "sponsor": "Epitopoietic Research",
+          "status": "Phase II",
+          "notes": "Off-the-shelf DC vaccine; allogeneic lysate"
+        },
+        {
+          "drug": "VBI-1901",
+          "moa": "CMV antigen vaccine",
+          "sponsor": "VBI Vaccines",
+          "status": "Phase II",
+          "notes": "Targets CMV antigens (controversial - CMV presence debated)"
+        },
+        {
+          "drug": "GAPVAC",
+          "moa": "Personalized neoantigen vaccine",
+          "sponsor": "BioNTech / Immatics",
+          "status": "Phase II",
+          "notes": "Individualized vaccine; low TMB challenge"
+        },
+        {
+          "drug": "taniraleucel (CYNK-001)",
+          "moa": "Allogeneic NK cell therapy",
+          "sponsor": "Celularity",
+          "status": "Phase II",
+          "notes": "Off-the-shelf NK cells"
+        }
+      ],
+      "phase_i_early": [
+        {
+          "drug": "CARv3-TEAM-E",
+          "moa": "Dual-mechanism CAR-T (CAR + BiTE)",
+          "sponsor": "Mass General / OncoC4",
+          "status": "Phase I - BREAKTHROUGH results",
+          "notes": "61% tumor regression in days; addresses antigen escape"
+        },
+        {
+          "drug": "MB-108",
+          "moa": "Oncolytic HSV-1 (2nd-gen)",
+          "sponsor": "Mustang Bio",
+          "status": "Phase I; FDA Orphan Drug (Nov 2024)",
+          "notes": "Next-gen oncolytic virus; enhanced immunogenicity"
+        },
+        {
+          "drug": "GLIX1",
+          "moa": "DNA-repair targeting oncolytic virus",
+          "sponsor": "Hemispherian",
+          "status": "IND-cleared (Apr 2025); Phase I starting",
+          "notes": "Novel OV class; targets DNA repair pathways"
+        },
+        {
+          "drug": "CVGBM",
+          "moa": "mRNA vaccine",
+          "sponsor": "CureVac",
+          "status": "Phase I",
+          "notes": "77% induced CD8+ T-cell responses"
+        },
+        {
+          "drug": "B7-H3 CAR-T",
+          "moa": "CAR-T targeting B7-H3",
+          "sponsor": "Various",
+          "status": "Phase I",
+          "notes": "Broad target (70-80% GBM); escape-resistant?"
+        },
+        {
+          "drug": "Bivalent/Trivalent CAR-T",
+          "moa": "Multi-antigen CAR-T (EGFRvIII + IL13Rα2 ± HER2)",
+          "sponsor": "Various academic centers",
+          "status": "Phase I / Preclinical",
+          "notes": "Prevents antigen escape; multiple antigens"
+        },
+        {
+          "drug": "CAVES Platform",
+          "moa": "Stem cell carriers for IV OV delivery",
+          "sponsor": "Calidi Biotherapeutics",
+          "status": "Preclinical / IND-enabling",
+          "notes": "Solves BBB problem for systemic OV delivery"
+        },
+        {
+          "drug": "Wnt inhibitors + PD-1",
+          "moa": "Porcupine inhibitor + checkpoint",
+          "sponsor": "Academic / Pharma partnerships",
+          "status": "Preclinical",
+          "notes": "Addresses Wnt-driven checkpoint resistance"
+        }
+      ]
+    },
+    "competitive_intensity": {
+      "high_activity_areas": [
+        "Dendritic cell vaccines (DCVax-L, AV-GBM-1, ERC-1671) - multiple players, similar approach",
+        "Oncolytic viruses (DNX-2401, MB-108, GLIX1, PVS-RIPO) - diverse viral platforms, combination with checkpoints",
+        "CAR-T (EGFRvIII, multi-antigen, dual-mechanism) - academic-led, moving to industry partnerships"
+      ],
+      "emerging_opportunities": [
+        "Dual-mechanism CAR-T (CARv3-TEAM-E leading) - limited competition, breakthrough data",
+        "BBB-crossing technologies (CAVES, nanocapsules) - early-stage, high-need",
+        "TME modulators (TGF-β, CD73, Wnt inhibitors) - nascent, combination-driven",
+        "Neoadjuvant immunotherapy - window-of-opportunity, pre-surgical dosing"
+      ],
+      "failed_approaches_avoid": [
+        "PD-1/PD-L1 monotherapy (nivolumab failed 3 Phase III trials)",
+        "Single-antigen CAR-T (EGFRvIII CAR-T failed - antigen escape)",
+        "Single-antigen vaccines (rindopepimut EGFRvIII vaccine failed Phase III)"
+      ]
+    }
+  },
+
+  "strategic_insights": {
+    "moa_success_patterns": {
+      "most_promising": [
+        {
+          "moa_class": "Dendritic Cell Vaccines (Tumor Lysate)",
+          "evidence": "DCVax-L: BLA filed, mOS 19.3 vs 16.5 months (p=0.002); AV-GBM-1: 50% PFS improvement Phase II",
+          "key_success_factors": "Whole tumor lysate prevents antigen escape, primes de novo T-cell responses (overcomes cold TME), intradermal delivery bypasses BBB, excellent safety (no CRS)",
+          "strategic_takeaway": "DC vaccines are LEADING modality - DCVax-L closest to approval. Tumor lysate approach addresses GBM's challenges (escape, cold TME, BBB). Autologous manufacturing complex but validates precision medicine. If DCVax-L approved, platform validated - other DC vaccines (AV-GBM-1, ERC-1671 allogeneic) will follow."
+        },
+        {
+          "moa_class": "Dual-Mechanism CAR-T (CAR + BiTE)",
+          "evidence": "CARv3-TEAM-E: 61% tumor regression within days in Phase I recurrent GBM",
+          "key_success_factors": "Prevents antigen escape (CAR targets EGFRvIII, BiTE targets EGFR wild-type), recruits bystander T cells (amplification), rapid potent responses, intratumoral delivery bypasses BBB",
+          "strategic_takeaway": "CARv3-TEAM-E is PARADIGM-SHIFTING - solves antigen escape with dual-mechanism. Fastest, deepest regressions in GBM immunotherapy history. Represents next-generation CAR-T design. Single-antigen CAR-T obsolete. Multi-targeting ESSENTIAL in GBM."
+        },
+        {
+          "moa_class": "Oncolytic Viruses + Checkpoint Inhibitor Combinations",
+          "evidence": "DNX-2401 + pembrolizumab: 12-month OS 56% (vs <20% historical), 3 durable CRs >3 years",
+          "key_success_factors": "OV converts cold to hot (inflammation, antigen release, PD-L1 upregulation), creates window for checkpoint blockade synergy, intratumoral delivery bypasses BBB, manageable safety",
+          "strategic_takeaway": "OV + checkpoint is RATIONAL combination - addresses why checkpoint monotherapy failed (cold TME). DNX-2401 (FDA Fast Track, EMA PRIME) validates approach. Oncolytic viruses are TME modulators, not standalone therapies. Future: OV priming followed by checkpoint, vaccine, or CAR-T."
+        }
+      ],
+      "comprehensive_failures": [
+        {
+          "moa_class": "PD-1/PD-L1 Checkpoint Inhibitor Monotherapy",
+          "evidence": "Nivolumab: CheckMate 143 (FAILED vs bevacizumab), CheckMate 498 (FAILED vs TMZ, trended worse), CheckMate 548 (FAILED, no benefit added to chemoRT)",
+          "failure_reasons": "Cold TME (no T cells to activate), low neoantigens (no targets), overwhelming immunosuppression (M2, TGF-β, steroids), BBB penetration uncertain",
+          "strategic_takeaway": "DEFINITIVE FAILURE - DO NOT develop checkpoint monotherapy for GBM. Three Phase III trials, all negative. Checkpoint blockade ONLY viable in combinations with immune-priming agents (OVs, vaccines). Monotherapy is DEAD."
+        },
+        {
+          "moa_class": "Single-Antigen CAR-T and Vaccines",
+          "evidence": "EGFRvIII CAR-T: Initial responses but 50% recurrences EGFRvIII-negative (antigen escape); Rindopepimut (EGFRvIII vaccine): Phase III FAILED (ACT IV trial)",
+          "failure_reasons": "Antigen escape - EGFRvIII lost in recurrent tumors, tumor heterogeneity, clonal selection",
+          "strategic_takeaway": "Single-antigen approaches OBSOLETE in GBM. Antigen escape is dominant resistance mechanism. Must use multi-antigen strategies (bivalent/trivalent CARs, dual-mechanism constructs, whole tumor lysate). EGFRvIII valid target but ONLY in multi-antigen context."
+        }
+      ],
+      "emerging_high_potential": [
+        {
+          "moa_class": "Multivalent CAR-T (Bivalent/Trivalent)",
+          "evidence": "EGFRvIII + IL13Rα2 ± HER2 constructs in Phase I; durable responses (>7 years) with IL13Rα2 CAR-T in case reports",
+          "potential": "Prevents antigen escape by targeting 2-3 antigens simultaneously; complementary expression patterns; tumor cannot lose all without losing viability",
+          "risks": "Manufacturing complexity, optimal antigen combinations unknown, potential tonic signaling",
+          "strategic_takeaway": "Multivalent CAR-T is FUTURE - addresses antigen escape. EGFRvIII + IL13Rα2 optimal pair (complementary expression). Trivalent (+ HER2) further broadens. Clinical validation ongoing - if successful, becomes standard CAR-T design for GBM."
+        },
+        {
+          "moa_class": "BBB-Crossing Technologies (CAVES, Nanocapsules)",
+          "evidence": "CAVES platform (stem cells carrying OVs): Preclinical data shows IV-administered OVs reach brain tumors; Nanocapsules: Engineered BBB crossing in preclinical models",
+          "potential": "Enables systemic (IV) administration of therapies currently requiring direct brain delivery; solves #1 technical challenge in GBM; expands treatable population (patients unable to undergo repeated procedures)",
+          "risks": "Early preclinical stage, regulatory pathway uncertain (carrier + payload complex), manufacturing complexity, immune clearance of carriers",
+          "strategic_takeaway": "BBB-crossing technologies are GAME-CHANGING if successful - enable systemic delivery of OVs, CAR-T, potentially antibodies. CAVES platform (stem cells) most advanced (IND-enabling). Would revolutionize GBM treatment (convenience, broader access). High-risk, high-reward - long development timeline but solves fundamental problem."
+        }
+      ]
+    },
+
+    "key_learnings": {
+      "checkpoint_monotherapy_lesson": "PD-1/PD-L1 monotherapy is DEFINITIVELY INVALID in GBM. Three Phase III failures (CheckMate 143, 498, 548) across all patient populations prove that checkpoint blockade alone does NOT work. ROOT CAUSE: GBM is 'cold' tumor - no T cells to unleash, no neoantigens to target, overwhelming immunosuppression. STRATEGIC IMPERATIVE: Abandon checkpoint monotherapy. Future checkpoint use ONLY as combination partner with immune-priming agents (OVs, vaccines) that FIRST create inflammation and T-cell infiltration. Biomarker selection must be based on IMMUNE status (T-cell infiltration, IFN signature), NOT MGMT methylation.",
+
+      "antigen_escape_lesson": "Single-antigen targeting FAILS in GBM due to tumor heterogeneity and plasticity. EGFRvIII CAR-T: 50% of recurrences lost EGFRvIII. Rindopepimut (EGFRvIII vaccine): Phase III FAILED. This is FUNDAMENTAL biology - GBM clones without target antigen proliferate (Darwinian selection). SOLUTION: Multi-antigen targeting REQUIRED. Successful approaches: (1) Dual-mechanism CAR-T (CARv3-TEAM-E: CAR + BiTE targeting different antigens → 61% regression), (2) Bivalent/trivalent CARs (EGFRvIII + IL13Rα2 ± HER2), (3) Whole tumor lysate (DCVax-L: all antigens → prevents escape). Single-antigen therapies are OBSOLETE - multivalent is essential.",
+
+      "bbb_challenge": "Blood-brain barrier is PRIMARY technical obstacle. Systemic antibodies (checkpoint inhibitors, bispecific antibodies) show erratic CNS penetration - contributed to nivolumab failures. CURRENT SOLUTIONS: (1) Direct delivery (intratumoral, intracavitary, intraventricular) - standard for cell therapies and OVs, bypasses BBB but requires procedures, (2) Neoadjuvant dosing (pre-surgery when BBB transiently open) - allows systemic dosing with tissue sampling, (3) Small molecules preferentially (inherently BBB-penetrant). FUTURE: Novel carriers (CAVES stem cells, nanocapsules) could enable IV administration of large molecules. BBB-crossing technology is MAJOR differentiation and market opportunity.",
+
+      "cold_tme_solution": "GBM's 'cold' TME (minimal T-cell infiltration, M2 macrophage dominance, TGF-β/adenosine immunosuppression) is why checkpoint monotherapy failed. SOLUTION: Convert cold to hot FIRST, then add checkpoint or other immunotherapy. VALIDATED APPROACHES: (1) Oncolytic viruses (DNX-2401) induce inflammation, release antigens, upregulate PD-L1 → DNX-2401 + pembrolizumab achieved 56% 12-month OS vs <20% historical, (2) DC vaccines (DCVax-L) prime de novo T-cell responses → create infiltration, (3) TME modulators (TGF-β blockade, CD73 inhibitors) in development. Single-agent approaches INSUFFICIENT - combination strategies ESSENTIAL.",
+
+      "steroid_confounding": "Corticosteroids (dexamethasone for cerebral edema) used in 80%+ of GBM patients; cause systemic immunosuppression (lymphopenia, impaired T-cell function). Blunt ALL immunotherapies. Checkpoint inhibitor failures may partly reflect steroid-induced immunosuppression. MITIGATION STRATEGIES: (1) Trial designs: minimize steroid use (inclusion criteria), stratify by steroid dose, (2) Dosing timing: administer immunotherapy when steroids lowest (neoadjuvant before steroids started, maintenance between courses), (3) Steroid-sparing edema management (bevacizumab for symptoms, not tumor). Solving steroid problem could unlock immunotherapy efficacy.",
+
+      "dc_vaccine_success": "Dendritic cell vaccines are MOST SUCCESSFUL modality in GBM - DCVax-L has BLA filed (mOS 19.3 vs 16.5 months), AV-GBM-1 showed 50% PFS improvement. SUCCESS FACTORS: (1) Whole tumor lysate prevents antigen escape (all antigens, not just EGFRvIII), (2) Primes NEW T-cell responses (creates infiltration in cold tumor, not dependent on pre-existing T cells like checkpoints), (3) Intradermal delivery bypasses BBB, (4) Excellent safety (no CRS, minimal AEs, well-tolerated). CHALLENGES: Autologous manufacturing complexity (tumor-dependent, 4-8 week production), crossover trial designs (complicate efficacy interpretation). STRATEGIC: If DCVax-L approved, validates entire DC vaccine platform - other assets (AV-GBM-1, ERC-1671 allogeneic) will follow.",
+
+      "dual_mechanism_breakthrough": "CARv3-TEAM-E demonstrated that dual-mechanism CAR-T can overcome antigen escape - CAR targets EGFRvIII, secreted BiTE targets EGFR wild-type. Achieved 61% tumor regression in DAYS (unprecedented in GBM). Dual targeting prevents escape (tumor cannot lose both antigens), secreted BiTE recruits bystander T cells (amplification beyond CAR-T alone). PARADIGM SHIFT: Single-antigen CAR-T is past, dual-mechanism/multivalent is future. Design principles applicable beyond GBM - any tumor with heterogeneity. Represents next-generation CAR-T engineering."
+    },
+
+    "recommendations_for_rd_strategy": [
+      {
+        "priority": "CRITICAL",
+        "recommendation": "DO NOT Develop Checkpoint Monotherapy - Only Rational Combinations",
+        "rationale": "PD-1/PD-L1 monotherapy comprehensively FAILED in GBM (3 Phase III trials, all negative). Cold TME, low neoantigens, steroids render monotherapy ineffective. However, combinations with immune-priming agents show promise (DNX-2401 + pembrolizumab: 56% 12-month OS).",
+        "action_items": [
+          "TERMINATE any checkpoint monotherapy programs in GBM",
+          "Pursue checkpoint ONLY in combinations with: (1) Oncolytic viruses (viral priming → checkpoint blockade), (2) DC vaccines (T-cell priming → checkpoint amplification), (3) TME modulators (TGF-β blockade, CD73 inhibitors)",
+          "Biomarker selection based on IMMUNE status (T-cell infiltration, IFN-γ signature), NOT MGMT methylation",
+          "Trial designs: sequential or concurrent combinations; measure TME changes (cold→hot conversion)"
+        ]
+      },
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Prioritize Multi-Antigen Targeting - Abandon Single-Antigen Approaches",
+        "rationale": "Antigen escape is dominant resistance mechanism. Single-antigen CAR-T (EGFRvIII) and vaccines (rindopepimut) FAILED. Multivalent approaches prevent escape and show breakthrough efficacy (CARv3-TEAM-E: 61% regression).",
+        "action_items": [
+          "For CAR-T: Develop dual-mechanism (CAR + BiTE) or bivalent/trivalent constructs (EGFRvIII + IL13Rα2 ± HER2); AVOID single-antigen CARs",
+          "For vaccines: Use whole tumor lysate (DCVax-L approach) or multi-peptide platforms; personalized neoantigen vaccines challenged by low TMB",
+          "Target combinations: EGFRvIII + IL13Rα2 validated pair; B7-H3 (broad expression) as monotherapy or added to multivalent",
+          "License CARv3-TEAM-E technology or develop similar dual-mechanism platform"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Invest in BBB-Crossing Technologies and Direct Delivery Platforms",
+        "rationale": "BBB is #1 technical challenge. Direct delivery is current workaround (90% of successful therapies). Novel carriers (CAVES, nanocapsules) could enable systemic administration - major differentiation and market opportunity.",
+        "action_items": [
+          "For near-term: Optimize direct delivery (intratumoral, intracavitary) for cell therapies and OVs; partner with neurosurgery centers",
+          "Explore neoadjuvant strategies (pre-surgery dosing when BBB transiently open) - window-of-opportunity trials",
+          "For long-term: Invest in BBB-crossing technologies (stem cell carriers like CAVES, engineered nanocapsules, receptor-mediated transcytosis)",
+          "Small molecules preferentially (inherently BBB-penetrant) - prioritize small molecule immunomodulators (IDO inhibitors, adenosine antagonists)",
+          "Partner with focused ultrasound companies (transient BBB disruption for drug delivery)"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Pursue DC Vaccine Partnerships or Platform Development",
+        "rationale": "DC vaccines are LEADING modality - DCVax-L closest to approval (BLA filed), AV-GBM-1 showed 50% PFS improvement. Whole tumor lysate approach addresses GBM's challenges (escape, cold TME, BBB). If DCVax-L approved, validates platform.",
+        "action_items": [
+          "Monitor DCVax-L regulatory decision closely - approval validates DC vaccine category in GBM",
+          "Partner with or acquire DC vaccine companies (Northwest Bio, AIVITA, Epitopoietic) if DCVax-L succeeds",
+          "Develop proprietary DC maturation protocols (differentiation on immunogenicity, manufacturing efficiency)",
+          "Explore allogeneic DC approaches (ERC-1671 model) - off-the-shelf potential, faster treatment",
+          "Combination strategies: DC vaccine + checkpoint, DC vaccine + OV (prime → amplify immune response)"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Develop Oncolytic Virus + Checkpoint Combinations",
+        "rationale": "OVs convert cold to hot TME - induce inflammation, release antigens, upregulate PD-L1. DNX-2401 + pembrolizumab showed 56% 12-month OS (vs <20% historical), 3 durable CRs >3 years. OVs are rational checkpoint enablers where monotherapy failed.",
+        "action_items": [
+          "License or develop oncolytic virus platforms (adenovirus, HSV, poliovirus, novel DNA-repair targeting)",
+          "Design sequential combinations: OV priming (intratumoral) followed by checkpoint blockade (systemic or continued local)",
+          "Optimize dosing schedules: viral replication kinetics (peak inflammation ~1-2 weeks) → checkpoint dosing",
+          "Monitor TME changes: PD-L1 upregulation, T-cell infiltration, M1/M2 ratio as biomarkers of 'cold→hot' conversion",
+          "Regulatory strategy: OV + checkpoint as COMBINATION product (not separate drugs) - clearer approval path"
+        ]
+      },
+      {
+        "priority": "MODERATE-HIGH",
+        "recommendation": "Address Steroid Confounding and Develop Steroid-Sparing Strategies",
+        "rationale": "Steroids (80%+ of patients) blunt immunotherapy efficacy. Minimizing steroids could improve responses. Steroid-sparing edema management and strategic dosing timing are opportunities.",
+        "action_items": [
+          "Trial designs: Strict steroid inclusion criteria (low/no steroids), stratify by steroid dose, measure steroid impact",
+          "Neoadjuvant immunotherapy (before surgery, before steroids started) - cleanest setting, no steroid confounding",
+          "Steroid-sparing edema management: Bevacizumab for symptoms (not tumor), focal radiation, surgical decompression",
+          "Dosing timing: Administer immunotherapy when steroids lowest (maintenance phase between steroid courses)",
+          "Educate investigators: Minimize prophylactic steroids; reserve for symptomatic edema only"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Explore TME Modulation Combinations",
+        "rationale": "TME immunosuppression (M2 macrophages, TGF-β, adenosine) major barrier. Modulators could enhance checkpoint, CAR-T, vaccine efficacy. Early-stage but addresses fundamental resistance mechanism.",
+        "action_items": [
+          "TGF-β blockade + checkpoint: Bifunctional PD-L1 x TGF-β trap molecules; reduce immunosuppression while checkpoint blocking",
+          "CD73 inhibitors + checkpoint: Block adenosine immunosuppression; rational in adenosine-high tumors",
+          "CSF-1R inhibitors: Deplete/repolarize M2→M1 macrophages; reduce immunosuppressive myeloid burden",
+          "Wnt inhibitors + checkpoint: Address Wnt-driven resistance (porcupine inhibitors + PD-1 validated in preclinical)",
+          "Biomarker-driven: Select TME-high tumors (TGF-β high, CD73 high, M2-dominant) for modulator trials; unselected populations high risk"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Consider First-in-Class Regulatory Strategy",
+        "rationale": "NO approved immunotherapies in GBM - first approval creates market, validates category. Regulatory agencies supportive (Fast Track, Orphan Drug, PRIME designations granted). First mover advantage substantial.",
+        "action_items": [
+          "Accelerated approval pathways: ORR or pathological response as early endpoints (OS confirmatory)",
+          "Orphan Drug designation: GBM qualifies (<200,000 patients); 7-year exclusivity, tax credits, reduced fees",
+          "Breakthrough Therapy if strong early data (substantial improvement over available therapy - low bar in GBM given limited options)",
+          "Engage FDA/EMA early (pre-IND, End-of-Phase-II meetings) - align on endpoints, biomarkers, trial design",
+          "Adaptive trial designs: Seamless Phase II/III, biomarker-driven expansion cohorts, interim analyses for early approval"
+        ]
+      }
+    ]
+  },
+
+  "executive_summary": {
+    "indication_overview": "Glioblastoma (GBM) is the most aggressive primary brain tumor with median survival 12-15 months despite maximal therapy. NO immunotherapies are approved, creating greenfield opportunity but also reflecting MAJOR biological challenges: (1) Blood-brain barrier restricts therapeutic penetration, (2) Immunologically 'cold' TME (minimal T cells, M2 macrophage dominance, TGF-β/adenosine immunosuppression), (3) Antigen heterogeneity and escape, (4) Corticosteroid use (80%+ patients) blunts immunity, (5) Low tumor mutational burden (few neoantigens). Market projected $2.73B (2025) with 10.5% CAGR but $0 current immunotherapy revenue - first approval creates market.",
+
+    "most_validated_moas": [
+      "Dendritic cell vaccines (tumor lysate): DCVax-L BLA filed (mOS 19.3 vs 16.5 months), AV-GBM-1 showed 50% PFS improvement - CLOSEST to approval",
+      "Dual-mechanism CAR-T: CARv3-TEAM-E achieved 61% tumor regression in days (Phase I breakthrough) - addresses antigen escape",
+      "Oncolytic virus + checkpoint combinations: DNX-2401 + pembrolizumab showed 56% 12-month OS (vs <20% historical) - converts cold to hot TME"
+    ],
+
+    "emerging_moa_opportunities": [
+      "Multivalent CAR-T (bivalent/trivalent EGFRvIII + IL13Rα2 ± HER2): Prevents antigen escape - Phase I ongoing",
+      "BBB-crossing technologies (CAVES stem cell carriers, nanocapsules): Enable systemic delivery - preclinical/IND-enabling",
+      "TME modulators (TGF-β blockade, CD73 inhibitors, Wnt inhibitors): Address immunosuppression - early combinations",
+      "Neoadjuvant immunotherapy: Pre-surgical dosing when BBB open - window-of-opportunity emerging"
+    ],
+
+    "failed_moas_avoid": [
+      "PD-1/PD-L1 checkpoint monotherapy (nivolumab failed 3 Phase III trials - CheckMate 143, 498, 548) - DEFINITIVELY INVALID; cold TME, low neoantigens",
+      "Single-antigen CAR-T (EGFRvIII CAR-T) and vaccines (rindopepimut) - FAILED due to antigen escape (50% recurrences EGFRvIII-negative)",
+      "Systemic antibodies without BBB strategy - erratic CNS penetration limits efficacy"
+    ],
+
+    "highest_priority_unmet_needs": [
+      {
+        "need": "First approved immunotherapy (market creation)",
+        "moa_solutions": "DC vaccines (DCVax-L leading), dual-mechanism CAR-T (CARv3-TEAM-E), OV + checkpoint combinations (DNX-2401 + pembro)"
+      },
+      {
+        "need": "Overcoming blood-brain barrier",
+        "moa_solutions": "Direct delivery (intratumoral/intracavitary - current standard), neoadjuvant dosing (pre-surgery), BBB-crossing carriers (CAVES, nanocapsules - future)"
+      },
+      {
+        "need": "Converting 'cold' to 'hot' TME",
+        "moa_solutions": "Oncolytic viruses (induce inflammation), DC vaccines (prime T cells), TME modulators (TGF-β, CD73, CSF-1R inhibitors)"
+      },
+      {
+        "need": "Preventing antigen escape",
+        "moa_solutions": "Multi-antigen CAR-T (dual-mechanism CARv3-TEAM-E, bivalent/trivalent), whole tumor lysate vaccines (DCVax-L), broadly expressed targets (B7-H3)"
+      }
+    ],
+
+    "key_success_factors_by_moa": {
+      "DC_vaccines": "Whole tumor lysate prevents escape (all antigens), primes de novo T cells (creates infiltration), intradermal delivery bypasses BBB, excellent safety. DCVax-L BLA filed - leading asset. Manufacturing complexity (autologous, tumor-dependent) is challenge.",
+
+      "CAR-T": "MUST be multi-antigen (dual-mechanism or bivalent/trivalent) - single-antigen FAILS due to escape. Direct delivery (intratumoral/intracavitary) bypasses BBB. CARv3-TEAM-E breakthrough (CAR + BiTE) is model. Armored CARs (cytokine-secreting) address TME.",
+
+      "Checkpoint_combinations": "Monotherapy DOES NOT WORK. Must combine with immune-priming (OVs, vaccines) that convert cold→hot. DNX-2401 + pembrolizumab validates approach (56% 12-month OS). Sequential dosing: prime first, checkpoint second.",
+
+      "Oncolytic_viruses": "Primary role: TME modulator (induce inflammation, release antigens, upregulate PD-L1), NOT standalone. Intratumoral delivery standard. Combination with checkpoint is rational. Novel carriers (CAVES) could enable IV dosing.",
+
+      "TME_modulators": "Address fundamental immunosuppression (TGF-β, adenosine, M2 macrophages). Biomarker selection ESSENTIAL (TME-high tumors). Combination partners (checkpoint, CAR-T, vaccines) required - monotherapy insufficient."
+    },
+
+    "strategic_positioning": {
+      "avoid": [
+        "PD-1/PD-L1 checkpoint monotherapy (3 Phase III failures - DEAD)",
+        "Single-antigen CAR-T or vaccines (antigen escape - EGFRvIII approach FAILED)",
+        "Systemic large molecule therapies without BBB strategy (erratic penetration)",
+        "Personalized neoantigen vaccines as monotherapy (low TMB challenge)"
+      ],
+      "pursue_aggressively": [
+        "DC vaccine partnerships if DCVax-L approved (validates platform)",
+        "Dual-mechanism or multivalent CAR-T (CARv3-TEAM-E model - HIGHEST PRIORITY)",
+        "OV + checkpoint combinations (DNX-2401 + pembro path)",
+        "BBB-crossing technologies (CAVES platform - long-term game-changer)",
+        "Neoadjuvant strategies (pre-surgical, steroid-free window)"
+      ],
+      "monitor_closely": [
+        "DCVax-L regulatory decision (BLA filed - creates market if approved)",
+        "CARv3-TEAM-E Phase I expansion and Phase II (breakthrough efficacy - 61% regression)",
+        "DNX-2401 Phase II readout (OV + checkpoint validation)",
+        "Multivalent CAR-T trials (bivalent/trivalent constructs)",
+        "CAVES platform IND filing (BBB-crossing stem cell carrier)"
+      ]
+    },
+
+    "overall_gbm_attractiveness": "GBM is HIGHEST-RISK, HIGHEST-NEED oncology indication: (1) NO approved immunotherapies ($0 current revenue) - first approval creates market but multiple Phase III failures prove difficulty, (2) MAJOR biological barriers (BBB, cold TME, antigen escape, steroids, low TMB) require sophisticated MOA-specific solutions, (3) Checkpoint monotherapy DEFINITIVELY INVALID (3 Phase III failures), (4) SUCCESS requires: direct delivery OR BBB-crossing, immune priming (OVs, vaccines), multi-antigen targeting, steroid minimization. HOWEVER, opportunities exist: (1) DC vaccines (DCVax-L) closest to approval - validates platform, (2) Dual-mechanism CAR-T (CARv3-TEAM-E) breakthrough data - paradigm shift, (3) OV + checkpoint combinations working where monotherapy failed, (4) First-in-class potential with regulatory support (Fast Track, Orphan Drug, PRIME), (5) High unmet need justifies premium pricing. RECOMMENDATION: GBM is SPECIALIST indication - requires deep understanding of unique biology, rational MOA selection, and multi-modal approaches. NOT for general immunotherapy programs. Pursue ONLY with: (1) DC vaccine platform or partnership (if DCVax-L approved), (2) Next-gen CAR-T with multi-antigen design (CARv3-TEAM-E model), (3) OV + checkpoint combinations (DNX-2401 path), (4) BBB-crossing technology (long-term differentiation). AVOID: Checkpoint monotherapy, single-antigen targeting, systemic antibodies without BBB plan. Success requires addressing GBM-specific challenges - general oncology approaches FAIL."
+  }
+}

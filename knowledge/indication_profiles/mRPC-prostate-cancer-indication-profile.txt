@@ -1,0 +1,1604 @@
+{
+  "metadata": {
+    "indication_name": "Metastatic Castration-Resistant Prostate Cancer (mCRPC) - AR-Resistant",
+    "indication_code": "C61 (ICD-10)",
+    "subtypes": [
+      {
+        "subtype": "AR-resistant mCRPC (Post-AR inhibitor)",
+        "prevalence": "Eventually all patients progressing on AR pathway inhibitors",
+        "molecular_features": "AR amplification, AR splice variants (AR-V7), AR mutations, neuroendocrine differentiation",
+        "prognosis": "Median OS 9-13 months post-AR inhibitor failure; poorest prognosis subset"
+      },
+      {
+        "subtype": "MSI-H / dMMR mCRPC",
+        "prevalence": "~5%",
+        "molecular_features": "Microsatellite instability-high, DNA mismatch repair deficient, high tumor mutational burden",
+        "prognosis": "Excellent response to pembrolizumab (tissue-agnostic approval); median OS >24 months with immunotherapy"
+      },
+      {
+        "subtype": "CDK12 Biallelic Loss",
+        "prevalence": "~4-5%",
+        "molecular_features": "Focal tandem duplications, immunogenic fusion neoantigens, 'BRCAness' phenotype",
+        "prognosis": "Enriched for checkpoint inhibitor response; median OS with IO-based therapy >18 months"
+      },
+      {
+        "subtype": "DDR-mutant (BRCA2, ATM, others)",
+        "prevalence": "~20-25%",
+        "molecular_features": "DNA damage repair deficiency, genomic instability, PARP inhibitor sensitive, potential immune activation via cGAS-STING",
+        "prognosis": "Median OS 18-24 months with PARP inhibitors; combination with IO under investigation"
+      },
+      {
+        "subtype": "PSMA-high mCRPC",
+        "prevalence": ">80%",
+        "molecular_features": "High PSMA expression, ideal for radioligands, CAR-T, bispecific antibodies",
+        "prognosis": "Median OS 15-19 months with Pluvicto (177Lu-PSMA-617); sets efficacy benchmark"
+      }
+    ],
+    "geographic_scope": "United States and European Union",
+    "data_version": "2025-10-04",
+    "data_sources": "mCRPCa.docx memo, ClinicalTrials.gov, PubMed, NoahAI clinical trial database, FDA/EMA regulatory filings, patent databases",
+    "usage_for_claude": "This mCRPC profile enables MOA-based indication selection by providing: (1) Disease biology emphasizing 'cold' immunosuppressive TME as fundamental challenge, (2) Comprehensive clinical precedent showing checkpoint monotherapy failures but promising biomarker-selected and combination approaches, (3) Unmet needs framed as MOA requirements with TME modulation, multi-antigen targeting, and biomarker selection as critical success factors, (4) Competitive landscape dominated by Pluvicto radioligand setting high efficacy bar. CRITICAL: Only ONE approved immunotherapy (Sipuleucel-T) despite robust pipeline; success requires overcoming intrinsically 'cold' TME through rational combinations and patient selection."
+  },
+
+  "disease_biology": {
+    "pathophysiology": {
+      "summary": "Metastatic castration-resistant prostate cancer (mCRPC) represents the lethal, treatment-refractory phase of prostate cancer that progresses despite androgen deprivation therapy and AR pathway inhibitors (enzalutamide, abiraterone, darolutamide). AR-resistant mCRPC is characterized by: (1) Intrinsically 'cold' tumor microenvironment dominated by immunosuppressive myeloid cells (TAMs 60-70%, MDSCs), minimal T-cell infiltration, and suppressive cytokines (TGF-β, IL-10, adenosine), (2) Low tumor mutational burden (~1-3 mutations/Mb in most cases, limiting neoantigen load), (3) Resistance mechanisms including AR amplification, AR splice variants (AR-V7), neuroendocrine differentiation, (4) Frequent bone metastases creating unique immunosuppressive bone microenvironment. The 'cold' TME is the primary barrier to immunotherapy efficacy, explaining checkpoint inhibitor failures in unselected populations. Success requires biomarker-driven patient selection (MSI-H, TMB-high, CDK12 loss) or TME modulation strategies.",
+      "key_pathways": [
+        {
+          "name": "PD-1/PD-L1 Checkpoint Axis",
+          "relevance": "LOW in unselected populations - Expression variable and checkpoint blockade FAILED broadly",
+          "role_in_disease": "PD-L1 expressed in subset (~20-30%) but single-agent PD-1 inhibitors showed minimal efficacy in unselected mCRPC. 'Cold' TME with low T-cell infiltration, abundant immunosuppressive myeloid cells, and low neoantigen burden renders checkpoint monotherapy ineffective. However, biomarker-selected subsets (MSI-H, TMB-high, CDK12 loss) show robust responses.",
+          "druggability": "INVALIDATED as monotherapy in unselected populations; VALIDATED in biomarker-selected patients (MSI-H, TMB-high)",
+          "clinical_validation": "Pembrolizumab tissue-agnostic approval for MSI-H/dMMR and TMB-high applies to ~5-10% of mCRPC. Unselected trials negative. Combinations with TME modulators (PARP inhibitors, bipolar androgen therapy, radioligands, OVs) showing promise."
+        },
+        {
+          "name": "Immunosuppressive Tumor Microenvironment (TME)",
+          "relevance": "CRITICAL - mCRPC is quintessential 'cold' tumor",
+          "role_in_disease": "TME dominated by: Tumor-associated macrophages (TAMs, 60-70% of infiltrate producing adenosine to blunt T cells), MDSCs, suppressive cytokines (TGF-β, IL-10), low T-cell infiltration, high adenosine levels. Bone metastases (>90% of mCRPC) create additional immunosuppressive niche with osteoclasts, Tregs. This hostile TME is PRIMARY reason for checkpoint inhibitor failures.",
+          "druggability": "EMERGING - TME modulation REQUIRED for immunotherapy success; strategies include: OVs (induce inflammation), PARP inhibitors + checkpoint (activate cGAS-STING), bipolar androgen therapy + checkpoint (increase neoantigen presentation), radioligands + checkpoint (immunogenic cell death)",
+          "clinical_validation": "Combination approaches showing promise: PARP inhibitor + checkpoint activates immune response via cGAS-STING pathway; bipolar androgen therapy (BAT) + checkpoint increases MHC class I and neoantigens; radioligand therapy + checkpoint induces immunogenic cell death. Single-agent TME modulators insufficient - combinations essential."
+        },
+        {
+          "name": "PSMA (Prostate-Specific Membrane Antigen)",
+          "relevance": "CRITICAL - Expressed in >80% of mCRPC; validated therapeutic target",
+          "role_in_disease": "PSMA is transmembrane glycoprotein highly expressed in prostate cancer, upregulated in AR-resistant disease. Serves as target for: (1) Radioligands (177Lu-PSMA-617/Pluvicto - approved, sets efficacy benchmark), (2) CAR-T therapies, (3) Bispecific antibodies (PSMA x CD3 T-cell engagers), (4) Imaging (68Ga-PSMA PET for patient selection).",
+          "druggability": "EXTENSIVELY VALIDATED - Pluvicto (radioligand) approved with median OS 15.3 months; multiple PSMA-targeted immunotherapies in development (CAR-T, bispecifics)",
+          "clinical_validation": "Pluvicto approval establishes PSMA as validated target and sets HIGH efficacy bar (median OS 15-19 months). PSMA-targeted immunotherapies must demonstrate additive benefit over radioligand or work in radioligand-refractory setting. PSMA expression maintained even in AR-resistant disease."
+        },
+        {
+          "name": "STEAP1 (Six-Transmembrane Epithelial Antigen of Prostate 1)",
+          "relevance": "HIGH - Expressed in 80-90% of mCRPC; emerging immunotherapy target",
+          "role_in_disease": "STEAP1 is tumor-associated antigen highly expressed in prostate cancer, particularly post-AR inhibition. Attractive target for: (1) CAR-T therapies (AZD-0754 in Phase II), (2) Bispecific antibodies (Xaluritamig/AMG 509 in Phase III - MOST ADVANCED), (3) Lower expression in normal tissues than PSMA (potential safety advantage).",
+          "druggability": "VALIDATED - Xaluritamig (STEAP1 x CD3 bispecific) showed 30% PSA50 response in Phase I; Phase III ongoing. STEAP1 CAR-T + enzalutamide combinations in development.",
+          "clinical_validation": "Xaluritamig Phase I: 30% PSA50 response rate at recommended dose. STEAP1 maintained/upregulated in AR-resistant disease. May avoid antigen loss issues seen with other targets. Represents key alternative to PSMA for multi-antigen strategies."
+        },
+        {
+          "name": "CDK12 Biallelic Loss Pathway",
+          "relevance": "MODERATE (~4-5% prevalence) - Creates immunogenic fusion neoantigens",
+          "role_in_disease": "CDK12 biallelic loss generates unique 'focal tandem duplication' mutational signature, producing highly immunogenic fusion neoantigens. Creates 'BRCAness' phenotype with genomic instability. Enriches for checkpoint inhibitor response despite low overall TMB.",
+          "druggability": "VALIDATED as predictive biomarker for checkpoint response; not directly druggable but identifies responder population",
+          "clinical_validation": "PERSEUS-1 trial (initiated June 2025) prospectively enrolling mCRPC with CDK12 loss for pembrolizumab. Retrospective analyses show enrichment for checkpoint response. Represents biomarker-selected strategy to overcome low neoantigen burden challenge."
+        },
+        {
+          "name": "DNA Damage Repair (DDR) Pathway / cGAS-STING Activation",
+          "relevance": "MODERATE-HIGH (~20-25% have DDR mutations) - Activates innate immunity",
+          "role_in_disease": "DDR deficiency (BRCA2, ATM, PALB2 mutations) creates genomic instability, cytosolic DNA accumulation, activation of cGAS-STING pathway producing type I interferons. Can sensitize to checkpoint inhibitors. PARP inhibitors approved for DDR-mutant mCRPC; combinations with immunotherapy rational.",
+          "druggability": "VALIDATED - PARP inhibitors (olaparib, rucaparib) approved for DDR-mutant mCRPC; PARP + checkpoint combinations in development to amplify immune activation",
+          "clinical_validation": "PARP inhibitors activate cGAS-STING â†' type I IFN â†' immune activation. Combinations with checkpoint inhibitors showing immune biomarker changes (increased T-cell infiltration). Clinical efficacy data maturing. DDR mutations predict for both PARP sensitivity and potential immunotherapy response."
+        },
+        {
+          "name": "Androgen Receptor (AR) Pathway - Immune Modulatory Effects",
+          "relevance": "HIGH - AR signaling suppresses immune response; AR blockade can enhance immunity",
+          "role_in_disease": "AR signaling directly suppresses immune response by: (1) Downregulating MHC class I expression, (2) Reducing antigen presentation, (3) Promoting immunosuppressive TME. Bipolar androgen therapy (BAT - supraphysiologic testosterone) paradoxically increases MHC-I, neoantigens, and can sensitize to checkpoint inhibitors.",
+          "druggability": "MODULATING AR as immune strategy: (1) AR inhibitors maintain some immune suppression (challenge), (2) Bipolar androgen therapy (BAT) + checkpoint shows promise by increasing immunogenicity",
+          "clinical_validation": "BAT + nivolumab showed promising activity (ORR 35% in biomarker-selected cohort). AR modulation (not just blockade) can enhance immunotherapy. AR-V7 splice variants (constitutively active) create AR-independent disease - opportunity for immunotherapy in AR-agnostic setting."
+        }
+      ]
+    },
+
+    "immune_landscape": {
+      "tumor_microenvironment": {
+        "immune_infiltration": "COLD - Minimal T-cell infiltration in most mCRPC; TME dominated by immunosuppressive myeloid populations (TAMs 60-70%, MDSCs abundant). <10% of mCRPC have 'hot' immune infiltrate. Biomarker-selected subsets (MSI-H <5%, CDK12 loss ~5%, TMB-high <5%) show increased T-cell infiltration and checkpoint sensitivity. Bone metastases (>90% of patients) create particularly immunosuppressive microenvironment with osteoclasts, Tregs, and suppressive cytokines.",
+        "dominant_immune_cells": "Tumor-associated macrophages (TAMs, 60-70% of immune infiltrate, M2-polarized, adenosine-producing), Myeloid-derived suppressor cells (MDSCs, abundant), Regulatory T cells (Tregs, enriched in bone metastases), CD8+ T cells (scarce, <10% in most tumors, exhausted when present), NK cells (present but inhibited)",
+        "immune_suppression_mechanisms": [
+          {
+            "name": "TAM-Mediated Adenosine Immunosuppression",
+            "prevalence": "TAMs comprise 60-70% of mCRPC tumor mass",
+            "functional_impact": "TAMs produce adenosine which binds A2A receptors on T cells causing immunosuppression, T-cell anergy, and blunted cytotoxic function. Primary mechanism of 'cold' TME maintenance.",
+            "therapeutic_relevance": "MAJOR TARGET - Adenosine pathway inhibition (CD73 inhibitors, A2A receptor antagonists) in combination with checkpoint inhibitors rational to overcome TAM-mediated suppression"
+          },
+          {
+            "name": "Low Tumor Mutational Burden / Neoantigen Paucity",
+            "prevalence": "80-90% of mCRPC have TMB <10 mutations/Mb",
+            "functional_impact": "Low TMB (~1-3 mutations/Mb in most cases) generates few neoantigens for T-cell recognition. Explains checkpoint inhibitor failures - even if PD-1 blocked, few targets for T cells to recognize.",
+            "therapeutic_relevance": "CRITICAL LIMITATION - Explains checkpoint monotherapy failures. Strategies: (1) Biomarker selection (MSI-H, TMB-high, CDK12 loss subsets with more neoantigens), (2) Increase neoantigen load (bipolar androgen therapy, PARP inhibitors), (3) Target tumor-associated antigens (PSMA, STEAP1) not neoantigens"
+          },
+          {
+            "name": "Myeloid-Derived Suppressor Cells (MDSCs)",
+            "prevalence": "Elevated in advanced mCRPC, particularly bone metastases",
+            "functional_impact": "MDSCs suppress T-cell activation, produce arginase (depletes arginine needed for T-cell function), generate reactive oxygen species (ROS) causing T-cell damage",
+            "therapeutic_relevance": "TARGET for depletion or repolarization strategies; MDSC accumulation in bone mets creates sanctuary site; combination strategies (checkpoint + MDSC depletion) rational"
+          },
+          {
+            "name": "Bone Microenvironment Immunosuppression",
+            "prevalence": ">90% of mCRPC patients have bone metastases",
+            "functional_impact": "Bone niche uniquely immunosuppressive: osteoclasts, Tregs enriched, TGF-β abundant, physical barrier to T-cell infiltration. Bone-directed therapies (bisphosphonates, denosumab) have immunomodulatory effects.",
+            "therapeutic_relevance": "MAJOR CHALLENGE - Bone mets require specific strategies; radioligand therapy (Pluvicto) induces immunogenic cell death in bone; bone-targeted approaches (bisphosphonates + IO) being explored"
+          },
+          {
+            "name": "STAT3 Pathway Activation (Resistance Mechanism)",
+            "prevalence": "Activated in checkpoint-resistant mCRPC",
+            "functional_impact": "STAT3 drives immunosuppressive TME, promotes MDSC expansion, inhibits DC maturation, confers checkpoint resistance",
+            "therapeutic_relevance": "EMERGING TARGET - STAT3 inhibitors + checkpoint combinations in preclinical development; addresses alternative resistance pathway beyond PD-1/PD-L1"
+          },
+          {
+            "name": "Wnt/β-catenin Signaling (T-cell Exclusion)",
+            "prevalence": "Active in subset of mCRPC",
+            "functional_impact": "Wnt7b pathway activation excludes T cells from TME, confers checkpoint resistance even when PD-L1 expressed",
+            "therapeutic_relevance": "EMERGING - Wnt inhibitors (porcupine inhibitors) + checkpoint rational; preclinical validation in other tumors; could address T-cell exclusion in mCRPC subset"
+          }
+        ]
+      },
+
+      "cytokine_environment": {
+        "cytokine_profile": "Heavily immunosuppressive - dominated by TGF-β, IL-10, adenosine. Pro-inflammatory cytokines (IFN-γ, IL-12) largely absent. Bone metastases enrich for TGF-β (osteoclast-derived). Oncolytic viruses and radioligands can induce transient inflammatory burst.",
+        "key_cytokines": [
+          {
+            "name": "TGF-β",
+            "role": "Protumor",
+            "expression_level": "High, particularly in bone metastases",
+            "function": "Master immunosuppressor; promotes Tregs, inhibits CTLs, drives M2 TAM polarization, excludes T cells from TME; abundant in bone microenvironment",
+            "therapeutic_relevance": "PRIMARY TARGET - TGF-β blockade essential for converting cold to hot; bifunctional PD-L1 x TGF-β trap molecules in development for mCRPC"
+          },
+          {
+            "name": "IL-10",
+            "role": "Protumor",
+            "expression_level": "Elevated in mCRPC TME",
+            "function": "Immunosuppressive; secreted by TAMs and Tregs; inhibits DC maturation, suppresses T-cell activation and proliferation",
+            "therapeutic_relevance": "Target for blockade; IL-10 contributes to 'cold' phenotype; combination strategies to neutralize"
+          },
+          {
+            "name": "Adenosine",
+            "role": "Protumor (metabolic immunosuppression)",
+            "expression_level": "High due to TAM-derived CD73 activity",
+            "function": "CD73 on TAMs converts AMP to adenosine; adenosine binds A2A receptors on T cells causing suppression and anergy; key mediator of TAM-induced immunosuppression",
+            "therapeutic_relevance": "HIGH PRIORITY TARGET - CD73 inhibitors + checkpoint combinations in trials; addresses metabolic suppression unique to mCRPC TME"
+          },
+          {
+            "name": "IFN-γ (Induced by Immune Activation)",
+            "role": "Antitumor (when induced)",
+            "expression_level": "Low at baseline; induced by immunotherapies (OVs, vaccines, radioligands)",
+            "function": "Type II interferon; activates M1 macrophages, enhances MHC expression, recruits T cells; hallmark of 'hot' immune response",
+            "therapeutic_relevance": "BIOMARKER of successful immune activation; OVs, vaccines, radioligands induce IFN-γ - creates window for checkpoint synergy; IFN-γ signatures predict response"
+          }
+        ]
+      },
+
+      "immune_receptors": {
+        "failed_targets": [
+          {
+            "name": "PD-1 (Monotherapy in Unselected Populations)",
+            "expression_pattern": "Expressed on tumor-infiltrating T cells when present; however, T-cell infiltration minimal in most mCRPC",
+            "functional_status": "Exhausted T cells express PD-1, but checkpoint blockade alone insufficient due to 'cold' TME, low neoantigens, TAM-mediated suppression",
+            "targeting_potential": "FAILED AS MONOTHERAPY in unselected populations; SUCCESS in biomarker-selected patients (MSI-H, TMB-high, CDK12 loss)",
+            "clinical_data": "Pembrolizumab monotherapy in unselected mCRPC: ORR <5%. Tissue-agnostic approval for MSI-H/dMMR and TMB-high (≥10 mut/Mb) applies to ~5-10% of mCRPC with robust responses (ORR 40-50%). PERSEUS-1 trial enrolling CDK12-mutant patients for pembrolizumab.",
+            "lessons": "CRITICAL LESSON - PD-1 blockade does NOT work as monotherapy in unselected mCRPC (similar to GBM). 'Cold' TME and low neoantigen burden render checkpoint monotherapy ineffective. SUCCESS requires: (1) Biomarker selection (MSI-H, TMB-high, CDK12 loss), (2) Combinations with TME modulators (PARP inhibitors, BAT, radioligands, OVs) that create inflammation and increase neoantigens, (3) Patient selection based on immune biomarkers (T-cell infiltration, IFN signatures) not just genomic markers."
+          }
+        ],
+        "validated_targets": [
+          {
+            "name": "PD-1 in Biomarker-Selected Populations",
+            "expression_pattern": "PD-1+ T cells present in MSI-H, TMB-high, CDK12-mutant mCRPC",
+            "functional_status": "Functional checkpoint blockade possible when T cells and neoantigens present",
+            "targeting_potential": "VALIDATED in MSI-H/dMMR (~5%) and TMB-high (~5%) - tissue-agnostic FDA approval",
+            "clinical_data": "Pembrolizumab in MSI-H solid tumors (including mCRPC): ORR 40-50%, durable responses. TMB-high approval (≥10 mut/Mb): ORR 29%, PFS benefit. PERSEUS-1 prospectively testing pembrolizumab in CDK12-mutant mCRPC.",
+            "strategic_importance": "Pembrolizumab is ONLY approved checkpoint inhibitor in mCRPC via tissue-agnostic pathways. Applies to ~5-10% of patients. Validates biomarker-driven approach - immune-sensitive subtypes can be identified and treated successfully."
+          }
+        ],
+        "emerging_targets": [
+          {
+            "name": "CTLA-4 (in Combinations)",
+            "expression_pattern": "Expressed on Tregs and activated T cells",
+            "functional_status": "Dual PD-1 x CTLA-4 blockade showed limited benefit in unselected mCRPC but combinations being optimized",
+            "targeting_potential": "EMERGING - Bispecific PD-1 x CTLA-4 antibodies (lorigerlimab) with chemotherapy showing promise; ipilimumab + nivolumab failed as doublet but triplet combinations (+ docetaxel) rational",
+            "clinical_data": "LORIKEET trial (fully enrolled March 2025): lorigerlimab (PD-1 x CTLA-4 bispecific) + docetaxel in mCRPC. Dual checkpoint blockade may work if combined with chemotherapy (immune priming) or other TME modulators."
+          },
+          {
+            "name": "CD73 (Adenosine Pathway)",
+            "expression_pattern": "Highly expressed on TAMs in mCRPC",
+            "functional_status": "CD73 generates immunosuppressive adenosine; key mediator of TAM-induced T-cell suppression",
+            "targeting_potential": "HIGH - CD73 inhibitors + checkpoint combinations in trials; addresses metabolic immunosuppression specific to mCRPC",
+            "clinical_data": "CD73 inhibitors in development for mCRPC combinations; preclinical data shows restoration of T-cell function when adenosine pathway blocked. Rational combination partner for checkpoint inhibitors."
+          }
+        ]
+      }
+    },
+
+    "tumor_antigens": {
+      "highly_expressed_targets": [
+        {
+          "name": "PSMA (Prostate-Specific Membrane Antigen)",
+          "expression_frequency": ">80% of mCRPC",
+          "expression_level": "High when present; upregulated in AR-resistant disease",
+          "expression_pattern": "Generally homogeneous within tumors; maintained across disease progression; increases with AR inhibition",
+          "normal_tissue_expression": "Low-level in salivary glands, kidneys, small intestine; therapeutic window acceptable",
+          "therapeutic_window": "EXCELLENT - High tumor expression, manageable on-target/off-tumor toxicity",
+          "prior_targeting_attempts": [
+            "177Lu-PSMA-617 (Pluvicto, radioligand): FDA approved 2022, expanded indication 2025; median OS 15.3 months; sets HIGH efficacy benchmark",
+            "PSMA-targeted CAR-T (City of Hope, others): Early responses but persistence challenges; combination with IL-15 to improve persistence",
+            "PSMA x CD3 bispecific antibodies (REGN-4336, others): Phase II; T-cell engager approach without ex vivo manufacturing",
+            "KEY LESSON: PSMA is validated target but Pluvicto radioligand approval creates HIGH efficacy bar (median OS 15-19 months); immunotherapies must show additive benefit or work in radioligand-refractory setting"
+          ],
+          "strategic_importance": "VALIDATED but COMPETITIVE - Pluvicto success establishes PSMA as gold-standard target but also creates efficacy benchmark. PSMA-targeted immunotherapies face challenge of demonstrating superiority or complementary benefit. Opportunities: (1) Post-Pluvicto setting (radioligand-refractory), (2) Combinations (Pluvicto + checkpoint to enhance immune death), (3) Earlier lines (pre-radioligand). PSMA expression maintained in AR-resistant disease (advantage)."
+        },
+        {
+          "name": "STEAP1 (Six-Transmembrane Epithelial Antigen of Prostate 1)",
+          "expression_frequency": "80-90% of mCRPC",
+          "expression_level": "High, particularly post-AR inhibitor therapy",
+          "expression_pattern": "Relatively homogeneous; maintained/upregulated in AR-resistant disease",
+          "normal_tissue_expression": "Lower than PSMA in normal tissues; potential safety advantage",
+          "therapeutic_window": "EXCELLENT - Broad tumor expression, favorable safety profile",
+          "prior_targeting_attempts": [
+            "Xaluritamig (AMG 509, STEAP1 x CD3 bispecific): MOST ADVANCED - Phase III ongoing; Phase I showed 30% PSA50 response at recommended dose",
+            "AZD-0754 (STEAP1 CAR-T, AstraZeneca): Phase II; combination with enzalutamide began dosing late 2024; addresses CAR-T persistence with concurrent AR inhibition",
+            "STEAP1 is emerging as KEY alternative to PSMA - maintained in AR-resistant disease, potentially less heterogeneous loss"
+          ],
+          "strategic_importance": "EMERGING HIGH - Xaluritamig Phase III positioning STEAP1 as lead alternative to PSMA. Advantages: (1) Maintained in AR-resistant/radioligand-refractory setting, (2) May avoid antigen loss (broader expression), (3) Safety profile favorable. STEAP1 represents diversification from PSMA-only strategies. Multi-antigen approaches (PSMA + STEAP1) rational to prevent escape."
+        },
+        {
+          "name": "PSCA (Prostate Stem Cell Antigen)",
+          "expression_frequency": "50-60% of mCRPC",
+          "expression_level": "Variable; enriched in stem-like/therapy-resistant clones",
+          "expression_pattern": "Heterogeneous within tumors",
+          "normal_tissue_expression": "Bladder, pancreas (low levels); acceptable therapeutic window",
+          "therapeutic_window": "MODERATE - Heterogeneous expression and normal tissue presence require careful dosing",
+          "prior_targeting_attempts": [
+            "BPX-601 (PSCA CAR-T with rimiducid, Bellicum/Anixa): Phase I published data - 4 of 14 patients (29%) achieved PSA decline ≥50%; manageable toxicity with inducible safety switch",
+            "PSCA heterogeneity and lower prevalence than PSMA/STEAP1 limit enthusiasm as monotherapy; role in multi-antigen constructs"
+          ],
+          "strategic_importance": "MODERATE - PSCA less prevalent and more heterogeneous than PSMA/STEAP1. However, enrichment in therapy-resistant clones suggests role as third target in multi-antigen strategies (PSMA + STEAP1 + PSCA). PSCA CAR-T showed proof-of-concept (29% PSA50 responses) but heterogeneity limits monotherapy potential."
+        },
+        {
+          "name": "KLK2 (Kallikrein-2)",
+          "expression_frequency": "60-70% of mCRPC",
+          "expression_level": "Moderate to high when expressed",
+          "expression_pattern": "Variable; androgen-regulated (increased with BAT)",
+          "normal_tissue_expression": "Prostate-specific; minimal elsewhere",
+          "therapeutic_window": "EXCELLENT - Prostate-specific expression",
+          "prior_targeting_attempts": [
+            "Pasritamig (JNJ-78278343, KLK2 x CD3 bispecific): Phase I showed 19% ORR, 63% disease control rate (DCR); FIRST-IN-CLASS targeting KLK2",
+            "KLK2 represents novel target distinct from PSMA/STEAP1 - prostate-specific, androgen-regulated"
+          ],
+          "strategic_importance": "EMERGING MODERATE - Pasritamig Phase I data (19% ORR) establishes KLK2 as viable target. Advantages: (1) Prostate-specific (excellent safety window), (2) Distinct from PSMA/STEAP1 (diversification), (3) Androgen-regulated (could combine with AR modulation). Limitation: Lower response rates than STEAP1 bispecific (30% PSA50). Role as alternative or third target in combinations."
+        },
+        {
+          "name": "Prostatic Acid Phosphatase (PAP)",
+          "expression_frequency": "~80% of prostate cancer (varies in mCRPC)",
+          "expression_level": "Moderate; declines with AR inhibition in some cases",
+          "expression_pattern": "Generally broad but heterogeneous",
+          "normal_tissue_expression": "Prostate-specific",
+          "therapeutic_window": "GOOD - Prostate-specific",
+          "prior_targeting_attempts": [
+            "Sipuleucel-T (Provenge, cancer vaccine targeting PAP): FDA/EMA approved 2010; ONLY approved immunotherapy for prostate cancer; median OS benefit 4.1 months; indicated for asymptomatic/minimally symptomatic mCRPC",
+            "PAP remains relevant target validated by Sipuleucel-T approval, though modest clinical benefit"
+          ],
+          "strategic_importance": "MODERATE - PAP is validated by Sipuleucel-T (only approved immunotherapy) but modest OS benefit (4.1 months) sets low benchmark. PAP expression may decline with AR inhibition (challenge). Role: (1) Continued optimization of PAP vaccines, (2) Combination approaches (vaccine + checkpoint), (3) Alternative targets (PSMA, STEAP1) likely more promising."
+        },
+        {
+          "name": "PSA (Prostate-Specific Antigen)",
+          "expression_frequency": "High in hormone-sensitive disease; variable in mCRPC",
+          "expression_level": "Declines with AR inhibition and castration resistance",
+          "expression_pattern": "Heterogeneous in AR-resistant disease",
+          "normal_tissue_expression": "Prostate-specific",
+          "therapeutic_window": "MODERATE - Declining expression in AR-resistant disease limits utility",
+          "prior_targeting_attempts": [
+            "Rilimogene galvacirepvec (Prostvac, viral vector vaccine targeting PSA): Phase II showed trends but Phase III FAILED (PROSPECT trial); no OS benefit",
+            "PSA vaccines challenged by declining antigen expression in advanced/AR-resistant disease"
+          ],
+          "strategic_importance": "LOW - Prostvac Phase III failure and declining PSA expression in AR-resistant mCRPC limit enthusiasm. PSA better target in hormone-sensitive settings. For AR-resistant mCRPC, PSMA, STEAP1, KLK2 preferred over PSA."
+        }
+      ],
+      "neoantigen_landscape": {
+        "description": "CRITICAL LIMITATION - Most mCRPC has LOW tumor mutational burden (TMB ~1-3 mutations/Mb), generating few neoantigens. MSI-H (~5%) and TMB-high (~5%) subsets have elevated TMB (>10 mutations/Mb) and respond to checkpoint inhibitors. CDK12 biallelic loss (~4-5%) creates unique focal tandem duplication signature with immunogenic fusion neoantigens despite low overall TMB. DDR mutations (~20-25%) may increase genomic instability and neoantigen load. Bipolar androgen therapy (BAT) can increase neoantigen presentation by upregulating MHC class I.",
+        "expression_frequency": "TMB-high >10 mut/Mb: ~5% of mCRPC; MSI-H: ~5%; CDK12 loss with fusion neoantigens: ~4-5%",
+        "therapeutic_approaches": [
+          "Biomarker selection: MSI-H, TMB-high, CDK12 loss identify patients with higher neoantigen burden for checkpoint therapy",
+          "Neoantigen induction: Bipolar androgen therapy (BAT) increases MHC-I expression and neoantigen presentation; PARP inhibitors may increase neoantigen load via genomic instability",
+          "Personalized neoantigen vaccines: Challenged by low baseline TMB in most patients; role in biomarker-selected subsets",
+          "Challenge: Low neoantigen burden explains checkpoint failures in unselected populations; strategies to increase neoantigens or select neoantigen-high patients essential"
+        ],
+        "strategic_importance": "CRITICAL for patient selection - Neoantigen status (MSI-H, TMB-high, CDK12 loss) is PRIMARY determinant of checkpoint inhibitor response. Low neoantigen burden in majority (~85%) necessitates: (1) Biomarker-driven trials (PERSEUS-1 model), (2) Neoantigen induction strategies (BAT, PARP inhibitors), (3) Targeting tumor-associated antigens (PSMA, STEAP1) instead of neoantigens for broader population."
+      }
+    },
+
+    "biological_features_for_moa_matching": [
+      {
+        "feature_name": "Intrinsically 'Cold' Tumor Microenvironment",
+        "moa_relevance": ["TME modulators (OVs, vaccines)", "Combination immunotherapies", "PARP inhibitors + checkpoint", "Radioligand + checkpoint", "Bipolar androgen therapy + checkpoint"],
+        "description": "mCRPC TME dominated by TAMs (60-70%), MDSCs, suppressive cytokines (TGF-β, IL-10, adenosine), minimal T-cell infiltration, low neoantigen burden. 'Cold' phenotype is PRIMARY barrier to immunotherapy.",
+        "frequency": "~85-90% of mCRPC are 'cold' tumors (excluding MSI-H, TMB-high, CDK12-mutant subsets)",
+        "therapeutic_implication": "CRITICAL SUCCESS FACTOR: Checkpoint inhibitors FAILED as monotherapy because no T cells to activate. MOAs must FIRST convert cold to hot: (1) Oncolytic viruses (CAN-2409 has RMAT designation) induce inflammation and antigen release, (2) Cancer vaccines (Sipuleucel-T approved; SYNC-T showing activity) prime T-cell responses, (3) TME modulators: PARP inhibitors activate cGAS-STING pathway, radioligands (Pluvicto) induce immunogenic cell death, bipolar androgen therapy (BAT) increases MHC-I and neoantigens, (4) Adenosine pathway blockade (CD73 inhibitors) reduces TAM suppression. Single-agent checkpoint blockade WILL FAIL in unselected populations. Biomarker selection (immune-high subsets) or TME-modulating combinations ESSENTIAL."
+      },
+      {
+        "feature_name": "Low Tumor Mutational Burden / Neoantigen Paucity",
+        "moa_relevance": ["Biomarker-selected checkpoint therapy (MSI-H, TMB-high, CDK12 loss)", "Tumor-associated antigen targeting (PSMA, STEAP1)", "Neoantigen induction strategies (BAT, PARP inhibitors)"],
+        "description": "TMB ~1-3 mutations/Mb in most mCRPC; few neoantigens for immune recognition. MSI-H (~5%), TMB-high (~5%), CDK12 loss (~5%) have higher neoantigen burden.",
+        "frequency": "Low TMB (<10 mut/Mb): ~85-90%; High TMB/neoantigen subsets: ~10-15%",
+        "therapeutic_implication": "EXPLAINS CHECKPOINT FAILURES in unselected populations - low neoantigens mean few targets even if PD-1 blocked. SOLUTIONS: (1) Biomarker selection: Pembrolizumab tissue-agnostic approval for MSI-H/dMMR and TMB-high; PERSEUS-1 trial for CDK12-mutant; restrict checkpoint therapy to neoantigen-high subsets, (2) Tumor-associated antigen targeting: PSMA, STEAP1, KLK2 provide targets independent of neoantigen status (CAR-T, bispecifics, vaccines can work broadly), (3) Neoantigen induction: BAT increases MHC-I and antigen presentation; PARP inhibitors may increase genomic instability and neoantigens. Checkpoint monotherapy in unselected TMB-low patients is FUTILE."
+      },
+      {
+        "feature_name": "Bone Metastases and Immunosuppressive Bone Microenvironment",
+        "moa_relevance": ["Radioligand therapy + immunotherapy", "Bone-targeted therapies + checkpoint", "Systemically delivered immunotherapies"],
+        "description": ">90% of mCRPC have bone metastases; bone niche uniquely immunosuppressive (osteoclasts, Tregs, TGF-β, physical barriers to T-cell infiltration).",
+        "frequency": ">90% of mCRPC patients have bone involvement",
+        "therapeutic_implication": "MAJOR CHALLENGE - Bone creates sanctuary site resistant to systemic immunotherapy. STRATEGIES: (1) Radioligand therapy (Pluvicto) delivers targeted radiation to bone mets, induces immunogenic cell death, potentially synergizes with checkpoint inhibitors, (2) Bone-targeted agents (bisphosphonates, denosumab) have immunomodulatory effects - combinations with IO rational, (3) Systemically delivered immunotherapies (bispecific antibodies, checkpoint inhibitors) can access bone mets but face TME barriers, (4) Direct targeting of bone immunosuppression (osteoclast inhibition, TGF-β blockade abundant in bone). Bone metastases necessitate combination approaches and rational sequencing."
+      },
+      {
+        "feature_name": "Antigen Heterogeneity and Potential Antigen Loss",
+        "moa_relevance": ["Multi-antigen targeting (bivalent/trivalent approaches)", "Sequential antigen strategies", "Broadly expressed targets (PSMA, STEAP1)"],
+        "description": "While less pronounced than GBM, mCRPC shows antigen heterogeneity (PSMA, STEAP1, PSCA variably expressed). Potential for antigen loss/downregulation with targeted monotherapies.",
+        "frequency": "PSMA >80%, STEAP1 80-90%, PSCA 50-60%; heterogeneity within tumors exists",
+        "therapeutic_implication": "MODERATE CONCERN - Less critical than GBM (broader antigen expression, less clonal heterogeneity) but still relevant for long-term control. MITIGATION: (1) Multi-antigen targeting: Combine PSMA + STEAP1 in CAR-T or bispecific strategies to prevent escape, (2) Sequential targeting: If PSMA-directed therapy fails, STEAP1 or KLK2 as second-line, (3) Broadly expressed targets: PSMA and STEAP1 both >80% - monotherapy more viable than in GBM, but multi-antigen optimal for durability, (4) Monitor antigen expression: PSMA-PET imaging guides patient selection and monitors antigen loss. PSMA maintained in AR-resistant disease (advantage over PSA which declines)."
+      },
+      {
+        "feature_name": "High Efficacy Bar Set by Pluvicto Radioligand Therapy",
+        "moa_relevance": ["All immunotherapies must demonstrate additive benefit or work in radioligand-refractory setting"],
+        "description": "Pluvicto (177Lu-PSMA-617) FDA approved with median OS 15.3 months, expanded indication 2025. Sets HIGH efficacy benchmark that immunotherapies must meet or exceed.",
+        "frequency": "Pluvicto applicable to PSMA-expressing mCRPC (>80%); approved for post-chemotherapy and expanding to earlier lines",
+        "therapeutic_implication": "CRITICAL COMPETITIVE FACTOR - Pluvicto success raises bar for new therapies. STRATEGIC POSITIONING: (1) Post-Pluvicto setting: Immunotherapies for radioligand-refractory patients (unmet need), (2) Combination with Pluvicto: Radioligand + checkpoint rational (immunogenic cell death + immune checkpoint blockade), trials ongoing, (3) Earlier lines: Pre-radioligand immunotherapy if superior efficacy demonstrated, (4) Alternative targets: STEAP1, KLK2 for PSMA-low or post-PSMA therapy patients. Immunotherapies CANNOT ignore Pluvicto - must show differentiation (combination, sequencing, or alternative population)."
+      },
+      {
+        "feature_name": "Biomarker-Defined Immune-Sensitive Subsets",
+        "moa_relevance": ["Biomarker-selected checkpoint therapy", "Enrichment strategies for clinical trials", "Personalized immunotherapy approaches"],
+        "description": "~10-15% of mCRPC have immune-sensitive biomarkers: MSI-H/dMMR (~5%), TMB-high (~5%), CDK12 biallelic loss (~5%), immune gene signatures (25-30%). These subsets show robust checkpoint responses.",
+        "frequency": "Immune-sensitive subsets collectively ~10-15%; broader immune signatures ~25-30%",
+        "therapeutic_implication": "VALIDATED STRATEGY - Biomarker selection transforms checkpoint efficacy. Pembrolizumab tissue-agnostic approvals (MSI-H, TMB-high) demonstrate that RIGHT patients respond robustly (ORR 40-50%). PERSEUS-1 trial prospectively enrolling CDK12-mutant patients for pembrolizumab (initiated June 2025). IMPLICATIONS: (1) Biomarker testing ESSENTIAL - MSI, TMB, CDK12, immune signatures should guide checkpoint use, (2) Enrichment trials: Biomarker-selected populations increase success probability, enable smaller trials, (3) Basket trials: Tissue-agnostic approvals allow enrollment across cancers with same biomarker, (4) Companion diagnostics: PSMA-PET for PSMA-targeted therapies, NGS for genomic biomarkers, immune profiling (T-cell infiltration, IFN signatures) for checkpoint selection. Do NOT develop checkpoint therapy for unselected mCRPC - biomarker selection is non-negotiable."
+      }
+    ]
+  },
+
+  "moa_landscape": {
+    "moa_categories": [
+      {
+        "name": "Checkpoint Inhibitors - PD-1/PD-L1 Monotherapy (Unselected Populations)",
+        "biological_rationale": {
+          "indication_specific_rationale": "Initial rationale for PD-1 blockade in unselected mCRPC was based on: (1) PD-L1 expression in subset (20-30%), (2) Infiltrating T cells express PD-1 (exhaustion marker), (3) Success in other genitourinary cancers (RCC, bladder). However, this rationale FAILED to translate clinically. mCRPC's 'cold' TME, minimal T-cell infiltration, low neoantigen burden (TMB ~1-3 mut/Mb), and TAM-mediated immunosuppression render checkpoint monotherapy ineffective in unselected populations. SUCCESS requires biomarker selection (MSI-H, TMB-high, CDK12 loss) or combinations with TME modulators.",
+          "supporting_biology": [
+            "PD-L1 expressed in 20-30% of mCRPC",
+            "PD-1+ exhausted T cells present (when T cells exist)",
+            "Rationale extrapolated from RCC, bladder cancer success"
+          ],
+          "theoretical_concerns": [
+            "CRITICAL: Minimal T-cell infiltration in most tumors - no cells to 'unleash'",
+            "Low TMB/neoantigen burden - no targets even if T cells activated",
+            "Overwhelming TAM-mediated immunosuppression (adenosine production)",
+            "Bone microenvironment creates additional suppressive barriers"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Pembrolizumab (Keytruda) - Unselected mCRPC",
+              "specific_moa": "Fully human IgG4 monoclonal antibody targeting PD-1 receptor on T cells; blocks PD-L1/PD-L2 binding; prevents inhibitory signaling; mechanism identical to other tumor types BUT unique mCRPC challenges (cold TME, low neoantigens, TAM suppression, bone mets) limit efficacy in unselected populations",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "systemic_delivery"],
+              "clinical_evidence": {
+                "development_stage": "FAILED in unselected populations; APPROVED via tissue-agnostic pathways for biomarker-selected subsets",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "KEYNOTE-199 (Unselected mCRPC)",
+                    "phase": "Phase II",
+                    "design": "Pembrolizumab monotherapy in heavily pretreated mCRPC (post-docetaxel, post-AR inhibitor); unselected for biomarkers",
+                    "efficacy": {
+                      "ORR": "5% in PD-L1 positive cohort, 3% in PD-L1 negative cohort - MINIMAL activity",
+                      "mPFS": "2.1 months - NO meaningful benefit",
+                      "mOS": "9.5 months - similar to historical controls",
+                      "Note": "Essentially NEGATIVE - single-digit ORR demonstrates checkpoint monotherapy does not work in unselected mCRPC"
+                    },
+                    "safety": "Manageable; typical checkpoint toxicities but limited efficacy negates benefit-risk",
+                    "patient_selection": "Unselected heavily pretreated mCRPC; stratified by PD-L1 but no enrichment for MSI-H, TMB-high",
+                    "outcome": "FAILURE in unselected population - ORR <5% unacceptable; insufficient activity to support approval"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "COLD TME - Minimal T-cell infiltration; PD-1 blockade cannot activate T cells that aren't there (same lesson as GBM)",
+                  "LOW NEOANTIGEN BURDEN - TMB ~1-3 mutations/Mb; few targets for T cells even if activated",
+                  "TAM-MEDIATED SUPPRESSION - Adenosine production by TAMs blunts T-cell function; PD-1 blockade doesn't address this mechanism",
+                  "BONE MICROENVIRONMENT - Immunosuppressive bone niche in >90% of patients creates sanctuary sites",
+                  "WRONG PATIENT SELECTION - Unselected population includes majority with intrinsically checkpoint-resistant biology"
+                ],
+                "key_insights": "DEFINITIVE LESSON: PD-1 MONOTHERAPY DOES NOT WORK IN UNSELECTED mCRPC. KEYNOTE-199 (ORR <5%) proves checkpoint blockade alone is insufficient. ROOT CAUSE: mCRPC is 'cold' tumor - checkpoint removes brakes but there's no engine (no T cells, no neoantigens, TAM suppression dominates). STRATEGIC IMPERATIVE: DO NOT develop PD-1/PD-L1 monotherapy for unselected mCRPC. FUTURE: Checkpoint use ONLY in: (1) Biomarker-selected subsets (MSI-H, TMB-high, CDK12 loss - tissue-agnostic approvals), (2) Combinations that FIRST create inflammation (PARP inhibitors, BAT, radioligands, OVs, vaccines). Biomarker selection based on IMMUNE status (T-cell infiltration, neoantigens, IFN signatures) NOT just PD-L1 expression."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "monoclonal_antibody", "unselected_population_FAILED", "cold_tumor_failure", "AVOID_monotherapy_unselected"]
+            },
+            {
+              "drug_name": "Pembrolizumab (Keytruda) - Tissue-Agnostic Biomarker-Selected",
+              "specific_moa": "Same PD-1 blocking mechanism BUT restricted to biomarker-defined subsets: MSI-H/dMMR (high neoantigen burden from DNA repair deficiency), TMB-high ≥10 mut/Mb (high neoantigen burden from genomic instability). These subsets have 'hot' immune phenotype - T-cell infiltration, neoantigens present - enabling checkpoint efficacy.",
+              "moa_classification": ["checkpoint_inhibitor", "PD-1_antagonist", "biomarker_selected", "tissue_agnostic_approval"],
+              "clinical_evidence": {
+                "development_stage": "FDA APPROVED - Tissue-agnostic for MSI-H/dMMR and TMB-high (applies to ~5-10% of mCRPC)",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "KEYNOTE-158 (MSI-H/dMMR Solid Tumors)",
+                    "phase": "Phase II (led to tissue-agnostic approval)",
+                    "design": "Pembrolizumab in MSI-H/dMMR solid tumors (basket trial including mCRPC subset)",
+                    "efficacy": {
+                      "ORR": "34.3% overall; mCRPC subset showed similar response rates (40-50%)",
+                      "Duration_of_response": "Median not reached - DURABLE responses",
+                      "Note": "ROBUST activity in MSI-H subset - 10-fold improvement over unselected population (ORR 40-50% vs <5%)"
+                    },
+                    "safety": "Manageable; similar to other indications",
+                    "patient_selection": "MSI-H or dMMR by IHC/PCR; ~5% of mCRPC",
+                    "outcome": "SUCCESS - FDA tissue-agnostic approval 2017 for MSI-H/dMMR; validates biomarker-driven approach"
+                  },
+                  {
+                    "trial_name": "KEYNOTE-158 (TMB-High Solid Tumors)",
+                    "phase": "Phase II (led to tissue-agnostic approval)",
+                    "design": "Pembrolizumab in TMB-high (≥10 mutations/Mb) solid tumors",
+                    "efficacy": {
+                      "ORR": "29% overall; mCRPC subset ~25-30%",
+                      "mPFS": "4.1 months (vs 2.1 months unselected)",
+                      "Note": "Meaningful activity in TMB-high - 6-fold improvement over unselected (ORR 29% vs 5%)"
+                    },
+                    "patient_selection": "TMB ≥10 mutations/Mb by NGS; ~5% of mCRPC",
+                    "outcome": "SUCCESS - FDA tissue-agnostic approval 2020 for TMB-high; second biomarker pathway validated"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "BIOMARKER SELECTION TRANSFORMS EFFICACY - MSI-H and TMB-high subsets have 'hot' biology (T cells, neoantigens) enabling checkpoint response",
+                  "ORR 40-50% (MSI-H) and 29% (TMB-high) vs <5% (unselected) - 6-10 fold improvement demonstrates RIGHT patient selection critical",
+                  "DURABLE RESPONSES - Median DOR not reached in MSI-H; checkpoint responses are long-lasting when they occur",
+                  "TISSUE-AGNOSTIC APPROVALS - Biomarker-driven labels enable use across cancers including rare mCRPC subsets",
+                  "NGS/IHC COMPANION DIAGNOSTICS - MSI and TMB testing guides appropriate patient selection"
+                ],
+                "key_insights": "CRITICAL SUCCESS STORY: Pembrolizumab succeeds in mCRPC when BIOMARKER-SELECTED. MSI-H and TMB-high subsets (~5-10% collectively) have fundamentally different biology - high neoantigens, T-cell infiltration, 'hot' TME - making them checkpoint-responsive. This is NOT incremental improvement (ORR 40-50% vs <5% unselected) - it's DIFFERENT DISEASE. STRATEGIC LESSONS: (1) Biomarker testing is NON-NEGOTIABLE for checkpoint therapy in mCRPC, (2) Tissue-agnostic approvals enable basket trials and accelerated paths, (3) Companion diagnostics (MSI IHC/PCR, TMB by NGS) are essential infrastructure, (4) Other biomarkers emerging (CDK12 loss, immune signatures) - PERSEUS-1 trial testing pembrolizumab in CDK12-mutant mCRPC. FUTURE: Expand biomarker menu (CDK12, immune gene signatures), develop biomarker combinations (MSI-H + CDK12), integrate biomarkers into standard diagnostic workflows."
+              },
+              "similarity_matching_tags": ["checkpoint_inhibitor", "PD-1_antagonist", "biomarker_selected", "MSI-H_TMB_high", "tissue_agnostic_approved", "HIGH_PRIORITY_in_selected_patients"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "2/10 unselected, 9/10 biomarker-selected - mCRPC biology fundamentally incompatible with checkpoint monotherapy EXCEPT in biomarker-defined immune-sensitive subsets",
+          "clinical_validation": "0/10 unselected (ORR <5% in KEYNOTE-199), 9/10 biomarker-selected (ORR 40-50% MSI-H, 29% TMB-high, FDA approved)",
+          "unmet_need_match": "0/10 unselected, 8/10 biomarker-selected - Checkpoint monotherapy does NOT address challenges in unselected mCRPC but provides option for MSI-H/TMB-high/CDK12-mutant subsets",
+          "overall_assessment": "PD-1/PD-L1 checkpoint inhibitors as MONOTHERAPY show EXTREME BIOMARKER DEPENDENCE in mCRPC. Unselected populations: ORR <5% (KEYNOTE-199) - DEFINITIVE FAILURE similar to GBM. Biomarker-selected subsets: ORR 40-50% (MSI-H), 29% (TMB-high) - ROBUST SUCCESS. This is NOT marginal difference - it's DIFFERENT BIOLOGY. MSI-H and TMB-high patients have high neoantigen burden, T-cell infiltration, 'hot' TME enabling checkpoint response. STRATEGIC RECOMMENDATION: (1) ABANDON checkpoint monotherapy development in UNSELECTED mCRPC - futile, (2) EMBRACE biomarker-driven approach - MSI/TMB testing mandatory, expand biomarker menu (CDK12 via PERSEUS-1, immune signatures), (3) COMBINATIONS in biomarker-negative patients - PARP + checkpoint (cGAS-STING activation), BAT + checkpoint (neoantigen induction), radioligand + checkpoint (immunogenic death), OV + checkpoint (TME modulation). Pembrolizumab tissue-agnostic approvals validate that RIGHT mCRPC patients respond - success requires identifying them or creating 'hot' biology through combinations."
+        }
+      },
+
+      {
+        "name": "Cell-Based Therapies - CAR-T Targeting PSMA",
+        "biological_rationale": {
+          "indication_specific_rationale": "CAR-T cells targeting PSMA offer tumor-specific cytotoxicity independent of MHC presentation and checkpoint pathways. In mCRPC, PSMA CAR-T addresses: (1) High PSMA expression (>80% of tumors) provides abundant target, (2) MHC-independent killing overcomes HLA downregulation, (3) Potential for durable responses if CAR-T persistence achieved, (4) Can be combined with AR inhibitors or other therapies. CHALLENGES: (1) In vivo persistence limited, (2) T-cell exhaustion in immunosuppressive TME, (3) Competition with Pluvicto radioligand (approved, median OS 15.3 months sets high bar), (4) Manufacturing complexity and cost.",
+          "supporting_biology": [
+            "PSMA expression >80% of mCRPC; tumor-enriched antigen",
+            "PSMA maintained/upregulated in AR-resistant disease (advantage)",
+            "MHC-independent killing (overcomes HLA loss escape)",
+            "Potential for long-term persistence (CAR-T can survive months in circulation)",
+            "PSMA-PET imaging enables patient selection (high expression confirmation)"
+          ],
+          "theoretical_concerns": [
+            "In vivo CAR-T persistence challenge - limited expansion and survival in 'cold' TME",
+            "T-cell exhaustion from chronic antigen exposure and immunosuppressive TME",
+            "On-target/off-tumor toxicity (PSMA expressed in salivary glands, kidneys - manageable but requires monitoring)",
+            "Manufacturing complexity (autologous cells, 4-6 week production)",
+            "Competition with Pluvicto - must show differentiation or complementary benefit"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "PSMA-CAR-T (City of Hope)",
+              "specific_moa": "Autologous T cells engineered with CAR targeting PSMA; CAR construct with anti-PSMA scFv, 4-1BB costimulation, CD3ζ signaling; intravenous administration; MHC-independent cytotoxic killing of PSMA+ tumor cells; updated construct includes IL-15 arm to improve persistence",
+              "moa_classification": ["CAR-T", "PSMA_targeting", "autologous", "IL-15_enhanced_persistence"],
+              "clinical_evidence": {
+                "development_stage": "Phase I - Early promising signals with IL-15 enhancement",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I PSMA CAR-T + IL-15",
+                    "phase": "Phase I",
+                    "design": "PSMA CAR-T IV administration in heavily pretreated mCRPC; expansion cohort exploring IL-15 arm to improve CAR-T persistence",
+                    "efficacy": {
+                      "early_responses": "Imaging-based complete response reported in 1 patient (early case report)",
+                      "PSA_responses": "PSA declines observed in subset",
+                      "persistence": "IL-15 arm showing improved CAR-T expansion and persistence vs non-IL-15",
+                      "Note": "Very early data; IL-15 enhancement may address persistence challenge"
+                    },
+                    "safety": "Manageable; CRS observed but grade 1-2 in most cases; on-target/off-tumor toxicity (salivary glands) manageable with supportive care",
+                    "patient_selection": "Heavily pretreated mCRPC, PSMA+ by imaging",
+                    "outcome": "PROMISING early signals - IL-15 enhancement may solve persistence issue; Phase II data needed"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "PSMA is validated target - high expression (>80%), maintained in AR-resistant disease",
+                  "IL-15 enhancement addresses CAR-T persistence challenge - cytokine support improves expansion",
+                  "Early CR signal (imaging-based) demonstrates potent tumor killing possible",
+                  "MHC-independent mechanism works even in HLA-downregulated tumors"
+                ],
+                "key_insights": "PSMA CAR-T shows PROOF-OF-CONCEPT that potent anti-tumor activity achievable in mCRPC. Early CR signal validates approach. IL-15 enhancement is KEY innovation - addresses major challenge (persistence) seen with first-gen CAR-T. STRATEGIC: City of Hope PSMA CAR-T with IL-15 represents next-generation design. If persistence and durability confirmed in larger cohorts, could complement or compete with Pluvicto. CHALLENGES: (1) Manufacturing complexity (autologous), (2) Cost ($400-500K likely), (3) Competition with Pluvicto (approved, easier administration), (4) Need to demonstrate SUPERIOR or ADDITIVE benefit vs radioligand. OPPORTUNITY: Post-Pluvicto setting (radioligand-refractory), combination with Pluvicto (sequential or concurrent), earlier lines if superiority shown."
+              },
+              "similarity_matching_tags": ["CAR-T", "PSMA_targeting", "autologous", "IL-15_enhanced", "Phase_I_promising", "persistence_optimized"]
+            },
+            {
+              "drug_name": "TmPSMA-02 (Kite Pharma / Gilead)",
+              "specific_moa": "Advanced PSMA-targeted CAR-T with proprietary enhancements; autologous T cells engineered with optimized anti-PSMA CAR construct; details of specific enhancements proprietary but likely include improved signaling domains, persistence optimization, safety features",
+              "moa_classification": ["CAR-T", "PSMA_targeting", "autologous", "optimized_construct", "Phase_II"],
+              "clinical_evidence": {
+                "development_stage": "Phase II - MOST ADVANCED PSMA CAR-T in mCRPC",
+                "rationale": "Kite/Gilead applying learnings from heme CAR-T (Yescarta, Tecartus) to solid tumors; TmPSMA-02 represents optimized PSMA CAR for mCRPC",
+                "early_data": "Phase I data not yet published; Phase II initiated suggesting acceptable safety and preliminary efficacy signals",
+                "outcome": "Represents industry commitment to PSMA CAR-T; Kite/Gilead's solid tumor CAR-T platform"
+              },
+              "lessons_learned": {
+                "key_insights": "TmPSMA-02 advancement to Phase II (without published Phase I data) suggests Kite/Gilead sees commercial opportunity and acceptable early signals. Proprietary enhancements likely address persistence, efficacy, safety - leveraging heme CAR-T expertise. STRATEGIC: Industry validation of PSMA CAR-T space. Kite/Gilead resources (manufacturing scale, commercial infrastructure) could enable broader deployment if successful. COMPETITIVE: Multiple PSMA CAR-T programs (City of Hope, Kite, others) indicate crowded space - differentiation will be on efficacy, persistence, manufacturing efficiency, cost. Phase II readout critical to assess competitive positioning vs Pluvicto and other PSMA-targeted therapies."
+              },
+              "similarity_matching_tags": ["CAR-T", "PSMA_targeting", "autologous", "industry_sponsored", "Phase_II", "Kite_Gilead_platform"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "7/10 - PSMA CAR-T addresses mCRPC biology (PSMA expression high, MHC-independent killing) BUT persistence in 'cold' TME is challenge",
+          "clinical_validation": "6/10 - Early promising signals (City of Hope CR, IL-15 persistence improvement) but limited data; Phase II ongoing (TmPSMA-02)",
+          "unmet_need_match": "7/10 - Provides potent PSMA-targeted cytotoxicity, potential durability IF persistence solved, but competition with Pluvicto requires differentiation",
+          "overall_assessment": "PSMA-targeted CAR-T in mCRPC is MODERATE-HIGH PRIORITY with CRITICAL DEPENDENCIES. STRENGTHS: (1) PSMA is validated target (>80% expression, maintained in AR-resistant disease), (2) MHC-independent killing, (3) Potential for durable responses, (4) Early activity signals (City of Hope CR). CHALLENGES: (1) Persistence in 'cold' TME - IL-15 enhancement promising but needs confirmation, (2) Manufacturing complexity and cost limit scalability, (3) COMPETITION with Pluvicto (approved, median OS 15.3 months, easier administration, lower cost) - CAR-T must show SUPERIORITY or work in radioligand-refractory setting, (4) Phase II data needed to assess true efficacy and durability. SUCCESS FACTORS: (1) Solve persistence - IL-15, armored CARs, combination with AR inhibitors to maintain T-cell function, (2) Differentiate from Pluvicto - target post-radioligand population OR demonstrate superior OS, (3) Streamline manufacturing to reduce cost and delivery time. STRATEGIC OPPORTUNITIES: (1) Post-Pluvicto niche (radioligand-refractory), (2) Combination with Pluvicto (sequential or concurrent to maximize PSMA targeting), (3) Multi-antigen CAR-T (PSMA + STEAP1) to prevent escape. RECOMMENDATION: MODERATE PRIORITY - monitor Phase II data (TmPSMA-02, City of Hope); if persistence and efficacy confirmed, partnership opportunity; if not superior to Pluvicto, position for post-radioligand or combination use."
+        }
+      },
+
+      {
+        "name": "Cell-Based Therapies - CAR-T Targeting STEAP1",
+        "biological_rationale": {
+          "indication_specific_rationale": "STEAP1 CAR-T offers alternative to PSMA with potential advantages: (1) STEAP1 expression 80-90% of mCRPC, maintained/upregulated post-AR inhibition, (2) Lower normal tissue expression than PSMA (potential safety advantage), (3) Synergy with AR inhibitors - combination with enzalutamide may enhance efficacy, (4) May avoid antigen loss if used as second-line after PSMA-directed therapy. Represents diversification from PSMA-only strategies.",
+          "supporting_biology": [
+            "STEAP1 expression 80-90% in mCRPC; maintained in AR-resistant disease",
+            "Lower normal tissue expression vs PSMA (safety advantage)",
+            "Upregulated with AR inhibition (synergy opportunity)",
+            "MHC-independent killing (like all CAR-T)",
+            "Alternative target to PSMA for multi-antigen strategies"
+          ],
+          "theoretical_concerns": [
+            "Similar persistence challenges as PSMA CAR-T in 'cold' TME",
+            "Less clinical validation than PSMA (newer target)",
+            "Competition with STEAP1 bispecifics (Xaluritamig in Phase III - simpler, off-the-shelf)",
+            "Manufacturing complexity (autologous cells)"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "AZD-0754 (STEAP1 CAR-T, AstraZeneca)",
+              "specific_moa": "Autologous T cells engineered with CAR targeting STEAP1; proprietary CAR construct with optimized signaling; administered in combination with enzalutamide (AR inhibitor) to enhance efficacy and potentially improve CAR-T persistence through maintained T-cell function; IV administration",
+              "moa_classification": ["CAR-T", "STEAP1_targeting", "autologous", "combination_with_AR_inhibitor"],
+              "clinical_evidence": {
+                "development_stage": "Phase I/II - Combination with enzalutamide began dosing late 2024",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I/II STEAP1 CAR-T + Enzalutamide",
+                    "phase": "Phase I/II",
+                    "design": "AZD-0754 (STEAP1 CAR-T) + enzalutamide in mCRPC; rationale: AR inhibition may improve CAR-T function, STEAP1 upregulated with AR blockade",
+                    "efficacy": {
+                      "status": "Early dosing; efficacy data not yet reported",
+                      "rationale": "Combination addresses CAR-T persistence challenge; enzalutamide maintains T-cell function, STEAP1 target upregulated"
+                    },
+                    "safety": "Safety and tolerability being assessed; dose escalation ongoing",
+                    "patient_selection": "mCRPC patients, STEAP1+ by IHC",
+                    "outcome": "Data pending - combination strategy rational to address persistence"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "STEAP1 is VALIDATED target - bispecific antibody (Xaluritamig) showed 30% PSA50 response, now in Phase III",
+                  "COMBINATION WITH AR INHIBITOR is innovative - addresses CAR-T dysfunction in mCRPC TME",
+                  "STEAP1 upregulation with AR blockade creates favorable biology for targeting",
+                  "Alternative to PSMA - diversification strategy for antigen targeting"
+                ],
+                "key_insights": "AZD-0754 represents RATIONAL combination approach - CAR-T + AR inhibitor addresses two mechanisms: (1) AR blockade improves T-cell function (reduces immunosuppression), (2) STEAP1 upregulated with AR inhibition (more target). This is SMARTER than standalone CAR-T. STRATEGIC: If successful, validates combination as standard for CAR-T in mCRPC (similar to maintenance enzalutamide extending CAR-T benefit). COMPETITIVE: Faces STEAP1 bispecific (Xaluritamig Phase III) - off-the-shelf, simpler, potentially faster to market. CAR-T must show SUPERIOR efficacy (deeper responses, durability) to justify complexity and cost. OPPORTUNITY: If Xaluritamig succeeds, further validates STEAP1 as target - AZD-0754 could be second-line or for bispecific-refractory patients."
+              },
+              "similarity_matching_tags": ["CAR-T", "STEAP1_targeting", "autologous", "combination_AR_inhibitor", "Phase_I_II", "rational_combination"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "7/10 - STEAP1 CAR-T addresses mCRPC biology (high expression, upregulated with AR inhibition) BUT persistence challenge remains",
+          "clinical_validation": "5/10 - Very early data; STEAP1 validated by bispecific success but CAR-T format less proven in mCRPC",
+          "unmet_need_match": "7/10 - Provides alternative to PSMA, combination with AR inhibitor rational, but competes with simpler bispecific approach",
+          "overall_assessment": "STEAP1-targeted CAR-T is MODERATE PRIORITY with DEPENDENCIES on combination strategy and differentiation from bispecifics. STRENGTHS: (1) STEAP1 validated target - Xaluritamig bispecific showed 30% PSA50, Phase III ongoing, (2) Combination with enzalutamide is RATIONAL - improves CAR-T function and upregulates target, (3) Alternative to PSMA for diversification, multi-antigen strategies. CHALLENGES: (1) Very early data - AZD-0754 just began dosing, efficacy unknown, (2) Competition with STEAP1 bispecific (Xaluritamig) - off-the-shelf, simpler, Phase III advanced; CAR-T must show superiority to justify complexity, (3) Persistence challenge likely similar to PSMA CAR-T - combination with AR inhibitor may help but unproven. STRATEGIC POSITIONING: (1) WAIT for AZD-0754 data - if combination shows robust efficacy and persistence, validates approach, (2) Position for post-bispecific use IF Xaluritamig succeeds (CAR-T as second-line STEAP1 therapy), (3) Multi-antigen CAR-T (STEAP1 + PSMA bivalent) to prevent escape, (4) Combination trials: CAR-T + checkpoint, CAR-T + radioligand. RECOMMENDATION: MODERATE PRIORITY - monitor AZD-0754 Phase I/II data; if successful, consider partnership or platform development; if bispecifics dominant, CAR-T role may be niche (post-bispecific, multi-antigen constructs)."
+        }
+      },
+
+      {
+        "name": "Bispecific Antibodies - T-Cell Engagers (PSMA, STEAP1, KLK2)",
+        "biological_rationale": {
+          "indication_specific_rationale": "Bispecific antibodies (T-cell engagers) offer tumor-specific T-cell recruitment without ex vivo manufacturing. In mCRPC, bispecifics address: (1) High antigen expression (PSMA >80%, STEAP1 80-90%, KLK2 60-70%) provides targets, (2) Off-the-shelf availability (no personalized manufacturing), (3) Systemically delivered (can reach bone metastases), (4) Rapid responses possible (engage endogenous T cells immediately). This is MOST RAPIDLY ADVANCING modality in mCRPC immunotherapy with multiple Phase II/III assets.",
+          "supporting_biology": [
+            "Validated targets: PSMA (>80%), STEAP1 (80-90%), KLK2 (60-70%) all highly expressed",
+            "Mechanism: Bind tumor antigen + CD3 on T cells â†' bring T cells to tumor â†' induce killing",
+            "Off-the-shelf (vs CAR-T personalized manufacturing) - faster delivery",
+            "Systemic administration reaches disseminated disease including bone mets",
+            "Can work in 'cold' TME by bringing T cells TO tumor (recruit, don't rely on pre-existing infiltration)"
+          ],
+          "theoretical_concerns": [
+            "T-cell exhaustion with chronic dosing (extended exposure to tumor antigens)",
+            "Cytokine release syndrome (CRS) common toxicity - requires step-up dosing, monitoring",
+            "Potential for antigen escape with single-target approach (multi-antigen strategies emerging)",
+            "Alternative checkpoint upregulation (PD-L1) as resistance mechanism"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Xaluritamig (AMG 509, STEAP1 x CD3, Amgen)",
+              "specific_moa": "Bispecific T-cell engager with one binding arm for STEAP1 (tumor antigen on mCRPC cells) and one arm for CD3 (T-cell receptor); forms immunological synapse bringing T cells to STEAP1+ tumor cells; induces T-cell activation and cytotoxic killing; half-extended IgG format provides longer half-life than BiTE format; subcutaneous administration",
+              "moa_classification": ["bispecific_antibody", "T-cell_engager", "STEAP1_x_CD3", "off_the_shelf", "Phase_III"],
+              "clinical_evidence": {
+                "development_stage": "Phase III - MOST ADVANCED STEAP1-targeted bispecific",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I Dose Escalation/Expansion",
+                    "phase": "Phase I",
+                    "design": "Xaluritamig monotherapy in heavily pretreated mCRPC; step-up dosing to mitigate CRS; subcutaneous administration",
+                    "efficacy": {
+                      "PSA50_response": "30% at recommended Phase II dose",
+                      "PSA90_response": "Subset achieved PSA declines >90%",
+                      "Duration": "Responses ongoing; median DOR not yet reached",
+                      "Note": "30% PSA50 response is ROBUST in heavily pretreated population (post-AR inhibitor, post-chemo)"
+                    },
+                    "safety": "CRS observed (grade 1-2 in majority); manageable with step-up dosing protocol; subcutaneous route feasible",
+                    "patient_selection": "Heavily pretreated mCRPC, STEAP1+ (majority qualify)",
+                    "outcome": "SUCCESS - Phase III initiated based on 30% PSA50 response; regulatory path clear"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "STEAP1 is EXCELLENT target - 80-90% expression, maintained in AR-resistant disease, 30% PSA50 validates",
+                  "STEP-UP DOSING mitigates CRS - protocol allows safe administration with manageable toxicity",
+                  "SUBCUTANEOUS route is convenient - patient/physician friendly vs IV infusion",
+                  "OFF-THE-SHELF availability is major advantage vs CAR-T (no manufacturing delay, broader access)",
+                  "Phase III advancement demonstrates clinical and commercial viability"
+                ],
+                "key_insights": "Xaluritamig is LEADING bispecific in mCRPC and potentially FIRST bispecific to market. 30% PSA50 response in heavily pretreated patients is PRACTICE-CHANGING - similar efficacy to PSMA radioligand (Pluvicto) but different mechanism, potentially complementary. STRATEGIC: Amgen's commitment to Phase III (resource-intensive) signals confidence in commercial success. If approved, Xaluritamig will: (1) Validate STEAP1 as target beyond PSMA, (2) Establish bispecific antibodies as viable modality in mCRPC, (3) Create treatment option for radioligand-refractory or PSMA-low patients, (4) Set efficacy bar for other bispecifics (PSMA, KLK2). COMPETITIVE: First-to-market advantage substantial; Amgen likely capturing STEAP1 bispecific space. Opportunities: (1) Combinations (Xaluritamig + checkpoint, + radioligand), (2) Earlier lines if Phase III shows superiority, (3) Resistance mechanisms (antigen escape, PD-L1 upregulation) inform next-gen approaches. RECOMMENDATION: HIGH PRIORITY - monitor Phase III closely; if approved, validates bispecific platform; consider licensing or developing next-gen bispecifics (bivalent, PD-L1 x STEAP1)."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "T-cell_engager", "STEAP1_x_CD3", "Phase_III", "30%_PSA50_response", "LEADING_ASSET", "off_the_shelf"]
+            },
+            {
+              "drug_name": "Pasritamig (JNJ-78278343, KLK2 x CD3, Johnson & Johnson)",
+              "specific_moa": "First-in-class bispecific T-cell engager targeting KLK2 (kallikrein-2, prostate-specific serine protease) x CD3; KLK2 is androgen-regulated, prostate-specific antigen expressed in 60-70% of mCRPC; brings T cells to KLK2+ tumor cells; IV administration with step-up dosing",
+              "moa_classification": ["bispecific_antibody", "T-cell_engager", "KLK2_x_CD3", "first_in_class", "Phase_I"],
+              "clinical_evidence": {
+                "development_stage": "Phase I - Published data 2025",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase I Dose Escalation",
+                    "phase": "Phase I",
+                    "design": "Pasritamig monotherapy in heavily pretreated mCRPC; step-up dosing; IV administration",
+                    "efficacy": {
+                      "ORR": "19% objective response rate",
+                      "DCR": "63% disease control rate (CR + PR + SD)",
+                      "PSA_responses": "PSA declines observed, rates not fully reported",
+                      "Note": "19% ORR and 63% DCR in heavily pretreated mCRPC demonstrates clinical activity"
+                    },
+                    "safety": "CRS manageable with step-up dosing; similar profile to other T-cell engagers",
+                    "patient_selection": "Heavily pretreated mCRPC, KLK2 expression not required (expressed broadly)",
+                    "outcome": "Promising Phase I - establishes KLK2 as viable target; expansion/Phase II likely"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "KLK2 is NOVEL target - first-in-class, distinct from PSMA/STEAP1 (diversification)",
+                  "PROSTATE-SPECIFIC expression provides excellent safety window",
+                  "19% ORR and 63% DCR demonstrate clinical activity - proof-of-concept",
+                  "ANDROGEN-REGULATED - KLK2 increases with bipolar androgen therapy (BAT); combination opportunity"
+                ],
+                "key_insights": "Pasritamig establishes KLK2 as THIRD validated bispecific target in mCRPC (alongside PSMA, STEAP1). 19% ORR is lower than Xaluritamig (30% PSA50) but still meaningful in heavily pretreated population. STRATEGIC: KLK2 bispecific provides: (1) Alternative target for patients who fail PSMA/STEAP1 therapies, (2) Potential combination with BAT (KLK2 upregulated with androgens), (3) Multi-antigen strategies (KLK2 + PSMA or STEAP1 bispecifics sequentially). LIMITATIONS: Lower response rate vs Xaluritamig may relegate to second-line or combination use. OPPORTUNITIES: (1) BAT + pasritamig combination (rational - KLK2 induced by androgens), (2) Post-PSMA/STEAP1 bispecific (third-line target), (3) Tri-specific antibodies (KLK2 + PSMA or STEAP1 + CD3). RECOMMENDATION: MODERATE PRIORITY - KLK2 validated but likely not first-line; monitor Phase II expansion; consider for combination or multi-antigen strategies."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "T-cell_engager", "KLK2_x_CD3", "first_in_class", "Phase_I", "19%_ORR", "novel_target"]
+            },
+            {
+              "drug_name": "REGN-4336 (PSMA x CD3, Regeneron)",
+              "specific_moa": "Bispecific T-cell engager with one arm targeting PSMA (most established mCRPC antigen) and one arm targeting CD3; brings endogenous T cells to PSMA+ tumor cells; likely half-extended IgG format (Regeneron platform); IV or SC administration (format-dependent)",
+              "moa_classification": ["bispecific_antibody", "T-cell_engager", "PSMA_x_CD3", "Phase_II"],
+              "clinical_evidence": {
+                "development_stage": "Phase II - Key PSMA-targeted bispecific in mid-stage development",
+                "rationale": "PSMA is most validated target (>80% expression, Pluvicto approval); bispecific format offers off-the-shelf alternative to PSMA CAR-T",
+                "early_data": "Phase I data not yet published; Phase II initiated suggesting acceptable safety and preliminary activity",
+                "outcome": "Advancement to Phase II indicates viability; data readout critical for competitive positioning"
+              },
+              "lessons_learned": {
+                "key_insights": "REGN-4336 represents Regeneron's entry into mCRPC bispecific space with PSMA (most validated target). Advancement to Phase II without published Phase I data suggests reasonable safety/activity profile. STRATEGIC: PSMA bispecific faces MAJOR COMPETITION: (1) Pluvicto radioligand (approved, median OS 15.3 months) - HIGH efficacy bar, (2) PSMA CAR-T programs (City of Hope, Kite), (3) Other PSMA bispecifics in development. REGN-4336 must demonstrate: (1) SUPERIORITY to Pluvicto (unlikely) OR (2) Complementary benefit (combination, post-radioligand setting) OR (3) Earlier line positioning. OPPORTUNITIES: (1) Post-Pluvicto niche (radioligand-refractory), (2) Combination with Pluvicto (sequential or concurrent), (3) Patients ineligible for radioligand (low PSMA expression by imaging), (4) Combination with checkpoint inhibitors. CHALLENGES: Crowded PSMA space; differentiation difficult. RECOMMENDATION: MODERATE PRIORITY - monitor Phase II data; if differentiated (superior efficacy, unique safety, combination potential), consider; if parity with Pluvicto, limited opportunity unless post-radioligand niche large."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "T-cell_engager", "PSMA_x_CD3", "Phase_II", "Regeneron", "competitive_PSMA_space"]
+            },
+            {
+              "drug_name": "Vudalimab (XmAb20717, PD-1 x CTLA-4, Xencor)",
+              "specific_moa": "NOT a T-cell engager - this is DUAL CHECKPOINT-BLOCKING bispecific antibody; simultaneously blocks PD-1 AND CTLA-4 on T cells; designed to provide dual checkpoint inhibition without need for two separate antibodies; Fc-enhanced for prolonged half-life; IV administration",
+              "moa_classification": ["bispecific_antibody", "dual_checkpoint_blocker", "PD-1_x_CTLA-4", "NOT_T-cell_engager", "Phase_II"],
+              "clinical_evidence": {
+                "development_stage": "Phase II in mCRPC",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II in mCRPC",
+                    "phase": "Phase II",
+                    "design": "Vudalimab monotherapy in mCRPC; patient selection criteria not fully disclosed",
+                    "efficacy": {
+                      "ORR": "33% in small heavily pretreated cohort",
+                      "PSA90_response": "25% achieved PSA decline >90%",
+                      "Note": "33% ORR is ROBUST for checkpoint-based therapy in mCRPC; suggests biomarker-enriched population or unique dual blockade benefit"
+                    },
+                    "safety": "Dual checkpoint toxicity profile - likely higher immune-related AEs than PD-1 monotherapy",
+                    "patient_selection": "Heavily pretreated mCRPC; biomarker selection unclear but 33% ORR suggests enrichment (MSI-H, TMB-high, CDK12 loss?)",
+                    "outcome": "Promising - 33% ORR and 25% PSA90 in checkpoint-resistant indication; biomarker analysis critical"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "DUAL CHECKPOINT BLOCKADE (PD-1 + CTLA-4) may overcome resistance to single-agent PD-1 blockade",
+                  "33% ORR is EXCEPTIONAL for mCRPC if unselected; likely biomarker-enriched cohort",
+                  "25% PSA90 (deep responses) suggests durable activity in responders",
+                  "Single-agent dual blockade simpler than ipilimumab + nivolumab combination (dosing, logistics)"
+                ],
+                "key_insights": "Vudalimab 33% ORR in mCRPC is SURPRISING given checkpoint monotherapy failures. CRITICAL QUESTIONS: (1) Was population biomarker-selected (MSI-H, TMB-high, CDK12 loss)? If yes, comparable to pembrolizumab; if no (unselected), paradigm-shifting. (2) Does dual PD-1/CTLA-4 blockade provide benefit beyond PD-1 alone in biomarker-selected patients? (3) Toxicity profile acceptable given dual checkpoint mechanism? STRATEGIC: If vudalimab works in UNSELECTED or expands beyond pembrolizumab-responsive biomarkers, it's breakthrough. If biomarker-restricted, it's alternative to pembrolizumab with different toxicity. OPPORTUNITIES: (1) Combination with TME modulators (PARP, BAT, radioligand, OV) - dual checkpoint may amplify response, (2) Post-pembrolizumab setting (PD-1 refractory but CTLA-4 blockade added), (3) Biomarker expansion trials (CDK12, immune signatures beyond MSI/TMB). RECOMMENDATION: HIGH INTEREST - biomarker analysis CRITICAL; if unselected or novel biomarkers, HIGH PRIORITY; if MSI-H/TMB-high only, comparable to pembrolizumab (differentiation on toxicity, convenience)."
+              },
+              "similarity_matching_tags": ["bispecific_antibody", "dual_checkpoint", "PD-1_x_CTLA-4", "33%_ORR", "Phase_II", "biomarker_analysis_needed"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "8/10 - Bispecific antibodies address mCRPC biology (recruit T cells to high-antigen tumors) and overcome 'cold' TME by bringing T cells TO tumor",
+          "clinical_validation": "8/10 - Xaluritamig 30% PSA50 (Phase III), Pasritamig 19% ORR, Vudalimab 33% ORR demonstrate clinical activity across multiple targets",
+          "unmet_need_match": "9/10 - Off-the-shelf, systemically delivered, rapid responses, multiple targets, combination potential address key needs",
+          "overall_assessment": "Bispecific antibodies are HIGHEST PRIORITY immunotherapy modality in mCRPC. STRENGTHS: (1) ROBUST CLINICAL ACTIVITY - Xaluritamig 30% PSA50 (Phase III), Pasritamig 19% ORR, Vudalimab 33% ORR across different targets (STEAP1, KLK2, dual checkpoint), (2) OFF-THE-SHELF - no personalized manufacturing (major advantage over CAR-T), faster delivery, broader access, (3) MULTIPLE VALIDATED TARGETS - PSMA (>80%), STEAP1 (80-90%), KLK2 (60-70%) provide options and diversification, (4) SYSTEMICALLY DELIVERED - reaches disseminated disease including bone metastases, (5) RAPID ADVANCEMENT - Xaluritamig already in Phase III (first bispecific potentially to market), (6) COMBINATION POTENTIAL - with checkpoint inhibitors, radioligands, AR inhibitors. CHALLENGES: (1) CRS toxicity requires step-up dosing and monitoring, (2) T-cell exhaustion with chronic dosing possible, (3) Antigen escape with single-target approach (multi-antigen bispecifics needed), (4) Competition with Pluvicto radioligand (must differentiate). SUCCESS FACTORS: Step-up dosing protocols mitigate CRS; subcutaneous formulations improve convenience; multiple targets (PSMA, STEAP1, KLK2) prevent over-reliance on single antigen; combination strategies (bispecific + checkpoint, bispecific + radioligand) amplify benefit. STRATEGIC OPPORTUNITIES: (1) First-to-market advantage - Xaluritamig likely first approved, validates category, (2) Post-radioligand positioning (bispecifics for Pluvicto-refractory), (3) Combination trials (bispecific + pembrolizumab in biomarker-selected patients, bispecific + Pluvicto sequential), (4) Multi-specific antibodies (bivalent tumor targets + CD3, or tumor + CD3 + checkpoint blocker), (5) Earlier line expansion if Phase III shows superiority. RECOMMENDATION: HIGHEST PRIORITY - bispecific antibodies are leading modality; monitor Xaluritamig Phase III closely; consider licensing STEAP1/KLK2 bispecifics or developing next-gen formats (tri-specifics, longer half-life, alternative dosing); combinations are future (bispecific + IO)."
+        }
+      },
+
+      {
+        "name": "Cancer Vaccines - Dendritic Cell and Peptide/Viral Vector",
+        "biological_rationale": {
+          "indication_specific_rationale": "Cancer vaccines aim to prime de novo T-cell responses against tumor antigens, addressing mCRPC's 'cold' TME by creating T-cell infiltration. Sipuleucel-T (autologous DC vaccine targeting PAP) remains ONLY approved immunotherapy for prostate cancer, validating vaccine platform despite modest OS benefit (4.1 months). Next-generation vaccines target: (1) Alternative antigens (PSA, survivin, neoantigens), (2) Enhanced delivery (viral vectors, in-situ approaches), (3) Combination with checkpoint inhibitors (vaccine primes, checkpoint amplifies). Vaccines overcome low neoantigen burden by targeting tumor-associated antigens (TAAs) or inducing inflammation in-situ.",
+          "supporting_biology": [
+            "Vaccines create NEW immune responses (don't rely on pre-existing T cells like checkpoints)",
+            "Can target tumor-associated antigens (PAP, PSA, survivin) broadly expressed",
+            "In-situ vaccines (SYNC-T) create personalized response using patient's own tumor as antigen source",
+            "Viral vectors (Prostvac) provide adjuvant effect (immune activation)",
+            "Combination with checkpoint rational - vaccine primes, checkpoint removes brakes"
+          ],
+          "theoretical_concerns": [
+            "Vaccine-primed T cells face same TME barriers (PD-1/PD-L1, adenosine, TAMs) - combination with checkpoint likely needed",
+            "Sipuleucel-T modest benefit (4.1 month OS) sets low benchmark",
+            "Antigen selection challenge - PSA declines with AR resistance, optimal targets unclear",
+            "Manufacturing complexity for personalized vaccines (autologous DCs, in-situ platforms)"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "Sipuleucel-T (Provenge)",
+              "specific_moa": "Autologous dendritic cell vaccine; patient's own DCs isolated via leukapheresis, pulsed ex vivo with PAP-GM-CSF fusion protein (prostatic acid phosphatase + granulocyte-macrophage colony-stimulating factor), matured, then re-infused IV; DCs present PAP antigen to T cells in lymph nodes, priming PAP-specific T-cell responses; 3 infusions over 1 month",
+              "moa_classification": ["cancer_vaccine", "dendritic_cell", "autologous", "PAP_targeting", "FDA_approved"],
+              "clinical_evidence": {
+                "development_stage": "FDA/EMA APPROVED (2010) - ONLY approved immunotherapy for prostate cancer",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "IMPACT (Phase III)",
+                    "phase": "Phase III",
+                    "design": "Sipuleucel-T vs placebo in asymptomatic/minimally symptomatic mCRPC",
+                    "efficacy": {
+                      "mOS": "25.8 months (Sipuleucel-T) vs 21.7 months (placebo) - 4.1 month OS benefit, p=0.032",
+                      "PFS": "No significant difference - 14.6 vs 14.4 weeks",
+                      "ORR": "Minimal radiographic responses",
+                      "Note": "OS benefit WITHOUT PFS or ORR improvement - unconventional endpoint pattern"
+                    },
+                    "safety": "EXCELLENT - minimal AEs; infusion reactions mild; no CRS or immune-related toxicities",
+                    "patient_selection": "Asymptomatic or minimally symptomatic mCRPC (earlier disease stage)",
+                    "outcome": "SUCCESS - FDA approval based on OS benefit; EMA approved 2013"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "OS BENEFIT (4.1 months) achieved approval despite no PFS/ORR - validates OS as endpoint for immunotherapy",
+                  "EXCELLENT SAFETY - minimal toxicity enables use in asymptomatic patients (low treatment burden)",
+                  "PERSONALIZED APPROACH - autologous DCs tailored to each patient",
+                  "PAP is broadly expressed tumor-associated antigen (80% of prostate cancers)"
+                ],
+                "key_insights": "Sipuleucel-T is PROOF-OF-CONCEPT that cancer vaccines CAN work in mCRPC, achieving FDA approval and OS benefit. HOWEVER, 4.1 month OS gain is MODEST - sets LOW benchmark compared to newer therapies (Pluvicto median OS 15.3 months, STEAP1 bispecific 30% PSA50). Unconventional efficacy pattern (OS benefit without PFS/ORR) suggests long-term immune priming effect - may take time for vaccine to work. LIMITATIONS: (1) Modest clinical benefit limits uptake (used in <10% of eligible patients), (2) Manufacturing complexity (autologous, 3 leukaphereses, 1-month process), (3) High cost (~$93,000), (4) PAP expression may decline in advanced/AR-resistant disease. STRATEGIC LESSONS: (1) Vaccine platform VALIDATED in mCRPC - other vaccines can build on this, (2) OS endpoint acceptable for approval (FDA precedent), (3) Combination opportunities - Sipuleucel-T + checkpoint inhibitor rational (vaccine primes, checkpoint amplifies), (4) Next-gen vaccines must show GREATER benefit (>4.1 month OS) or target more advanced disease. Sipuleucel-T remains only approved immunotherapy but clinical impact limited - opportunity for better vaccines."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "dendritic_cell", "autologous", "PAP_targeting", "FDA_approved", "4.1_month_OS", "ONLY_approved_immunotherapy"]
+            },
+            {
+              "drug_name": "Rilimogene galvacirepvec (Prostvac)",
+              "specific_moa": "Viral vector vaccine using prime-boost strategy; PRIMING with vaccinia virus encoding PSA + 3 costimulatory molecules (B7.1, ICAM-1, LFA-3), followed by BOOSTING with fowlpox virus encoding same transgenes; viral infection provides adjuvant effect (innate immune activation); PSA antigen presented with costimulation primes robust PSA-specific T-cell responses; subcutaneous administration",
+              "moa_classification": ["cancer_vaccine", "viral_vector", "PSA_targeting", "prime_boost", "Phase_III_FAILED"],
+              "clinical_evidence": {
+                "development_stage": "FAILED Phase III (PROSPECT trial) - discontinued",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "PROSPECT (Phase III)",
+                    "phase": "Phase III",
+                    "design": "Prostvac + GM-CSF vs placebo in asymptomatic/minimally symptomatic mCRPC",
+                    "efficacy": {
+                      "mOS": "34.4 months (Prostvac) vs 34.3 months (placebo) - NO DIFFERENCE",
+                      "PFS": "No difference",
+                      "Note": "COMPLETE FAILURE - no benefit on any endpoint despite promising Phase II data"
+                    },
+                    "safety": "Well tolerated; injection site reactions; no major toxicities",
+                    "patient_selection": "Asymptomatic/minimally symptomatic mCRPC (similar to Sipuleucel-T)",
+                    "outcome": "FAILURE - no OS benefit; program discontinued; mechanism of Phase II benefit unclear"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "failure_reasons": [
+                  "PSA ANTIGEN LOSS - PSA expression declines with AR inhibition and castration resistance; vaccine targeting PSA may fail as disease progresses",
+                  "PHASE II SIGNALS MISLEADING - randomized Phase II showed OS trends but not reproduced in Phase III",
+                  "LACK OF BIOMARKER SELECTION - unselected population may have included many PSA-low patients (ineffective vaccine)",
+                  "TME SUPPRESSION - vaccine-primed T cells still face 'cold' TME barriers; no checkpoint combination to overcome"
+                ],
+                "key_insights": "Prostvac Phase III FAILURE is CAUTIONARY TALE for cancer vaccines in mCRPC. Despite promising Phase II and strong preclinical rationale (viral vectors, costimulatory molecules, PSA target), Phase III showed ZERO OS benefit. CRITICAL LESSONS: (1) PSA is POOR target in AR-resistant mCRPC - expression declines with disease progression, castration, AR inhibition, (2) Viral vector vaccines alone INSUFFICIENT - must combine with checkpoint or other immune modulators, (3) Phase II trends in cancer vaccines can be MISLEADING - adequately powered Phase III essential, (4) Biomarker selection needed - restrict to PSA-high patients or choose alternative antigens (PSMA, STEAP1 maintained in AR-resistant disease). STRATEGIC IMPLICATIONS: PSA vaccines are DEAD in advanced mCRPC - target earlier disease stages OR switch to PSMA/STEAP1. Prostvac failure contrasts with Sipuleucel-T success (4.1 month OS) - PAP may be superior target to PSA, OR autologous DC approach better than viral vector. Future vaccines MUST address antigen loss (multi-antigen), TME suppression (combinations), and patient selection (biomarkers)."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "viral_vector", "PSA_targeting", "Phase_III_FAILED", "antigen_loss", "AVOID_PSA_in_advanced_disease"]
+            },
+            {
+              "drug_name": "SYNC-T (Syncromune)",
+              "specific_moa": "In-situ personalized cancer vaccine; intratumoral injection of immunostimulatory cocktail (TLR agonists, GM-CSF, IFN-α) directly into tumor lesion (bone metastasis, lymph node); induces immunogenic cell death IN-SITU, releasing patient's own tumor antigens; creates vaccine effect using tumor as antigen source (personalized without ex vivo manufacturing); recruits DCs to tumor site, promotes antigen presentation, primes systemic anti-tumor response",
+              "moa_classification": ["cancer_vaccine", "in_situ", "personalized", "intratumoral", "Phase_II"],
+              "clinical_evidence": {
+                "development_stage": "Phase II - Early data presented ASCO 2025",
+                "pivotal_trials": [
+                  {
+                    "trial_name": "Phase II in mCRPC",
+                    "phase": "Phase II",
+                    "design": "SYNC-T intratumoral injection in accessible lesions (bone, lymph node) in mCRPC",
+                    "efficacy": {
+                      "ctDNA_response": "6 of 18 patients (33%) achieved ≥30% ctDNA decline - biomarker of tumor burden reduction",
+                      "Systemic_responses": "Responses observed in non-injected lesions (abscopal effect)",
+                      "Note": "33% ctDNA response demonstrates clinical activity; abscopal effects suggest systemic immune priming"
+                    },
+                    "safety": "Local injection site reactions; manageable systemic inflammatory symptoms; no severe CRS",
+                    "patient_selection": "mCRPC with accessible lesions for intratumoral injection",
+                    "outcome": "Promising Phase II - 33% ctDNA response validates in-situ approach; expansion ongoing"
+                  }
+                ]
+              },
+              "lessons_learned": {
+                "success_factors": [
+                  "IN-SITU APPROACH overcomes antigen selection challenge - uses patient's own tumor as antigen source (all antigens, personalized)",
+                  "33% ctDNA RESPONSE demonstrates clinical activity without ex vivo manufacturing",
+                  "ABSCOPAL EFFECTS (non-injected lesions responding) prove systemic immune activation",
+                  "NO MANUFACTURING DELAY - intratumoral injection can be done immediately (vs weeks for autologous vaccines)",
+                  "Accessible lesions (bone, lymph node) available in most mCRPC patients"
+                ],
+                "key_insights": "SYNC-T represents INNOVATIVE vaccine approach - in-situ immunogenic cell death creates personalized vaccine without manufacturing. 33% ctDNA response is MEANINGFUL in heavily pretreated mCRPC. IN-SITU ADVANTAGES: (1) Personalized antigens (patient's own tumor, all antigens not just selected TAAs), (2) No manufacturing (immediate treatment), (3) Overcomes antigen loss (uses heterogeneous tumor as source), (4) Abscopal effects (systemic immunity from local injection). CHALLENGES: (1) Requires accessible lesions (not all mCRPC patients have injectable sites), (2) Optimal injection schedule unclear, (3) Likely works best in combination with checkpoint inhibitors (in-situ priming + PD-1 blockade). STRATEGIC: In-situ vaccines are EMERGING platform - SYNC-T in mCRPC, similar approaches in other cancers. If Phase II confirms activity, combination trials (SYNC-T + pembrolizumab) rational. Advantages over Sipuleucel-T: no manufacturing, broader antigen coverage, abscopal effects. RECOMMENDATION: HIGH INTEREST - monitor Phase II expansion; if validated, in-situ vaccines could replace ex vivo manufactured vaccines (faster, broader antigens); combination with checkpoint inhibitors is next step."
+              },
+              "similarity_matching_tags": ["cancer_vaccine", "in_situ", "personalized", "intratumoral", "33%_ctDNA_response", "abscopal_effects", "Phase_II_promising"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "7/10 - Vaccines address 'cold' TME by priming T cells BUT face TME suppression barriers; combination with checkpoint likely needed",
+          "clinical_validation": "6/10 - Sipuleucel-T approved (4.1 month OS validates platform) but modest benefit; Prostvac Phase III failed; SYNC-T showing early promise (33% ctDNA response)",
+          "unmet_need_match": "6/10 - Vaccines create T-cell responses but insufficient alone; Sipuleucel-T benchmark low (4.1 months OS); next-gen must improve",
+          "overall_assessment": "Cancer vaccines in mCRPC show MIXED results - platform VALIDATED (Sipuleucel-T approved) but clinical impact MODEST. Sipuleucel-T 4.1 month OS benefit is PROOF-OF-CONCEPT that vaccines work but sets LOW bar compared to newer therapies (Pluvicto 15.3 month OS, bispecifics 30% PSA50). Prostvac Phase III FAILURE (PSA target poor in AR-resistant disease) is cautionary. SYNC-T early promise (33% ctDNA response, abscopal effects) shows in-situ approach may overcome manufacturing and antigen selection challenges. STRATEGIC INSIGHTS: (1) Vaccine platform validated but needs IMPROVEMENT - next-gen must exceed 4.1 month OS, (2) Antigen selection CRITICAL - avoid PSA (declines with AR resistance), target PSMA/STEAP1 (maintained) or use whole tumor (in-situ approach), (3) Combinations ESSENTIAL - vaccine + checkpoint rational (SYNC-T + pembrolizumab, Sipuleucel-T + checkpoint trials ongoing), (4) Manufacturing innovation - in-situ vaccines (SYNC-T) avoid delays, off-the-shelf approaches emerging. OPPORTUNITIES: (1) In-situ vaccine platform (SYNC-T model) - overcomes manufacturing, personalization, antigen loss, (2) Combination trials (vaccine + checkpoint in biomarker-selected patients), (3) Alternative antigens (PSMA, STEAP1, survivin) for peptide/DC vaccines, (4) Neoadjuvant setting (earlier disease before extensive AR resistance). RECOMMENDATION: MODERATE PRIORITY - vaccines work but need enhancement; prioritize: (1) In-situ platforms (SYNC-T), (2) Combinations (vaccine + checkpoint), (3) Better antigens (PSMA/STEAP1 not PSA); stand-alone vaccines unlikely to match Pluvicto/bispecifics unless major innovation."
+        }
+      },
+
+      {
+        "name": "Oncolytic Viruses",
+        "biological_rationale": {
+          "indication_specific_rationale": "Oncolytic viruses (OVs) selectively replicate in and kill cancer cells, causing immunogenic cell death that releases tumor antigens and danger signals. In mCRPC, OVs address 'cold' TME by: (1) Inducing inflammation (type I IFN, TNF-α, IL-6), (2) Releasing tumor antigens for immune priming, (3) Upregulating PD-L1 (sensitizing to checkpoint inhibitors), (4) Converting 'cold' to 'hot' TME. OVs are primarily TME MODULATORS, not standalone therapies - rational to combine with checkpoint inhibitors (OV primes, checkpoint amplifies).",
+          "supporting_biology": [
+            "Selective tumor cell lysis releases antigens (personalized vaccine effect)",
+            "Viral replication triggers innate immunity (type I IFN, inflammatory cytokines)",
+            "Immunogenic cell death creates danger signals (DAMP release)",
+            "PD-L1 upregulation post-OV sensitizes to checkpoint blockade",
+            "Can be delivered intratumorally (prostate, lymph nodes) or systemically (if engineered for delivery)"
+          ],
+          "theoretical_concerns": [
+            "Delivery challenges - systemic administration limited by neutralizing antibodies; intratumoral requires accessible lesions",
+            "Viral clearance - immune system rapidly clears virus, limiting replication cycles",
+            "Resistance - tumor cells can activate antiviral interferon programs blocking viral replication",
+            "Single-agent activity likely limited - must combine with checkpoint or other immunotherapy"
+          ]
+        },
+        "clinical_precedent": {
+          "precedent_drugs": [
+            {
+              "drug_name": "CAN-2409 (Candel Therapeutics)",
+              "specific_moa": "Engineered adenovirus (Ad5) encoding herpes simplex virus thymidine kinase (HSV-TK) + Fms-like tyrosine kinase 3 ligand (Flt3L); intratumoral injection into prostate; viral replication kills tumor cells; HSV-TK converts prodrug (valacyclovir) to toxic metabolite (enhances cell killing); Flt3L recruits dendritic cells to tumor site (amplifies antigen presentation); creates in-situ vaccine effect",
+              "moa_classification": ["oncolytic_virus", "adenovirus", "gene_therapy", "intratumoral", "RMAT_designation"],
+              "clinical_evidence": {
+                "development_stage": "Phase II/III - FDA RMAT (Regenerative Medicine Advanced Therapy) designation for high-risk localized prostate cancer; exploring mCRPC",
+                "regulatory_status": "RMAT designation signals FDA interest in novel virus platform",
+                "early_data": "Phase I/II in localized prostate cancer showed immune activation, antigen spreading; mCRPC data pending",
+                "outcome": "RMAT designation validates virus platform; mCRPC development leveraging localized disease learnings"
+              },
+              "lessons_learned": {
+                "key_insights": "CAN-2409 RMAT designation validates oncolytic adenovirus platform in prostate cancer. Dual mechanism (HSV-TK prodrug conversion + Flt3L DC recruitment) is RATIONAL - kill tumor AND activate immunity. INTRATUMORAL delivery to prostate feasible in localized disease; mCRPC requires accessible metastases (lymph nodes, soft tissue). STRATEGIC: RMAT designation provides expedited regulatory pathway if efficacy demonstrated. Combination with checkpoint rational - OV-induced inflammation + PD-1 blockade. Flt3L innovation (DC recruitment) may enhance vaccine effect vs standard OVs. CHALLENGES: Intratumoral delivery limits to patients with accessible lesions; systemic delivery needed for disseminated bone mets. OPPORTUNITIES: (1) Combination trials (CAN-2409 + pembrolizumab in biomarker-selected mCRPC), (2) Neoadjuvant use (pre-surgery in high-risk), (3) Oligometastatic disease (inject accessible mets, induce abscopal effects). RECOMMENDATION: MODERATE PRIORITY - RMAT designation is positive signal; monitor Phase II/III data; combination with checkpoint is future."
+              },
+              "similarity_matching_tags": ["oncolytic_virus", "adenovirus", "intratumoral", "RMAT_designation", "Flt3L_DC_recruitment", "combination_ready"]
+            }
+          ]
+        },
+        "moa_compatibility_score": {
+          "biological_fit": "7/10 - OVs address 'cold' TME by inducing inflammation BUT delivery challenges (bone mets) and single-agent activity likely limited",
+          "clinical_validation": "5/10 - CAN-2409 has RMAT designation (validates platform) but mCRPC efficacy data pending; extrapolation from localized disease",
+          "unmet_need_match": "7/10 - OVs convert cold to hot (key need) but must combine with checkpoint; delivery to bone mets challenging",
+          "overall_assessment": "Oncolytic viruses in mCRPC are EMERGING with MODERATE PRIORITY - platform validated (CAN-2409 RMAT designation) but mCRPC-specific data limited. OVs address CRITICAL need (converting 'cold' to 'hot' TME) through: (1) Immunogenic cell death (antigen release), (2) Inflammatory cytokines (type I IFN, TNF-α), (3) PD-L1 upregulation (checkpoint sensitization). PRIMARY ROLE: TME modulator, NOT standalone therapy - combinations with checkpoint inhibitors rational (OV primes, checkpoint amplifies). CHALLENGES: (1) Delivery - intratumoral requires accessible lesions (not all mCRPC have injectable mets), bone mets difficult to access; systemic delivery limited by neutralizing antibodies, (2) Viral clearance - immune system rapidly clears virus, limiting replication cycles, (3) Single-agent activity likely modest. SUCCESS FACTORS: (1) Combination strategies - OV + checkpoint in biomarker-selected patients (MSI-H, TMB-high, CDK12 loss may amplify response), (2) Novel delivery - systemic administration technologies (shielded viruses, carrier cells), (3) Armed viruses - encoding immune activators (Flt3L in CAN-2409, IL-12, GM-CSF). STRATEGIC OPPORTUNITIES: (1) Combination trials (OV + pembrolizumab) - OV-induced inflammation may overcome checkpoint resistance in biomarker-negative patients, (2) Oligometastatic disease (limited mets, accessible for injection, abscopal effects), (3) Neoadjuvant setting (high-risk localized - leverage CAN-2409 RMAT learnings). RECOMMENDATION: MODERATE PRIORITY - OVs are rational TME modulators; prioritize combination development (OV + checkpoint); await CAN-2409 mCRPC data; explore delivery innovations for bone mets."
+        }
+      }
+    ]
+  },
+
+  "unmet_needs": [
+    {
+      "need_category": "Overcoming Intrinsically 'Cold' Tumor Microenvironment",
+      "description": "mCRPC is quintessential 'cold' tumor - TAMs (60-70%), MDSCs, suppressive cytokines (TGF-β, IL-10, adenosine), minimal T-cell infiltration, low neoantigen burden. 'Cold' TME is PRIMARY reason checkpoint inhibitors failed in unselected populations. Converting cold to hot is CRITICAL for immunotherapy success.",
+      "patient_population": "~85-90% of mCRPC are 'cold' tumors (excluding MSI-H, TMB-high, CDK12-mutant subsets)",
+      "current_gaps": "Checkpoint monotherapy failed (ORR <5%); limited TME modulators approved; Pluvicto radioligand sets high efficacy bar but not primarily immunotherapy",
+      "moa_requirements": [
+        "TME-modulating combinations: Oncolytic viruses (CAN-2409 RMAT designation) induce inflammation + checkpoint blockade",
+        "Cancer vaccines (Sipuleucel-T approved but modest 4.1 month OS; SYNC-T in-situ vaccine showing 33% ctDNA response) prime T cells",
+        "PARP inhibitors + checkpoint: Activate cGAS-STING pathway (DDR-mutant ~20-25% of mCRPC) â†' type I IFN â†' immune activation",
+        "Bipolar androgen therapy (BAT) + checkpoint: Increase MHC-I and neoantigens â†' enhance checkpoint response",
+        "Radioligand therapy + checkpoint: Pluvicto induces immunogenic cell death â†' combine with PD-1 blockade",
+        "Adenosine pathway blockade: CD73 inhibitors reduce TAM-mediated suppression",
+        "TGF-β blockade: Bifunctional PD-L1 x TGF-β trap molecules address immunosuppressive cytokines",
+        "Biomarker selection ALTERNATIVE: Identify 'hot' subsets (MSI-H, TMB-high, CDK12 loss, immune signatures) - restrict checkpoint to responders"
+      ],
+      "priority": "CRITICAL - 'Cold' TME explains checkpoint failures; must address for broad immunotherapy success",
+      "commercial_opportunity": "Large population (~85-90% 'cold') if TME conversion successful; TME modulators are combination partners (expands market); biomarker-selected 'hot' subsets (~10-15%) have immediate opportunity",
+      "strategic_notes": "Checkpoint monotherapy DEAD in unselected mCRPC - lessons from KEYNOTE-199 (ORR <5%). Two strategic paths: (1) TME MODULATION - combinations that convert cold to hot (OV + checkpoint, PARP + checkpoint, BAT + checkpoint, radioligand + checkpoint), (2) BIOMARKER SELECTION - restrict to 'hot' subsets (MSI-H, TMB-high, CDK12 loss - pembrolizumab tissue-agnostic success, ORR 40-50%). Do NOT develop checkpoint monotherapy in unselected mCRPC."
+    },
+    {
+      "need_category": "Demonstrating Additive Benefit Over or Complementarity With Pluvicto Radioligand",
+      "description": "Pluvicto (177Lu-PSMA-617) FDA approved with median OS 15.3 months, expanded indication 2025. Sets HIGH efficacy bar. New immunotherapies must show: (1) Superiority (unlikely), (2) Additive benefit in combination, (3) Activity in radioligand-refractory setting, OR (4) Target alternative patient populations (PSMA-low, radioligand-ineligible).",
+      "patient_population": "Pluvicto applicable to PSMA+ mCRPC (>80%); expanding from post-chemotherapy to earlier lines",
+      "current_gaps": "No approved immunotherapy combinations with Pluvicto; post-radioligand setting unmet need; PSMA-low patients lack options",
+      "moa_requirements": [
+        "Post-Pluvicto immunotherapy: STEAP1 bispecific (Xaluritamig), KLK2 bispecific (Pasritamig), CAR-T for radioligand-refractory",
+        "Combination with Pluvicto: Radioligand + checkpoint rational (immunogenic cell death + PD-1 blockade); sequential or concurrent dosing",
+        "Alternative targets: STEAP1 (80-90%), KLK2 (60-70%) for PSMA-low or post-PSMA therapy",
+        "Multi-antigen approaches: PSMA + STEAP1 bivalent CAR-T or bispecifics to prevent single-target reliance",
+        "Earlier line positioning: Immunotherapy pre-Pluvicto IF Phase III demonstrates superior OS (unlikely but possible)"
+      ],
+      "priority": "CRITICAL - Pluvicto is reference standard; immunotherapies cannot ignore its success",
+      "commercial_opportunity": "Post-Pluvicto market growing (radioligand-refractory); combination market if synergy demonstrated (Pluvicto + IO could exceed either alone)",
+      "strategic_notes": "Pluvicto approval fundamentally changed landscape - median OS 15.3 months is HIGH bar. Immunotherapies must DIFFERENTIATE: (1) Post-Pluvicto niche (radioligand-refractory patients need options - STEAP1/KLK2 bispecifics, CAR-T), (2) Combination approach (Pluvicto + pembrolizumab in biomarker-selected patients; radioligand ICD + checkpoint blockade rational), (3) Alternative targets (STEAP1, KLK2 for PSMA-low), (4) Sequence strategies (immunotherapy then radioligand, or vice versa). Do NOT develop PSMA-targeted immunotherapy without Pluvicto differentiation plan."
+    },
+    {
+      "need_category": "Biomarker-Driven Patient Selection for Checkpoint Inhibitors",
+      "description": "Checkpoint inhibitors ONLY work in biomarker-selected subsets: MSI-H/dMMR (~5%), TMB-high (~5%), CDK12 biallelic loss (~5%), potentially immune gene signatures (~25-30%). Unselected populations show ORR <5% (KEYNOTE-199). Expanding biomarker menu and implementing routine testing is CRITICAL.",
+      "patient_population": "Immune-sensitive subsets collectively ~10-15% (MSI-H, TMB-high, CDK12 loss); broader immune signatures ~25-30%",
+      "current_gaps": "MSI and TMB testing not routine in mCRPC (unlike colorectal, lung); CDK12 testing emerging (PERSEUS-1 trial); immune signatures not validated; many responsive patients missed",
+      "moa_requirements": [
+        "Comprehensive NGS testing: MSI, TMB, CDK12, DDR mutations (BRCA2, ATM) as standard in mCRPC diagnosis",
+        "Immune profiling: T-cell infiltration (IHC for CD8), PD-L1 expression, IFN-γ signatures to identify 'hot' tumors",
+        "Companion diagnostics: Link biomarkers to therapies (MSI/TMB â†' pembrolizumab; CDK12 â†' PERSEUS-1 trial; DDR â†' PARP + checkpoint)",
+        "Biomarker expansion: Validate immune gene signatures (T-cell inflamed GEP score), Wnt/β-catenin status, STAT3 activation as predictive markers",
+        "Basket trial designs: Tissue-agnostic approvals (pembrolizumab model) enable enrollment across cancers with same biomarker"
+      ],
+      "priority": "HIGH - Biomarker selection transforms checkpoint efficacy from <5% to 40-50% ORR",
+      "commercial_opportunity": "Companion diagnostics market; precision medicine positioning; higher response rates enable premium pricing and broader use in selected populations",
+      "strategic_notes": "Pembrolizumab tissue-agnostic approvals (MSI-H, TMB-high) PROVE biomarker-driven approach works - ORR 40-50% vs <5% unselected. STRATEGIC IMPERATIVE: (1) Make biomarker testing STANDARD - advocate for NGS in all mCRPC at diagnosis, (2) Expand biomarker menu - PERSEUS-1 validating CDK12; immune signatures next, (3) Develop companion diagnostics - link tests to treatments, (4) Basket trial designs - enroll across tumors with same biomarker (efficient, leverages tissue-agnostic precedent). Do NOT develop checkpoint therapy without biomarker strategy."
+    },
+    {
+      "need_category": "Addressing Bone Metastases and Immunosuppressive Bone Microenvironment",
+      "description": ">90% of mCRPC have bone metastases; bone niche uniquely immunosuppressive (osteoclasts, Tregs, TGF-β, physical barriers to T-cell infiltration). Systemic immunotherapies face challenges accessing and activating immunity in bone. Bone-specific strategies needed.",
+      "patient_population": ">90% of mCRPC patients have bone involvement",
+      "current_gaps": "Limited bone-targeted immunotherapy approaches; Pluvicto radioligand works in bone (delivers radiation directly) but immunotherapy strategies lag",
+      "moa_requirements": [
+        "Radioligand + immunotherapy combinations: Pluvicto induces immunogenic cell death in bone mets â†' combine with checkpoint to amplify",
+        "Bone-targeted agents + immunotherapy: Bisphosphonates, denosumab (osteoclast inhibitors) have immunomodulatory effects â†' combine with checkpoint/bispecifics",
+        "Systemically delivered immunotherapies: Bispecific antibodies (Xaluritamig), checkpoint inhibitors can reach bone via circulation (advantage over local therapies)",
+        "TGF-β blockade: Particularly relevant in bone (osteoclast-derived TGF-β abundant) â†' bifunctional PD-L1 x TGF-β trap",
+        "Biomarker selection: Bone-predominant disease may have unique biology â†' validate immune markers specific to bone mets"
+      ],
+      "priority": "HIGH - Bone mets universal challenge; solutions enable broad applicability",
+      "commercial_opportunity": "Bone-targeted immunotherapy differentiates from therapies that fail in bone; >90% patients have bone involvement (large market)",
+      "strategic_notes": "Bone microenvironment creates sanctuary site for tumor - immunosuppressive niche resistant to systemic IO. SOLUTIONS: (1) Radioligand + checkpoint combinations (Pluvicto ICD + PD-1 blockade rational), (2) Bone-modulating agents (bisphosphonates, denosumab) + IO (reduce TGF-β, deplete osteoclasts), (3) Systemically delivered bispecifics (Xaluritamig reaches bone mets via circulation), (4) TGF-β blockade (addresses osteoclast-derived suppression). Pluvicto success demonstrates bone mets ARE treatable - immunotherapy must leverage this."
+    }
+  ],
+
+  "current_treatment_landscape": {
+    "standard_of_care": {
+      "first_line_mCRPC": {
+        "regimen": "AR pathway inhibitors: Enzalutamide, abiraterone + prednisone, darolutamide, OR apalutamide",
+        "efficacy": "Median OS 32-36 months (AR inhibitors); establishes HIGH baseline for subsequent therapies",
+        "notes": "First-line AR inhibitors are HIGHLY effective; AR-resistant disease emerges as key challenge"
+      },
+      "second_line_post_AR_inhibitor": {
+        "regimen": "Docetaxel chemotherapy, Cabazitaxel (post-docetaxel), Pluvicto radioligand (PSMA+), PARP inhibitors (DDR-mutant)",
+        "efficacy": "Pluvicto median OS 15.3 months (sets benchmark); Cabazitaxel median OS 13-15 months; PARP inhibitors PFS benefit",
+        "notes": "Pluvicto approval (2022, expanded 2025) is paradigm shift - PSMA-targeted radioligand highly effective; immunotherapy must differentiate"
+      },
+      "immunotherapy": {
+        "regimen": "Sipuleucel-T (asymptomatic/minimally symptomatic mCRPC); Pembrolizumab (MSI-H, TMB-high only)",
+        "efficacy": "Sipuleucel-T median OS benefit 4.1 months; Pembrolizumab ORR 40-50% in MSI-H/TMB-high (~5-10% of patients)",
+        "notes": "ONLY approved immunotherapies; Sipuleucel-T modest benefit limits use (<10% uptake); Pembrolizumab biomarker-restricted"
+      }
+    },
+    "market_size_and_growth": {
+      "global_market": {
+        "2024_estimate": "$11.99 billion (total mCRPC treatment market)",
+        "2032_forecast": "$22+ billion (projected, 8.1% CAGR)",
+        "growth_drivers": [
+          "Pluvicto radioligand expansion (earlier lines, combination use)",
+          "Novel immunotherapies IF approved (bispecifics, next-gen vaccines, CAR-T)",
+          "Biomarker-driven precision medicine (NGS testing, immune profiling)",
+          "Combination therapies (radioligand + IO, PARP + checkpoint)"
+        ]
+      },
+      "regional_breakdown": {
+        "US_market": "~60% of global (>$7 billion); dominant due to Pluvicto uptake, advanced diagnostics",
+        "EU_market": "~25% of global (~$3 billion); Pluvicto EMA approved, expanding",
+        "seven_major_markets": "US, EU5 (Germany, France, UK, Italy, Spain), Japan comprise ~90% of total"
+      },
+      "immunotherapy_opportunity": {
+        "current_share": "$500M-1B (Sipuleucel-T, pembrolizumab biomarker-selected); ~5-10% of market",
+        "potential_share": "$3-5B if bispecifics approved and broadly used (25-40% of market)",
+        "rationale": "Bispecifics (Xaluritamig Phase III) could capture significant share if approved; combination with Pluvicto expands market; CAR-T niche but high-value"
+      }
+    },
+    "key_competitors": {
+      "radioligand_therapy": "Pluvicto (Novartis) - approved, expanding; 177Lu-PNT2002 (Point Biopharma) Phase III; other PSMA radioligands in development",
+      "immunotherapy_leaders": "Amgen (Xaluritamig STEAP1 bispecific Phase III), Regeneron (REGN-4336 PSMA bispecific Phase II), Johnson & Johnson (Pasritamig KLK2 bispecific Phase I)",
+      "CAR-T_programs": "Kite/Gilead (TmPSMA-02), City of Hope (PSMA CAR-T), AstraZeneca (AZD-0754 STEAP1 CAR-T)",
+      "vaccines": "Sipuleucel-T (Dendreon/Sanpower), SYNC-T (Syncromune), CAN-2409 (Candel)"
+    }
+  },
+
+  "development_pipeline": {
+    "by_phase_and_moa": {
+      "phase_iii_advanced": [
+        {
+          "drug": "Xaluritamig (AMG 509)",
+          "moa": "STEAP1 x CD3 bispecific T-cell engager",
+          "sponsor": "Amgen",
+          "status": "Phase III ongoing",
+          "notes": "MOST ADVANCED bispecific; 30% PSA50 Phase I; likely first bispecific to market in mCRPC"
+        }
+      ],
+      "phase_ii": [
+        {
+          "drug": "Lorigerlimab (MGD013)",
+          "moa": "PD-1 x CTLA-4 bispecific + docetaxel",
+          "sponsor": "MacroGenics",
+          "status": "LORIKEET trial fully enrolled March 2025",
+          "notes": "Dual checkpoint blockade + chemotherapy; data readout pending"
+        },
+        {
+          "drug": "REGN-4336",
+          "moa": "PSMA x CD3 bispecific",
+          "sponsor": "Regeneron",
+          "status": "Phase II mid-stage",
+          "notes": "Competes with Pluvicto radioligand; must differentiate"
+        },
+        {
+          "drug": "TmPSMA-02",
+          "moa": "PSMA CAR-T",
+          "sponsor": "Kite/Gilead",
+          "status": "Phase II",
+          "notes": "Industry-sponsored PSMA CAR-T; leveraging heme CAR-T expertise"
+        },
+        {
+          "drug": "AZD-0754",
+          "moa": "STEAP1 CAR-T + enzalutamide",
+          "sponsor": "AstraZeneca",
+          "status": "Phase I/II (dosing began late 2024)",
+          "notes": "Combination with AR inhibitor to improve persistence"
+        },
+        {
+          "drug": "SYNC-T",
+          "moa": "In-situ personalized cancer vaccine",
+          "sponsor": "Syncromune",
+          "status": "Phase II",
+          "notes": "33% ctDNA response; abscopal effects observed"
+        },
+        {
+          "drug": "Vudalimab (XmAb20717)",
+          "moa": "PD-1 x CTLA-4 dual checkpoint bispecific",
+          "sponsor": "Xencor",
+          "status": "Phase II",
+          "notes": "33% ORR in small cohort; biomarker analysis critical"
+        },
+        {
+          "drug": "CAN-2409",
+          "moa": "Oncolytic adenovirus (HSV-TK + Flt3L)",
+          "sponsor": "Candel Therapeutics",
+          "status": "Phase II/III (RMAT designation)",
+          "notes": "FDA RMAT for localized; exploring mCRPC combinations"
+        }
+      ],
+      "phase_i_early": [
+        {
+          "drug": "Pasritamig (JNJ-78278343)",
+          "moa": "KLK2 x CD3 bispecific",
+          "sponsor": "Johnson & Johnson",
+          "status": "Phase I (data published 2025)",
+          "notes": "19% ORR, 63% DCR; first-in-class KLK2 targeting"
+        },
+        {
+          "drug": "PSMA CAR-T + IL-15 (City of Hope)",
+          "moa": "PSMA CAR-T with IL-15 enhancement",
+          "sponsor": "City of Hope",
+          "status": "Phase I",
+          "notes": "IL-15 arm to improve persistence; early CR signal"
+        },
+        {
+          "drug": "Pembrolizumab in CDK12-mutant",
+          "moa": "PD-1 inhibitor in biomarker-selected",
+          "sponsor": "Multiple sites (PERSEUS-1 trial)",
+          "status": "Phase II (initiated June 2025)",
+          "notes": "Prospective biomarker-selected trial; validates CDK12 as predictive marker"
+        }
+      ]
+    },
+    "combination_trials_emerging": [
+      "PARP inhibitors + pembrolizumab (DDR-mutant mCRPC)",
+      "Pluvicto radioligand + checkpoint inhibitors (immunogenic death + PD-1 blockade)",
+      "Bipolar androgen therapy (BAT) + nivolumab (neoantigen induction + checkpoint)",
+      "Oncolytic viruses + checkpoint inhibitors (TME modulation + immune amplification)",
+      "Cancer vaccines + checkpoint (Sipuleucel-T + pembrolizumab; SYNC-T + checkpoint)"
+    ],
+    "competitive_intensity": {
+      "high_activity_areas": [
+        "Bispecific T-cell engagers (STEAP1, PSMA, KLK2) - multiple players, STEAP1 most advanced (Xaluritamig Phase III)",
+        "PSMA-targeted therapies (radioligand Pluvicto approved; CAR-T, bispecifics competing)",
+        "Biomarker-selected checkpoint (MSI-H, TMB-high approved; CDK12 emerging via PERSEUS-1)"
+      ],
+      "emerging_opportunities": [
+        "Post-Pluvicto immunotherapy (radioligand-refractory population growing)",
+        "STEAP1-targeted therapies (bispecific leading, CAR-T following)",
+        "In-situ vaccines (SYNC-T model - manufacturing-free, personalized)",
+        "Dual-mechanism approaches (dual checkpoint bispecifics, CAR-T + enzalutamide)",
+        "TME-modulating combinations (OV + checkpoint, PARP + checkpoint, BAT + checkpoint)"
+      ],
+      "failed_approaches_avoid": [
+        "PD-1/PD-L1 monotherapy in unselected populations (KEYNOTE-199 ORR <5%)",
+        "PSA-targeted vaccines in AR-resistant disease (Prostvac Phase III failed)",
+        "Single-target approaches without biomarker selection or differentiation from Pluvicto"
+      ]
+    }
+  },
+
+  "strategic_insights": {
+    "moa_success_patterns": {
+      "highest_priority": [
+        {
+          "moa_class": "Bispecific T-Cell Engagers (STEAP1, KLK2, dual checkpoint)",
+          "evidence": "Xaluritamig (STEAP1 x CD3): 30% PSA50 Phase I, Phase III ongoing; Pasritamig (KLK2 x CD3): 19% ORR; Vudalimab (PD-1 x CTLA-4): 33% ORR",
+          "key_success_factors": "Off-the-shelf (vs CAR-T manufacturing), systemically delivered (reaches bone mets), multiple validated targets (STEAP1, KLK2, PSMA), manageable CRS with step-up dosing, rapid market advancement (Xaluritamig Phase III)",
+          "strategic_takeaway": "Bispecific antibodies are LEADING immunotherapy modality in mCRPC. Xaluritamig (Phase III, 30% PSA50) likely FIRST to market, validating STEAP1 as alternative to PSMA. Multiple targets (PSMA, STEAP1, KLK2) provide diversification. Off-the-shelf advantage over CAR-T (no manufacturing delay, broader access, lower cost). Combination potential with checkpoint, radioligands. RECOMMENDATION: HIGHEST PRIORITY - monitor Xaluritamig Phase III; if approved, validates bispecific platform; consider licensing or developing next-gen (tri-specifics, PD-L1 x tumor antigen)."
+        },
+        {
+          "moa_class": "Biomarker-Selected Checkpoint Inhibitors",
+          "evidence": "Pembrolizumab: MSI-H/dMMR ORR 40-50%, TMB-high ORR 29%, tissue-agnostic FDA approved; PERSEUS-1 validating CDK12-mutant subset",
+          "key_success_factors": "Biomarker selection transforms efficacy (ORR 40-50% vs <5% unselected), tissue-agnostic approvals enable basket trials, companion diagnostics guide patient selection, durable responses when biomarker-positive",
+          "strategic_takeaway": "Checkpoint inhibitors ONLY work in mCRPC when BIOMARKER-SELECTED. MSI-H and TMB-high (~5-10% collectively) show robust responses (ORR 40-50%). PERSEUS-1 expanding biomarker menu (CDK12 loss ~5%). Immune gene signatures (~25-30%) next frontier. CRITICAL: Do NOT develop checkpoint monotherapy in unselected mCRPC (futile). STRATEGY: (1) Comprehensive NGS testing (MSI, TMB, CDK12, DDR), (2) Immune profiling (T-cell infiltration, IFN signatures), (3) Companion diagnostics linking biomarkers to treatments, (4) Basket trials leveraging tissue-agnostic precedent. Biomarker-driven precision medicine is ONLY viable checkpoint path in mCRPC."
+        }
+      ],
+      "moderate_priority": [
+        {
+          "moa_class": "CAR-T Therapies (PSMA, STEAP1)",
+          "evidence": "City of Hope PSMA CAR-T: Early CR signal, IL-15 improves persistence; AZD-0754 STEAP1 CAR-T: Phase I/II with enzalutamide",
+          "key_success_factors": "Potent tumor killing (MHC-independent), multiple targets validated (PSMA, STEAP1), IL-15 enhancement improves persistence, combination with AR inhibitors rational",
+          "strategic_takeaway": "CAR-T shows proof-of-concept (City of Hope CR) but faces CHALLENGES: (1) Persistence in 'cold' TME (IL-15 enhancement promising), (2) Manufacturing complexity and cost, (3) Competition with Pluvicto radioligand (CAR-T must show superiority or post-radioligand niche). OPPORTUNITIES: (1) Post-Pluvicto setting (radioligand-refractory), (2) Combinations (CAR-T + checkpoint, CAR-T + enzalutamide for persistence), (3) Multi-antigen constructs (PSMA + STEAP1 bivalent). RECOMMENDATION: MODERATE PRIORITY - monitor Phase II data; if persistence solved and efficacy confirmed, partnership opportunity; position for post-radioligand or combination use."
+        },
+        {
+          "moa_class": "In-Situ Cancer Vaccines",
+          "evidence": "SYNC-T: 33% ctDNA response, abscopal effects in non-injected lesions",
+          "key_success_factors": "No manufacturing (immediate treatment), personalized antigens (whole tumor as source), abscopal effects (systemic immunity), overcomes antigen loss",
+          "strategic_takeaway": "In-situ vaccines (SYNC-T) represent INNOVATIVE platform - intratumoral immunostimulation creates vaccine effect without ex vivo manufacturing. 33% ctDNA response and abscopal effects validate approach. ADVANTAGES over Sipuleucel-T: (1) No manufacturing delay, (2) Broader antigen coverage (whole tumor), (3) Systemic immunity from local injection. CHALLENGES: Requires accessible lesions (not all mCRPC); combination with checkpoint likely needed. RECOMMENDATION: HIGH INTEREST - if Phase II confirms, in-situ vaccines could replace manufactured vaccines; combination trials (SYNC-T + pembrolizumab) next step."
+        }
+      ],
+      "failed_or_low_priority": [
+        {
+          "moa_class": "Checkpoint Monotherapy in Unselected Populations",
+          "evidence": "KEYNOTE-199: Pembrolizumab ORR <5% in unselected mCRPC",
+          "failure_reasons": "'Cold' TME (no T cells to activate), low neoantigen burden (TMB ~1-3 mut/Mb), TAM-mediated suppression, bone microenvironment barriers",
+          "strategic_takeaway": "DEFINITIVE FAILURE - PD-1/PD-L1 monotherapy does NOT work in unselected mCRPC (similar to GBM). Do NOT develop. EXCEPTION: Biomarker-selected subsets (MSI-H, TMB-high, CDK12 loss) show robust responses - biomarker testing MANDATORY."
+        },
+        {
+          "moa_class": "PSA-Targeted Vaccines",
+          "evidence": "Prostvac (rilimogene galvacirepvec): Phase III PROSPECT trial FAILED (no OS benefit)",
+          "failure_reasons": "PSA expression declines with AR inhibition and castration resistance; antigen loss limits vaccine efficacy in advanced disease",
+          "strategic_takeaway": "PSA vaccines FAILED in AR-resistant mCRPC - Prostvac Phase III complete failure. PSA is POOR target in advanced disease (expression declines). Avoid PSA; target PSMA/STEAP1 (maintained in AR-resistant disease) or use whole tumor lysate/in-situ approaches."
+        }
+      ]
+    },
+
+    "key_learnings": {
+      "biomarker_selection_imperative": "Checkpoint inhibitors show EXTREME biomarker dependence - ORR <5% unselected vs 40-50% in MSI-H/TMB-high. This is NOT marginal difference; it's DIFFERENT BIOLOGY. MSI-H and TMB-high patients have high neoantigen burden, T-cell infiltration enabling checkpoint response. STRATEGIC IMPERATIVE: (1) Make biomarker testing STANDARD (NGS for MSI, TMB, CDK12, DDR at diagnosis), (2) Expand biomarker menu (PERSEUS-1 validating CDK12; immune signatures next), (3) Develop companion diagnostics linking biomarkers to treatments, (4) Do NOT develop checkpoint monotherapy without biomarker strategy - futile in unselected mCRPC.",
+
+      "pluvicto_competitive_impact": "Pluvicto approval (median OS 15.3 months, expanded indication 2025) fundamentally changed landscape. Sets HIGH efficacy bar that immunotherapies must address. STRATEGIC POSITIONING: (1) Post-Pluvicto niche (radioligand-refractory population growing), (2) Combination with Pluvicto (immunogenic death + checkpoint rational), (3) Alternative targets (STEAP1, KLK2 for PSMA-low or post-PSMA), (4) Earlier line positioning if Phase III shows superiority (unlikely but possible). Do NOT develop PSMA immunotherapy without Pluvicto differentiation plan.",
+
+      "bispecific_antibodies_leading": "Bispecific T-cell engagers are MOST ADVANCED immunotherapy modality - Xaluritamig (STEAP1 x CD3) in Phase III with 30% PSA50 response, likely first to market. OFF-THE-SHELF advantage over CAR-T (no manufacturing, faster delivery, lower cost). MULTIPLE VALIDATED TARGETS (PSMA, STEAP1, KLK2) provide diversification. Systemically delivered (reaches bone mets). Manageable CRS with step-up dosing. STRATEGIC: Bispecifics will likely dominate immunotherapy space in mCRPC; CAR-T relegated to post-bispecific or special populations unless shows superiority.",
+
+      "tme_modulation_required": "'Cold' TME explains checkpoint failures in unselected populations - no T cells to activate, low neoantigens, TAM suppression. SOLUTIONS: (1) Biomarker selection (identify 'hot' subsets), (2) TME-modulating combinations (OV + checkpoint, PARP + checkpoint activating cGAS-STING, BAT + checkpoint increasing neoantigens, radioligand + checkpoint creating immunogenic death). Single-agent approaches INSUFFICIENT - combinations ESSENTIAL for checkpoint efficacy in biomarker-negative patients.",
+
+      "antigen_target_evolution": "PSA vaccines FAILED (Prostvac) because PSA expression declines with AR resistance. LESSON: Target antigens MAINTAINED or UPREGULATED in AR-resistant disease. PSMA (>80%, upregulated with AR inhibition) and STEAP1 (80-90%, maintained) are SUPERIOR targets. KLK2 (60-70%, androgen-regulated) is third option. PAP (Sipuleucel-T target) validated but expression variable. STRATEGIC: Prioritize PSMA/STEAP1 for broad applicability; avoid PSA in advanced mCRPC.",
+
+      "combination_strategies_emerging": "Single-agent immunotherapy largely ineffective in mCRPC (except biomarker-selected checkpoint). FUTURE is COMBINATIONS: (1) Bispecific + checkpoint (T-cell recruitment + immune amplification), (2) Radioligand + checkpoint (immunogenic death + PD-1 blockade), (3) PARP + checkpoint (cGAS-STING activation in DDR-mutant), (4) OV + checkpoint (TME modulation + immune activation), (5) Vaccine + checkpoint (priming + amplification). Combinations address 'cold' TME and create multi-pronged attack."
+    },
+
+    "recommendations_for_rd_strategy": [
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Prioritize Bispecific Antibody Development or Partnership",
+        "rationale": "Bispecific T-cell engagers are LEADING modality - Xaluritamig (STEAP1 x CD3) Phase III, 30% PSA50; off-the-shelf, systemically delivered, multiple targets validated (PSMA, STEAP1, KLK2)",
+        "action_items": [
+          "Monitor Xaluritamig Phase III closely - if approved, validates bispecific platform and STEAP1 target",
+          "Consider licensing STEAP1 or KLK2 bispecific technology OR develop next-gen formats (tri-specifics: tumor antigen + CD3 + checkpoint blocker; bivalent tumor antigens)",
+          "Initiate combination trials: bispecific + pembrolizumab in biomarker-selected patients (MSI-H, TMB-high, CDK12 loss); bispecific + Pluvicto sequential/concurrent",
+          "Develop subcutaneous formulations (patient convenience - Xaluritamig demonstrates feasibility)",
+          "Step-up dosing protocols to mitigate CRS (established strategy across bispecifics)"
+        ]
+      },
+      {
+        "priority": "CRITICAL",
+        "recommendation": "Implement Biomarker-Driven Strategy - Abandon Unselected Checkpoint Monotherapy",
+        "rationale": "Checkpoint monotherapy ORR <5% unselected vs 40-50% in MSI-H/TMB-high - biomarker selection TRANSFORMS efficacy. Pembrolizumab tissue-agnostic approvals validate approach.",
+        "action_items": [
+          "TERMINATE any checkpoint monotherapy programs in unselected mCRPC",
+          "Advocate for comprehensive NGS testing as STANDARD in mCRPC - MSI, TMB, CDK12, DDR mutations at diagnosis",
+          "Expand biomarker menu: Validate CDK12 (PERSEUS-1 trial model), immune gene signatures (T-cell inflamed GEP), Wnt/β-catenin status",
+          "Develop companion diagnostics linking biomarkers to treatments (MSI/TMB â†' pembrolizumab; CDK12 â†' investigational; DDR â†' PARP + checkpoint)",
+          "Basket trial designs: Leverage tissue-agnostic precedent for efficient enrollment across cancers with same biomarker"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Develop TME-Modulating Combinations to Overcome 'Cold' Tumor",
+        "rationale": "'Cold' TME is PRIMARY barrier to immunotherapy in biomarker-negative patients (~85-90%). Combinations that convert cold to hot enable checkpoint efficacy.",
+        "action_items": [
+          "PARP inhibitor + checkpoint in DDR-mutant (~20-25%): Activate cGAS-STING pathway â†' type I IFN â†' immune activation",
+          "Radioligand + checkpoint: Pluvicto immunogenic cell death + pembrolizumab; sequential or concurrent dosing",
+          "Bipolar androgen therapy (BAT) + checkpoint: Increase MHC-I and neoantigens (validated in biomarker-selected cohort)",
+          "Oncolytic virus + checkpoint: CAN-2409 (RMAT designation) + pembrolizumab; OV primes, checkpoint amplifies",
+          "Adenosine pathway blockade: CD73 inhibitors + checkpoint to reduce TAM-mediated suppression",
+          "TGF-β blockade: Bifunctional PD-L1 x TGF-β trap molecules (address cytokine immunosuppression)"
+        ]
+      },
+      {
+        "priority": "HIGH",
+        "recommendation": "Position Immunotherapies Relative to Pluvicto Radioligand",
+        "rationale": "Pluvicto (median OS 15.3 months, expanding indications) sets HIGH efficacy bar. Immunotherapies must differentiate: post-radioligand, combination, alternative targets, or earlier lines.",
+        "action_items": [
+          "Post-Pluvicto strategy: Develop STEAP1/KLK2 bispecifics, CAR-T for radioligand-refractory (growing population)",
+          "Combination trials: Pluvicto + pembrolizumab in biomarker-selected (MSI-H, TMB-high, CDK12); radioligand ICD + checkpoint rational",
+          "Alternative targets: STEAP1 (80-90%), KLK2 (60-70%) for PSMA-low or post-PSMA therapy",
+          "Earlier line positioning: IF Phase III demonstrates superiority (unlikely) - neoadjuvant or first-line combinations",
+          "Multi-antigen approaches: PSMA + STEAP1 bivalent CAR-T or bispecifics to prevent single-target reliance"
+        ]
+      },
+      {
+        "priority": "MODERATE-HIGH",
+        "recommendation": "Explore Next-Generation CAR-T with Persistence Optimization",
+        "rationale": "CAR-T shows proof-of-concept (City of Hope CR) but persistence challenge limits durability. IL-15 enhancement and combinations promising.",
+        "action_items": [
+          "Monitor City of Hope PSMA CAR-T + IL-15 and AZD-0754 STEAP1 CAR-T + enzalutamide data - if persistence improved, validates approach",
+          "Develop armored CAR-T: Cytokine-secreting (IL-15, IL-12) to overcome TME suppression",
+          "Combination strategies: CAR-T + AR inhibitor (enzalutamide maintains T-cell function), CAR-T + checkpoint (amplify response)",
+          "Multi-antigen CAR-T: PSMA + STEAP1 bivalent to prevent escape (less critical than GBM but still relevant)",
+          "Post-bispecific positioning: If STEAP1 bispecific dominates, CAR-T for bispecific-refractory OR demonstrate superiority (deeper, more durable responses)"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Invest in In-Situ Vaccine Platforms",
+        "rationale": "In-situ vaccines (SYNC-T 33% ctDNA response) overcome manufacturing, antigen selection, and antigen loss challenges. Rapid treatment, personalized antigens.",
+        "action_items": [
+          "Monitor SYNC-T Phase II expansion - if validated, in-situ platform could replace manufactured vaccines",
+          "Develop proprietary in-situ formulations: TLR agonists, cytokines (GM-CSF, IFN-α), checkpoint inhibitors delivered intratumorally",
+          "Combination trials: In-situ vaccine + checkpoint (SYNC-T + pembrolizumab rational - local priming, systemic checkpoint)",
+          "Identify accessible lesions: Bone metastases (image-guided injection), lymph nodes, soft tissue; develop delivery technologies",
+          "Compare to Sipuleucel-T: In-situ advantages (no manufacturing, broader antigens, abscopal effects) vs autologous DC (established approval path)"
+        ]
+      },
+      {
+        "priority": "MODERATE",
+        "recommendation": "Address Bone Metastases Immunosuppression",
+        "rationale": ">90% mCRPC have bone mets; bone niche uniquely immunosuppressive (osteoclasts, TGF-β, Tregs). Bone-specific strategies needed.",
+        "action_items": [
+          "Radioligand + immunotherapy: Pluvicto delivers radiation to bone, induces ICD â†' combine with checkpoint",
+          "Bone-targeted agents: Bisphosphonates, denosumab (osteoclast inhibitors) + IO combinations (immunomodulatory effects)",
+          "TGF-β blockade: Particularly relevant in bone (osteoclast-derived TGF-β) â†' bifunctional PD-L1 x TGF-β trap",
+          "Systemically delivered bispecifics: Xaluritamig, others reach bone mets via circulation (advantage over local therapies)",
+          "Biomarker validation: Bone-predominant disease may have unique immune biology â†' validate immune markers specific to bone mets"
+        ]
+      }
+    ]
+  },
+
+  "executive_summary": {
+    "indication_overview": "Metastatic castration-resistant prostate cancer (mCRPC), particularly AR-resistant disease, is characterized by: (1) Intrinsically 'cold' tumor microenvironment (TAMs 60-70%, MDSCs, minimal T-cell infiltration, suppressive cytokines), (2) Low tumor mutational burden (~1-3 mut/Mb) limiting neoantigens, (3) Bone metastases (>90% of patients) creating immunosuppressive niche, (4) High efficacy bar set by Pluvicto radioligand (median OS 15.3 months). Only ONE approved immunotherapy (Sipuleucel-T, modest 4.1 month OS) despite robust pipeline. Market $11.99B (2024), projected $22B+ (2032, 8.1% CAGR) but immunotherapy share currently <10%. Success requires: biomarker-driven patient selection, TME-modulating combinations, differentiation from Pluvicto, multi-antigen targeting.",
+
+    "most_validated_moas": [
+      "Bispecific T-cell engagers: Xaluritamig (STEAP1 x CD3) 30% PSA50 Phase III, Pasritamig (KLK2 x CD3) 19% ORR - LEADING modality, off-the-shelf, multiple targets",
+      "Biomarker-selected checkpoint inhibitors: Pembrolizumab MSI-H/TMB-high ORR 40-50% (tissue-agnostic approved), PERSEUS-1 validating CDK12-mutant subset",
+      "In-situ personalized vaccines: SYNC-T 33% ctDNA response, abscopal effects - overcomes manufacturing and antigen selection challenges"
+    ],
+
+    "emerging_moa_opportunities": [
+      "CAR-T with persistence optimization: IL-15 enhancement (City of Hope), combination with AR inhibitors (AZD-0754) address TME suppression",
+      "TME-modulating combinations: PARP + checkpoint (cGAS-STING activation), radioligand + checkpoint (immunogenic death), BAT + checkpoint (neoantigen induction)",
+      "Dual-mechanism bispecifics: PD-1 x CTLA-4 (Vudalimab 33% ORR), tri-specific antibodies (tumor + CD3 + checkpoint)",
+      "Post-Pluvicto immunotherapy: STEAP1/KLK2 bispecifics, CAR-T for radioligand-refractory setting"
+    ],
+
+    "failed_moas_avoid": [
+      "PD-1/PD-L1 checkpoint monotherapy in unselected populations (KEYNOTE-199 ORR <5%) - DEFINITIVELY FAILED; cold TME, low neoantigens",
+      "PSA-targeted vaccines in AR-resistant disease (Prostvac Phase III failed) - PSA expression declines with disease progression",
+      "Single-target approaches without biomarker selection or Pluvicto differentiation - must show additive benefit or target alternative populations"
+    ],
+
+    "highest_priority_unmet_needs": [
+      {
+        "need": "Overcoming 'cold' tumor microenvironment",
+        "moa_solutions": "Biomarker selection (MSI-H, TMB-high, CDK12 ~10-15% with 'hot' biology), TME-modulating combinations (OV + checkpoint, PARP + checkpoint, radioligand + checkpoint, BAT + checkpoint), in-situ vaccines (SYNC-T creates inflammation), adenosine/TGF-β blockade"
+      },
+      {
+        "need": "Differentiation from Pluvicto radioligand (median OS 15.3 months)",
+        "moa_solutions": "Post-Pluvicto positioning (STEAP1/KLK2 for radioligand-refractory), combinations (Pluvicto + checkpoint), alternative targets (STEAP1, KLK2 for PSMA-low), multi-antigen approaches (prevent single-target reliance)"
+      },
+      {
+        "need": "Biomarker-driven patient selection for checkpoint inhibitors",
+        "moa_solutions": "Comprehensive NGS (MSI, TMB, CDK12, DDR mutations), immune profiling (T-cell infiltration, IFN signatures), companion diagnostics, basket trials leveraging tissue-agnostic precedent"
+      },
+      {
+        "need": "Addressing bone metastases immunosuppression (>90% patients)",
+        "moa_solutions": "Radioligand + checkpoint combinations, bone-targeted agents (bisphosphonates) + IO, TGF-β blockade (osteoclast-derived suppression), systemically delivered bispecifics (reach bone mets)"
+      }
+    ],
+
+    "key_success_factors_by_moa": {
+      "Bispecific_antibodies": "OFF-THE-SHELF (no manufacturing), MULTIPLE TARGETS validated (STEAP1 30% PSA50, KLK2 19% ORR, PSMA in development), systemically delivered (reaches bone mets), manageable CRS with step-up dosing, Phase III advancement (Xaluritamig leading). Combination potential with checkpoint, radioligands. HIGHEST PRIORITY - first to market advantage substantial.",
+
+      "Checkpoint_inhibitors": "BIOMARKER SELECTION is NON-NEGOTIABLE - ORR <5% unselected vs 40-50% in MSI-H/TMB-high. Pembrolizumab tissue-agnostic approvals validate precision medicine approach. EXPAND biomarker menu (CDK12 via PERSEUS-1, immune signatures). Combinations with TME modulators (PARP, OV, BAT, radioligand) enable activity in biomarker-negative patients. Do NOT develop in unselected populations.",
+
+      "CAR-T": "PERSISTENCE is key challenge - IL-15 enhancement, combination with AR inhibitors address TME suppression. Potent tumor killing demonstrated (City of Hope CR) but must solve durability. Competition with bispecifics (off-the-shelf advantage) - CAR-T must show SUPERIORITY (deeper, longer responses) or target post-bispecific niche. Multi-antigen constructs (PSMA + STEAP1) prevent escape.",
+
+      "Cancer_vaccines": "IN-SITU approach (SYNC-T) overcomes manufacturing, antigen selection, antigen loss challenges. Sipuleucel-T modest 4.1 month OS validates platform but sets low bar. Combination with checkpoint ESSENTIAL (vaccine primes, checkpoint amplifies). Target antigens MAINTAINED in AR-resistant disease (PSMA, STEAP1, NOT PSA). Ex vivo manufactured vaccines face Sipuleucel-T comparison.",
+
+      "Oncolytic_viruses": "PRIMARY ROLE: TME modulator, not standalone. Induce inflammation, release antigens, upregulate PD-L1 â†' combine with checkpoint. CAN-2409 RMAT designation validates platform. Delivery challenges (bone mets, neutralizing antibodies) require innovation. Combination trials (OV + checkpoint) are immediate opportunity.",
+
+      "TME_modulators": "Address FUNDAMENTAL barrier ('cold' TME). PARP + checkpoint (cGAS-STING activation in DDR-mutant ~20-25%), BAT + checkpoint (neoantigen induction), radioligand + checkpoint (immunogenic death), adenosine/TGF-β blockade (reduce TAM/cytokine suppression). Biomarker-driven combinations (PARP in DDR-mutant) most advanced. Single-agent TME modulators insufficient - must combine with checkpoint/bispecific/CAR-T."
+    },
+
+    "strategic_positioning": {
+      "avoid": [
+        "PD-1/PD-L1 checkpoint monotherapy in unselected populations (ORR <5% - DEAD)",
+        "PSA-targeted vaccines in AR-resistant mCRPC (Prostvac Phase III failed - antigen loss)",
+        "PSMA-targeted therapies without Pluvicto differentiation (radioligand sets high bar - must show additive benefit or post-radioligand niche)",
+        "Single-target approaches without biomarker enrichment (low efficacy in unselected 'cold' tumors)"
+      ],
+      "pursue_aggressively": [
+        "Bispecific antibody platform (Xaluritamig Phase III model - STEAP1, KLK2, or next-gen tri-specifics)",
+        "Biomarker-driven precision medicine (comprehensive NGS, immune profiling, companion diagnostics, basket trials)",
+        "TME-modulating combinations (PARP + checkpoint in DDR-mutant, radioligand + checkpoint, BAT + checkpoint, OV + checkpoint)",
+        "Post-Pluvicto positioning (STEAP1/KLK2 for radioligand-refractory, multi-antigen approaches)",
+        "In-situ vaccine platforms (SYNC-T model - manufacturing-free, personalized, abscopal effects)"
+      ],
+      "monitor_closely": [
+        "Xaluritamig Phase III readout (STEAP1 bispecific - first to market, validates platform and target)",
+        "PERSEUS-1 trial results (pembrolizumab in CDK12-mutant - expands biomarker menu)",
+        "CAR-T persistence data (City of Hope IL-15, AZD-0754 + enzalutamide - if solved, game-changing)",
+        "SYNC-T Phase II expansion (in-situ vaccine - if validated, replaces manufactured vaccines)",
+        "Pluvicto combination trials (radioligand + checkpoint - if synergistic, expands both markets)"
+      ]
+    },
+
+    "overall_mcrpc_attractiveness": "mCRPC is HIGH-OPPORTUNITY, MODERATE-HIGH-RISK indication: (1) Large market ($11.99B, growing to $22B+) with LOW immunotherapy penetration (<10% - opportunity), (2) CRITICAL CHALLENGES - 'cold' TME, low neoantigens, bone mets, Pluvicto competition - require sophisticated solutions, (3) CLEAR SUCCESS PATHWAYS EXIST: (a) Biomarker selection (MSI-H, TMB-high, CDK12 ~10-15% respond robustly to checkpoint), (b) Bispecific antibodies (Xaluritamig Phase III, multiple targets validated, off-the-shelf advantage), (c) TME-modulating combinations (PARP + checkpoint, radioligand + checkpoint rational and in trials). STRATEGIC RECOMMENDATIONS: (1) HIGHEST PRIORITY: Bispecific antibody platform (monitor Xaluritamig, license or develop next-gen), biomarker-driven checkpoint strategy (comprehensive NGS, companion diagnostics), (2) HIGH PRIORITY: TME-modulating combinations (PARP + checkpoint in DDR-mutant immediate opportunity; radioligand + checkpoint leverages Pluvicto success), post-Pluvicto positioning (STEAP1/KLK2 for radioligand-refractory), (3) MODERATE PRIORITY: CAR-T if persistence solved (IL-15 enhancement data critical), in-situ vaccines (SYNC-T Phase II results), oncolytic viruses (combination-driven). AVOID: Checkpoint monotherapy in unselected populations (ORR <5% - futile), PSA-targeted vaccines (Prostvac failed - antigen loss), PSMA therapies without Pluvicto differentiation. SUCCESS REQUIRES: (1) Biomarker infrastructure (NGS, immune profiling mandatory), (2) Combination mindset (single agents insufficient in 'cold' TME), (3) Pluvicto awareness (differentiate via post-radioligand niche, combinations, alternative targets), (4) Multi-antigen strategies (PSMA + STEAP1 prevent escape). mCRPC is SPECIALIST indication - requires deep biology understanding, rational MOA selection, biomarker-driven approach. NOT for general immunotherapy programs. OPPORTUNITY SIZE: If bispecifics approved (Xaluritamig model) and combinations succeed (PARP + checkpoint, radioligand + checkpoint), immunotherapy could capture 25-40% of market ($3-5B+ vs current $500M-1B). First-mover advantage substantial - Xaluritamig approval validates STEAP1 and bispecific platform, creating market for followers."
+  },
+
+  "biomarkers": {
+    "genomic_biomarkers": [
+      {
+        "biomarker_name": "MSI-H / dMMR (Microsatellite Instability-High / Mismatch Repair Deficient)",
+        "prevalence": "~5% of mCRPC",
+        "predictive_value": "HIGH - Pembrolizumab ORR 40-50% in MSI-H (vs <5% unselected)",
+        "testing_method": "IHC for MMR proteins (MLH1, MSH2, MSH6, PMS2) or PCR for MSI",
+        "clinical_utility": "FDA tissue-agnostic approval for pembrolizumab; identifies robust checkpoint responders",
+        "mechanism": "MMR deficiency causes hypermutation, high neoantigen burden, T-cell infiltration enabling checkpoint response",
+        "strategic_importance": "VALIDATED - Mandatory testing for checkpoint therapy consideration; companion diagnostic established"
+      },
+      {
+        "biomarker_name": "TMB-High (Tumor Mutational Burden ≥10 mutations/Mb)",
+        "prevalence": "~5% of mCRPC",
+        "predictive_value": "MODERATE-HIGH - Pembrolizumab ORR 29% in TMB-high",
+        "testing_method": "Comprehensive genomic profiling (NGS) - Foundation Medicine, Tempus, Guardant360",
+        "clinical_utility": "FDA tissue-agnostic approval for pembrolizumab; second biomarker pathway beyond MSI-H",
+        "mechanism": "High mutation rate generates neoantigens, creating targets for T-cell recognition and checkpoint response",
+        "strategic_importance": "VALIDATED - NGS testing captures TMB along with other genomic alterations; expanding use"
+      },
+      {
+        "biomarker_name": "CDK12 Biallelic Loss",
+        "prevalence": "~4-5% of mCRPC",
+        "predictive_value": "EMERGING - Enriches for checkpoint response despite low overall TMB",
+        "testing_method": "NGS - identifies biallelic loss (homozygous deletion or mutation)",
+        "clinical_utility": "PERSEUS-1 trial (initiated June 2025) prospectively testing pembrolizumab in CDK12-mutant; not yet approved biomarker",
+        "mechanism": "Creates focal tandem duplication signature, highly immunogenic fusion neoantigens, 'BRCAness' phenotype",
+        "strategic_importance": "HIGH POTENTIAL - Expands biomarker menu beyond MSI/TMB; PERSEUS-1 readout critical for validation"
+      },
+      {
+        "biomarker_name": "DDR Gene Mutations (BRCA2, ATM, PALB2, others)",
+        "prevalence": "~20-25% of mCRPC",
+        "predictive_value": "MODERATE - Predicts PARP inhibitor response (approved); emerging for PARP + checkpoint combinations",
+        "testing_method": "NGS - germline and somatic testing",
+        "clinical_utility": "PARP inhibitors (olaparib, rucaparib) approved for DDR-mutant; PARP + checkpoint combinations activate cGAS-STING pathway",
+        "mechanism": "DDR deficiency causes genomic instability, cytosolic DNA, cGAS-STING activation producing type I IFN (immune activation)",
+        "strategic_importance": "HIGH - PARP inhibitor biomarker (approved); emerging as combination biomarker (PARP + checkpoint trials ongoing)"
+      },
+      {
+        "biomarker_name": "AR-V7 Splice Variant",
+        "prevalence": "~20-30% of mCRPC (blood CTC testing); higher in AR-inhibitor resistant",
+        "predictive_value": "Predicts AR pathway inhibitor resistance; may identify patients for immunotherapy (AR-independent disease)",
+        "testing_method": "CTC-based assay (blood) - Epic Sciences, others",
+        "clinical_utility": "Guides AR inhibitor use (futile if AR-V7+); AR-V7+ patients may benefit from non-AR therapies including immunotherapy",
+        "mechanism": "Constitutively active AR variant (lacks ligand-binding domain); drives AR-independent disease progression",
+        "strategic_importance": "MODERATE - Identifies AR-independent population potentially more amenable to immunotherapy"
+      }
+    ],
+    "immune_biomarkers": [
+      {
+        "biomarker_name": "PD-L1 Expression (Tumor and Immune Cells)",
+        "prevalence": "20-30% of mCRPC (varies by assay and cutoff)",
+        "predictive_value": "LOW in mCRPC - Does NOT predict checkpoint response in unselected populations",
+        "testing_method": "IHC - 22C3, SP263, others (platform-dependent)",
+        "clinical_utility": "NOT useful for patient selection in mCRPC (unlike lung/bladder); 'cold' TME dominates regardless of PD-L1",
+        "mechanism": "PD-L1 expression indicates potential for PD-1/PD-L1 interaction but insufficient in 'cold' TME without T cells",
+        "strategic_importance": "LOW - Do NOT use PD-L1 alone for patient selection; biomarker-selected subsets (MSI-H, TMB-high) respond regardless of PD-L1"
+      },
+      {
+        "biomarker_name": "CD8+ T-Cell Infiltration / Immune Gene Signatures",
+        "prevalence": "~25-30% have T-cell inflamed gene expression profile (GEP)",
+        "predictive_value": "EMERGING - T-cell infiltration and IFN-γ signatures may predict checkpoint response",
+        "testing_method": "IHC for CD8+ T cells (density, location); RNA-based GEP scoring (T-cell inflamed signature)",
+        "clinical_utility": "Research use; not yet validated companion diagnostic; may expand biomarker-responsive population beyond MSI/TMB",
+        "mechanism": "T-cell infiltration indicates 'hot' immune phenotype; IFN-γ signatures reflect active immune response",
+        "strategic_importance": "HIGH POTENTIAL - Could identify checkpoint-responsive patients beyond genomic biomarkers (MSI, TMB, CDK12); validation trials needed"
+      },
+      {
+        "biomarker_name": "PSMA Expression Level (Imaging-Based)",
+        "prevalence": ">80% of mCRPC are PSMA+ by PET imaging",
+        "predictive_value": "ESSENTIAL for PSMA-targeted therapies (radioligands, CAR-T, bispecifics)",
+        "testing_method": "68Ga-PSMA-11 PET or 18F-DCFPyL PET imaging",
+        "clinical_utility": "Selects patients for Pluvicto radioligand (approved), PSMA CAR-T, PSMA bispecifics; high expression required",
+        "mechanism": "PSMA target expression determines therapy applicability; imaging confirms tumor uptake",
+        "strategic_importance": "CRITICAL - PSMA PET is companion diagnostic for radioligand (approved); standard for PSMA-targeted immunotherapy selection"
+      },
+      {
+        "biomarker_name": "STEAP1 Expression (IHC)",
+        "prevalence": "80-90% of mCRPC",
+        "predictive_value": "Predicts STEAP1-targeted therapy applicability (bispecifics, CAR-T)",
+        "testing_method": "IHC - various antibodies in development",
+        "clinical_utility": "Emerging - Xaluritamig (STEAP1 bispecific) Phase III; may become companion diagnostic if approved",
+        "mechanism": "STEAP1 target expression; maintained in AR-resistant disease (advantage over PSA)",
+        "strategic_importance": "EMERGING HIGH - If Xaluritamig approved, STEAP1 IHC becomes standard; alternative to PSMA for multi-antigen strategies"
+      }
+    ],
+    "circulating_biomarkers": [
+      {
+        "biomarker_name": "PSA (Prostate-Specific Antigen)",
+        "prevalence": "Detectable in nearly all mCRPC (though level varies)",
+        "predictive_value": "RESPONSE MONITORING - PSA50 (≥50% decline) correlates with clinical benefit; NOT predictive of immunotherapy response",
+        "testing_method": "Serum blood test (standard)",
+        "clinical_utility": "Standard response assessment; PSA50/PSA90 endpoints in trials; declining PSA with AR resistance limits utility",
+        "mechanism": "Prostate cancer biomarker; secreted protein; levels correlate with tumor burden",
+        "strategic_importance": "STANDARD for monitoring but NOT for therapy selection; expression declines in AR-resistant disease"
+      },
+      {
+        "biomarker_name": "ctDNA (Circulating Tumor DNA)",
+        "prevalence": "Detectable in majority of mCRPC with adequate tumor burden",
+        "predictive_value": "RESPONSE MONITORING - ctDNA declines correlate with tumor response; early signal of efficacy",
+        "testing_method": "Plasma NGS - Guardant360, Foundation Medicine Liquid, Natera Signatera",
+        "clinical_utility": "Monitors tumor burden, detects emerging resistance mutations, tracks minimal residual disease; ctDNA response used in SYNC-T trial (33% ≥30% decline)",
+        "mechanism": "Tumor-derived DNA in circulation reflects tumor burden and genomic alterations",
+        "strategic_importance": "EMERGING - Earlier response signal than imaging; tracks clonal evolution; may become standard endpoint in trials"
+      }
+    ],
+    "combination_biomarker_strategies": [
+      {
+        "strategy": "Comprehensive NGS + Immune Profiling",
+        "components": "MSI, TMB, CDK12, DDR mutations (NGS) + PD-L1, CD8+ T cells, GEP (immune profiling)",
+        "rationale": "Captures both genomic (neoantigen-driven) and immune (T-cell infiltration) dimensions; maximizes checkpoint-responsive patient identification",
+        "implementation": "Foundation Medicine FoundationOne CDx or Tempus xT + immune IHC/GEP; single tissue biopsy",
+        "strategic_value": "COMPREHENSIVE - Identifies all known checkpoint-responsive biomarkers; guides therapy selection (checkpoint, PARP, targeted)"
+      },
+      {
+        "strategy": "PSMA PET + Target Expression IHC",
+        "components": "68Ga-PSMA PET (high expression confirmation) + STEAP1/KLK2 IHC (alternative targets)",
+        "rationale": "PSMA imaging selects for radioligand, PSMA CAR-T/bispecific; IHC identifies alternatives if PSMA low/heterogeneous",
+        "implementation": "PSMA PET standard; STEAP1 IHC if Xaluritamig approved; sequential target assessment",
+        "strategic_value": "MULTI-ANTIGEN - Ensures target availability; informs sequencing (PSMA first, STEAP1 second) or multi-antigen approaches"
+      },
+      {
+        "strategy": "DDR Mutation + Immune Activation Markers",
+        "components": "BRCA2/ATM/PALB2 mutations (NGS) + cGAS-STING pathway activation (IFN signatures)",
+        "rationale": "DDR-mutant patients eligible for PARP + checkpoint combinations; IFN signatures confirm immune activation from PARP",
+        "implementation": "NGS for DDR mutations + RNA-based IFN-γ/type I IFN signatures; on-treatment biopsies assess immune activation",
+        "strategic_value": "COMBINATION - Identifies patients for PARP + checkpoint; monitors mechanism (cGAS-STING activation)"
+      }
+    ],
+    "biomarker_testing_recommendations": [
+      "AT DIAGNOSIS: Comprehensive NGS (MSI, TMB, CDK12, DDR, AR-V7) for all newly diagnosed mCRPC - guides upfront therapy selection",
+      "AT PROGRESSION: Repeat NGS (plasma ctDNA if tissue unavailable) to detect emerging resistance mechanisms (AR-V7, DDR loss of heterozygosity)",
+      "BEFORE IMMUNOTHERAPY: Confirm MSI/TMB/CDK12 status (tissue NGS preferred); immune profiling (PD-L1, CD8+ T cells, GEP) if available",
+      "BEFORE PSMA THERAPY: PSMA PET imaging (required for radioligand; recommended for CAR-T/bispecific) confirms high uniform expression",
+      "ON TREATMENT: Serial ctDNA (track response, detect resistance), PSA (standard monitoring), PSMA PET (for PSMA-directed therapies, assess antigen loss)",
+      "TISSUE BANKING: Archive tissue at each biopsy/surgery for future biomarker development (immune signatures, novel targets)"
+    ]
+  },
+
+  "combination_rationale": [
+    {
+      "combination": "PARP Inhibitor + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "PARP inhibition in DDR-mutant tumors (BRCA2, ATM ~20-25%) causes cytosolic DNA accumulation â†' activates cGAS-STING pathway â†' type I interferon production â†' enhances T-cell priming and infiltration â†' sensitizes to checkpoint blockade. PARP converts 'cold' to 'hot' TME in DDR-mutant subset.",
+      "clinical_evidence": "Phase I/II trials ongoing: Olaparib + pembrolizumab, Rucaparib + nivolumab; biomarker data show increased T-cell infiltration and IFN signatures post-PARP; clinical efficacy data maturing",
+      "patient_selection": "DDR-mutant mCRPC (~20-25%); BRCA2 most common; germline and somatic testing required",
+      "development_status": "Phase II - multiple combinations in development; biomarker-driven strategy",
+      "strategic_priority": "HIGH - Approved PARP inhibitors (olaparib, rucaparib) + checkpoint is rational; DDR-mutant prevalence (~20-25%) creates sizable population; cGAS-STING activation mechanism validated",
+      "key_considerations": "Requires biomarker selection (DDR mutations); monitor IFN signatures as pharmacodynamic biomarker; manage overlapping toxicities (fatigue, cytopenias from PARP; immune-related AEs from checkpoint)"
+    },
+    {
+      "combination": "Radioligand Therapy (Pluvicto) + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "Pluvicto (177Lu-PSMA-617) delivers targeted radiation to PSMA+ tumor cells â†' induces immunogenic cell death (ICD) â†' releases tumor antigens and DAMPs â†' activates dendritic cells â†' primes T-cell responses â†' upregulates PD-L1 on tumor and TME â†' creates window for checkpoint blockade synergy. Radioligand converts 'cold' to 'hot' via ICD.",
+      "clinical_evidence": "Preclinical: Radioligand + checkpoint shows synergy; Clinical: Phase I/II trials initiated (Pluvicto + pembrolizumab, Pluvicto + atezolizumab); early safety data acceptable; efficacy data pending",
+      "patient_selection": "PSMA+ mCRPC (>80%); PSMA PET imaging confirms eligibility; may enrich for MSI-H/TMB-high/CDK12-mutant (biomarker-selected subset) to maximize checkpoint benefit",
+      "development_status": "Phase I/II - early stage; safety established, efficacy data needed",
+      "strategic_priority": "HIGH - Leverages Pluvicto approval and success (median OS 15.3 months); ICD mechanism is rational for checkpoint synergy; PSMA+ population large (>80%); combination could exceed either monotherapy",
+      "key_considerations": "Sequencing critical (concurrent vs sequential dosing); radiation-induced ICD window may be transient (checkpoint timing important); monitor for additive toxicities (myelosuppression from radiation; immune-related AEs from checkpoint); biomarker enrichment (MSI-H, TMB-high, CDK12) may enhance checkpoint component"
+    },
+    {
+      "combination": "Bipolar Androgen Therapy (BAT) + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "BAT (supraphysiologic testosterone) paradoxically increases MHC class I expression on tumor cells â†' enhances antigen presentation â†' increases neoantigen display â†' recruits T cells to TME â†' creates 'hotter' immune environment â†' sensitizes to checkpoint blockade. BAT reverses AR-inhibitor induced immune suppression.",
+      "clinical_evidence": "BAT + nivolumab Phase II: ORR 35% in biomarker-selected cohort; PSA responses; enhanced MHC-I and T-cell infiltration confirmed by biomarker studies",
+      "patient_selection": "Post-AR inhibitor mCRPC; may enrich for specific genomic features (hormone-responsive biology); exclude neuroendocrine differentiation",
+      "development_status": "Phase II - promising early data; biomarker-selected expansion cohorts",
+      "strategic_priority": "MODERATE-HIGH - Novel mechanism (androgen-driven neoantigen increase); 35% ORR compelling if reproducible; addresses AR inhibitor-induced immune suppression; rational in AR-resistant setting",
+      "key_considerations": "BAT requires careful patient selection (exclude rapidly progressive disease, neuroendocrine); testosterone cycling (high-dose pulses) with checkpoint dosing coordination; monitor MHC-I and T-cell infiltration as pharmacodynamic biomarkers; cardiovascular monitoring (supraphysiologic testosterone)"
+    },
+    {
+      "combination": "Oncolytic Virus + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "Oncolytic virus (CAN-2409, others) infects and lyses tumor cells â†' releases tumor antigens and viral PAMPs â†' induces type I interferon and inflammatory cytokines â†' recruits and activates DCs â†' primes T-cell responses â†' upregulates PD-L1 on tumor/TME â†' creates window for checkpoint synergy. OV is TME modulator converting 'cold' to 'hot'.",
+      "clinical_evidence": "CAN-2409 (adenovirus + HSV-TK + Flt3L) has RMAT designation for localized prostate cancer; mCRPC combinations with checkpoint in development; extrapolation from other tumors (melanoma, GBM) shows OV + checkpoint synergy",
+      "patient_selection": "Requires accessible lesions for intratumoral injection (lymph nodes, soft tissue mets); may enrich for MSI-H/TMB-high/CDK12-mutant to maximize checkpoint component",
+      "development_status": "Preclinical to Phase I - CAN-2409 + checkpoint planned; RMAT designation supports development",
+      "strategic_priority": "MODERATE - OV + checkpoint rational (TME modulation + immune amplification); CAN-2409 RMAT designation is positive signal; delivery challenges (bone mets, intratumoral access) limit broad applicability",
+      "key_considerations": "Intratumoral delivery requires accessible lesions (not all mCRPC patients eligible); viral dose and checkpoint timing (OV priming window ~1-2 weeks, then checkpoint); manage flu-like symptoms from OV; monitor for abscopal effects (non-injected lesions responding)"
+    },
+    {
+      "combination": "Bispecific Antibody + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "Bispecific T-cell engager (Xaluritamig STEAP1 x CD3, others) recruits T cells to tumor â†' induces T-cell activation and tumor killing â†' increases antigen release and inflammation â†' upregulates PD-L1 as adaptive resistance â†' checkpoint blockade prevents T-cell exhaustion and enhances bispecific efficacy. Combination overcomes T-cell exhaustion.",
+      "clinical_evidence": "No clinical data yet in mCRPC; extrapolation from heme malignancies (bispecific + checkpoint shows synergy); rationale based on PD-L1 upregulation post-bispecific (adaptive resistance mechanism)",
+      "patient_selection": "All bispecific-eligible patients (STEAP1+, PSMA+, KLK2+); may enrich for MSI-H/TMB-high/CDK12-mutant to maximize checkpoint benefit; could rescue bispecific non-responders (add checkpoint to overcome PD-L1 mediated resistance)",
+      "development_status": "Preclinical/planned - rational next step after bispecific monotherapy establishes activity",
+      "strategic_priority": "MODERATE - Rational mechanism (bispecific-induced PD-L1 upregulation + checkpoint blockade); timing will depend on bispecific monotherapy success (Xaluritamig Phase III readout); combination could deepen responses or rescue progressors",
+      "key_considerations": "Sequencing (concurrent vs sequential); manage overlapping toxicities (CRS from bispecific, immune-related AEs from checkpoint); PD-L1 upregulation as biomarker (post-bispecific biopsy to confirm); may position as salvage (add checkpoint to bispecific progressors with PD-L1 upregulation)"
+    },
+    {
+      "combination": "Cancer Vaccine + PD-1/PD-L1 Checkpoint Inhibitor",
+      "biological_rationale": "Cancer vaccine (Sipuleucel-T, SYNC-T in-situ) primes de novo T-cell responses against tumor antigens â†' creates T-cell infiltration in 'cold' TME â†' vaccine-primed T cells upregulate PD-1 (exhaustion) â†' checkpoint blockade prevents exhaustion and amplifies vaccine-induced immunity. Vaccine creates infiltrate, checkpoint unleashes it.",
+      "clinical_evidence": "Sipuleucel-T + checkpoint trials initiated; SYNC-T (in-situ vaccine) 33% ctDNA response as monotherapy - combination with checkpoint planned; preclinical data support vaccine + checkpoint synergy",
+      "patient_selection": "All mCRPC eligible for vaccine (Sipuleucel-T: asymptomatic/minimally symptomatic; SYNC-T: accessible lesions); may enrich for biomarker-selected checkpoint-responsive subsets",
+      "development_status": "Phase I/II - Sipuleucel-T + checkpoint ongoing; SYNC-T + checkpoint planned",
+      "strategic_priority": "MODERATE - Rational (vaccine primes, checkpoint amplifies); Sipuleucel-T monotherapy modest (4.1 month OS) - checkpoint may enhance; SYNC-T more promising (33% ctDNA response, abscopal effects) - combination could be substantial",
+      "key_considerations": "Vaccine schedule + checkpoint dosing coordination (vaccine priming window ~4-6 weeks, then checkpoint); Sipuleucel-T manufacturing time (1 month) delays checkpoint; SYNC-T faster (in-situ, no manufacturing); monitor vaccine-induced T-cell infiltration as biomarker (on-treatment biopsy); safety generally favorable (vaccine well-tolerated, checkpoint toxicity standard)"
+    },
+    {
+      "combination": "TGF-β Blockade + PD-1/PD-L1 Checkpoint Inhibitor (Bifunctional Antibodies)",
+      "biological_rationale": "TGF-β is master immunosuppressor in mCRPC TME (high in bone metastases) â†' promotes Tregs, inhibits CTLs, excludes T cells â†' TGF-β blockade reduces immunosuppression â†' combined PD-1/PD-L1 blockade removes T-cell brakes â†' bifunctional antibodies (PD-L1 x TGF-β trap) deliver both mechanisms. Addresses 'cold' TME and checkpoint resistance simultaneously.",
+      "clinical_evidence": "Bifunctional PD-L1 x TGF-β trap antibodies in development (bintrafusp alfa failed in NSCLC but mCRPC biology different); preclinical mCRPC models show TGF-β blockade + checkpoint synergy",
+      "patient_selection": "Bone-predominant mCRPC (TGF-β high from osteoclasts); may require TGF-β biomarker (serum levels, TME expression) for enrichment",
+      "development_status": "Preclinical to early Phase I - bifunctional molecules in development; mCRPC-specific trials needed",
+      "strategic_priority": "MODERATE - Addresses fundamental mCRPC biology (TGF-β driven immunosuppression, especially bone); bifunctional approach elegant but early-stage; bintrafusp alfa NSCLC failure is caution",
+      "key_considerations": "TGF-β biomarker selection (high baseline TGF-β predicts benefit); monitor for TGF-β blockade toxicities (skin, cardiac - bintrafusp alfa lessons); bone-predominant disease enrichment (osteoclast-derived TGF-β); bifunctional vs combination (single molecule vs two drugs - pharmacology, manufacturing)"
+    }
+  ]
+}
